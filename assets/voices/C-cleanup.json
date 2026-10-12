@@ -1,0 +1,110 @@
+{
+  "engine": "DeepFilterNet",
+  "version": "0.5.6",
+  "source": "https://github.com/Rikorose/DeepFilterNet/releases/tag/v0.5.6",
+  "recipe": [
+    "--compensate-delay",
+    "--atten-lim-db",
+    "30"
+  ],
+  "approved_sample": "C-neural-30db.wav",
+  "binary_sha256": "75e11fa16445f560cb6b021521ddb89e89270d13b83089705d98776f58fd7915",
+  "records": [
+    {
+      "id": "bed",
+      "duration_before": 7.17075,
+      "duration_after": 7.17075,
+      "quiet_reduction_db": 21.10309794753973,
+      "speech_level_change_db": -0.781432667582294,
+      "peak_after_db": -3.41368892673914
+    },
+    {
+      "id": "bye",
+      "duration_before": 2.0640833333333335,
+      "duration_after": 2.0640833333333335,
+      "quiet_reduction_db": 16.87387412592554,
+      "speech_level_change_db": -1.901709609814496,
+      "peak_after_db": -9.265897355203064
+    },
+    {
+      "id": "cancel",
+      "duration_before": 5.736375,
+      "duration_after": 5.736375,
+      "quiet_reduction_db": 20.10286685777904,
+      "speech_level_change_db": -0.7922520932115731,
+      "peak_after_db": -4.6524795161238215
+    },
+    {
+      "id": "defer",
+      "duration_before": 9.0325,
+      "duration_after": 9.0325,
+      "quiet_reduction_db": 16.635919642530638,
+      "speech_level_change_db": -0.8784641669084259,
+      "peak_after_db": -2.154723835949144
+    },
+    {
+      "id": "dialog",
+      "duration_before": 6.114125,
+      "duration_after": 6.114125,
+      "quiet_reduction_db": 18.035698025144292,
+      "speech_level_change_db": -0.7617761176152076,
+      "peak_after_db": -3.5734020395215143
+    },
+    {
+      "id": "early",
+      "duration_before": 5.737333333333333,
+      "duration_after": 5.737333333333333,
+      "quiet_reduction_db": 18.106274590944253,
+      "speech_level_change_db": -0.39572509888492036,
+      "peak_after_db": -3.5554217201209464
+    },
+    {
+      "id": "final",
+      "duration_before": 5.549708333333333,
+      "duration_after": 5.549708333333333,
+      "quiet_reduction_db": 22.798347479828095,
+      "speech_level_change_db": -0.8526726818921944,
+      "peak_after_db": -3.7015350355326024
+    },
+    {
+      "id": "goodnight",
+      "duration_before": 5.836666666666667,
+      "duration_after": 5.836666666666667,
+      "quiet_reduction_db": 21.57596710629832,
+      "speech_level_change_db": -0.8022156962762388,
+      "peak_after_db": -3.8278789628953342
+    },
+    {
+      "id": "hello",
+      "duration_before": 8.757375,
+      "duration_after": 8.757375,
+      "quiet_reduction_db": 14.384098312521658,
+      "speech_level_change_db": -0.4721639112909717,
+      "peak_after_db": -3.0375111589854384
+    },
+    {
+      "id": "preview",
+      "duration_before": 8.80375,
+      "duration_after": 8.80375,
+      "quiet_reduction_db": 20.310131908954354,
+      "speech_level_change_db": -1.1376216185381036,
+      "peak_after_db": -3.3842870652136043
+    },
+    {
+      "id": "soon",
+      "duration_before": 6.346,
+      "duration_after": 6.346,
+      "quiet_reduction_db": 13.984854912648203,
+      "speech_level_change_db": -0.21885909644217527,
+      "peak_after_db": -3.426264075676711
+    },
+    {
+      "id": "audition",
+      "duration_before": 7.311375,
+      "duration_after": 7.311375,
+      "quiet_reduction_db": 17.647134356696,
+      "speech_level_change_db": -0.33508113745174484,
+      "peak_after_db": -3.8319986222583076
+    }
+  ]
+}

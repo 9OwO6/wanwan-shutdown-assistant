@@ -1,0 +1,31 @@
+name: Verify
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  schedule-and-assets:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - name: Parse PowerShell source
+        shell: powershell
+        run: |
+          $failed = $false
+          Get-ChildItem app,tests -Filter *.ps1 -Recurse | ForEach-Object {
+            $parseTokens = $null
+            $parseErrors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref]$parseTokens, [ref]$parseErrors) | Out-Null
+            if ($parseErrors) { $parseErrors | Write-Error; $failed = $true }
+          }
+          if ($failed) { exit 1 }
+      - name: Check deterministic schedule boundaries
+        shell: powershell
+        run: .\tests\Schedule.Tests.ps1
+      - name: Verify bundled runtime assets
+        run: python tools/verify_release_assets.py

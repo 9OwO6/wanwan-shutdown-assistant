@@ -1,0 +1,228 @@
+{
+  "version": 1,
+  "preset": "N1",
+  "label": "清甜温柔报时",
+  "precision": "当前小时；气泡显示提醒发生时的 HH:mm",
+  "lines": [
+    {
+      "id": "hour-00",
+      "cue": "clock",
+      "action": "peek",
+      "text": "宝贝，已经凌晨十二点啦。",
+      "file": "assets/voices/N1-clock/parts/hour-00.wav",
+      "hour": 0
+    },
+    {
+      "id": "hour-01",
+      "cue": "clock",
+      "action": "peek",
+      "text": "宝贝，已经凌晨一点啦。",
+      "file": "assets/voices/N1-clock/parts/hour-01.wav",
+      "hour": 1
+    },
+    {
+      "id": "hour-02",
+      "cue": "clock",
+      "action": "peek",
+      "text": "宝贝，已经凌晨二点啦。",
+      "file": "assets/voices/N1-clock/parts/hour-02.wav",
+      "hour": 2
+    },
+    {
+      "id": "hour-03",
+      "cue": "clock",
+      "action": "peek",
+      "text": "宝贝，已经凌晨三点啦。",
+      "file": "assets/voices/N1-clock/parts/hour-03.wav",
+      "hour": 3
+    },
+    {
+      "id": "hour-04",
+      "cue": "clock",
+      "action": "peek",
+      "text": "宝贝，已经凌晨四点啦。",
+      "file": "assets/voices/N1-clock/parts/hour-04.wav",
+      "hour": 4
+    },
+    {
+      "id": "hour-05",
+      "cue": "clock",
+      "action": "peek",
+      "text": "宝贝，已经凌晨五点啦。",
+      "file": "assets/voices/N1-clock/parts/hour-05.wav",
+      "hour": 5
+    },
+    {
+      "id": "hour-06",
+      "cue": "clock",
+      "action": "peek",
+      "text": "宝贝，已经早上六点啦。",
+      "file": "assets/voices/N1-clock/parts/hour-06.wav",
+      "hour": 6
+    },
+    {
+      "id": "hour-07",
+      "cue": "clock",
+      "action": "peek",
+      "text": "宝贝，已经早上七点啦。",
+      "file": "assets/voices/N1-clock/parts/hour-07.wav",
+      "hour": 7
+    },
+    {
+      "id": "hour-08",
+      "cue": "clock",
+      "action": "peek",
+      "text": "宝贝，已经早上八点啦。",
+      "file": "assets/voices/N1-clock/parts/hour-08.wav",
+      "hour": 8
+    },
+    {
+      "id": "hour-09",
+      "cue": "clock",
+      "action": "peek",
+      "text": "宝贝，已经早上九点啦。",
+      "file": "assets/voices/N1-clock/parts/hour-09.wav",
+      "hour": 9
+    },
+    {
+      "id": "hour-10",
+      "cue": "clock",
+      "action": "peek",
+      "text": "宝贝，已经早上十点啦。",
+      "file": "assets/voices/N1-clock/parts/hour-10.wav",
+      "hour": 10
+    },
+    {
+      "id": "hour-11",
+      "cue": "clock",
+      "action": "peek",
+      "text": "宝贝，已经早上十一点啦。",
+      "file": "assets/voices/N1-clock/parts/hour-11.wav",
+      "hour": 11
+    },
+    {
+      "id": "hour-12",
+      "cue": "clock",
+      "action": "peek",
+      "text": "宝贝，已经中午十二点啦。",
+      "file": "assets/voices/N1-clock/parts/hour-12.wav",
+      "hour": 12
+    },
+    {
+      "id": "hour-13",
+      "cue": "clock",
+      "action": "peek",
+      "text": "宝贝，已经下午一点啦。",
+      "file": "assets/voices/N1-clock/parts/hour-13.wav",
+      "hour": 13
+    },
+    {
+      "id": "hour-14",
+      "cue": "clock",
+      "action": "peek",
+      "text": "宝贝，已经下午二点啦。",
+      "file": "assets/voices/N1-clock/parts/hour-14.wav",
+      "hour": 14
+    },
+    {
+      "id": "hour-15",
+      "cue": "clock",
+      "action": "peek",
+      "text": "宝贝，已经下午三点啦。",
+      "file": "assets/voices/N1-clock/parts/hour-15.wav",
+      "hour": 15
+    },
+    {
+      "id": "hour-16",
+      "cue": "clock",
+      "action": "peek",
+      "text": "宝贝，已经下午四点啦。",
+      "file": "assets/voices/N1-clock/parts/hour-16.wav",
+      "hour": 16
+    },
+    {
+      "id": "hour-17",
+      "cue": "clock",
+      "action": "peek",
+      "text": "宝贝，已经下午五点啦。",
+      "file": "assets/voices/N1-clock/parts/hour-17.wav",
+      "hour": 17
+    },
+    {
+      "id": "hour-18",
+      "cue": "clock",
+      "action": "peek",
+      "text": "宝贝，已经晚上六点啦。",
+      "file": "assets/voices/N1-clock/parts/hour-18.wav",
+      "hour": 18
+    },
+    {
+      "id": "hour-19",
+      "cue": "clock",
+      "action": "peek",
+      "text": "宝贝，已经晚上七点啦。",
+      "file": "assets/voices/N1-clock/parts/hour-19.wav",
+      "hour": 19
+    },
+    {
+      "id": "hour-20",
+      "cue": "clock",
+      "action": "peek",
+      "text": "宝贝，已经晚上八点啦。",
+      "file": "assets/voices/N1-clock/parts/hour-20.wav",
+      "hour": 20
+    },
+    {
+      "id": "hour-21",
+      "cue": "clock",
+      "action": "peek",
+      "text": "宝贝，已经晚上九点啦。",
+      "file": "assets/voices/N1-clock/parts/hour-21.wav",
+      "hour": 21
+    },
+    {
+      "id": "hour-22",
+      "cue": "clock",
+      "action": "peek",
+      "text": "宝贝，已经晚上十点啦。",
+      "file": "assets/voices/N1-clock/parts/hour-22.wav",
+      "hour": 22
+    },
+    {
+      "id": "hour-23",
+      "cue": "clock",
+      "action": "peek",
+      "text": "宝贝，已经晚上十一点啦。",
+      "file": "assets/voices/N1-clock/parts/hour-23.wav",
+      "hour": 23
+    },
+    {
+      "id": "tail-early",
+      "cue": "early",
+      "action": "water",
+      "text": "快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
+      "file": "assets/voices/N1-clock/parts/tail-early.wav"
+    },
+    {
+      "id": "tail-soon",
+      "cue": "soon",
+      "action": "stretch",
+      "text": "离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
+      "file": "assets/voices/N1-clock/parts/tail-soon.wav"
+    },
+    {
+      "id": "tail-bed",
+      "cue": "bed",
+      "action": "nod",
+      "text": "到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
+      "file": "assets/voices/N1-clock/parts/tail-bed.wav"
+    },
+    {
+      "id": "tail-final",
+      "cue": "final",
+      "action": "yawn",
+      "text": "进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
+      "file": "assets/voices/N1-clock/parts/tail-final.wav"
+    }
+  ]
+}

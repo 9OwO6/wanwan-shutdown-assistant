@@ -1,0 +1,62 @@
+[
+  {
+    "id": "peek",
+    "file": "assets/interactions/peek.png",
+    "prompt": "Use case: identity-preserve animation sprite asset. Match the supplied original adult East Asian woman aged 26: exactly same gentle face, dark brown loose hair, cream knitted cardigan. Warm detailed painterly editorial illustration, cute friendly adult proportions. Output a STRICT 2 columns x 2 rows animation spritesheet, four equal square cells in reading order, transparent background with genuine alpha. No room background, no borders, no gutters, no text. Each cell contains the same waist-up character at exactly the same size and head center, with ample transparent margins so every hand stays inside its cell. Consistent face, lighting and clothes in all cells. Hands anatomically correct, five fingers. Never show multiple characters in one cell. Four consecutive frames for the requested action. Playful peeking hello: 1 shoulders facing front, head upright; 2 gently tilt head left and lean slightly forward, curious smile; 3 tilt head a little right and raise one hand beside cheek in small hello; 4 head upright again, hand lowering. No mug.",
+    "source": "image_gen artifact: exec-5effa7dc-fe83-4de4-9e93-3ea8ca7b957d.png"
+  },
+  {
+    "id": "pat",
+    "file": "assets/interactions/pat.png",
+    "prompt": "Use case: identity-preserve animation sprite asset. Match the supplied original adult East Asian woman aged 26: exactly same gentle face, dark brown loose hair, cream knitted cardigan. Warm detailed painterly editorial illustration, cute friendly adult proportions. Output a STRICT 2 columns x 2 rows animation spritesheet, four equal square cells in reading order, transparent background with genuine alpha. No room background, no borders, no gutters, no text. Each cell contains the same waist-up character at exactly the same size and head center, with ample transparent margins so every hand stays inside its cell. Consistent face, lighting and clothes in all cells. Hands anatomically correct, five fingers. Never show multiple characters in one cell. Four consecutive frames for the requested action. Reaching toward viewer for a gentle head pat: 1 right hand at chest relaxed; 2 right palm lifted and extended toward camera above forehead level, warm smile; 3 palm moves slightly down toward viewer, as a gentle pat, realistic foreshortening; 4 hand withdraws toward chest. No mug.",
+    "source": "image_gen artifact: exec-271de55a-e2b9-4c60-8fc4-e0e108478113.png"
+  },
+  {
+    "id": "water",
+    "file": "assets/interactions/water.png",
+    "prompt": "Use case: identity-preserve animation sprite asset. Match the supplied original adult East Asian woman aged 26: exactly same gentle face, dark brown loose hair, cream knitted cardigan. Warm detailed painterly editorial illustration, cute friendly adult proportions. Output a STRICT 2 columns x 2 rows animation spritesheet, four equal square cells in reading order, transparent background with genuine alpha. No room background, no borders, no gutters, no text. Each cell contains the same waist-up character at exactly the same size and head center, with ample transparent margins so every hand stays inside its cell. Consistent face, lighting and clothes in all cells. Hands anatomically correct, five fingers. Never show multiple characters in one cell. Four consecutive frames for the requested action. Offering a drink: 1 holds small cream ceramic mug at chest with both hands; 2 lifts mug slightly; 3 extends mug toward viewer with caring smile; 4 brings mug back to chest. Same mug in every cell, no extra hands.",
+    "source": "image_gen artifact: exec-fad6d470-e423-41b0-9603-65efeef72090.png"
+  },
+  {
+    "id": "stretch",
+    "file": "assets/interactions/stretch.png",
+    "prompt": "Use case: identity-preserve animation sprite asset. Match the supplied original adult East Asian woman aged 26: exactly same gentle face, dark brown loose hair, cream knitted cardigan. Warm detailed painterly editorial illustration, cute friendly adult proportions. Output a STRICT 2 columns x 2 rows animation spritesheet, four equal square cells in reading order, transparent background with genuine alpha. No room background, no borders, no gutters, no text. Each cell contains the same waist-up character at exactly the same size and head center, with ample transparent margins so every hand stays inside its cell. Consistent face, lighting and clothes in all cells. Hands anatomically correct, five fingers. Never show multiple characters in one cell. Four consecutive frames for the requested action. Cozy stretch: 1 arms down relaxed; 2 both forearms start raising outward; 3 both arms stretch above head, eyes gently closing with relaxed smile, all hands fully inside cell; 4 arms gently lowering. No mug.",
+    "source": "image_gen artifact: exec-ff8faa58-f863-4ec4-a301-7a5cd32772b6.png"
+  },
+  {
+    "id": "nod",
+    "file": "assets/interactions/nod.png",
+    "prompt": "Use case: identity-preserve animation sprite asset. Match the supplied original adult East Asian woman aged 26: exactly same gentle face, dark brown loose hair, cream knitted cardigan. Warm detailed painterly editorial illustration, cute friendly adult proportions. Output a STRICT 2 columns x 2 rows animation spritesheet, four equal square cells in reading order, transparent background with genuine alpha. No room background, no borders, no gutters, no text. Each cell contains the same waist-up character at exactly the same size and head center, with ample transparent margins so every hand stays inside its cell. Consistent face, lighting and clothes in all cells. Hands anatomically correct, five fingers. Never show multiple characters in one cell. Four consecutive frames for the requested action. Reassuring nod: 1 head upright eyes open gentle smile, hands loosely clasped at chest; 2 head bows down slightly eyes half closed; 3 raises head back up eyes open and smile a little brighter; 4 upright with small hand thumbs-up beside shoulder. No mug.",
+    "source": "image_gen artifact: exec-27aaf527-2c52-4ed0-aa72-e992d9d9826e.png"
+  },
+  {
+    "id": "heart",
+    "file": "assets/interactions/heart.png",
+    "prompt": "Use case: identity-preserve animation sprite asset. Match the supplied original adult East Asian woman aged 26: exactly same gentle face, dark brown loose hair, cream knitted cardigan. Warm detailed painterly editorial illustration, cute friendly adult proportions. Output a STRICT 2 columns x 2 rows animation spritesheet, four equal square cells in reading order, transparent background with genuine alpha. No room background, no borders, no gutters, no text. Each cell contains the same waist-up character at exactly the same size and head center, with ample transparent margins so every hand stays inside its cell. Consistent face, lighting and clothes in all cells. Hands anatomically correct, five fingers. Never show multiple characters in one cell. Four consecutive frames for the requested action. Two-hand heart gesture: 1 hands near chest separated; 2 fingertips begin coming together; 3 both hands make a clearly readable heart shape in front of chest, smiling; 4 heart hands raised a little toward viewer. No mug.",
+    "source": "image_gen artifact: exec-8c6ac53b-e61f-470d-bd52-e2afb58e5e00.png"
+  },
+  {
+    "id": "cheer",
+    "file": "assets/interactions/cheer.png",
+    "prompt": "Use case: identity-preserve animation sprite asset. Match the supplied original adult East Asian woman aged 26: exactly same gentle face, dark brown loose hair, cream knitted cardigan. Warm detailed painterly editorial illustration, cute friendly adult proportions. Output a STRICT 2 columns x 2 rows animation spritesheet, four equal square cells in reading order, transparent background with genuine alpha. No room background, no borders, no gutters, no text. Each cell contains the same waist-up character at exactly the same size and head center, with ample transparent margins so every hand stays inside its cell. Consistent face, lighting and clothes in all cells. Hands anatomically correct, five fingers. Never show multiple characters in one cell. Four consecutive frames for the requested action. Tiny encouraging fist pump: 1 hands loosely closed at chest; 2 right fist raises beside shoulder; 3 both tiny fists raised beside shoulders in enthusiastic friendly encouragement, joyful smile; 4 hands lower, warm proud smile. No mug.",
+    "source": "image_gen artifact: exec-e65a82ba-c7a0-4725-9d72-e039786333ca.png"
+  },
+  {
+    "id": "wave",
+    "file": "assets/interactions/wave.png",
+    "prompt": "Use case: identity-preserve animation sprite asset. Match the supplied original adult East Asian woman aged 26: exactly same gentle face, dark brown loose hair, cream knitted cardigan. Warm detailed painterly editorial illustration, cute friendly adult proportions. Output a STRICT 2 columns x 2 rows animation spritesheet, four equal square cells in reading order, transparent background with genuine alpha. No room background, no borders, no gutters, no text. Each cell contains the same waist-up character at exactly the same size and head center, with ample transparent margins so every hand stays inside its cell. Consistent face, lighting and clothes in all cells. Hands anatomically correct, five fingers. Never show multiple characters in one cell. Four consecutive frames for the requested action. Friendly wave: 1 right hand down; 2 right open palm lifted beside shoulder; 3 palm rotates left with small wrist wave; 4 palm rotates right. No mug.",
+    "source": "image_gen artifact: exec-a49f0ded-1ce9-4618-9d42-524f2beb4f25.png"
+  },
+  {
+    "id": "yawn",
+    "file": "assets/interactions/yawn.png",
+    "prompt": "Use case: identity-preserve animation sprite asset. Match the supplied original adult East Asian woman aged 26: exactly same gentle face, dark brown loose hair, cream knitted cardigan. Warm detailed painterly editorial illustration, cute friendly adult proportions. Output a STRICT 2 columns x 2 rows animation spritesheet, four equal square cells in reading order, transparent background with genuine alpha. No room background, no borders, no gutters, no text. Each cell contains the same waist-up character at exactly the same size and head center, with ample transparent margins so every hand stays inside its cell. Consistent face, lighting and clothes in all cells. Hands anatomically correct, five fingers. Never show multiple characters in one cell. Four consecutive frames for the requested action. Sleepy yawn: 1 eyes open hands relaxed; 2 one hand moves toward mouth eyes half close; 3 gently covers a small yawn with hand, eyes closed, adorable sleepy expression; 4 hand lowers with sleepy smile. No mug.",
+    "source": "image_gen artifact: exec-0e2ebbdf-7677-4a25-b473-4dc49bea853b.png"
+  },
+  {
+    "id": "goodnight",
+    "file": "assets/interactions/goodnight.png",
+    "prompt": "Use case: identity-preserve animation sprite asset. Match the supplied original adult East Asian woman aged 26: exactly same gentle face, dark brown loose hair, cream knitted cardigan. Warm detailed painterly editorial illustration, cute friendly adult proportions. Output a STRICT 2 columns x 2 rows animation spritesheet, four equal square cells in reading order, transparent background with genuine alpha. No room background, no borders, no gutters, no text. Each cell contains the same waist-up character at exactly the same size and head center, with ample transparent margins so every hand stays inside its cell. Consistent face, lighting and clothes in all cells. Hands anatomically correct, five fingers. Never show multiple characters in one cell. Four consecutive frames for the requested action. Goodnight sleeping gesture: 1 hands at chest, soft smile; 2 palms come together; 3 both palms rest against one cheek and head tilts toward hands, eyes gently closed; 4 same sleeping gesture, eyes open slightly and warm goodnight smile. No mug.",
+    "source": "image_gen artifact: exec-afd195c7-9f07-43b9-8651-ebfe35a1e2d3.png"
+  }
+]

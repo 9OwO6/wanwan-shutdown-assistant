@@ -1,0 +1,1922 @@
+[
+  {
+    "id": "clock-00-early",
+    "cue": "early",
+    "hour": 0,
+    "action": "water",
+    "text": "宝贝，已经凌晨十二点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
+    "file": "assets/voices/N1-clock/00-early.wav",
+    "duration": 7.88,
+    "sha256": "a3b0b7993a715fd5e06d989bd6d656aadbc65175a4c2962596f541b70e6c28c3",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-00",
+      "tail-early"
+    ],
+    "source_sha256": [
+      "a6b3c5f5fe86a8d65e8c191cc513639dfd89de683eee6df3f9693e14cb4819e0",
+      "d91d9ca5767abf9a4ed00f71f4d43abb7fa043a81628f16636020285b511d4a5"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-00-soon",
+    "cue": "soon",
+    "hour": 0,
+    "action": "stretch",
+    "text": "宝贝，已经凌晨十二点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
+    "file": "assets/voices/N1-clock/00-soon.wav",
+    "duration": 8.96,
+    "sha256": "b1c2d514758a3c7a6bca50a564da3a0652ab492f1913cbb176bbbb769c595013",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-00",
+      "tail-soon"
+    ],
+    "source_sha256": [
+      "a6b3c5f5fe86a8d65e8c191cc513639dfd89de683eee6df3f9693e14cb4819e0",
+      "3e62ec2b25ccee3f25522db6aaa807d23ab93b0464419bb4346ec566e9a82d93"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-00-bed",
+    "cue": "bed",
+    "hour": 0,
+    "action": "nod",
+    "text": "宝贝，已经凌晨十二点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
+    "file": "assets/voices/N1-clock/00-bed.wav",
+    "duration": 8.28,
+    "sha256": "b80932a8c59ab11aef0c4117c2fcb4693a643abf69f1581981772588418ec9ca",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-00",
+      "tail-bed"
+    ],
+    "source_sha256": [
+      "a6b3c5f5fe86a8d65e8c191cc513639dfd89de683eee6df3f9693e14cb4819e0",
+      "7429830f548472bbe489377bff8cc497a181810c725a890bd341451e58b19607"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-00-final",
+    "cue": "final",
+    "hour": 0,
+    "action": "yawn",
+    "text": "宝贝，已经凌晨十二点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
+    "file": "assets/voices/N1-clock/00-final.wav",
+    "duration": 8.74,
+    "sha256": "413517c3bdfd0a66a1aed5e625b51a8478326646f578804873cca94698dd6dc5",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-00",
+      "tail-final"
+    ],
+    "source_sha256": [
+      "a6b3c5f5fe86a8d65e8c191cc513639dfd89de683eee6df3f9693e14cb4819e0",
+      "e3e68b444564843659f9a09b2558806de139c757eb9e6d3f9e7329690329432e"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-01-early",
+    "cue": "early",
+    "hour": 1,
+    "action": "water",
+    "text": "宝贝，已经凌晨一点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
+    "file": "assets/voices/N1-clock/01-early.wav",
+    "duration": 7.88,
+    "sha256": "79504374795377815ed797b8131ac55f2b1bee9f77eaeba6395e4162b330c789",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-01",
+      "tail-early"
+    ],
+    "source_sha256": [
+      "aa20aa45d8a7018daf8ef75b6bd47ce9c605478171604dd8d6c59794726651d0",
+      "d91d9ca5767abf9a4ed00f71f4d43abb7fa043a81628f16636020285b511d4a5"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-01-soon",
+    "cue": "soon",
+    "hour": 1,
+    "action": "stretch",
+    "text": "宝贝，已经凌晨一点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
+    "file": "assets/voices/N1-clock/01-soon.wav",
+    "duration": 8.96,
+    "sha256": "236958b65572873d4f95525c2814ac6845be2f8f710a7560c4ae487a2302617b",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-01",
+      "tail-soon"
+    ],
+    "source_sha256": [
+      "aa20aa45d8a7018daf8ef75b6bd47ce9c605478171604dd8d6c59794726651d0",
+      "3e62ec2b25ccee3f25522db6aaa807d23ab93b0464419bb4346ec566e9a82d93"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-01-bed",
+    "cue": "bed",
+    "hour": 1,
+    "action": "nod",
+    "text": "宝贝，已经凌晨一点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
+    "file": "assets/voices/N1-clock/01-bed.wav",
+    "duration": 8.28,
+    "sha256": "1c32635830e0e6c500ed409ad8a5d45bb64742a7810dce1f5e0ff6971a8fb9bc",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-01",
+      "tail-bed"
+    ],
+    "source_sha256": [
+      "aa20aa45d8a7018daf8ef75b6bd47ce9c605478171604dd8d6c59794726651d0",
+      "7429830f548472bbe489377bff8cc497a181810c725a890bd341451e58b19607"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-01-final",
+    "cue": "final",
+    "hour": 1,
+    "action": "yawn",
+    "text": "宝贝，已经凌晨一点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
+    "file": "assets/voices/N1-clock/01-final.wav",
+    "duration": 8.74,
+    "sha256": "11adc15bf3cd8a02538710135157316daded88345cad7ad6a7c86c36fa620448",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-01",
+      "tail-final"
+    ],
+    "source_sha256": [
+      "aa20aa45d8a7018daf8ef75b6bd47ce9c605478171604dd8d6c59794726651d0",
+      "e3e68b444564843659f9a09b2558806de139c757eb9e6d3f9e7329690329432e"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-02-early",
+    "cue": "early",
+    "hour": 2,
+    "action": "water",
+    "text": "宝贝，已经凌晨二点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
+    "file": "assets/voices/N1-clock/02-early.wav",
+    "duration": 7.88,
+    "sha256": "81b109fc612f1423d82af0b1cdb5b011c7ba154686498c1ae9409bfa8ed6a08a",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-02",
+      "tail-early"
+    ],
+    "source_sha256": [
+      "3635693a9bb91102059f95b02f4bce2a65b114a0eef0363439b3cf3cd5c5544b",
+      "d91d9ca5767abf9a4ed00f71f4d43abb7fa043a81628f16636020285b511d4a5"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-02-soon",
+    "cue": "soon",
+    "hour": 2,
+    "action": "stretch",
+    "text": "宝贝，已经凌晨二点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
+    "file": "assets/voices/N1-clock/02-soon.wav",
+    "duration": 8.96,
+    "sha256": "f4bbd4a918c364ff24a58ccfd6174a842c756fbc2b02534e67b20710827457a2",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-02",
+      "tail-soon"
+    ],
+    "source_sha256": [
+      "3635693a9bb91102059f95b02f4bce2a65b114a0eef0363439b3cf3cd5c5544b",
+      "3e62ec2b25ccee3f25522db6aaa807d23ab93b0464419bb4346ec566e9a82d93"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-02-bed",
+    "cue": "bed",
+    "hour": 2,
+    "action": "nod",
+    "text": "宝贝，已经凌晨二点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
+    "file": "assets/voices/N1-clock/02-bed.wav",
+    "duration": 8.28,
+    "sha256": "56734e7cbf2ec3e50e3c50c052357586dce948e0c2bd5585f910036c1ab6c20f",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-02",
+      "tail-bed"
+    ],
+    "source_sha256": [
+      "3635693a9bb91102059f95b02f4bce2a65b114a0eef0363439b3cf3cd5c5544b",
+      "7429830f548472bbe489377bff8cc497a181810c725a890bd341451e58b19607"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-02-final",
+    "cue": "final",
+    "hour": 2,
+    "action": "yawn",
+    "text": "宝贝，已经凌晨二点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
+    "file": "assets/voices/N1-clock/02-final.wav",
+    "duration": 8.74,
+    "sha256": "55a51a3233f26ce1ba421f20470118c0c0876bc1805bc93643c63b186fa05172",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-02",
+      "tail-final"
+    ],
+    "source_sha256": [
+      "3635693a9bb91102059f95b02f4bce2a65b114a0eef0363439b3cf3cd5c5544b",
+      "e3e68b444564843659f9a09b2558806de139c757eb9e6d3f9e7329690329432e"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-03-early",
+    "cue": "early",
+    "hour": 3,
+    "action": "water",
+    "text": "宝贝，已经凌晨三点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
+    "file": "assets/voices/N1-clock/03-early.wav",
+    "duration": 7.76,
+    "sha256": "68b7f671fcd4a9c4580fcdfa4f5f8806c61978b2101640b1d57f9e3a2dbf4c29",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-03",
+      "tail-early"
+    ],
+    "source_sha256": [
+      "927646add05cdb9aca11760da858e460b730d4397a7251c458b43044ec8a8fcf",
+      "d91d9ca5767abf9a4ed00f71f4d43abb7fa043a81628f16636020285b511d4a5"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-03-soon",
+    "cue": "soon",
+    "hour": 3,
+    "action": "stretch",
+    "text": "宝贝，已经凌晨三点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
+    "file": "assets/voices/N1-clock/03-soon.wav",
+    "duration": 8.84,
+    "sha256": "3d2509ed9343984c366faca1acd083ecf59db895efebe5ab8ac7d64b8eeff0fc",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-03",
+      "tail-soon"
+    ],
+    "source_sha256": [
+      "927646add05cdb9aca11760da858e460b730d4397a7251c458b43044ec8a8fcf",
+      "3e62ec2b25ccee3f25522db6aaa807d23ab93b0464419bb4346ec566e9a82d93"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-03-bed",
+    "cue": "bed",
+    "hour": 3,
+    "action": "nod",
+    "text": "宝贝，已经凌晨三点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
+    "file": "assets/voices/N1-clock/03-bed.wav",
+    "duration": 8.16,
+    "sha256": "61164a18840670c9e41d08ce5c17170c9ef4ae23ec80c16de857692d3be0ded6",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-03",
+      "tail-bed"
+    ],
+    "source_sha256": [
+      "927646add05cdb9aca11760da858e460b730d4397a7251c458b43044ec8a8fcf",
+      "7429830f548472bbe489377bff8cc497a181810c725a890bd341451e58b19607"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-03-final",
+    "cue": "final",
+    "hour": 3,
+    "action": "yawn",
+    "text": "宝贝，已经凌晨三点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
+    "file": "assets/voices/N1-clock/03-final.wav",
+    "duration": 8.62,
+    "sha256": "cd3ef32012f6ed19458e9542d63a626e1cd4868ff7e9240437a99df0945ff754",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-03",
+      "tail-final"
+    ],
+    "source_sha256": [
+      "927646add05cdb9aca11760da858e460b730d4397a7251c458b43044ec8a8fcf",
+      "e3e68b444564843659f9a09b2558806de139c757eb9e6d3f9e7329690329432e"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-04-early",
+    "cue": "early",
+    "hour": 4,
+    "action": "water",
+    "text": "宝贝，已经凌晨四点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
+    "file": "assets/voices/N1-clock/04-early.wav",
+    "duration": 7.94,
+    "sha256": "60c02bbcd4e1d52c6412939e2d8072cde3bf57d9a610666d3e46393691bd5c0f",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-04",
+      "tail-early"
+    ],
+    "source_sha256": [
+      "4260f73859a6cba45bab71c5267d8fad4421a64d2461c15460d19664b772d45e",
+      "d91d9ca5767abf9a4ed00f71f4d43abb7fa043a81628f16636020285b511d4a5"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-04-soon",
+    "cue": "soon",
+    "hour": 4,
+    "action": "stretch",
+    "text": "宝贝，已经凌晨四点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
+    "file": "assets/voices/N1-clock/04-soon.wav",
+    "duration": 9.02,
+    "sha256": "a9b018ef3b7ff3be74c965a76140e1aa9d19ba1caa4bb784fa53785160bbe502",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-04",
+      "tail-soon"
+    ],
+    "source_sha256": [
+      "4260f73859a6cba45bab71c5267d8fad4421a64d2461c15460d19664b772d45e",
+      "3e62ec2b25ccee3f25522db6aaa807d23ab93b0464419bb4346ec566e9a82d93"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-04-bed",
+    "cue": "bed",
+    "hour": 4,
+    "action": "nod",
+    "text": "宝贝，已经凌晨四点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
+    "file": "assets/voices/N1-clock/04-bed.wav",
+    "duration": 8.34,
+    "sha256": "ce271aedcf66c9ea02127dd0a47b2386d44613ac6736d2eca06190e61e8ee07b",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-04",
+      "tail-bed"
+    ],
+    "source_sha256": [
+      "4260f73859a6cba45bab71c5267d8fad4421a64d2461c15460d19664b772d45e",
+      "7429830f548472bbe489377bff8cc497a181810c725a890bd341451e58b19607"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-04-final",
+    "cue": "final",
+    "hour": 4,
+    "action": "yawn",
+    "text": "宝贝，已经凌晨四点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
+    "file": "assets/voices/N1-clock/04-final.wav",
+    "duration": 8.8,
+    "sha256": "6ccc56693a775b592f48faad75123067ca691e7f97dddf200df2943edf71aa87",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-04",
+      "tail-final"
+    ],
+    "source_sha256": [
+      "4260f73859a6cba45bab71c5267d8fad4421a64d2461c15460d19664b772d45e",
+      "e3e68b444564843659f9a09b2558806de139c757eb9e6d3f9e7329690329432e"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-05-early",
+    "cue": "early",
+    "hour": 5,
+    "action": "water",
+    "text": "宝贝，已经凌晨五点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
+    "file": "assets/voices/N1-clock/05-early.wav",
+    "duration": 7.82,
+    "sha256": "9d32a1a3d039221ae26465b0f50fe1e811245bc5360c8db4fa337ebd38ccf8b6",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-05",
+      "tail-early"
+    ],
+    "source_sha256": [
+      "09df180be213e586228c26efc48d290be907dfe4d3108f6a761a9554d256e516",
+      "d91d9ca5767abf9a4ed00f71f4d43abb7fa043a81628f16636020285b511d4a5"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-05-soon",
+    "cue": "soon",
+    "hour": 5,
+    "action": "stretch",
+    "text": "宝贝，已经凌晨五点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
+    "file": "assets/voices/N1-clock/05-soon.wav",
+    "duration": 8.9,
+    "sha256": "8d1464567b79ef858c72723705cb94179eaed5bc2691108391811927a3d238ef",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-05",
+      "tail-soon"
+    ],
+    "source_sha256": [
+      "09df180be213e586228c26efc48d290be907dfe4d3108f6a761a9554d256e516",
+      "3e62ec2b25ccee3f25522db6aaa807d23ab93b0464419bb4346ec566e9a82d93"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-05-bed",
+    "cue": "bed",
+    "hour": 5,
+    "action": "nod",
+    "text": "宝贝，已经凌晨五点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
+    "file": "assets/voices/N1-clock/05-bed.wav",
+    "duration": 8.22,
+    "sha256": "0d84df25ad4c6da1ae46c2ee5b00ca0e5bfdd5bbf3254f36f32423aa2bf6c185",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-05",
+      "tail-bed"
+    ],
+    "source_sha256": [
+      "09df180be213e586228c26efc48d290be907dfe4d3108f6a761a9554d256e516",
+      "7429830f548472bbe489377bff8cc497a181810c725a890bd341451e58b19607"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-05-final",
+    "cue": "final",
+    "hour": 5,
+    "action": "yawn",
+    "text": "宝贝，已经凌晨五点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
+    "file": "assets/voices/N1-clock/05-final.wav",
+    "duration": 8.68,
+    "sha256": "8eab200a8a2ccc83118dbf731dc16134e34ad4df82e13031e3410f6bc22c7325",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-05",
+      "tail-final"
+    ],
+    "source_sha256": [
+      "09df180be213e586228c26efc48d290be907dfe4d3108f6a761a9554d256e516",
+      "e3e68b444564843659f9a09b2558806de139c757eb9e6d3f9e7329690329432e"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-06-early",
+    "cue": "early",
+    "hour": 6,
+    "action": "water",
+    "text": "宝贝，已经早上六点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
+    "file": "assets/voices/N1-clock/06-early.wav",
+    "duration": 7.66,
+    "sha256": "103c2a26f0f8172c8294aa32c8f58462581db3999ba9ff65735f361b3ae84eb8",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-06",
+      "tail-early"
+    ],
+    "source_sha256": [
+      "74c200ef42c7fd4816e97ea55e13f3a38d7e9fdddad5ca3a4fe0636a6b8d4d57",
+      "d91d9ca5767abf9a4ed00f71f4d43abb7fa043a81628f16636020285b511d4a5"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-06-soon",
+    "cue": "soon",
+    "hour": 6,
+    "action": "stretch",
+    "text": "宝贝，已经早上六点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
+    "file": "assets/voices/N1-clock/06-soon.wav",
+    "duration": 8.74,
+    "sha256": "f205440df252ab561eb5e7ee3f516352b80f5df0994ecdad2ea6eb3b42f7e4f2",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-06",
+      "tail-soon"
+    ],
+    "source_sha256": [
+      "74c200ef42c7fd4816e97ea55e13f3a38d7e9fdddad5ca3a4fe0636a6b8d4d57",
+      "3e62ec2b25ccee3f25522db6aaa807d23ab93b0464419bb4346ec566e9a82d93"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-06-bed",
+    "cue": "bed",
+    "hour": 6,
+    "action": "nod",
+    "text": "宝贝，已经早上六点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
+    "file": "assets/voices/N1-clock/06-bed.wav",
+    "duration": 8.06,
+    "sha256": "6250b1a71ab07e116155f82887876b4bb3e32aaec81ac28c95471ad8312ef7e1",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-06",
+      "tail-bed"
+    ],
+    "source_sha256": [
+      "74c200ef42c7fd4816e97ea55e13f3a38d7e9fdddad5ca3a4fe0636a6b8d4d57",
+      "7429830f548472bbe489377bff8cc497a181810c725a890bd341451e58b19607"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-06-final",
+    "cue": "final",
+    "hour": 6,
+    "action": "yawn",
+    "text": "宝贝，已经早上六点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
+    "file": "assets/voices/N1-clock/06-final.wav",
+    "duration": 8.52,
+    "sha256": "48ac0801f8a4d38a33b30d46e749daa5e03afa2bd3c03ece8aae8ceb74f15ac5",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-06",
+      "tail-final"
+    ],
+    "source_sha256": [
+      "74c200ef42c7fd4816e97ea55e13f3a38d7e9fdddad5ca3a4fe0636a6b8d4d57",
+      "e3e68b444564843659f9a09b2558806de139c757eb9e6d3f9e7329690329432e"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-07-early",
+    "cue": "early",
+    "hour": 7,
+    "action": "water",
+    "text": "宝贝，已经早上七点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
+    "file": "assets/voices/N1-clock/07-early.wav",
+    "duration": 7.88,
+    "sha256": "5c4f3a7fa44d3b5e0f054d7dc0eaf87ac3c7ffd61bb8c05349965520e6276433",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-07",
+      "tail-early"
+    ],
+    "source_sha256": [
+      "07fcee1908e1f6d77877514e390fee7cb24394d08532113d2e740d44e6b7b68f",
+      "d91d9ca5767abf9a4ed00f71f4d43abb7fa043a81628f16636020285b511d4a5"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-07-soon",
+    "cue": "soon",
+    "hour": 7,
+    "action": "stretch",
+    "text": "宝贝，已经早上七点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
+    "file": "assets/voices/N1-clock/07-soon.wav",
+    "duration": 8.96,
+    "sha256": "c5361494028a520715097ba99bd94d3b18ba34910c2c4b64f8dc4d92b7cf515f",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-07",
+      "tail-soon"
+    ],
+    "source_sha256": [
+      "07fcee1908e1f6d77877514e390fee7cb24394d08532113d2e740d44e6b7b68f",
+      "3e62ec2b25ccee3f25522db6aaa807d23ab93b0464419bb4346ec566e9a82d93"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-07-bed",
+    "cue": "bed",
+    "hour": 7,
+    "action": "nod",
+    "text": "宝贝，已经早上七点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
+    "file": "assets/voices/N1-clock/07-bed.wav",
+    "duration": 8.28,
+    "sha256": "9925661954819c426d57a52319eb382318b99b37b4c0503ef56ca5a516737d2b",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-07",
+      "tail-bed"
+    ],
+    "source_sha256": [
+      "07fcee1908e1f6d77877514e390fee7cb24394d08532113d2e740d44e6b7b68f",
+      "7429830f548472bbe489377bff8cc497a181810c725a890bd341451e58b19607"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-07-final",
+    "cue": "final",
+    "hour": 7,
+    "action": "yawn",
+    "text": "宝贝，已经早上七点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
+    "file": "assets/voices/N1-clock/07-final.wav",
+    "duration": 8.74,
+    "sha256": "59df42ddbb9e12661054844c9ec933666531ac6ceb50dcc88ff61ab78900655f",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-07",
+      "tail-final"
+    ],
+    "source_sha256": [
+      "07fcee1908e1f6d77877514e390fee7cb24394d08532113d2e740d44e6b7b68f",
+      "e3e68b444564843659f9a09b2558806de139c757eb9e6d3f9e7329690329432e"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-08-early",
+    "cue": "early",
+    "hour": 8,
+    "action": "water",
+    "text": "宝贝，已经早上八点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
+    "file": "assets/voices/N1-clock/08-early.wav",
+    "duration": 7.82,
+    "sha256": "0ca8bb6003db16885df4d45bcce78b47e7ccd34fd7faf067f1360fa97fddabee",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-08",
+      "tail-early"
+    ],
+    "source_sha256": [
+      "7d0f59b55906d95cef16b45e266c26931a63f3804772e48eb0fa1d7992909871",
+      "d91d9ca5767abf9a4ed00f71f4d43abb7fa043a81628f16636020285b511d4a5"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-08-soon",
+    "cue": "soon",
+    "hour": 8,
+    "action": "stretch",
+    "text": "宝贝，已经早上八点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
+    "file": "assets/voices/N1-clock/08-soon.wav",
+    "duration": 8.9,
+    "sha256": "5c1dc75b4260d6c83582a734de671068ced4c68d0deff7b62be0d4d69a2801c7",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-08",
+      "tail-soon"
+    ],
+    "source_sha256": [
+      "7d0f59b55906d95cef16b45e266c26931a63f3804772e48eb0fa1d7992909871",
+      "3e62ec2b25ccee3f25522db6aaa807d23ab93b0464419bb4346ec566e9a82d93"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-08-bed",
+    "cue": "bed",
+    "hour": 8,
+    "action": "nod",
+    "text": "宝贝，已经早上八点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
+    "file": "assets/voices/N1-clock/08-bed.wav",
+    "duration": 8.22,
+    "sha256": "bf6cdf803e6580af8cb68475bbb6fc445ec42689bc68bc99f456a966ed2652cb",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-08",
+      "tail-bed"
+    ],
+    "source_sha256": [
+      "7d0f59b55906d95cef16b45e266c26931a63f3804772e48eb0fa1d7992909871",
+      "7429830f548472bbe489377bff8cc497a181810c725a890bd341451e58b19607"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-08-final",
+    "cue": "final",
+    "hour": 8,
+    "action": "yawn",
+    "text": "宝贝，已经早上八点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
+    "file": "assets/voices/N1-clock/08-final.wav",
+    "duration": 8.68,
+    "sha256": "e2fcc7ac6ddb6e8047e6d406ea32510e9f7197d2e11f767a157cc65314fbd753",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-08",
+      "tail-final"
+    ],
+    "source_sha256": [
+      "7d0f59b55906d95cef16b45e266c26931a63f3804772e48eb0fa1d7992909871",
+      "e3e68b444564843659f9a09b2558806de139c757eb9e6d3f9e7329690329432e"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-09-early",
+    "cue": "early",
+    "hour": 9,
+    "action": "water",
+    "text": "宝贝，已经早上九点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
+    "file": "assets/voices/N1-clock/09-early.wav",
+    "duration": 7.48,
+    "sha256": "daea8f7eacea90e283c79b9da71d471a82903758e49a19329c7560dd7b08df07",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-09",
+      "tail-early"
+    ],
+    "source_sha256": [
+      "7a4b1701094f2f6deef761702e1f97fb9b1e7c2c623b62d5a7408af9afcd530d",
+      "d91d9ca5767abf9a4ed00f71f4d43abb7fa043a81628f16636020285b511d4a5"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-09-soon",
+    "cue": "soon",
+    "hour": 9,
+    "action": "stretch",
+    "text": "宝贝，已经早上九点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
+    "file": "assets/voices/N1-clock/09-soon.wav",
+    "duration": 8.56,
+    "sha256": "7984afccb2a6a63a9d7cc0620d2966e2b05f7fbe02dd7770d2290725df8a78c9",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-09",
+      "tail-soon"
+    ],
+    "source_sha256": [
+      "7a4b1701094f2f6deef761702e1f97fb9b1e7c2c623b62d5a7408af9afcd530d",
+      "3e62ec2b25ccee3f25522db6aaa807d23ab93b0464419bb4346ec566e9a82d93"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-09-bed",
+    "cue": "bed",
+    "hour": 9,
+    "action": "nod",
+    "text": "宝贝，已经早上九点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
+    "file": "assets/voices/N1-clock/09-bed.wav",
+    "duration": 7.88,
+    "sha256": "192b7f5faa7199dbaa302e83747dcd2b19a006eaa868f28c36c3c128108250cf",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-09",
+      "tail-bed"
+    ],
+    "source_sha256": [
+      "7a4b1701094f2f6deef761702e1f97fb9b1e7c2c623b62d5a7408af9afcd530d",
+      "7429830f548472bbe489377bff8cc497a181810c725a890bd341451e58b19607"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-09-final",
+    "cue": "final",
+    "hour": 9,
+    "action": "yawn",
+    "text": "宝贝，已经早上九点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
+    "file": "assets/voices/N1-clock/09-final.wav",
+    "duration": 8.34,
+    "sha256": "af97853382d33e4ac19ce98b9ebdefdf7766d4c62949e6c7f65ef7875e69edf4",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-09",
+      "tail-final"
+    ],
+    "source_sha256": [
+      "7a4b1701094f2f6deef761702e1f97fb9b1e7c2c623b62d5a7408af9afcd530d",
+      "e3e68b444564843659f9a09b2558806de139c757eb9e6d3f9e7329690329432e"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-10-early",
+    "cue": "early",
+    "hour": 10,
+    "action": "water",
+    "text": "宝贝，已经早上十点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
+    "file": "assets/voices/N1-clock/10-early.wav",
+    "duration": 7.98,
+    "sha256": "94ccb7a0334e2f955cfe9513288cf48df6e454641d29200c8569c7206db2e7e6",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-10",
+      "tail-early"
+    ],
+    "source_sha256": [
+      "6fd422f45920d5eb90a2b7961d8b6caa6371bbc18b20cc7099447313bbef745b",
+      "d91d9ca5767abf9a4ed00f71f4d43abb7fa043a81628f16636020285b511d4a5"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-10-soon",
+    "cue": "soon",
+    "hour": 10,
+    "action": "stretch",
+    "text": "宝贝，已经早上十点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
+    "file": "assets/voices/N1-clock/10-soon.wav",
+    "duration": 9.06,
+    "sha256": "c5266266ff674bf21cdef2067f1f1c1bf4d5f8ae17637adf59d2d1f89c23fba6",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-10",
+      "tail-soon"
+    ],
+    "source_sha256": [
+      "6fd422f45920d5eb90a2b7961d8b6caa6371bbc18b20cc7099447313bbef745b",
+      "3e62ec2b25ccee3f25522db6aaa807d23ab93b0464419bb4346ec566e9a82d93"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-10-bed",
+    "cue": "bed",
+    "hour": 10,
+    "action": "nod",
+    "text": "宝贝，已经早上十点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
+    "file": "assets/voices/N1-clock/10-bed.wav",
+    "duration": 8.38,
+    "sha256": "26023c06709c5dd0f1f9877abd9ad0436d6f1281e93ff00dc35b612c1b4c0362",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-10",
+      "tail-bed"
+    ],
+    "source_sha256": [
+      "6fd422f45920d5eb90a2b7961d8b6caa6371bbc18b20cc7099447313bbef745b",
+      "7429830f548472bbe489377bff8cc497a181810c725a890bd341451e58b19607"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-10-final",
+    "cue": "final",
+    "hour": 10,
+    "action": "yawn",
+    "text": "宝贝，已经早上十点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
+    "file": "assets/voices/N1-clock/10-final.wav",
+    "duration": 8.84,
+    "sha256": "641985de8fdecae0ff2334e86315c2ba24579a3557a1f851dfa9fed327ff240f",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-10",
+      "tail-final"
+    ],
+    "source_sha256": [
+      "6fd422f45920d5eb90a2b7961d8b6caa6371bbc18b20cc7099447313bbef745b",
+      "e3e68b444564843659f9a09b2558806de139c757eb9e6d3f9e7329690329432e"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-11-early",
+    "cue": "early",
+    "hour": 11,
+    "action": "water",
+    "text": "宝贝，已经早上十一点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
+    "file": "assets/voices/N1-clock/11-early.wav",
+    "duration": 8.36,
+    "sha256": "77d591a1782ae32561eaab3b7638cc1876764a7fee1142b00a24f8bd0285b761",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-11",
+      "tail-early"
+    ],
+    "source_sha256": [
+      "88b5137155731ba545c8111cf442d303c69b218be2d1bd54d888a596e57a3bf1",
+      "d91d9ca5767abf9a4ed00f71f4d43abb7fa043a81628f16636020285b511d4a5"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-11-soon",
+    "cue": "soon",
+    "hour": 11,
+    "action": "stretch",
+    "text": "宝贝，已经早上十一点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
+    "file": "assets/voices/N1-clock/11-soon.wav",
+    "duration": 9.44,
+    "sha256": "60f5dcee1eb47be20f899c8091af1f1116f4edaee539024168433509213dbb9f",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-11",
+      "tail-soon"
+    ],
+    "source_sha256": [
+      "88b5137155731ba545c8111cf442d303c69b218be2d1bd54d888a596e57a3bf1",
+      "3e62ec2b25ccee3f25522db6aaa807d23ab93b0464419bb4346ec566e9a82d93"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-11-bed",
+    "cue": "bed",
+    "hour": 11,
+    "action": "nod",
+    "text": "宝贝，已经早上十一点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
+    "file": "assets/voices/N1-clock/11-bed.wav",
+    "duration": 8.76,
+    "sha256": "8e18c43603e37df62204ca707ccf280a85df7cb0531e9a991ad643bd88dcbdef",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-11",
+      "tail-bed"
+    ],
+    "source_sha256": [
+      "88b5137155731ba545c8111cf442d303c69b218be2d1bd54d888a596e57a3bf1",
+      "7429830f548472bbe489377bff8cc497a181810c725a890bd341451e58b19607"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-11-final",
+    "cue": "final",
+    "hour": 11,
+    "action": "yawn",
+    "text": "宝贝，已经早上十一点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
+    "file": "assets/voices/N1-clock/11-final.wav",
+    "duration": 9.22,
+    "sha256": "162bfd41719897564c7969ba00bdcae6d01e31419347fec8ea698dc7b51d3d46",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-11",
+      "tail-final"
+    ],
+    "source_sha256": [
+      "88b5137155731ba545c8111cf442d303c69b218be2d1bd54d888a596e57a3bf1",
+      "e3e68b444564843659f9a09b2558806de139c757eb9e6d3f9e7329690329432e"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-12-early",
+    "cue": "early",
+    "hour": 12,
+    "action": "water",
+    "text": "宝贝，已经中午十二点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
+    "file": "assets/voices/N1-clock/12-early.wav",
+    "duration": 7.98,
+    "sha256": "f130ff6499f0cf8993f76b925b05ae27f35a11690ee79b94ed7c92bb73b796b0",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-12",
+      "tail-early"
+    ],
+    "source_sha256": [
+      "2bf107b0b255bb4a9a5b9f68da74be1c675e4f8cce419f8f7bc0742cebbb5de5",
+      "d91d9ca5767abf9a4ed00f71f4d43abb7fa043a81628f16636020285b511d4a5"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-12-soon",
+    "cue": "soon",
+    "hour": 12,
+    "action": "stretch",
+    "text": "宝贝，已经中午十二点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
+    "file": "assets/voices/N1-clock/12-soon.wav",
+    "duration": 9.06,
+    "sha256": "bf54778c630d298e60e5932124cd13d83725d8257ab944c484dfb2c0d244d5b2",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-12",
+      "tail-soon"
+    ],
+    "source_sha256": [
+      "2bf107b0b255bb4a9a5b9f68da74be1c675e4f8cce419f8f7bc0742cebbb5de5",
+      "3e62ec2b25ccee3f25522db6aaa807d23ab93b0464419bb4346ec566e9a82d93"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-12-bed",
+    "cue": "bed",
+    "hour": 12,
+    "action": "nod",
+    "text": "宝贝，已经中午十二点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
+    "file": "assets/voices/N1-clock/12-bed.wav",
+    "duration": 8.38,
+    "sha256": "498e6e998ef10a885de91ac4c8a3dbe6ec1e6f44848b6aaddc7d09a1322a01b1",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-12",
+      "tail-bed"
+    ],
+    "source_sha256": [
+      "2bf107b0b255bb4a9a5b9f68da74be1c675e4f8cce419f8f7bc0742cebbb5de5",
+      "7429830f548472bbe489377bff8cc497a181810c725a890bd341451e58b19607"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-12-final",
+    "cue": "final",
+    "hour": 12,
+    "action": "yawn",
+    "text": "宝贝，已经中午十二点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
+    "file": "assets/voices/N1-clock/12-final.wav",
+    "duration": 8.84,
+    "sha256": "9cbbc59e3940dc8dc3552f1e648be3b4e7c8e8907224d6c32928c3036601a9ee",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-12",
+      "tail-final"
+    ],
+    "source_sha256": [
+      "2bf107b0b255bb4a9a5b9f68da74be1c675e4f8cce419f8f7bc0742cebbb5de5",
+      "e3e68b444564843659f9a09b2558806de139c757eb9e6d3f9e7329690329432e"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-13-early",
+    "cue": "early",
+    "hour": 13,
+    "action": "water",
+    "text": "宝贝，已经下午一点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
+    "file": "assets/voices/N1-clock/13-early.wav",
+    "duration": 7.54,
+    "sha256": "8ac77b1b4143e663bfd0d910deec6484798dd56b62d402f27f3e876872fce73e",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-13",
+      "tail-early"
+    ],
+    "source_sha256": [
+      "283db9ac6dfe9a834fc5da9f874bf9de002ca68bdb3cab63e126ab73612ee6bb",
+      "d91d9ca5767abf9a4ed00f71f4d43abb7fa043a81628f16636020285b511d4a5"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-13-soon",
+    "cue": "soon",
+    "hour": 13,
+    "action": "stretch",
+    "text": "宝贝，已经下午一点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
+    "file": "assets/voices/N1-clock/13-soon.wav",
+    "duration": 8.62,
+    "sha256": "9707015708273a0011063511a259d023400d12a3493fca40578df1e0db3373b7",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-13",
+      "tail-soon"
+    ],
+    "source_sha256": [
+      "283db9ac6dfe9a834fc5da9f874bf9de002ca68bdb3cab63e126ab73612ee6bb",
+      "3e62ec2b25ccee3f25522db6aaa807d23ab93b0464419bb4346ec566e9a82d93"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-13-bed",
+    "cue": "bed",
+    "hour": 13,
+    "action": "nod",
+    "text": "宝贝，已经下午一点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
+    "file": "assets/voices/N1-clock/13-bed.wav",
+    "duration": 7.94,
+    "sha256": "7e0e651987dccaa147c7201b88a4769085a65a2720d8ce46bad3c2ceff8f7935",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-13",
+      "tail-bed"
+    ],
+    "source_sha256": [
+      "283db9ac6dfe9a834fc5da9f874bf9de002ca68bdb3cab63e126ab73612ee6bb",
+      "7429830f548472bbe489377bff8cc497a181810c725a890bd341451e58b19607"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-13-final",
+    "cue": "final",
+    "hour": 13,
+    "action": "yawn",
+    "text": "宝贝，已经下午一点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
+    "file": "assets/voices/N1-clock/13-final.wav",
+    "duration": 8.4,
+    "sha256": "fdf75a7bbc7ad1b6c5775a9116b02f5435e6b39ea6ddd915b71d2b3b24f8084c",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-13",
+      "tail-final"
+    ],
+    "source_sha256": [
+      "283db9ac6dfe9a834fc5da9f874bf9de002ca68bdb3cab63e126ab73612ee6bb",
+      "e3e68b444564843659f9a09b2558806de139c757eb9e6d3f9e7329690329432e"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-14-early",
+    "cue": "early",
+    "hour": 14,
+    "action": "water",
+    "text": "宝贝，已经下午二点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
+    "file": "assets/voices/N1-clock/14-early.wav",
+    "duration": 7.62,
+    "sha256": "0dde12c1bbfb27e8328c50d2aa100271812e650ebe21e85444c66a39b3ff3f20",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-14",
+      "tail-early"
+    ],
+    "source_sha256": [
+      "5961345118f37ff53ba6556e290d4a84a0c8606e6f1715cead1f4a5ccc66acb1",
+      "d91d9ca5767abf9a4ed00f71f4d43abb7fa043a81628f16636020285b511d4a5"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-14-soon",
+    "cue": "soon",
+    "hour": 14,
+    "action": "stretch",
+    "text": "宝贝，已经下午二点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
+    "file": "assets/voices/N1-clock/14-soon.wav",
+    "duration": 8.7,
+    "sha256": "76ce3afef31f7601e82e97b5c74201254a6a3130b8cbaa18843e1fb94b8b047c",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-14",
+      "tail-soon"
+    ],
+    "source_sha256": [
+      "5961345118f37ff53ba6556e290d4a84a0c8606e6f1715cead1f4a5ccc66acb1",
+      "3e62ec2b25ccee3f25522db6aaa807d23ab93b0464419bb4346ec566e9a82d93"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-14-bed",
+    "cue": "bed",
+    "hour": 14,
+    "action": "nod",
+    "text": "宝贝，已经下午二点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
+    "file": "assets/voices/N1-clock/14-bed.wav",
+    "duration": 8.02,
+    "sha256": "3f8bb323bf2cb4d3ffbf94c51c1393868855fb5390624e47c76963957898f398",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-14",
+      "tail-bed"
+    ],
+    "source_sha256": [
+      "5961345118f37ff53ba6556e290d4a84a0c8606e6f1715cead1f4a5ccc66acb1",
+      "7429830f548472bbe489377bff8cc497a181810c725a890bd341451e58b19607"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-14-final",
+    "cue": "final",
+    "hour": 14,
+    "action": "yawn",
+    "text": "宝贝，已经下午二点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
+    "file": "assets/voices/N1-clock/14-final.wav",
+    "duration": 8.48,
+    "sha256": "1b85494b78d9bf8368c7964915e89730854b8ee828ebf2b1a360c25065c8b89f",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-14",
+      "tail-final"
+    ],
+    "source_sha256": [
+      "5961345118f37ff53ba6556e290d4a84a0c8606e6f1715cead1f4a5ccc66acb1",
+      "e3e68b444564843659f9a09b2558806de139c757eb9e6d3f9e7329690329432e"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-15-early",
+    "cue": "early",
+    "hour": 15,
+    "action": "water",
+    "text": "宝贝，已经下午三点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
+    "file": "assets/voices/N1-clock/15-early.wav",
+    "duration": 7.68,
+    "sha256": "683931f647878d7034dc085bbb9538d3421b05addd8dfc60d6c0d95d87188b8c",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-15",
+      "tail-early"
+    ],
+    "source_sha256": [
+      "2985bb86c8ce04758805c256f82fc0f1f6f019dc727e9e880a02f67a0349f0fb",
+      "d91d9ca5767abf9a4ed00f71f4d43abb7fa043a81628f16636020285b511d4a5"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-15-soon",
+    "cue": "soon",
+    "hour": 15,
+    "action": "stretch",
+    "text": "宝贝，已经下午三点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
+    "file": "assets/voices/N1-clock/15-soon.wav",
+    "duration": 8.76,
+    "sha256": "2c6626acebbea4fb51b84da034dd83351ca4eb24229b04968a43466d82e3c759",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-15",
+      "tail-soon"
+    ],
+    "source_sha256": [
+      "2985bb86c8ce04758805c256f82fc0f1f6f019dc727e9e880a02f67a0349f0fb",
+      "3e62ec2b25ccee3f25522db6aaa807d23ab93b0464419bb4346ec566e9a82d93"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-15-bed",
+    "cue": "bed",
+    "hour": 15,
+    "action": "nod",
+    "text": "宝贝，已经下午三点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
+    "file": "assets/voices/N1-clock/15-bed.wav",
+    "duration": 8.08,
+    "sha256": "eb9334b022d99c519439dd8225dec1568c54dc1b97371cd06184a14ed18c5b29",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-15",
+      "tail-bed"
+    ],
+    "source_sha256": [
+      "2985bb86c8ce04758805c256f82fc0f1f6f019dc727e9e880a02f67a0349f0fb",
+      "7429830f548472bbe489377bff8cc497a181810c725a890bd341451e58b19607"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-15-final",
+    "cue": "final",
+    "hour": 15,
+    "action": "yawn",
+    "text": "宝贝，已经下午三点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
+    "file": "assets/voices/N1-clock/15-final.wav",
+    "duration": 8.54,
+    "sha256": "912b330ebddd25859d185ed67b31b70b54544964cae57580b14b8adf4ba99f30",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-15",
+      "tail-final"
+    ],
+    "source_sha256": [
+      "2985bb86c8ce04758805c256f82fc0f1f6f019dc727e9e880a02f67a0349f0fb",
+      "e3e68b444564843659f9a09b2558806de139c757eb9e6d3f9e7329690329432e"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-16-early",
+    "cue": "early",
+    "hour": 16,
+    "action": "water",
+    "text": "宝贝，已经下午四点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
+    "file": "assets/voices/N1-clock/16-early.wav",
+    "duration": 7.72,
+    "sha256": "9cdc7d06f650ce7f60d5f66de3ce46ff1f1a9df5ccf42af28cb1795e73d797d5",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-16",
+      "tail-early"
+    ],
+    "source_sha256": [
+      "6fddc687e0f0b4d2d09702f90522a7da7723de5c3b009ff1d9c9d60ab90919a5",
+      "d91d9ca5767abf9a4ed00f71f4d43abb7fa043a81628f16636020285b511d4a5"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-16-soon",
+    "cue": "soon",
+    "hour": 16,
+    "action": "stretch",
+    "text": "宝贝，已经下午四点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
+    "file": "assets/voices/N1-clock/16-soon.wav",
+    "duration": 8.8,
+    "sha256": "6b04e159bb726160fd2aa2ef3809402e92cb6fbf48fc87613cde12c931ac2721",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-16",
+      "tail-soon"
+    ],
+    "source_sha256": [
+      "6fddc687e0f0b4d2d09702f90522a7da7723de5c3b009ff1d9c9d60ab90919a5",
+      "3e62ec2b25ccee3f25522db6aaa807d23ab93b0464419bb4346ec566e9a82d93"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-16-bed",
+    "cue": "bed",
+    "hour": 16,
+    "action": "nod",
+    "text": "宝贝，已经下午四点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
+    "file": "assets/voices/N1-clock/16-bed.wav",
+    "duration": 8.12,
+    "sha256": "cda7b313bc4be76a34840a5f3fa9d332974f10a04718b1b43c5cebb51ba9490f",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-16",
+      "tail-bed"
+    ],
+    "source_sha256": [
+      "6fddc687e0f0b4d2d09702f90522a7da7723de5c3b009ff1d9c9d60ab90919a5",
+      "7429830f548472bbe489377bff8cc497a181810c725a890bd341451e58b19607"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-16-final",
+    "cue": "final",
+    "hour": 16,
+    "action": "yawn",
+    "text": "宝贝，已经下午四点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
+    "file": "assets/voices/N1-clock/16-final.wav",
+    "duration": 8.58,
+    "sha256": "c1786fe8b33ff83d70321fff5754781b8bddddb61b67a661cea1a8901c7f787c",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-16",
+      "tail-final"
+    ],
+    "source_sha256": [
+      "6fddc687e0f0b4d2d09702f90522a7da7723de5c3b009ff1d9c9d60ab90919a5",
+      "e3e68b444564843659f9a09b2558806de139c757eb9e6d3f9e7329690329432e"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-17-early",
+    "cue": "early",
+    "hour": 17,
+    "action": "water",
+    "text": "宝贝，已经下午五点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
+    "file": "assets/voices/N1-clock/17-early.wav",
+    "duration": 7.58,
+    "sha256": "c71be7f73ac9fe4f5e8949147392169bf458a30372b575997b24c0445824042d",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-17",
+      "tail-early"
+    ],
+    "source_sha256": [
+      "cd7e33ebd16ebb55dd8735490666285fc543afdbfb5cda1ffe531325de3d7a68",
+      "d91d9ca5767abf9a4ed00f71f4d43abb7fa043a81628f16636020285b511d4a5"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-17-soon",
+    "cue": "soon",
+    "hour": 17,
+    "action": "stretch",
+    "text": "宝贝，已经下午五点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
+    "file": "assets/voices/N1-clock/17-soon.wav",
+    "duration": 8.66,
+    "sha256": "4a7fe26680afae4136c640c94d4a4c095fe38d14823a44b6e5e47b9440e68965",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-17",
+      "tail-soon"
+    ],
+    "source_sha256": [
+      "cd7e33ebd16ebb55dd8735490666285fc543afdbfb5cda1ffe531325de3d7a68",
+      "3e62ec2b25ccee3f25522db6aaa807d23ab93b0464419bb4346ec566e9a82d93"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-17-bed",
+    "cue": "bed",
+    "hour": 17,
+    "action": "nod",
+    "text": "宝贝，已经下午五点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
+    "file": "assets/voices/N1-clock/17-bed.wav",
+    "duration": 7.98,
+    "sha256": "8ff03e54f80efc8e0595ffd462d58d41f48d54856c0135acb421208a64fc0269",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-17",
+      "tail-bed"
+    ],
+    "source_sha256": [
+      "cd7e33ebd16ebb55dd8735490666285fc543afdbfb5cda1ffe531325de3d7a68",
+      "7429830f548472bbe489377bff8cc497a181810c725a890bd341451e58b19607"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-17-final",
+    "cue": "final",
+    "hour": 17,
+    "action": "yawn",
+    "text": "宝贝，已经下午五点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
+    "file": "assets/voices/N1-clock/17-final.wav",
+    "duration": 8.44,
+    "sha256": "81e27fce62339676f0d68b5fee14cdade95296cc4c4db0f00e47312b4c3934c9",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-17",
+      "tail-final"
+    ],
+    "source_sha256": [
+      "cd7e33ebd16ebb55dd8735490666285fc543afdbfb5cda1ffe531325de3d7a68",
+      "e3e68b444564843659f9a09b2558806de139c757eb9e6d3f9e7329690329432e"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-18-early",
+    "cue": "early",
+    "hour": 18,
+    "action": "water",
+    "text": "宝贝，已经晚上六点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
+    "file": "assets/voices/N1-clock/18-early.wav",
+    "duration": 7.64,
+    "sha256": "73ac2f8b33d9da00f5f4af71a953fc5d761c942df3d850e3ddbbd45bdb64ca96",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-18",
+      "tail-early"
+    ],
+    "source_sha256": [
+      "2ffb1dc16c558f551ea4521b2af3accb7a2b97e47e7c44668906125f35965093",
+      "d91d9ca5767abf9a4ed00f71f4d43abb7fa043a81628f16636020285b511d4a5"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-18-soon",
+    "cue": "soon",
+    "hour": 18,
+    "action": "stretch",
+    "text": "宝贝，已经晚上六点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
+    "file": "assets/voices/N1-clock/18-soon.wav",
+    "duration": 8.72,
+    "sha256": "3a6588ff4706cbc66447cb51cbfa84c90475d4de50061dbd2235aef30ba8c279",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-18",
+      "tail-soon"
+    ],
+    "source_sha256": [
+      "2ffb1dc16c558f551ea4521b2af3accb7a2b97e47e7c44668906125f35965093",
+      "3e62ec2b25ccee3f25522db6aaa807d23ab93b0464419bb4346ec566e9a82d93"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-18-bed",
+    "cue": "bed",
+    "hour": 18,
+    "action": "nod",
+    "text": "宝贝，已经晚上六点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
+    "file": "assets/voices/N1-clock/18-bed.wav",
+    "duration": 8.04,
+    "sha256": "c6584c7e9083261d6ebc2778d6cec24694613de7dbe00dfdc1e14c0a11a422c1",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-18",
+      "tail-bed"
+    ],
+    "source_sha256": [
+      "2ffb1dc16c558f551ea4521b2af3accb7a2b97e47e7c44668906125f35965093",
+      "7429830f548472bbe489377bff8cc497a181810c725a890bd341451e58b19607"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-18-final",
+    "cue": "final",
+    "hour": 18,
+    "action": "yawn",
+    "text": "宝贝，已经晚上六点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
+    "file": "assets/voices/N1-clock/18-final.wav",
+    "duration": 8.5,
+    "sha256": "8b5737744f7ecbbab5ecf0405f2d10f4157eb4413c1771ee44dc94e48a073584",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-18",
+      "tail-final"
+    ],
+    "source_sha256": [
+      "2ffb1dc16c558f551ea4521b2af3accb7a2b97e47e7c44668906125f35965093",
+      "e3e68b444564843659f9a09b2558806de139c757eb9e6d3f9e7329690329432e"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-19-early",
+    "cue": "early",
+    "hour": 19,
+    "action": "water",
+    "text": "宝贝，已经晚上七点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
+    "file": "assets/voices/N1-clock/19-early.wav",
+    "duration": 7.64,
+    "sha256": "ec9eae92666f726a356028d80cb9ecc015cf839aa10d9df67803282968e17b6e",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-19",
+      "tail-early"
+    ],
+    "source_sha256": [
+      "a74892fc7c4708fac8c50b1704b9aca65365237a633d502f5d2a5f033c42c0e3",
+      "d91d9ca5767abf9a4ed00f71f4d43abb7fa043a81628f16636020285b511d4a5"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-19-soon",
+    "cue": "soon",
+    "hour": 19,
+    "action": "stretch",
+    "text": "宝贝，已经晚上七点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
+    "file": "assets/voices/N1-clock/19-soon.wav",
+    "duration": 8.72,
+    "sha256": "215e98383cbcf78968b605ee664b76bad9fded8425d36fbc83e0b2f7e1384a02",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-19",
+      "tail-soon"
+    ],
+    "source_sha256": [
+      "a74892fc7c4708fac8c50b1704b9aca65365237a633d502f5d2a5f033c42c0e3",
+      "3e62ec2b25ccee3f25522db6aaa807d23ab93b0464419bb4346ec566e9a82d93"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-19-bed",
+    "cue": "bed",
+    "hour": 19,
+    "action": "nod",
+    "text": "宝贝，已经晚上七点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
+    "file": "assets/voices/N1-clock/19-bed.wav",
+    "duration": 8.04,
+    "sha256": "2c21ba6bc13ef9ce7ad0e71d9ca9f350f3fb8ac2caf486959abb12d056cc01eb",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-19",
+      "tail-bed"
+    ],
+    "source_sha256": [
+      "a74892fc7c4708fac8c50b1704b9aca65365237a633d502f5d2a5f033c42c0e3",
+      "7429830f548472bbe489377bff8cc497a181810c725a890bd341451e58b19607"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-19-final",
+    "cue": "final",
+    "hour": 19,
+    "action": "yawn",
+    "text": "宝贝，已经晚上七点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
+    "file": "assets/voices/N1-clock/19-final.wav",
+    "duration": 8.5,
+    "sha256": "4cefd9da20ab88b49b528d6e269a63a137f4040793e8f67d43d19f49e88c5ea3",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-19",
+      "tail-final"
+    ],
+    "source_sha256": [
+      "a74892fc7c4708fac8c50b1704b9aca65365237a633d502f5d2a5f033c42c0e3",
+      "e3e68b444564843659f9a09b2558806de139c757eb9e6d3f9e7329690329432e"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-20-early",
+    "cue": "early",
+    "hour": 20,
+    "action": "water",
+    "text": "宝贝，已经晚上八点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
+    "file": "assets/voices/N1-clock/20-early.wav",
+    "duration": 7.74,
+    "sha256": "3d77bd17e1622759dd2ecbdcdbeb6d7bf0a624d0628bdd020a7c809e0bd74c4a",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-20",
+      "tail-early"
+    ],
+    "source_sha256": [
+      "85ac31dc23ddc46b35c729dccda5a8df44f94e7118113391944d3eba7431e071",
+      "d91d9ca5767abf9a4ed00f71f4d43abb7fa043a81628f16636020285b511d4a5"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-20-soon",
+    "cue": "soon",
+    "hour": 20,
+    "action": "stretch",
+    "text": "宝贝，已经晚上八点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
+    "file": "assets/voices/N1-clock/20-soon.wav",
+    "duration": 8.82,
+    "sha256": "f0190c8c03435a0e4ac57b7c21b3fb23c14a5801f2b453fadd14834f4d7d208b",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-20",
+      "tail-soon"
+    ],
+    "source_sha256": [
+      "85ac31dc23ddc46b35c729dccda5a8df44f94e7118113391944d3eba7431e071",
+      "3e62ec2b25ccee3f25522db6aaa807d23ab93b0464419bb4346ec566e9a82d93"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-20-bed",
+    "cue": "bed",
+    "hour": 20,
+    "action": "nod",
+    "text": "宝贝，已经晚上八点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
+    "file": "assets/voices/N1-clock/20-bed.wav",
+    "duration": 8.14,
+    "sha256": "2692043f2fc97b3c9a4102e85b131f35c32807d8ee7a06f664cf2edf776a5055",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-20",
+      "tail-bed"
+    ],
+    "source_sha256": [
+      "85ac31dc23ddc46b35c729dccda5a8df44f94e7118113391944d3eba7431e071",
+      "7429830f548472bbe489377bff8cc497a181810c725a890bd341451e58b19607"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-20-final",
+    "cue": "final",
+    "hour": 20,
+    "action": "yawn",
+    "text": "宝贝，已经晚上八点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
+    "file": "assets/voices/N1-clock/20-final.wav",
+    "duration": 8.6,
+    "sha256": "cc71b859b625b583462393c7181460e4d2f5b68a6aa20cfa6ff3f2cc20dad553",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-20",
+      "tail-final"
+    ],
+    "source_sha256": [
+      "85ac31dc23ddc46b35c729dccda5a8df44f94e7118113391944d3eba7431e071",
+      "e3e68b444564843659f9a09b2558806de139c757eb9e6d3f9e7329690329432e"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-21-early",
+    "cue": "early",
+    "hour": 21,
+    "action": "water",
+    "text": "宝贝，已经晚上九点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
+    "file": "assets/voices/N1-clock/21-early.wav",
+    "duration": 7.8,
+    "sha256": "38a8ee98d43625a676548a28531a4c027727499f220595ae483d9b2f131aee61",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-21",
+      "tail-early"
+    ],
+    "source_sha256": [
+      "e40e0c41cf5601cd14eb112b97018353c6fb36a31bc089f70c25b3df0532f134",
+      "d91d9ca5767abf9a4ed00f71f4d43abb7fa043a81628f16636020285b511d4a5"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-21-soon",
+    "cue": "soon",
+    "hour": 21,
+    "action": "stretch",
+    "text": "宝贝，已经晚上九点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
+    "file": "assets/voices/N1-clock/21-soon.wav",
+    "duration": 8.88,
+    "sha256": "2b18d161919945915f9a141074c81055c8ffd1cc9afa0ea939a11acc919df582",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-21",
+      "tail-soon"
+    ],
+    "source_sha256": [
+      "e40e0c41cf5601cd14eb112b97018353c6fb36a31bc089f70c25b3df0532f134",
+      "3e62ec2b25ccee3f25522db6aaa807d23ab93b0464419bb4346ec566e9a82d93"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-21-bed",
+    "cue": "bed",
+    "hour": 21,
+    "action": "nod",
+    "text": "宝贝，已经晚上九点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
+    "file": "assets/voices/N1-clock/21-bed.wav",
+    "duration": 8.2,
+    "sha256": "1ff558a758202eb9ffeb34e580ac86cb1ba4684c2d756db26395bf2e47e043fb",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-21",
+      "tail-bed"
+    ],
+    "source_sha256": [
+      "e40e0c41cf5601cd14eb112b97018353c6fb36a31bc089f70c25b3df0532f134",
+      "7429830f548472bbe489377bff8cc497a181810c725a890bd341451e58b19607"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-21-final",
+    "cue": "final",
+    "hour": 21,
+    "action": "yawn",
+    "text": "宝贝，已经晚上九点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
+    "file": "assets/voices/N1-clock/21-final.wav",
+    "duration": 8.66,
+    "sha256": "5a634fe4f687f8096cc3b3033c45c77f630577bbfa6cc100d8a140bca36aecd1",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-21",
+      "tail-final"
+    ],
+    "source_sha256": [
+      "e40e0c41cf5601cd14eb112b97018353c6fb36a31bc089f70c25b3df0532f134",
+      "e3e68b444564843659f9a09b2558806de139c757eb9e6d3f9e7329690329432e"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-22-early",
+    "cue": "early",
+    "hour": 22,
+    "action": "water",
+    "text": "宝贝，已经晚上十点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
+    "file": "assets/voices/N1-clock/22-early.wav",
+    "duration": 7.84,
+    "sha256": "6d3e4c35931d2dcd241b9fae521e19ac23649d5b42ba4daeb91b4ee7cfea441c",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-22",
+      "tail-early"
+    ],
+    "source_sha256": [
+      "718137eda5c8c1bfb6dd714957593635e94f5cfa80998d0fac303e76f78bb924",
+      "d91d9ca5767abf9a4ed00f71f4d43abb7fa043a81628f16636020285b511d4a5"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-22-soon",
+    "cue": "soon",
+    "hour": 22,
+    "action": "stretch",
+    "text": "宝贝，已经晚上十点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
+    "file": "assets/voices/N1-clock/22-soon.wav",
+    "duration": 8.92,
+    "sha256": "d3b910386d53b02b56d377e23e34ec187525c90ed8dcb8d85ba22a050d1ae4b7",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-22",
+      "tail-soon"
+    ],
+    "source_sha256": [
+      "718137eda5c8c1bfb6dd714957593635e94f5cfa80998d0fac303e76f78bb924",
+      "3e62ec2b25ccee3f25522db6aaa807d23ab93b0464419bb4346ec566e9a82d93"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-22-bed",
+    "cue": "bed",
+    "hour": 22,
+    "action": "nod",
+    "text": "宝贝，已经晚上十点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
+    "file": "assets/voices/N1-clock/22-bed.wav",
+    "duration": 8.24,
+    "sha256": "28da027e729fd33a6359250509e53728e10dc6c9caf47a6616f184c49dd15ce5",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-22",
+      "tail-bed"
+    ],
+    "source_sha256": [
+      "718137eda5c8c1bfb6dd714957593635e94f5cfa80998d0fac303e76f78bb924",
+      "7429830f548472bbe489377bff8cc497a181810c725a890bd341451e58b19607"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-22-final",
+    "cue": "final",
+    "hour": 22,
+    "action": "yawn",
+    "text": "宝贝，已经晚上十点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
+    "file": "assets/voices/N1-clock/22-final.wav",
+    "duration": 8.7,
+    "sha256": "dc9366c300da73ecb98ab2bca65bd62d69bfa6f36216d9dc13ce9f912441fbec",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-22",
+      "tail-final"
+    ],
+    "source_sha256": [
+      "718137eda5c8c1bfb6dd714957593635e94f5cfa80998d0fac303e76f78bb924",
+      "e3e68b444564843659f9a09b2558806de139c757eb9e6d3f9e7329690329432e"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-23-early",
+    "cue": "early",
+    "hour": 23,
+    "action": "water",
+    "text": "宝贝，已经晚上十一点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
+    "file": "assets/voices/N1-clock/23-early.wav",
+    "duration": 7.86,
+    "sha256": "12d32a3d5ac88475ae8052c50ef7472505b117173b3df40d12605b932e41e5d4",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-23",
+      "tail-early"
+    ],
+    "source_sha256": [
+      "1fa020fb37997718d1943e4d2d543f88a1ead37303490aef40aa1443eafe09a6",
+      "d91d9ca5767abf9a4ed00f71f4d43abb7fa043a81628f16636020285b511d4a5"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-23-soon",
+    "cue": "soon",
+    "hour": 23,
+    "action": "stretch",
+    "text": "宝贝，已经晚上十一点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
+    "file": "assets/voices/N1-clock/23-soon.wav",
+    "duration": 8.94,
+    "sha256": "ba3841bd943327c4e7d179370da5c38bf1ad4a18ff2fcdb657ce43b4d957d88a",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-23",
+      "tail-soon"
+    ],
+    "source_sha256": [
+      "1fa020fb37997718d1943e4d2d543f88a1ead37303490aef40aa1443eafe09a6",
+      "3e62ec2b25ccee3f25522db6aaa807d23ab93b0464419bb4346ec566e9a82d93"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-23-bed",
+    "cue": "bed",
+    "hour": 23,
+    "action": "nod",
+    "text": "宝贝，已经晚上十一点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
+    "file": "assets/voices/N1-clock/23-bed.wav",
+    "duration": 8.26,
+    "sha256": "5ffefb71510da75fe99c051cdcc8a47dbac576a9f1fe50ae5ca9834ea2954f59",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-23",
+      "tail-bed"
+    ],
+    "source_sha256": [
+      "1fa020fb37997718d1943e4d2d543f88a1ead37303490aef40aa1443eafe09a6",
+      "7429830f548472bbe489377bff8cc497a181810c725a890bd341451e58b19607"
+    ],
+    "pause_ms": 100
+  },
+  {
+    "id": "clock-23-final",
+    "cue": "final",
+    "hour": 23,
+    "action": "yawn",
+    "text": "宝贝，已经晚上十一点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
+    "file": "assets/voices/N1-clock/23-final.wav",
+    "duration": 8.72,
+    "sha256": "f3536a612d083557dd56fe31b874adb0f8205c17aba5233f410566b446c71caf",
+    "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
+    "source_ids": [
+      "hour-23",
+      "tail-final"
+    ],
+    "source_sha256": [
+      "1fa020fb37997718d1943e4d2d543f88a1ead37303490aef40aa1443eafe09a6",
+      "e3e68b444564843659f9a09b2558806de139c757eb9e6d3f9e7329690329432e"
+    ],
+    "pause_ms": 100
+  }
+]

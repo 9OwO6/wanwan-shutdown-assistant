@@ -1,0 +1,5 @@
+{"version":1,"preset":"N1","lines":[
+ {"id":"guard-due","cue":"due","action":"nod","text":"已经超过休息时间啦，宝宝。先保存文件，两分钟后晚晚就帮你正常关机，我们该睡觉啦。","file":"assets/voices/N1-guard/due.wav"},
+ {"id":"guard-shutdown","cue":"shutdown","action":"goodnight","text":"宝宝，已经超过时间啦。现在要帮你正常关机了哦，晚晚陪你说声晚安。","file":"assets/voices/N1-guard/shutdown.wav"},
+ {"id":"guard-disabled","cue":"disabled","action":"heart","text":"约定记好啦，宝贝。现在只陪着你，还没有开启自动关机哦。","file":"assets/voices/N1-guard/disabled.wav"}
+]}

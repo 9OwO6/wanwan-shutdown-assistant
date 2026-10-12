@@ -1,0 +1,19 @@
+# Local settings, captures, experiments and generated reports
+/output/
+*.lnk
+*.log
+*.pid
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+/dist/
+*.zip
+*.pt
+*.safetensors
+/tools/vendor/*.exe
+/assets/voices/C-original/
+/assets/voices/C-generated/

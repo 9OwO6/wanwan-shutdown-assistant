@@ -1,0 +1,43 @@
+The MIT License (MIT)
+Copyright (c) 2021 Hend
+rik Schröter
+
+Permission is hereby granted,
+free of charge, to any person obtaining a cop
+y of
+this software and associated documentati
+on files (the "Software"), to deal in
+the Sof
+tware without restriction, including without
+limitation the rights to
+use, copy, modify, m
+erge, publish, distribute, sublicense, and/or
+ sell copies of
+the Software, and to permit p
+ersons to whom the Software is furnished to d
+o so,
+subject to the following conditions:
+
+T
+he above copyright notice and this permission
+ notice shall be included in all
+copies or su
+bstantial portions of the Software.
+
+THE SOFT
+WARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
+ ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT
+NOT LIMITED TO THE WARRANTIES OF MERCHANTABIL
+ITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NON
+INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS O
+R
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACT
+ION OF CONTRACT, TORT OR OTHERWISE, ARISING F
+ROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWAR
+E OR THE USE OR OTHER DEALINGS IN THE SOFTWAR
+E.

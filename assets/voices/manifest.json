@@ -1,0 +1,398 @@
+[
+  {
+    "preset": "A",
+    "id": "preview",
+    "text": "已经有点晚啦。把手上的事情慢慢收个尾，好不好？明天我还会陪着你。",
+    "duration": 8.821333,
+    "file": "A/preview.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 0
+  },
+  {
+    "preset": "A",
+    "id": "early",
+    "text": "还有半小时，我们慢慢把今天的事情收个尾，好不好？",
+    "duration": 5.749333,
+    "file": "A/early.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 0
+  },
+  {
+    "preset": "A",
+    "id": "soon",
+    "text": "还有十分钟哦。记得保存一下，别让今天的努力白忙啦。",
+    "duration": 6.357333,
+    "file": "A/soon.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 0
+  },
+  {
+    "preset": "A",
+    "id": "bed",
+    "text": "到时间啦，该睡觉了。先把手上的东西保存好。",
+    "duration": 7.189333,
+    "file": "A/bed.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 0
+  },
+  {
+    "preset": "A",
+    "id": "final",
+    "text": "好啦，最后两分钟。今天已经做得很好了。",
+    "duration": 5.568,
+    "file": "A/final.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 0
+  },
+  {
+    "preset": "A",
+    "id": "dialog",
+    "text": "好啦，该睡觉了。先保存一下，我陪你把今天收个尾。",
+    "duration": 6.122667,
+    "file": "A/dialog.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 0
+  },
+  {
+    "preset": "A",
+    "id": "defer",
+    "text": "好，再给你一点时间收尾。保存好以后，我们就休息啦。",
+    "duration": 9.045333,
+    "file": "A/defer.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 0
+  },
+  {
+    "preset": "A",
+    "id": "cancel",
+    "text": "好，今晚先忙你的事情。记得照顾好自己。",
+    "duration": 5.749333,
+    "file": "A/cancel.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 0
+  },
+  {
+    "preset": "A",
+    "id": "goodnight",
+    "text": "辛苦啦，今天就到这里。晚安，明天见。",
+    "duration": 5.845333,
+    "file": "A/goodnight.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 0
+  },
+  {
+    "preset": "A",
+    "id": "bye",
+    "text": "晚安，明天见。",
+    "duration": 2.08,
+    "file": "A/bye.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 0
+  },
+  {
+    "preset": "A",
+    "id": "hello",
+    "text": "在呀，今天也陪着你。忙的时候记得喝水，晚一点我们一起休息。",
+    "duration": 8.768,
+    "file": "A/hello.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 0
+  },
+  {
+    "preset": "B",
+    "id": "preview",
+    "text": "已经有点晚啦。把手上的事情慢慢收个尾，好不好？明天我还会陪着你。",
+    "duration": 8.814542,
+    "file": "B/preview.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 1
+  },
+  {
+    "preset": "B",
+    "id": "early",
+    "text": "还有半小时，我们慢慢把今天的事情收个尾，好不好？",
+    "duration": 5.734625,
+    "file": "B/early.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 1
+  },
+  {
+    "preset": "B",
+    "id": "soon",
+    "text": "还有十分钟哦。记得保存一下，别让今天的努力白忙啦。",
+    "duration": 6.348292,
+    "file": "B/soon.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 1
+  },
+  {
+    "preset": "B",
+    "id": "bed",
+    "text": "到时间啦，该睡觉了。先把手上的东西保存好。",
+    "duration": 7.173083,
+    "file": "B/bed.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 1
+  },
+  {
+    "preset": "B",
+    "id": "final",
+    "text": "好啦，最后两分钟。今天已经做得很好了。",
+    "duration": 5.55675,
+    "file": "B/final.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 1
+  },
+  {
+    "preset": "B",
+    "id": "dialog",
+    "text": "好啦，该睡觉了。先保存一下，我陪你把今天收个尾。",
+    "duration": 6.108417,
+    "file": "B/dialog.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 1
+  },
+  {
+    "preset": "B",
+    "id": "defer",
+    "text": "好，再给你一点时间收尾。保存好以后，我们就休息啦。",
+    "duration": 9.035458,
+    "file": "B/defer.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 1
+  },
+  {
+    "preset": "B",
+    "id": "cancel",
+    "text": "好，今晚先忙你的事情。记得照顾好自己。",
+    "duration": 5.737792,
+    "file": "B/cancel.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 1
+  },
+  {
+    "preset": "B",
+    "id": "goodnight",
+    "text": "辛苦啦，今天就到这里。晚安，明天见。",
+    "duration": 5.836292,
+    "file": "B/goodnight.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 1
+  },
+  {
+    "preset": "B",
+    "id": "bye",
+    "text": "晚安，明天见。",
+    "duration": 2.065542,
+    "file": "B/bye.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 1
+  },
+  {
+    "preset": "B",
+    "id": "hello",
+    "text": "在呀，今天也陪着你。忙的时候记得喝水，晚一点我们一起休息。",
+    "duration": 8.760042,
+    "file": "B/hello.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 1
+  },
+  {
+    "preset": "C",
+    "id": "preview",
+    "text": "已经有点晚啦。把手上的事情慢慢收个尾，好不好？明天我还会陪着你。",
+    "duration": 8.80375,
+    "file": "C/preview.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 2
+  },
+  {
+    "preset": "C",
+    "id": "early",
+    "text": "还有半小时，我们慢慢把今天的事情收个尾，好不好？",
+    "duration": 5.737333,
+    "file": "C/early.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 2
+  },
+  {
+    "preset": "C",
+    "id": "soon",
+    "text": "还有十分钟哦。记得保存一下，别让今天的努力白忙啦。",
+    "duration": 6.346,
+    "file": "C/soon.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 2
+  },
+  {
+    "preset": "C",
+    "id": "bed",
+    "text": "到时间啦，该睡觉了。先把手上的东西保存好。",
+    "duration": 7.17075,
+    "file": "C/bed.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 2
+  },
+  {
+    "preset": "C",
+    "id": "final",
+    "text": "好啦，最后两分钟。今天已经做得很好了。",
+    "duration": 5.549708,
+    "file": "C/final.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 2
+  },
+  {
+    "preset": "C",
+    "id": "dialog",
+    "text": "好啦，该睡觉了。先保存一下，我陪你把今天收个尾。",
+    "duration": 6.114125,
+    "file": "C/dialog.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 2
+  },
+  {
+    "preset": "C",
+    "id": "defer",
+    "text": "好，再给你一点时间收尾。保存好以后，我们就休息啦。",
+    "duration": 9.0325,
+    "file": "C/defer.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 2
+  },
+  {
+    "preset": "C",
+    "id": "cancel",
+    "text": "好，今晚先忙你的事情。记得照顾好自己。",
+    "duration": 5.736375,
+    "file": "C/cancel.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 2
+  },
+  {
+    "preset": "C",
+    "id": "goodnight",
+    "text": "辛苦啦，今天就到这里。晚安，明天见。",
+    "duration": 5.836667,
+    "file": "C/goodnight.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 2
+  },
+  {
+    "preset": "C",
+    "id": "bye",
+    "text": "晚安，明天见。",
+    "duration": 2.064083,
+    "file": "C/bye.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 2
+  },
+  {
+    "preset": "C",
+    "id": "hello",
+    "text": "在呀，今天也陪着你。忙的时候记得喝水，晚一点我们一起休息。",
+    "duration": 8.757375,
+    "file": "C/hello.wav",
+    "reference": "cute_dog_reference.wav",
+    "semitones": 2
+  },
+  {
+    "preset": "D",
+    "id": "preview",
+    "text": "已经有点晚啦。把手上的事情慢慢收个尾，好不好？明天我还会陪着你。",
+    "duration": 8.725333,
+    "file": "D/preview.wav",
+    "reference": "female_03.wav",
+    "semitones": 0
+  },
+  {
+    "preset": "D",
+    "id": "early",
+    "text": "还有半小时，我们慢慢把今天的事情收个尾，好不好？",
+    "duration": 5.888,
+    "file": "D/early.wav",
+    "reference": "female_03.wav",
+    "semitones": 0
+  },
+  {
+    "preset": "D",
+    "id": "soon",
+    "text": "还有十分钟哦。记得保存一下，别让今天的努力白忙啦。",
+    "duration": 7.104,
+    "file": "D/soon.wav",
+    "reference": "female_03.wav",
+    "semitones": 0
+  },
+  {
+    "preset": "D",
+    "id": "bed",
+    "text": "到时间啦，该睡觉了。先把手上的东西保存好。",
+    "duration": 5.429333,
+    "file": "D/bed.wav",
+    "reference": "female_03.wav",
+    "semitones": 0
+  },
+  {
+    "preset": "D",
+    "id": "final",
+    "text": "好啦，最后两分钟。今天已经做得很好了。",
+    "duration": 5.888,
+    "file": "D/final.wav",
+    "reference": "female_03.wav",
+    "semitones": 0
+  },
+  {
+    "preset": "D",
+    "id": "dialog",
+    "text": "好啦，该睡觉了。先保存一下，我陪你把今天收个尾。",
+    "duration": 6.176,
+    "file": "D/dialog.wav",
+    "reference": "female_03.wav",
+    "semitones": 0
+  },
+  {
+    "preset": "D",
+    "id": "defer",
+    "text": "好，再给你一点时间收尾。保存好以后，我们就休息啦。",
+    "duration": 6.538667,
+    "file": "D/defer.wav",
+    "reference": "female_03.wav",
+    "semitones": 0
+  },
+  {
+    "preset": "D",
+    "id": "cancel",
+    "text": "好，今晚先忙你的事情。记得照顾好自己。",
+    "duration": 4.085333,
+    "file": "D/cancel.wav",
+    "reference": "female_03.wav",
+    "semitones": 0
+  },
+  {
+    "preset": "D",
+    "id": "goodnight",
+    "text": "辛苦啦，今天就到这里。晚安，明天见。",
+    "duration": 4.224,
+    "file": "D/goodnight.wav",
+    "reference": "female_03.wav",
+    "semitones": 0
+  },
+  {
+    "preset": "D",
+    "id": "bye",
+    "text": "晚安，明天见。",
+    "duration": 2.176,
+    "file": "D/bye.wav",
+    "reference": "female_03.wav",
+    "semitones": 0
+  },
+  {
+    "preset": "D",
+    "id": "hello",
+    "text": "在呀，今天也陪着你。忙的时候记得喝水，晚一点我们一起休息。",
+    "duration": 7.562667,
+    "file": "D/hello.wav",
+    "reference": "female_03.wav",
+    "semitones": 0
+  }
+]
