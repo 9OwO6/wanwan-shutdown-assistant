@@ -38,6 +38,7 @@ This is a personal **AI-assisted product engineering portfolio project**: native
 - **Companion-style reminders.** Warm, affectionate Mandarin dialogue, with four variations per scene rather than a single repeated notification.
 - **A desktop pet you can actually control.** Drag the avatar, persist its position, open the main window, hide it, or restore it from the tray. Hiding the pet leaves an enabled schedule running.
 - **A staged bedtime flow.** Reminders 30 and 10 minutes before bedtime, a wrap-up window at bedtime, a final countdown, and a goodnight before the shutdown request. Overnight schedules are handled explicitly.
+- **Acknowledge and keep working.** “Okay, I'll finish up and go to bed” shrinks the reminder into an animated Wanwan + countdown widget. Hide or expand it without deferring or cancelling the schedule; restore it from the tray. The final announcement brings a hidden countdown back into view.
 - **Offline AI voice playback.** The selected N1 voice has **92 companion lines, 96 hour/phase reminders, and 3 guard-status lines**. The application plays prepared audio without loading a model or calling a cloud API.
 - **Ten animated interactions.** Forty distinct poses across ten transparent sprite sheets, with frame timing, short transitions, and a reduced-motion option.
 - **Explicit controls.** Automatic shutdown starts disabled. “Save & enable shutdown” persists the schedule and the desktop avatar displays its current guard status. One wrap-up deferral and an emergency cancellation are available.
@@ -75,6 +76,12 @@ Settings and event logs stay in `%LOCALAPPDATA%\WanwanShutdown`. Runtime operati
 
 ## Engineering
 
+### A quieter countdown
+
+<img src="docs/screenshots/compact-countdown.png" width="190" alt="Actual compact countdown: animated Wanwan, remaining time, hide and expand controls">
+
+*Actual WPF capture in the non-shutdown demo. Acknowledging, compacting, hiding and restoring all preserve the existing deadline.*
+
 The interesting part is the integration: a friendly interface still needs correct scheduling, clear state, dependable background lifetime, and careful OS behavior.
 
 | Area | Implementation | What it demonstrates |
@@ -108,6 +115,7 @@ powershell.exe -NoProfile -STA -ExecutionPolicy Bypass -File app\Main.ps1 -PetCo
 powershell.exe -NoProfile -STA -ExecutionPolicy Bypass -File app\Main.ps1 -PetTest
 powershell.exe -NoProfile -STA -ExecutionPolicy Bypass -File app\Main.ps1 -DialogueTest
 powershell.exe -NoProfile -STA -ExecutionPolicy Bypass -File app\Main.ps1 -LifecycleTest
+powershell.exe -NoProfile -STA -ExecutionPolicy Bypass -File app\Main.ps1 -CountdownTest
 python tools\verify_release_assets.py
 ```
 

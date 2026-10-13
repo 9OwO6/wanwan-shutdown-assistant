@@ -15,6 +15,7 @@ Interactive WPF tests require a Windows desktop session; they are not advertised
 | `GuardTest` | Overdue save window, announcement ordering, retry, cancellation, three muted native audio opens and safe privilege acquisition |
 | `PetControlsTest` | Routed down/up events with controlled move coordinates, position persistence, hide/menu controls, activation persistence and an overdue reminder with the pet hidden |
 | `LifecycleTest` | Explicit application lifetime, background ticks while hidden and restore |
+| `CountdownTest` | Acknowledge-to-compact, live ticking, hide/restore/expand, deadline preservation, hidden demo completion, final announcement restoration and simulated shutdown |
 | `ShowcaseTest` | Six real UI captures and a 32-frame runtime animation sequence using a synthetic schedule |
 
 All consequential requests in test modes are simulated. `GuardTest` enables the shutdown privilege only in its own test process, but never calls `ExitWindowsEx`. The source deliberately separates that from proof of an actual completed system shutdown.

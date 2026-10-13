@@ -1,6 +1,6 @@
-﻿param([switch]$SmokeTest,[switch]$InteractionTest,[switch]$AnimationTest,[switch]$VoiceTest,[switch]$CompanionTest,[switch]$DialogueTest,[switch]$PetTest,[switch]$GuardTest,[switch]$LifecycleTest,[switch]$PetControlsTest,[switch]$ShowcaseTest)
+﻿param([switch]$SmokeTest,[switch]$InteractionTest,[switch]$AnimationTest,[switch]$VoiceTest,[switch]$CompanionTest,[switch]$DialogueTest,[switch]$PetTest,[switch]$GuardTest,[switch]$LifecycleTest,[switch]$PetControlsTest,[switch]$ShowcaseTest,[switch]$CountdownTest,[datetime]$ResumeCountdownDeadline=[datetime]::MinValue)
 $ErrorActionPreference='Stop'
-$script:isTestMode=[bool]($SmokeTest -or $InteractionTest -or $AnimationTest -or $VoiceTest -or $CompanionTest -or $DialogueTest -or $PetTest -or $GuardTest -or $LifecycleTest -or $PetControlsTest -or $ShowcaseTest)
+$script:isTestMode=[bool]($SmokeTest -or $InteractionTest -or $AnimationTest -or $VoiceTest -or $CompanionTest -or $DialogueTest -or $PetTest -or $GuardTest -or $LifecycleTest -or $PetControlsTest -or $ShowcaseTest -or $CountdownTest)
 Add-Type -AssemblyName PresentationFramework,PresentationCore,WindowsBase,System.Windows.Forms,System.Drawing,System.Speech
 . "$PSScriptRoot\Schedule.ps1"
 $root = Split-Path $PSScriptRoot
@@ -81,15 +81,17 @@ $script:lastPhase='';$script:dialog=$null;$script:demoMode=$false;$script:deadli
 . "$PSScriptRoot\Voice.ps1"
 . "$PSScriptRoot\DesktopPet.ps1"
 . "$PSScriptRoot\Auditions.ps1"
+. "$PSScriptRoot\CountdownView.ps1"
 function Write-Event([string]$event){Add-Content (Join-Path $data 'events.log') ((Get-Date -Format o)+' '+$event) -Encoding UTF8}
-function Show-BedDialog([bool]$demo,[datetime]$Now=(Get-Date)){
+function Show-BedDialog([bool]$demo,[datetime]$Now=(Get-Date),[switch]$Quiet){
  $state=Get-NightState $Now $cfg
  if($script:dialog){return}
  $script:demoMode=$demo
  $script:deadline=if($demo){$Now.AddSeconds(35)}elseif($state.Phase -eq 'Due'){$Now.AddMinutes(2)}else{$state.End}
  [xml]$dx=@'
-<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="晚晚 · 该休息啦" Width="410" Height="610" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" Background="Transparent" ShowActivated="False" ShowInTaskbar="False" Topmost="True" FontFamily="Microsoft YaHei UI">
- <Grid Margin="12"><Grid.RowDefinitions><RowDefinition Height="190"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="晚晚 · 该休息啦" Width="410" Height="650" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" Background="Transparent" ShowActivated="False" ShowInTaskbar="False" Topmost="True" FontFamily="Microsoft YaHei UI">
+ <Grid>
+ <Grid x:Name="FullReminder" Margin="12"><Grid.RowDefinitions><RowDefinition Height="190"/><RowDefinition Height="*"/></Grid.RowDefinitions>
   <Grid><StackPanel Margin="12,72,0,0" HorizontalAlignment="Left"><TextBlock Text="今天辛苦啦" Foreground="#A7778B" FontSize="16"/><TextBlock Text="晚晚陪你，&#10;慢慢收尾 ♡" Foreground="#9B7589" FontSize="12" LineHeight="22" Margin="0,8,0,0"/></StackPanel><Image x:Name="DialogPortrait" Width="245" Stretch="Uniform" HorizontalAlignment="Right"/><Image x:Name="DialogFade" Width="245" Stretch="Uniform" HorizontalAlignment="Right" Opacity="0" IsHitTestVisible="False"/></Grid>
   <Border Grid.Row="1" Background="#FFF7FA" CornerRadius="24" BorderBrush="#E7C8D7" BorderThickness="1" Padding="21,18"><Border.Effect><DropShadowEffect Color="#805065" BlurRadius="16" ShadowDepth="3" Opacity="0.14"/></Border.Effect><StackPanel>
    <TextBlock x:Name="ReminderTime" Text="晚晚陪你收尾" Foreground="#AD7991" FontSize="12"/>
@@ -97,8 +99,19 @@ function Show-BedDialog([bool]$demo,[datetime]$Now=(Get-Date)){
    <TextBlock x:Name="Info" Text="先保存文件，我陪你收尾。" TextWrapping="Wrap" FontSize="14" LineHeight="24" Foreground="#85717D"/>
    <DockPanel Margin="0,12,0,10"><TextBlock x:Name="Remaining" FontSize="37" Foreground="#A7778B"/><TextBlock Text="  留给你保存的时间" Foreground="#AA8E9C" FontSize="11" VerticalAlignment="Center"/></DockPanel>
    <TextBlock x:Name="Safety" Text="正常关机保留应用的未保存提示。" TextWrapping="Wrap" Foreground="#9C8793" FontSize="11" Margin="0,0,0,14"/>
+   <Button x:Name="Acknowledge" Content="好啦宝宝，我收完尾就睡觉 ♡" Padding="10,9" Background="#A7778B" Foreground="White" Margin="0,0,0,8"/>
    <Button x:Name="Defer" Content="再给我一点收尾时间" Padding="10,9" Margin="0,0,0,8"/><Button x:Name="CancelNight" Content="紧急取消今晚关机…" Padding="10,9"/>
   </StackPanel></Border>
+ </Grid>
+ <Border x:Name="MiniReminder" Visibility="Collapsed" Margin="7" CornerRadius="24" Background="#FFF7FA" BorderBrush="#E7C8D7" BorderThickness="1" Padding="10,8">
+  <StackPanel>
+   <DockPanel x:Name="MiniDragHandle" Cursor="SizeAll"><Button x:Name="MiniHide" Content="×" DockPanel.Dock="Right" Padding="7,0" FontSize="16" ToolTip="隐藏倒计时，后台计时与关机继续"/><TextBlock Text="晚晚帮你计时 ♡" Foreground="#9B7589" FontSize="12" VerticalAlignment="Center"/></DockPanel>
+   <Grid Height="132"><Image x:Name="MiniPortrait" Stretch="Uniform"/><Image x:Name="MiniFade" Stretch="Uniform" Opacity="0" IsHitTestVisible="False"/></Grid>
+   <TextBlock x:Name="MiniRemaining" FontSize="32" FontWeight="SemiBold" Foreground="#A7778B" HorizontalAlignment="Center"/>
+   <TextBlock x:Name="MiniStatus" Text="我陪你收尾，时间照常走 ♡" FontSize="10" Foreground="#9B7589" HorizontalAlignment="Center" Margin="0,2,0,8"/>
+   <Button x:Name="MiniExpand" Content="展开倒计时 ↗" Padding="8,6" FontSize="11" ToolTip="展开后可延期或紧急取消关机"/>
+  </StackPanel>
+ </Border>
  </Grid>
 </Window>
 '@
@@ -106,9 +119,15 @@ function Show-BedDialog([bool]$demo,[datetime]$Now=(Get-Date)){
  $script:dialog.Resources.MergedDictionaries.Add($win.Resources);Set-WanwanIcon $script:dialog;Place-DesktopWindow $script:dialog
  if($script:popup){$script:popup.Close()}
  $script:dialogSurface=Register-CharacterSurface ($dialog.FindName('DialogPortrait')) ($dialog.FindName('DialogFade')) $dialog
+ $script:miniDialogSurface=Register-CharacterSurface ($dialog.FindName('MiniPortrait')) ($dialog.FindName('MiniFade')) $dialog
+ $script:countdownView='Expanded'
  $dialog.Add_Closed({param($sender,$e) $script:surfaces=@($script:surfaces|Where-Object {$_.Window -ne $sender});$script:dialogSurface=$null})
  $script:dialog.Background=[Windows.Media.Brushes]::Transparent
- $initialLeft=[math]::Max(0,[int][math]::Ceiling(($script:deadline-$Now).TotalSeconds));$dialog.FindName('Remaining').Text=('{0:00}:{1:00}' -f [math]::Floor($initialLeft/60),($initialLeft%60))
+ Update-CountdownText $Now|Out-Null
+ $dialog.FindName('Acknowledge').Add_Click({Set-CountdownView Compact;if(-not $script:shutdownAfter){Say-Cue nod -Interaction};Write-Event 'Countdown acknowledged; deadline unchanged'})
+ $dialog.FindName('MiniHide').Add_Click({Set-CountdownView Hidden})
+ $dialog.FindName('MiniExpand').Add_Click({Set-CountdownView Expanded})
+ $dialog.FindName('MiniDragHandle').Add_MouseLeftButtonDown({param($sender,$e) if($e.OriginalSource -is [Windows.Controls.TextBlock] -and $e.LeftButton -eq [Windows.Input.MouseButtonState]::Pressed){$script:dialog.DragMove()}})
  if($demo){$dialog.FindName('Info').Text='这是 35 秒体验，结束后不会关闭电脑。';$dialog.FindName('Safety').Text='演示模式 · 不执行任何关机操作'}
  $dialog.FindName('Defer').IsEnabled=($demo -or ($cfg.Deferred -ne $state.Key -and (Get-Date) -lt $state.End.AddMinutes(-2)))
  $dialog.FindName('Defer').Add_Click({
@@ -121,8 +140,8 @@ function Show-BedDialog([bool]$demo,[datetime]$Now=(Get-Date)){
   if($answer -eq 'Yes'){$cfg.Cancelled=(Get-NightState (Get-Date) $cfg).Key;Save-Config;Write-Event 'Cancelled';$script:dialog.Close();Say-Cue cancel}
  })
  $dialog.Add_Closing({param($sender,$e) if(-not $script:demoMode -and $cfg.Enabled -and $cfg.Cancelled -ne (Get-NightState (Get-Date) $cfg).Key -and (Get-Date) -ge (Get-NightState (Get-Date) $cfg).End.AddMinutes(-2)){$e.Cancel=$true}})
- $dialog.Add_Closed({$script:dialog=$null;$script:demoMode=$false;if($cfg.DesktopPet -and -not $script:quitting){Show-DesktopPet -Compact}})
- $dialog.Show(); Set-CompanionMode '晚安'; if($script:motionEnabled){Animate-Double $dialog ([Windows.UIElement]::OpacityProperty) 0 1 0.4;Animate-Double ($dialog.FindName('Remaining')) ([Windows.UIElement]::OpacityProperty) 0.55 1 1.8 $true}; if($demo){Say-Cue dialog -Demo}else{Say-ClockReminder -Now $Now -Cue $(if($state.Phase -eq 'Due'){'due'}elseif($state.Phase -eq 'Final'){'final'}else{'bed'})}
+ $dialog.Add_Closed({$script:dialog=$null;$script:miniDialogSurface=$null;$script:countdownView='Expanded';$script:demoMode=$false;if($cfg.DesktopPet -and -not $script:quitting){Show-DesktopPet -Compact}})
+ $dialog.Show(); Set-CompanionMode '晚安'; if($script:motionEnabled){Animate-Double $dialog ([Windows.UIElement]::OpacityProperty) 0 1 0.4;Animate-Double ($dialog.FindName('Remaining')) ([Windows.UIElement]::OpacityProperty) 0.55 1 1.8 $true}; if(-not $Quiet){if($demo){Say-Cue dialog -Demo}else{Say-ClockReminder -Now $Now -Cue $(if($state.Phase -eq 'Due'){'due'}elseif($state.Phase -eq 'Final'){'final'}else{'bed'})}}
 }
 $ui.Preview.Add_Click({$cfg.Voice=[bool]$ui.VoiceToggle.IsChecked;Say-Cue preview;$ui.Feedback.Text=if($cfg.Voice){$(if($cfg.VoicePreset -eq 'System'){'正在播放系统女声'}else{'正在播放 AI 音色 '+$cfg.VoicePreset})}else{'语音已关闭'}})
 $ui.Demo.Add_Click({Show-BedDialog $true})
@@ -143,11 +162,12 @@ $win.FindName('ArmGuard').Add_Click({Save-WanwanSettings -EnableGuard})
 $tray=New-Object System.Windows.Forms.NotifyIcon
 $tray.Icon=$script:trayIcon;$tray.Text='晚晚 · 关机助理';$tray.Visible=$true
 $menu=New-Object System.Windows.Forms.ContextMenuStrip
-function Open-Wanwan {$win.Show();$win.WindowState=[Windows.WindowState]::Normal;$win.Activate()|Out-Null}
+function Open-Wanwan {$win.Show();$win.WindowState=[Windows.WindowState]::Normal;$win.Activate()|Out-Null;if($script:dialog -and -not $script:dialog.IsVisible){Set-CountdownView Compact}}
 function Hide-Wanwan {$win.Hide();if($cfg.DesktopPet -and -not $script:dialog){Show-DesktopPet -Compact};Write-Event 'Hidden; scheduler stays active'}
 $open=$menu.Items.Add('打开晚晚');$open.Add_Click({Open-Wanwan})
 $petMenu=$menu.Items.Add('叫晚晚出来 · 桌宠提醒体验');$petMenu.Add_Click({Say-ClockReminder -Now (Get-Date) -Cue early -Demo})
 $showPet=$menu.Items.Add('显示常驻桌宠');$showPet.Add_Click({$ui.PetToggle.IsChecked=$true;Save-Config;Show-DesktopPet -Compact})
+$showCountdown=$menu.Items.Add('查看睡前倒计时');$showCountdown.Add_Click({if($script:dialog){Set-CountdownView Compact}else{$ui.Feedback.Text='当前没有正在运行的睡前倒计时';Open-Wanwan}})
 $quit=$menu.Items.Add('退出助理（停止自动守护）');$quit.Add_Click({$script:quitting=$true;$cfg.Enabled=$false;if($script:dialog){$script:dialog.Close()};$win.Close()})
 $tray.ContextMenuStrip=$menu;$tray.Add_DoubleClick({Open-Wanwan})
 $ui.Hide.Add_Click({Hide-Wanwan;$tray.ShowBalloonTip(2500,'晚晚在这里','右下角的小头像、托盘图标或桌面快捷方式，都能找回晚晚。',[System.Windows.Forms.ToolTipIcon]::Info)})
@@ -164,7 +184,7 @@ function Invoke-GuardTick([datetime]$now=(Get-Date)){
  $ui.Countdown.Text=if(-not $cfg.Enabled){'要自动关机，请勾选「到点自动关机」并保存'}elseif($cfg.Cancelled -eq $s.Key){'今晚已取消，好好照顾自己'}elseif($s.Phase -eq 'Day' -or $s.Phase -eq 'Quiet'){'我会提前半小时轻轻提醒你'}else{'最晚 '+$s.End.ToString('HH:mm')+'，我们就休息'}
  $ui.Progress.Value=[math]::Max(0,[math]::Min(100,(($now-$s.Bed.AddMinutes(-30)).TotalMinutes/(30+$cfg.Grace))*100))
  if($script:dialog){
-  $left=[math]::Max(0,[int][math]::Ceiling(($script:deadline-$now).TotalSeconds));$script:dialog.FindName('Remaining').Text=('{0:00}:{1:00}' -f [math]::Floor($left/60),($left%60))
+  $left=Update-CountdownText $now
   if($left -eq 0 -and $script:demoMode){$script:dialog.Close();$ui.Feedback.Text='体验结束：没有执行关机';Say-Cue goodnight}
  }
  if(-not $cfg.Enabled -or $cfg.Cancelled -eq $s.Key){$script:shutdownAfter=$null;return}
@@ -177,6 +197,7 @@ function Invoke-GuardTick([datetime]$now=(Get-Date)){
  if(($s.Phase -eq 'Final' -or $s.Phase -eq 'Due') -and -not $script:dialog){Show-BedDialog $false $now}
  if($s.Phase -eq 'Due' -and $script:dialog -and -not $script:demoMode -and $now -ge $script:deadline -and ($now-$script:lastAttempt).TotalSeconds -ge 180){
   if(-not $script:shutdownAfter){
+   if(-not $script:dialog.IsVisible){Set-CountdownView Compact}
    Say-GuardLine shutdown
    $seconds=if($cfg.Voice){[math]::Max(2,$script:lastGuardDuration+1)}else{2}
    $script:shutdownAfter=$now.AddSeconds($seconds)
@@ -193,11 +214,12 @@ function Invoke-GuardTick([datetime]$now=(Get-Date)){
 }
 $timer.Add_Tick({Invoke-GuardTick})
 . "$PSScriptRoot\Power.ps1"
-if($SmokeTest -or $InteractionTest -or $AnimationTest -or $VoiceTest -or $CompanionTest -or $DialogueTest -or $PetTest -or $GuardTest -or $PetControlsTest -or $ShowcaseTest){
+if($SmokeTest -or $InteractionTest -or $AnimationTest -or $VoiceTest -or $CompanionTest -or $DialogueTest -or $PetTest -or $GuardTest -or $PetControlsTest -or $ShowcaseTest -or $CountdownTest){
  $cfg.Enabled=$false;$cfg.DesktopPet=$false;$ui.PetToggle.IsChecked=$false;$cfg.Voice=$false;$ui.EnabledToggle.IsChecked=$false;$ui.VoiceToggle.IsChecked=$false;$win.Show();$win.UpdateLayout()
  Start-Interaction 'peek'
  $initialFrame=[Windows.Threading.DispatcherFrame]::new();$initialWait=[Windows.Threading.DispatcherTimer]::new();$initialWait.Interval=[timespan]::FromMilliseconds(250);$initialWait.Add_Tick({$initialFrame.Continue=$false;$initialWait.Stop()});$initialWait.Start();[Windows.Threading.Dispatcher]::PushFrame($initialFrame)
  if($GuardTest){. "$PSScriptRoot\Guard.Tests.ps1"}
+ if($CountdownTest){. "$PSScriptRoot\Countdown.Tests.ps1"}
  if($PetControlsTest){. "$PSScriptRoot\PetControls.Tests.ps1"}
  if($ShowcaseTest){. "$PSScriptRoot\Showcase.Tests.ps1"}
  if($PetTest){. "$PSScriptRoot\DesktopPet.Tests.ps1"}
@@ -267,6 +289,14 @@ if($SmokeTest -or $InteractionTest -or $AnimationTest -or $VoiceTest -or $Compan
 $script:application=[Windows.Application]::new()
 $script:application.ShutdownMode=[Windows.ShutdownMode]::OnExplicitShutdown
 $win.Add_Closed({$script:application.Shutdown()})
+if($ResumeCountdownDeadline -gt [datetime]::MinValue){
+ if($script:isTestMode){$cfg.Enabled=$true;$cfg.Cancelled='';$cfg.Bedtime=(Get-Date).AddMinutes(-10).ToString('HH:mm');$cfg.Grace=10;$cfg.Voice=$false}
+ $resumeNow=Get-Date;$resumeState=Get-NightState $resumeNow $cfg
+ if($cfg.Enabled -and $cfg.Cancelled -ne $resumeState.Key -and $resumeState.Phase -in @('Bed','Final','Due') -and $ResumeCountdownDeadline -gt $resumeNow -and $ResumeCountdownDeadline -le $resumeState.End.AddHours(4)){
+  Show-BedDialog $false $resumeNow -Quiet;$script:deadline=$ResumeCountdownDeadline;Update-CountdownText $resumeNow|Out-Null;Set-CountdownView Compact;$script:lastPhase=$resumeState.Phase;Say-Cue nod -Interaction
+  $win.Add_ContentRendered({$win.Hide()});Write-Event ('Existing countdown resumed for update; deadline='+$script:deadline.ToString('o'))
+ }
+}
 if($LifecycleTest){
  $cfg.Enabled=$false;$cfg.Voice=$false;$cfg.DesktopPet=$true
  $script:lifecycleStep=0;$script:backgroundTicks=0
@@ -276,8 +306,8 @@ if($LifecycleTest){
   $script:lifecycleStep++
   switch($script:lifecycleStep){
    1 {Hide-Wanwan}
-   2 {if($win.IsVisible -or -not $tray.Visible -or -not $popup.IsVisible -or $script:backgroundTicks -lt 1){throw 'Background lifetime failed after hiding'};Open-Wanwan}
-   3 {if(-not $win.IsVisible){throw 'Restore failed'};@{hideKeepsApplicationAlive=$true;trayVisible=$tray.Visible;petVisible=$popup.IsVisible;backgroundTicks=$script:backgroundTicks;restored=$win.IsVisible}|ConvertTo-Json|Set-Content (Join-Path $root 'output\lifecycle-runtime-report.json') -Encoding UTF8;$lifecycleTimer.Stop();$script:quitting=$true;$win.Close()}
+   2 {if($win.IsVisible -or -not $tray.Visible -or (-not $popup.IsVisible -and -not $dialog.IsVisible) -or $script:backgroundTicks -lt 1){throw 'Background lifetime failed after hiding'};if($ResumeCountdownDeadline -gt [datetime]::MinValue -and $script:deadline -ne $ResumeCountdownDeadline){throw 'Resume changed existing deadline'};Open-Wanwan}
+   3 {if(-not $win.IsVisible){throw 'Restore failed'};@{hideKeepsApplicationAlive=$true;trayVisible=$tray.Visible;petVisible=$popup.IsVisible;countdownVisible=$dialog.IsVisible;resumedDeadline=$script:deadline;backgroundTicks=$script:backgroundTicks;restored=$win.IsVisible}|ConvertTo-Json|Set-Content (Join-Path $root 'output\lifecycle-runtime-report.json') -Encoding UTF8;$lifecycleTimer.Stop();$script:quitting=$true;$win.Close()}
   }
  });$lifecycleTimer.Start()
 }
