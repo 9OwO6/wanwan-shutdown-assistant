@@ -44,6 +44,21 @@ For clock reminders, 24 whole-sentence hour prefixes are combined with four whol
 | Shutdown privilege acquisition could fail | Managed struct layout did not match native `TOKEN_PRIVILEGES` | Explicit DWORD/LUID fields and error-code checking | 16-byte layout and privilege enablement in a test process; no native shutdown |
 | A final spoken reminder could be interrupted | Playback was asynchronous, followed immediately by the OS request | Pending announcement state and an audio-duration wait | No simulated request before the announcement interval; cancellation clears pending state |
 
+## v0.3: a product review pass with a second AI collaborator
+
+After v0.2 the application worked, but neither release had been downloaded. A product review with Claude started from that metric instead of from the feature list, and found the friction was mostly *before* first use:
+
+| Finding | Evidence | Change |
+|---|---|---|
+| The download was 103 MB for a bedtime timer | 86 MB of uncompressed 24 kHz PCM; 23 MB of RGBA sprite sheets | MP3 runtime clips with hash-tracked WAV masters; palette + alpha quantization of art in the release only → ~25 MB |
+| The biggest objection to auto-shutdown is losing work | Shutdown was the only action | Sleep action; a real-clock resume check grants a fresh two-minute save window instead of sleeping again immediately |
+| A fixed bedtime fails on Friday night | Listed as future work in v0.2 | `Get-NightBedtime` assigns each bedtime to its evening; Fri/Sat may use a later time; 10 new boundary tests |
+| Autostart depended on `wscript.exe` | VBScript is being deprecated in Windows | Shortcuts launch hidden PowerShell directly; existing shortcuts migrate on start |
+| The landing page was English-first for a Chinese-only UI | No Chinese quick start, no SmartScreen/uninstall guidance | Chinese-first README with FAQ; English section kept for reviewers |
+| Releases were hand-built ZIPs | — | `build_release.py` + tag-triggered workflow that audits the staged package before publishing |
+
+Two details show why AI output still needs review. The existing N1 guard recording literally says “正常关机” (normal shutdown), so the sleep path announces with an existing goodnight line rather than mislabeling the action. And a resume detector based on the *scheduled* clock would have broken the deterministic tests, which inject time jumps; it uses the real clock instead.
+
 ## Portfolio talking points
 
 - Built a native desktop product using PowerShell/WPF and a narrowly scoped C# interop layer.

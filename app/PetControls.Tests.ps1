@@ -2,7 +2,7 @@
 function Pump-Controls([int]$Milliseconds){$frame=[Windows.Threading.DispatcherFrame]::new();$wait=[Windows.Threading.DispatcherTimer]::new();$wait.Interval=[timespan]::FromMilliseconds($Milliseconds);$wait.Add_Tick({$frame.Continue=$false;$wait.Stop()});$wait.Start();[Windows.Threading.Dispatcher]::PushFrame($frame);$wait.Stop()}
 $cfg.Voice=$false;$cfg.Enabled=$false;$cfg.DesktopPet=$true
 Show-DesktopPet -Compact;Pump-Controls 100
-Assert-Control ($popup.FindName('CompactStatus').Text -eq '自动关机未开启') 'Guard-off status not visible on avatar'
+Assert-Control ($popup.FindName('CompactStatus').Text -eq '到点守护未开启') 'Guard-off status not visible on avatar'
 $win.Hide();$beforeLeft=$popup.Left;$beforeTop=$popup.Top
 $down=[Windows.Input.MouseButtonEventArgs]::new([Windows.Input.Mouse]::PrimaryDevice,0,[Windows.Input.MouseButton]::Left);$down.RoutedEvent=[Windows.UIElement]::PreviewMouseDownEvent
 $popup.FindName('PetAvatar').RaiseEvent($down)

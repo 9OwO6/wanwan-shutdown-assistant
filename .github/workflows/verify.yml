@@ -29,3 +29,5 @@ jobs:
         run: .\tests\Schedule.Tests.ps1
       - name: Verify bundled runtime assets
         run: python tools/verify_release_assets.py
+      - name: Build and audit the slim portable package
+        run: python tools/build_release.py ci

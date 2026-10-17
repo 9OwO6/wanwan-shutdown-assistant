@@ -15,7 +15,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20264772
+    "seed": 20264772,
+    "runtime_file": "assets/voices/N1-guard/due.mp3",
+    "runtime_sha256": "c2b1290994896f2a8b97df7501c013959955ce3fc24fff21a95c744eb0894915"
   },
   {
     "id": "guard-shutdown",
@@ -33,7 +35,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20264772
+    "seed": 20264772,
+    "runtime_file": "assets/voices/N1-guard/shutdown.mp3",
+    "runtime_sha256": "acff1b2d86952e57a9383fd26383312668a62ce2c8ff803b8e5c4251ea4aee1e"
   },
   {
     "id": "guard-disabled",
@@ -51,6 +55,8 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20264772
+    "seed": 20264772,
+    "runtime_file": "assets/voices/N1-guard/disabled.mp3",
+    "runtime_sha256": "05f6ba0a61c73b1d3a8f44a127169beb25392d2fbd2df79ffedbfaa17e777019"
   }
 ]

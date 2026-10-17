@@ -12,14 +12,14 @@ assert {(r['hour'],r['cue']) for r in rows}=={(h,c) for h in range(24) for c in 
 checked=[]
 for row in rows:
     record=next(r for r in records if r['id']==row['id'])
-    assert record['text']==row['text'] and record['file']==row['file']
+    assert record['text']==row['text'] and record.get('runtime_file',record['file'])==row['file']
     assert record['reference_sha256']==reference
     source=[next(p for p in parts if p['id']==name) for name in record['source_ids']]
     assert row['text']==''.join(p['text'] for p in source)
     assert all(p['reference_sha256']==reference for p in source)
     for p, expected in zip(source,record['source_sha256']):
         assert hashlib.sha256((ROOT/p['file']).read_bytes()).hexdigest()==expected==p['sha256']
-    path=ROOT/row['file'];digest=hashlib.sha256(path.read_bytes()).hexdigest()
+    path=ROOT/record['file'];digest=hashlib.sha256(path.read_bytes()).hexdigest()
     assert digest==record['sha256']
     subprocess.run(['ffmpeg','-v','error','-i',str(path),'-f','null','-'],check=True)
     with wave.open(str(path)) as w:

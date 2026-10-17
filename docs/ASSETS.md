@@ -15,6 +15,8 @@ The N1 voice reference was generated with Qwen3-TTS VoiceDesign, using the N1 br
 | 10 sprite sheets / 40 poses | `interactions.json`, `interaction-sources.json` | Transparent 2×2 character animations |
 | Multi-size icon | `icons/source.json` | Main window, tray and shortcuts |
 
+**Runtime format.** The WAV files are production masters. The application plays 64 kbps mono MP3 copies created by `python tools/encode_runtime_audio.py` (needs FFmpeg); catalogs point at the MP3, manifests keep the master `file`/`sha256` and add `runtime_file`/`runtime_sha256`. Re-run the encoder after regenerating any line. The portable release ships only the MP3 copies and palette-quantized character art.
+
 Legacy A/B/C/D clips and their auditions remain to keep the existing voice selector runnable. N1 is the selected and featured production voice. Legacy raw backups, experimental captures, generation logs and third-party executables are excluded from the public repository.
 
 ## Optional development dependencies

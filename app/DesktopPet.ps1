@@ -25,7 +25,7 @@ function Hide-DesktopPet {
 function Update-PetGuardStatus {
  if(-not $script:popup){return}
  $state=Get-NightState (Get-Date) $cfg
- $script:popup.FindName('CompactStatus').Text=if(-not $cfg.Enabled){'自动关机未开启'}elseif($cfg.Cancelled -eq $state.Key){'今晚已取消关机'}else{'自动关机已开启 ♡'}
+ $script:popup.FindName('CompactStatus').Text=if(-not $cfg.Enabled){'到点守护未开启'}elseif($cfg.Cancelled -eq $state.Key){'今晚已取消守护'}else{'到点'+(Get-GuardActionName)+'已开启 ♡'}
  $script:popup.FindName('CompactStatus').Foreground=[Windows.Media.BrushConverter]::new().ConvertFromString($(if($cfg.Enabled){'#7B8B74'}else{'#B76D79'}))
 }
 function Move-PetDrag($Cursor,[bool]$Pressed){
@@ -52,7 +52,7 @@ function New-DesktopPet {
   <Grid x:Name="CompactPet" Margin="7"><Border CornerRadius="24" Background="#FDF4F8" BorderBrush="#E9CFDB" BorderThickness="1" Padding="8,5"><StackPanel>
    <DockPanel><Button x:Name="CompactHide" DockPanel.Dock="Right" Content="×" Padding="7,0" FontSize="15" ToolTip="隐藏桌宠，后台守护继续运行"/><TextBlock Text="拖动头像移动" FontSize="10" Foreground="#A37189" VerticalAlignment="Center"/></DockPanel>
    <Image x:Name="PetAvatar" Width="84" Height="84" Stretch="Uniform" Cursor="SizeAll" ToolTip="按住拖动；轻点打开晚晚；右键有更多操作"/>
-   <TextBlock x:Name="CompactStatus" Text="自动关机未开启" HorizontalAlignment="Center" FontSize="11" Margin="0,3,0,5"/>
+   <TextBlock x:Name="CompactStatus" Text="到点守护未开启" HorizontalAlignment="Center" FontSize="11" Margin="0,3,0,5"/>
    <Button x:Name="CompactOpen" Content="打开晚晚 ↗" Padding="8,4" FontSize="11"/>
   </StackPanel></Border></Grid>
   <Grid x:Name="ExpandedPet" Visibility="Collapsed" Margin="12,10,12,8">
@@ -106,7 +106,7 @@ function Show-DesktopPet {
  $script:popup.FindName('ExpandedPet').Visibility=if($Compact){[Windows.Visibility]::Collapsed}else{[Windows.Visibility]::Visible}
  $script:popup.Width=if($Compact){142}else{390};$script:popup.Height=if($Compact){180}else{420}
  $script:popup.FindName('PopupText').Text=$Caption;$script:popup.FindName('PetStatus').Text=$Status
- $script:popup.FindName('PetPromise').Text='约好 '+$cfg.Bedtime+' 休息'
+ $script:popup.FindName('PetPromise').Text='约好 '+(Get-NightState (Get-Date) $cfg).Bed.ToString('HH:mm')+' 休息'
  if($cfg.ContainsKey('PetLeft') -and $cfg.ContainsKey('PetTop')){Set-PetPosition ([double]$cfg.PetLeft+142-$script:popup.Width) ([double]$cfg.PetTop+180-$script:popup.Height)}else{Place-DesktopWindow $script:popup}
  Update-PetGuardStatus;$script:popup.Show()
  $script:popupUntil=if($Compact){[double]::PositiveInfinity}else{$script:animationClock.ElapsedMilliseconds+12000}
