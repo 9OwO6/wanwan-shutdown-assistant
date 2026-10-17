@@ -63,7 +63,7 @@ function Invoke-HistoryTick([datetime]$Now,[string]$Phase='Day'){
  if(-not $last -or $cfg.GreetedNight -eq $last.Key){return}
  $result=$script:nights[$last.Key]
  if(-not $result){return}
- $cfg.GreetedNight=$last.Key;Save-Config
+ $cfg.GreetedNight=$last.Key;Save-Config;Update-StreakDisplay $Now
  if($result -eq 'cancelled' -or $Now.Hour -ge 15 -or $Now -gt $last.WindowEnd.AddHours(10)){return}
  Show-MorningGreeting $result $Now
 }
