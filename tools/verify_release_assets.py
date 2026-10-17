@@ -29,6 +29,7 @@ for catalog, manifest, count in [
     ('assets/companion-lines.json', 'assets/voices/N1/manifest.json', 92),
     ('assets/clock-lines.json', 'assets/voices/N1-clock/manifest.json', 96),
     ('assets/guard-lines.json', 'assets/voices/N1-guard/manifest.json', 3),
+    ('assets/watch-lines.json', 'assets/voices/N1-watch/manifest.json', 5),
 ]:
     rows, records = read(catalog)['lines'], read(manifest)
     assert len(rows) == len(records) == count

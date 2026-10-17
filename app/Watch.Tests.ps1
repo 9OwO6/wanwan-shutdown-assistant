@@ -58,5 +58,16 @@ $joined=$script:testUpdateArguments -join ' '
 Assert-Watch ($joined -match '-WaitPid \d+' -and $joined -match [regex]::Escape('-ResumeDeadline "'+$script:deadline.ToString('o')+'"') -and $joined -match '-Target') 'Update must wait for this process and resume the active countdown'
 Assert-Watch (Test-Path (Join-Path ([IO.Path]::GetTempPath()) 'WanwanUpdate\ApplyUpdate.ps1')) 'Installer must run from a temporary copy'
 $cfg.Enabled=$false;$dialog.Close()
+# 8. 五句新的 N1 录音都能被 WPF 原生播放（静音）
+$script:watchRecords=@(Get-Content $script:watchManifestPath -Raw -Encoding UTF8|ConvertFrom-Json)
+$cfg.VoicePreset='N1';$script:voicePlayer.Volume=0
+foreach($cue in @('caught','caught-again','final','streak','reset')){
+ Assert-Watch ((Get-WatchLine $cue).file) "N1 clip missing for $cue"
+ $cfg.Voice=$true;$script:watchMediaReady=$false;$loop=[Windows.Threading.DispatcherFrame]::new()
+ $handler=[System.EventHandler]{$script:watchMediaReady=$true;$loop.Continue=$false};$script:voicePlayer.Add_MediaOpened($handler)
+ Say-WatchLine $cue|Out-Null
+ $wait=[Windows.Threading.DispatcherTimer]::new();$wait.Interval=[timespan]::FromSeconds(4);$wait.Add_Tick({$loop.Continue=$false;$wait.Stop()});$wait.Start();[Windows.Threading.Dispatcher]::PushFrame($loop);$wait.Stop();$script:voicePlayer.Remove_MediaOpened($handler)
+ Assert-Watch ($script:watchMediaReady -and $script:lastVoiceAsset -like '*N1-watch*.mp3') "Native muted audio open failed: $cue";Stop-Voice;$cfg.Voice=$false
+}
 Assert-Watch ($ui.CheckUpdate -and $ui.FooterText.Text -like ('*v'+$script:appVersion)) 'Update button and version must be visible'
-Write-Output 'Watch tests passed: caught-after-shutdown with 5-minute grace, final line before simulated request, repeat line, window end, unguarded overdue unchanged, morning streak greeting once, update resumes countdown. No native power call.'
+Write-Output 'Watch tests passed: caught-after-shutdown with 5-minute grace, final line before simulated request, repeat line, window end, unguarded overdue unchanged, morning streak greeting once, update resumes countdown, 5 muted native N1 clip opens. No native power call.'
