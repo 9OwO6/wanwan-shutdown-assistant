@@ -36,3 +36,5 @@ $failed=$false;try{& "$PSScriptRoot\..\app\ApplyUpdate.ps1" -Source $src -Target
 Assert-Update ((Get-Content "$dst/app/Main.ps1") -eq 'new main' -and (Get-Content $log -Raw) -match 'Update failed') 'incomplete source must not be applied'
 Remove-Item -LiteralPath $tmp -Recurse -Force
 Write-Output '16 update tests passed (version order, asset origin, notes, file replacement, incomplete package rejected)'
+# 上面故意让安装脚本失败过一次（exit 1）；测试本身全部通过时以 0 退出。
+exit 0
