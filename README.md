@@ -50,6 +50,10 @@
 |:--:|:--:|:--:|
 | <img src="docs/screenshots/desktop-pet.png" width="142" alt="可拖动的桌面头像"> | <img src="docs/screenshots/reminder-bubble.png" width="270" alt="带报时的提醒气泡"> | <img src="docs/screenshots/bedtime-countdown.png" width="270" alt="收尾倒计时"> |
 
+| 起夜监督：关机后又偷偷开机 | 早上的早睡打卡 |
+|:--:|:--:|
+| <img src="docs/screenshots/caught-watch.png" width="270" alt="起夜监督倒计时"> | <img src="docs/screenshots/streak-greeting.png" width="300" alt="早睡打卡问候"> |
+
 ### 常见问题
 
 <details>
