@@ -104,6 +104,7 @@ It is a personal **AI-assisted product engineering portfolio project** — nativ
 - **Weekend bedtimes** — Friday and Saturday nights can use a later time; after-midnight bedtimes belong to the previous evening.
 - **Offline AI voice** — 92 companion lines, 96 hour-aware reminders and 3 guard lines, shipped as compact MP3s with hash-verified WAV masters in the repository.
 - **Desktop companion** — draggable avatar with visible guard state, ten animated interactions (40 poses), reduced-motion option, tray icon, single-instance activation.
+- **Video-ready transparent frames** — forty reviewed 640×640 PNGs in [`assets/frames/`](assets/frames/), with neighboring-sleeve artifacts removed; the app plays these same exports ([crop audit](docs/FRAME_REPAIR.md)).
 
 ### Quick start
 

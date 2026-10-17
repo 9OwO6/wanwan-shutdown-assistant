@@ -60,13 +60,22 @@ clock = read('assets/clock-lines.json')['lines']
 assert {(r['hour'], r['cue']) for r in clock} == {(h, c) for h in range(24) for c in ('early', 'soon', 'bed', 'final')}
 sprites = read('assets/interactions.json')
 assert len(sprites) == 10
-for item in sprites:
+# Source atlases are production inputs kept in the repository only; the app plays the reviewed frames.
+release_mode = not (ROOT / 'assets/interactions').exists()
+for item in sprites if not release_mode else []:
     data = checked_path(f"assets/interactions/{item['id']}.png").read_bytes()
     assert data[:8] == b'\x89PNG\r\n\x1a\n'
     width, height, depth, color = struct.unpack('>IIBB', data[16:26])
-    # Runtime crops floor(width/2) x floor(height/2); generated sheets may have an odd edge pixel.
-    # RGBA masters in the repository; 256-colour palette + alpha (type 3) in the portable release.
-    assert width // 2 >= 64 and height // 2 >= 64 and depth == 8 and color in (3, 6)
+    assert width // 2 >= 64 and height // 2 >= 64 and depth == 8 and color == 6
+layout = read('assets/character-frame-layout.json')
+assert layout['canvas'] == [640, 640] and len(layout['frames']) == 40
+for frame in layout['frames']:
+    data = checked_path(frame['file']).read_bytes()
+    width, height, depth, color = struct.unpack('>IIBB', data[16:26])
+    # RGBA in the repository; 256-colour palette + alpha (type 3) in the portable release.
+    assert data[:8] == b'\x89PNG\r\n\x1a\n' and (width, height, depth) == (640, 640, 8) and color in ((3, 6) if release_mode else (6,))
+    if not release_mode:
+        assert hashlib.sha256(checked_path(frame['source']).read_bytes()).hexdigest() == frame['source_sha256']
 legacy = read('assets/voices/manifest.json')
 for preset in ('A', 'B', 'C', 'D'):
     checked_path(f'assets/voices/auditions/{preset}.mp3')
@@ -77,4 +86,4 @@ for preset in ('A', 'B', 'C', 'D'):
 for path in ('assets/wanwan.png', 'assets/icons/wanwan.ico', 'assets/icons/wanwan-256.png', 'Start-Wanwan.ps1', '启动晚晚.vbs', '启动晚晚.cmd', 'app/Main.ps1', 'app/Power.ps1', 'app/Schedule.ps1'):
     checked_path(path)
 mode = f'{masters} WAV masters PCM-checked' if masters else 'release mode, MP3 only'
-print(f'PASS: {checked} N1 runtime clips ({mode}), exact catalog/transcript/hash matching, 24-hour routing, 10 transparent sprite sheets, legacy playback and required runtime files.')
+print(f'PASS: {checked} N1 runtime clips ({mode}), exact catalog/transcript/hash matching, 24-hour routing, 40 reviewed character frames, legacy playback and required runtime files.')

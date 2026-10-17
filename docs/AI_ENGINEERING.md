@@ -22,7 +22,7 @@ Cancellation and deferral keys are associated with the relevant bedtime date. An
 
 ### 2. Visual assets
 
-Generated artwork established a consistent adult fictional companion. Ten transparent 2×2 sprite sheets provide forty poses. The application crops these into WPF image frames and shares the animation state across its surfaces. Frame timing, subtle movement, short transitions and a reduced-motion mode supply the interaction polish without a game engine.
+Generated artwork established a consistent adult fictional companion. Ten transparent 2×2 sprite sheets provide forty poses. A reviewed native WPF export pipeline separates them into independent 640×640 transparent PNGs; the application loads those frames and shares the animation state across its surfaces. Frame timing, subtle movement, short transitions and a reduced-motion mode supply the interaction polish without a game engine.
 
 Asset inspection checks transparency and distinct poses; runtime tests check that visible frames actually advance. The README animation is a capture of the application, not a separately animated illustration.
 
@@ -43,6 +43,7 @@ For clock reminders, 24 whole-sentence hour prefixes are combined with four whol
 | A visible companion was mistaken for an enabled schedule | Companion visibility and guard state were separate, but presentation did not make that clear | Status on the avatar and a dedicated save-and-enable button | Actual activation button, persisted `Enabled=true`, overdue countdown with hidden avatar |
 | Shutdown privilege acquisition could fail | Managed struct layout did not match native `TOKEN_PRIVILEGES` | Explicit DWORD/LUID fields and error-code checking | 16-byte layout and privilege enablement in a test process; no native shutdown |
 | A final spoken reminder could be interrupted | Playback was asynchronous, followed immediately by the OS request | Pending announcement state and an audio-duration wait | No simulated request before the announcement interval; cancellation clears pending state |
+| Extra sleeves appeared during animation/video export | Generated subjects crossed the atlas halfway lines; a uniform 8-pixel inset still included neighboring arms | Reviewed per-frame clipping and forty independent transparent exports | Seven contaminated slots corrected; opaque-pixel comparison, alpha/gutter checks, connected-component inspection and actual WPF playback |
 
 ## v0.3: a product review pass with a second AI collaborator
 

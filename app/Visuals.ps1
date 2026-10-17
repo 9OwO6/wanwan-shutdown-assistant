@@ -6,13 +6,13 @@ $script:interactionAssets=@{};$script:surfaces=@();$script:popup=$null;$script:g
 $script:animationClock=[Diagnostics.Stopwatch]::StartNew()
 $script:action=$null;$script:actionHistory=[Collections.Generic.List[object]]::new()
 foreach($item in $script:interactionCatalog){
- $path=Join-Path $root ('assets\interactions\'+$item.id+'.png')
- if(-not (Test-Path $path)){continue}
- $sheet=[Windows.Media.Imaging.BitmapImage]::new();$sheet.BeginInit();$sheet.CacheOption=[Windows.Media.Imaging.BitmapCacheOption]::OnLoad;$sheet.UriSource=[uri]$path;$sheet.EndInit();$sheet.Freeze()
- $w=[int][math]::Floor($sheet.PixelWidth/2);$h=[int][math]::Floor($sheet.PixelHeight/2);$cells=@()
- # 留出极窄的取样边界，避免生成表格相邻单元的边缘像素串入画面。
- $edge=8
- for($i=0;$i -lt 4;$i++){$cell=[Windows.Media.Imaging.CroppedBitmap]::new($sheet,[Windows.Int32Rect]::new(($i%2)*$w+$edge,[int][math]::Floor($i/2)*$h+$edge,$w-2*$edge,$h-2*$edge));$cell.Freeze();$cells+=,$cell}
+ $cells=@()
+ # 加载已经过轮廓检查的独立透明帧，避免运行时均分图集串入隔壁手臂。
+ for($i=0;$i -lt 4;$i++){
+  $path=Join-Path $root ('assets\frames\'+$item.id+'\'+$i+'.png')
+  if(-not (Test-Path $path)){throw ('Missing reviewed character frame: '+$item.id+'/'+$i)}
+  $cell=[Windows.Media.Imaging.BitmapImage]::new();$cell.BeginInit();$cell.CacheOption=[Windows.Media.Imaging.BitmapCacheOption]::OnLoad;$cell.UriSource=[uri]$path;$cell.EndInit();$cell.Freeze();$cells+=,$cell
+ }
  $script:interactionAssets[$item.id]=$cells
 }
 $script:frames=$script:interactionAssets['peek']

@@ -24,7 +24,7 @@ RUNTIME_GLOBS = [
     'assets/*.json',
     'assets/wanwan.png',
     'assets/icons/*',
-    'assets/interactions/*.png',
+    'assets/frames/*/*.png',
     'assets/voices/**/*.mp3',
     'assets/voices/manifest.json',
     'assets/voices/N1/manifest.json',
@@ -54,7 +54,7 @@ for src in files:
 try:
     import imagequant
     from PIL import Image
-    for png in [*STAGE.glob('assets/interactions/*.png'), STAGE / 'assets/wanwan.png']:
+    for png in [*STAGE.glob('assets/frames/*/*.png'), STAGE / 'assets/wanwan.png']:
         quantized = imagequant.quantize_pil_image(Image.open(png).convert('RGBA'), dithering_level=1.0,
                                                   max_colors=256, min_quality=70, max_quality=95)
         quantized.save(png, optimize=True)

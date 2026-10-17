@@ -1,5 +1,9 @@
 ﻿# 在真实 WPF Dispatcher 中操作按钮、抓帧，所有测试均禁用声音和关机。
 if($script:interactionAssets.Count -ne 10){throw 'Expected ten independent interaction sheets'}
+foreach($entry in $script:interactionAssets.GetEnumerator()){
+ if($entry.Value.Count -ne 4){throw 'Each action must load four reviewed frames'}
+ foreach($frame in $entry.Value){if($frame.PixelWidth -ne 640 -or $frame.PixelHeight -ne 640 -or $frame -isnot [Windows.Media.Imaging.BitmapImage]){throw 'Runtime must load independent 640x640 frames instead of re-splitting source atlases'}}
+}
 $captureDirectory=Join-Path $root 'output\interaction-review';New-Item -ItemType Directory -Force $captureDirectory|Out-Null
 function Wait-Visual([int]$milliseconds){
  $waitFrame=[Windows.Threading.DispatcherFrame]::new();$waitTimer=[Windows.Threading.DispatcherTimer]::new();$waitTimer.Interval=[timespan]::FromMilliseconds($milliseconds)

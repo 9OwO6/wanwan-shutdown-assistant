@@ -12,7 +12,8 @@ The N1 voice reference was generated with Qwen3-TTS VoiceDesign, using the N1 br
 | 96 N1 clock reminders | `clock-lines.json`, `voices/N1-clock/manifest.json` | 24 hours × four schedule phases |
 | 3 N1 guard lines | `guard-lines.json`, `voices/N1-guard/manifest.json` | Overdue, final announcement, guard-off status |
 | 28 clock fragments | `clock-parts.json`, `voices/N1-clock/parts-manifest.json` | Whole-sentence prefixes and suffixes used by the composer |
-| 10 sprite sheets / 40 poses | `interactions.json`, `interaction-sources.json` | Transparent 2×2 character animations |
+| 40 reviewed 640×640 PNG frames | `frames/`, `character-frame-layout.json` | Runtime playback and video-ready transparent assets |
+| 10 original sprite atlases | `interactions.json`, `interaction-sources.json` | Unchanged production inputs; do not re-split equally for video |
 | Multi-size icon | `icons/source.json` | Main window, tray and shortcuts |
 
 **Runtime format.** The WAV files are production masters. The application plays 64 kbps mono MP3 copies created by `python tools/encode_runtime_audio.py` (needs FFmpeg); catalogs point at the MP3, manifests keep the master `file`/`sha256` and add `runtime_file`/`runtime_sha256`. Re-run the encoder after regenerating any line. The portable release ships only the MP3 copies and palette-quantized character art.
@@ -20,6 +21,8 @@ The N1 voice reference was generated with Qwen3-TTS VoiceDesign, using the N1 br
 Legacy A/B/C/D clips and their auditions remain to keep the existing voice selector runnable. N1 is the selected and featured production voice. Legacy raw backups, experimental captures, generation logs and third-party executables are excluded from the public repository.
 
 ## Optional development dependencies
+
+See [frame repair and reproduction](FRAME_REPAIR.md) for the corrected native WPF export pipeline. Individual poses are zero-indexed as `assets/frames/{action}/0.png` through `3.png`; all use transparent 640×640 canvases and consistent placement within each action.
 
 Running the app does not require any of these. Generating or deeply analyzing media requires separately installed packages/models: Qwen3-TTS, PyTorch, NumPy, SoundFile, Pillow, FFmpeg, and the selected ASR environment. Model weights are not included.
 
