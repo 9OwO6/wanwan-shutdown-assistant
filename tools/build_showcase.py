@@ -7,8 +7,11 @@ OUT = ROOT / 'docs/screenshots'
 
 def font(size, bold=False):
     name = 'segoeuib.ttf' if bold else 'segoeui.ttf'
-    candidate = Path('C:/Windows/Fonts') / name
-    return ImageFont.truetype(str(candidate), size) if candidate.exists() else ImageFont.load_default(size=size)
+    for candidate in (Path('C:/Windows/Fonts') / name,
+                      Path('/usr/share/fonts/opentype/inter') / ('Inter-SemiBold.otf' if bold else 'Inter-Regular.otf')):
+        if candidate.exists():
+            return ImageFont.truetype(str(candidate), size)
+    return ImageFont.load_default(size=size)
 
 cover = Image.new('RGB', (1600, 1120), '#f7eff4')
 draw = ImageDraw.Draw(cover)

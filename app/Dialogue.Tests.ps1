@@ -45,5 +45,6 @@ $holdFrame=[Windows.Threading.DispatcherFrame]::new();$holdTimer=[Windows.Thread
 $holdTimer.Add_Tick({$holdFrame.Continue=$false;$holdTimer.Stop()});$holdTimer.Start();[Windows.Threading.Dispatcher]::PushFrame($holdFrame)
 if($script:mainSurface.Key -notlike 'heart:*'){throw 'Character pose ended before the long voice line'}
 Stop-Voice;$cfg.Voice=$false
+New-Item -ItemType Directory -Force (Join-Path $root 'output\voice-lab')|Out-Null
 $opened|ConvertTo-Json -Depth 4|Set-Content (Join-Path $root 'output\voice-lab\n1-runtime-report.json') -Encoding UTF8
 Write-Output "Dialogue tests passed: $($opened.Count) native WAV opens, $($cues.Count) varied cues, no adjacent repeats, N1 picker, preview and ten gallery captions/actions; muted, no shutdown"
