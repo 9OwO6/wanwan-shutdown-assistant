@@ -31,6 +31,8 @@ Windows WPF 桌面程序：十种透明角色互动、中文 AI 语音、分阶�
 
 ## 本地数据与素材
 
+做视频请使用 `assets/frames/` 内的 40 张独立透明 PNG（640×640），每个动作目录下为 `0.png`–`3.png`。已修正 7 帧因图集边界不规则而串入隔壁袖子的问题；程序也直接加载这些独立帧。`assets/interactions/` 保留原始图集供追溯，不要再次等分裁图。排查记录见 [FRAME_REPAIR.md](FRAME_REPAIR.md)。
+
 设置及事件记录：`%LOCALAPPDATA%\WanwanShutdown`，不上传数据。
 
 - `assets/interactions/`：十张透明 2×2 角色动作表，共 40 个独立姿态，通过 WPF 裁剪视图直接播放。

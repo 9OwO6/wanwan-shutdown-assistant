@@ -40,7 +40,8 @@ This is a personal **AI-assisted product engineering portfolio project**: native
 - **A staged bedtime flow.** Reminders 30 and 10 minutes before bedtime, a wrap-up window at bedtime, a final countdown, and a goodnight before the shutdown request. Overnight schedules are handled explicitly.
 - **Acknowledge and keep working.** “Okay, I'll finish up and go to bed” shrinks the reminder into an animated Wanwan + countdown widget. Hide or expand it without deferring or cancelling the schedule; restore it from the tray. The final announcement brings a hidden countdown back into view.
 - **Offline AI voice playback.** The selected N1 voice has **92 companion lines, 96 hour/phase reminders, and 3 guard-status lines**. The application plays prepared audio without loading a model or calling a cloud API.
-- **Ten animated interactions.** Forty distinct poses across ten transparent sprite sheets, with frame timing, short transitions, and a reduced-motion option.
+- **Ten animated interactions.** Forty reviewed PNG poses derived from ten transparent sprite atlases, with frame timing, short transitions, and a reduced-motion option.
+- **Video-ready transparent frames.** Forty reviewed 640×640 PNGs in [`assets/frames/`](assets/frames/), with neighboring-sleeve artifacts removed and shared placement. The application uses these same exports. [See the crop audit and before/after comparison](docs/FRAME_REPAIR.md).
 - **Explicit controls.** Automatic shutdown starts disabled. “Save & enable shutdown” persists the schedule and the desktop avatar displays its current guard status. One wrap-up deferral and an emergency cancellation are available.
 - **Windows-native behavior.** WPF windows, a system tray icon, optional per-user startup, single-instance activation, and a normal shutdown request through a small C# Win32 interop layer.
 

@@ -50,10 +50,16 @@ for item in sprites:
     width, height, depth, color = struct.unpack('>IIBB', data[16:26])
     # Runtime crops floor(width/2) x floor(height/2); generated sheets may have an odd edge pixel.
     assert width // 2 >= 64 and height // 2 >= 64 and depth == 8 and color == 6
+layout=read('assets/character-frame-layout.json')
+assert layout['canvas']==[640,640] and len(layout['frames'])==40
+for frame in layout['frames']:
+    data=checked_path(frame['file']).read_bytes()
+    assert data[:8]==b'\x89PNG\r\n\x1a\n' and struct.unpack('>IIBB',data[16:26])==(640,640,8,6)
+    assert hashlib.sha256(checked_path(frame['source']).read_bytes()).hexdigest()==frame['source_sha256']
 for preset in ('A', 'B', 'C', 'D'):
     checked_path(f'assets/voices/auditions/{preset}.wav')
     for line in read('assets/voice-lines.json'):
         checked_path(f"assets/voices/{preset}/{line['id']}.wav")
 for path in ('assets/wanwan.png', 'assets/icons/wanwan.ico', 'assets/wanwan-frames.png', 'Start-Wanwan.ps1', 'app/Main.ps1', 'app/Power.ps1'):
     checked_path(path)
-print(f'PASS: {checked} N1 runtime clips, exact catalog/transcript/hash/PCM matching, 24-hour routing, 10 transparent sprite sheets, legacy playback and required runtime files.')
+print(f'PASS: {checked} N1 runtime clips, exact catalog/transcript/hash/PCM matching, 24-hour routing, 40 reviewed character frames, source atlases, legacy playback and required runtime files.')
