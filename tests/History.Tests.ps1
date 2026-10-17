@@ -52,5 +52,8 @@ Assert-History ($marks -eq '○ ● ○ ● ● ◐ ●') "Recent marks wrong: $
 # 8. 周末作息下，周五晚的 01:00 落在周六
 $cfg.WeekendBedtime='01:00';$n=@{}
 Resolve-NightHistory $n ([datetime]'2026-10-17 00:50') ([datetime]'2026-10-17 10:00') $cfg|Out-Null
-Assert-History ($n['2026-10-17'] -eq 'early') 'Friday night (Saturday 01:00 bedtime) must resolve as early at 00:50'
-Write-Output '16 bedtime history tests passed (early/late inference, upgrades, gaps, streaks, weekend nights)'
+Assert-History ($n['2026-10-16'] -eq 'early') 'Friday night (Saturday 01:00 bedtime) must resolve as early at 00:50'
+# 周六晚（周日 01:00）和周日晚（周日 23:30）各有自己的记录
+$n=@{};Resolve-NightHistory $n ([datetime]'2026-10-17 20:00') ([datetime]'2026-10-19 08:00') $cfg|Out-Null
+Assert-History ($n['2026-10-17'] -eq 'early' -and $n['2026-10-18'] -eq 'early' -and $n.Count -eq 2) 'Saturday and Sunday nights must be recorded separately'
+Write-Output '17 bedtime history tests passed (early/late inference, upgrades, gaps, streaks, weekend nights)'

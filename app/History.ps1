@@ -19,9 +19,10 @@ function Get-PastNights {
     param([datetime]$Now, $Config, [int]$Count = 14)
     $list = @()
     foreach ($offset in 0..($Count + 2)) {
-        $bed = Get-NightBedtime $Now.Date.AddDays(-$offset) $Config
+        $evening = $Now.Date.AddDays(-$offset)
+        $bed = Get-NightBedtime $evening $Config
         $windowEnd = Get-NightWindowEnd $bed $Config
-        if ($windowEnd -le $Now) { $list += [pscustomobject]@{Key=$bed.ToString('yyyy-MM-dd'); Bed=$bed; End=$bed.AddMinutes([int]$Config.Grace); WindowEnd=$windowEnd} }
+        if ($windowEnd -le $Now) { $list += [pscustomobject]@{Key=$evening.ToString('yyyy-MM-dd'); Bed=$bed; End=$bed.AddMinutes([int]$Config.Grace); WindowEnd=$windowEnd} }
         if ($list.Count -ge $Count) { break }
     }
     return $list

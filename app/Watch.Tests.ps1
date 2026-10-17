@@ -40,10 +40,10 @@ $cfg.Enabled=$false;$dialog.Close();$cfg.Enabled=$true
 
 # 6. 早上的打卡问候 + 连续天数显示
 $script:allowGreetingInTests=$true;$cfg.DesktopPet=$true;$cfg.GreetedNight=''
-# 02:00 的睡觉时间：2026-10-15 凌晨那一晚的记录键是 2026-10-15。
-$script:nights=@{'2026-10-15'='slept';'2026-10-14'='early';'2026-10-13'='slept'};$script:lastSeen=[datetime]'2026-10-15T08:59:00'
+# 02:00 的睡觉时间：10-15 凌晨那一晚从 10-14 晚上开始，记录键是 2026-10-14。
+$script:nights=@{'2026-10-14'='slept';'2026-10-13'='early';'2026-10-12'='slept'};$script:lastSeen=[datetime]'2026-10-15T08:59:00'
 Invoke-GuardTick ([datetime]'2026-10-15T09:00:00')
-Assert-Watch ($script:lastSpokenLine.cue -eq 'streak' -and $cfg.GreetedNight -eq '2026-10-15') 'Morning greeting must report last night once'
+Assert-Watch ($script:lastSpokenLine.cue -eq 'streak' -and $cfg.GreetedNight -eq '2026-10-14') 'Morning greeting must report last night once'
 Assert-Watch ($popup -and $popup.FindName('PopupText').Text -like '*连续早睡 3 天*') 'Greeting bubble must show the streak'
 Assert-Watch ($ui.StreakText.Text -like '*已连续早睡 3 天*') 'Main window must show the streak'
 $spoken=$script:lastSpokenLine;Invoke-GuardTick ([datetime]'2026-10-15T09:00:05')

@@ -23,12 +23,16 @@ function Get-NightState {
     param([datetime]$Now, $Config)
     $grace = [int]$Config.Grace
     # 每晚的区间：提前 30 分钟开始提醒，到睡眠守护结束为止。按时间顺序找第一个覆盖当前时刻的夜晚。
-    $nights = foreach ($offset in -2..2) { Get-NightBedtime $Now.Date.AddDays($offset) $Config }
-    $bed = $nights | Where-Object { $Now -ge $_.AddMinutes(-30) -and $Now -lt (Get-NightWindowEnd $_ $Config) } | Select-Object -First 1
-    if ($null -eq $bed) {
-        $bed = $nights | Where-Object { $_.AddMinutes(-30) -gt $Now } | Select-Object -First 1
-        return @{Phase='Day'; Bed=$bed; End=$bed.AddMinutes($grace); WindowEnd=(Get-NightWindowEnd $bed $Config); Key=$bed.ToString('yyyy-MM-dd')}
+    # 每晚的记录键 = 这一晚开始的日期（周五晚 = 周五），不是睡觉时刻的日期：
+    # 周六 01:00 和周日 23:30 落在同一天，用睡觉日期会让两晚共用一个键。
+    $nights = foreach ($offset in -2..2) { $evening = $Now.Date.AddDays($offset); [pscustomobject]@{Bed=(Get-NightBedtime $evening $Config); Key=$evening.ToString('yyyy-MM-dd')} }
+    $night = $nights | Where-Object { $Now -ge $_.Bed.AddMinutes(-30) -and $Now -lt (Get-NightWindowEnd $_.Bed $Config) } | Select-Object -First 1
+    if ($null -eq $night) {
+        $night = $nights | Where-Object { $_.Bed.AddMinutes(-30) -gt $Now } | Select-Object -First 1
+        $bed = $night.Bed
+        return @{Phase='Day'; Bed=$bed; End=$bed.AddMinutes($grace); WindowEnd=(Get-NightWindowEnd $bed $Config); Key=$night.Key}
     }
+    $bed = $night.Bed
     $end = $bed.AddMinutes($grace)
     $phase = 'Quiet'
     if ($Now -ge $bed.AddMinutes(-30)) { $phase='Early' }
@@ -36,5 +40,5 @@ function Get-NightState {
     if ($Now -ge $bed) { $phase='Bed' }
     if ($Now -ge $end.AddMinutes(-2)) { $phase='Final' }
     if ($Now -ge $end) { $phase='Due' }
-    return @{Phase=$phase; Bed=$bed; End=$end; WindowEnd=(Get-NightWindowEnd $bed $Config); Key=$bed.ToString('yyyy-MM-dd')}
+    return @{Phase=$phase; Bed=$bed; End=$end; WindowEnd=(Get-NightWindowEnd $bed $Config); Key=$night.Key}
 }

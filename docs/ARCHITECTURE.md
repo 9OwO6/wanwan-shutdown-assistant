@@ -49,7 +49,7 @@ Settings and cancellation/deferral markers persist locally. Test modes write int
 
 Early starts 30 minutes before bedtime, Soon at 10 minutes, Bed at bedtime and Final two minutes before the deadline. Due begins at the deadline. The current nightly window ends four hours after that deadline; later use is associated with a future night rather than forcing a daytime shutdown.
 
-Each night's bedtime is computed from the evening it belongs to: a bedtime earlier than noon (such as 01:00) falls on the following calendar day, so Friday night's 01:00 is Saturday morning. Friday and Saturday evenings use `WeekendBedtime` when it is set. The cancellation/deferral key remains the bedtime's calendar date, so settings written by earlier versions keep working.
+Each night's bedtime is computed from the evening it belongs to: a bedtime earlier than noon (such as 01:00) falls on the following calendar day, so Friday night's 01:00 is Saturday morning. Friday and Saturday evenings use `WeekendBedtime` when it is set. Each night is keyed by its evening's date (Friday night = Friday), which keys cancellations, deferrals, the sleep watch and the bedtime history. Keying by the bedtime's own date would let a Saturday 01:00 bedtime and a Sunday 23:30 bedtime share one key.
 
 Sleep keeps the process alive, so the controller handles a resume explicitly: a gap of more than a minute in real (not scheduled) time while a countdown is open grants a fresh two-minute save window, and a countdown left open after the night window ends is closed.
 
