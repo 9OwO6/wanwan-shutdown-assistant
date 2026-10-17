@@ -59,7 +59,7 @@ Assert-Watch ($joined -match '-WaitPid \d+' -and $joined -match [regex]::Escape(
 Assert-Watch (Test-Path (Join-Path ([IO.Path]::GetTempPath()) 'WanwanUpdate\ApplyUpdate.ps1')) 'Installer must run from a temporary copy'
 $cfg.Enabled=$false;$dialog.Close()
 # 8. 五句新的 N1 录音都能被 WPF 原生播放（静音）
-$script:watchRecords=@(Get-Content $script:watchManifestPath -Raw -Encoding UTF8|ConvertFrom-Json)
+$script:watchRecords=@((Get-Content $script:watchManifestPath -Raw -Encoding UTF8|ConvertFrom-Json)|ForEach-Object {$_})
 $cfg.VoicePreset='N1';$script:voicePlayer.Volume=0
 foreach($cue in @('caught','caught-again','final','streak','reset')){
  Assert-Watch ((Get-WatchLine $cue).file) "N1 clip missing for $cue"

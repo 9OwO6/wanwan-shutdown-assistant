@@ -5,7 +5,7 @@
 # ---------- 语音：新台词优先播放 N1 录音，录音尚未生成时由系统声音朗读 ----------
 $script:watchLines=(Get-Content (Join-Path $root 'assets\watch-lines.json') -Raw -Encoding UTF8|ConvertFrom-Json).lines
 $script:watchManifestPath=Join-Path $root 'assets\voices\N1-watch\manifest.json'
-$script:watchRecords=if(Test-Path $script:watchManifestPath){@(Get-Content $script:watchManifestPath -Raw -Encoding UTF8|ConvertFrom-Json)}else{@()}
+$script:watchRecords=if(Test-Path $script:watchManifestPath){@((Get-Content $script:watchManifestPath -Raw -Encoding UTF8|ConvertFrom-Json)|ForEach-Object {$_})}else{@()}
 function Get-WatchLine([string]$Cue){
  $line=$script:watchLines|Where-Object cue -eq $Cue|Select-Object -First 1
  if(-not $line){throw "Unknown watch line: $Cue"}
