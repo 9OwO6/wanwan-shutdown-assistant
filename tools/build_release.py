@@ -18,7 +18,7 @@ VERSION = sys.argv[1] if len(sys.argv) > 1 else 'dev'
 DIST = ROOT / 'dist'
 STAGE = DIST / 'stage' / 'Wanwan'
 
-TOP_LEVEL = ['Start-Wanwan.ps1', '启动晚晚.vbs', '启动晚晚.cmd', 'LICENSE', 'NOTICE.md', 'README.md']
+TOP_LEVEL = ['VERSION', 'Start-Wanwan.ps1', '启动晚晚.vbs', '启动晚晚.cmd', 'LICENSE', 'NOTICE.md', 'README.md']
 RUNTIME_GLOBS = [
     'app/*.ps1',
     'assets/*.json',

@@ -26,6 +26,9 @@ jobs:
       - name: Check deterministic schedule boundaries
         shell: powershell
         run: .\tests\Schedule.Tests.ps1
+      - name: Tag must match VERSION
+        shell: bash
+        run: test "v$(tr -d '[:space:]' < VERSION)" = "$TAG"
       - name: Build and audit the portable ZIP
         run: |
           python -m pip install --disable-pip-version-check pillow imagequant

@@ -83,7 +83,7 @@ for preset in ('A', 'B', 'C', 'D'):
         record = next(r for r in legacy if r['preset'] == preset and r['id'] == line['id'])
         clip = checked_path(f"assets/voices/{preset}/{line['id']}.mp3")
         assert hashlib.sha256(clip.read_bytes()).hexdigest() == record['runtime_sha256']
-for path in ('assets/wanwan.png', 'assets/icons/wanwan.ico', 'assets/icons/wanwan-256.png', 'Start-Wanwan.ps1', '启动晚晚.vbs', '启动晚晚.cmd', 'app/Main.ps1', 'app/Power.ps1', 'app/Schedule.ps1'):
+for path in ('assets/wanwan.png', 'assets/icons/wanwan.ico', 'assets/icons/wanwan-256.png', 'Start-Wanwan.ps1', '启动晚晚.vbs', '启动晚晚.cmd', 'app/Main.ps1', 'app/Power.ps1', 'app/Schedule.ps1', 'app/History.ps1', 'app/Watch.ps1', 'app/UpdateCore.ps1', 'app/ApplyUpdate.ps1', 'assets/watch-lines.json', 'VERSION'):
     checked_path(path)
 mode = f'{masters} WAV masters PCM-checked' if masters else 'release mode, MP3 only'
 print(f'PASS: {checked} N1 runtime clips ({mode}), exact catalog/transcript/hash matching, 24-hour routing, 40 reviewed character frames, legacy playback and required runtime files.')

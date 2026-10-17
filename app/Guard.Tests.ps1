@@ -11,6 +11,8 @@ Invoke-GuardTick ($testNow.AddMinutes(2));Assert-Guard ($script:testShutdownRequ
 Invoke-GuardTick ($testNow.AddSeconds(121));Assert-Guard ($script:testShutdownRequests -eq 0) 'Announcement display was cut short'
 Invoke-GuardTick ($testNow.AddSeconds(122));Assert-Guard ($script:testShutdownRequests -eq 1) 'Deadline did not reach simulated normal shutdown'
 Invoke-GuardTick ($testNow.AddSeconds(123));Assert-Guard ($script:testShutdownRequests -eq 1) 'Shutdown retry fired too early'
+Assert-Guard ($cfg.GuardedNight -eq (Get-NightState $testNow $cfg).Key) 'Accepted request must remember the guarded night for the sleep watch'
+$cfg.GuardedNight=''
 $cfg.Enabled=$false;$dialog.Close();$script:lastAttempt=[datetime]::MinValue;$script:lastPhase='';$cfg.Enabled=$true
 Invoke-GuardTick $testNow;Invoke-GuardTick ($testNow.AddMinutes(2));$cfg.Cancelled=(Get-NightState $testNow $cfg).Key;Invoke-GuardTick ($testNow.AddMinutes(3))
 Assert-Guard ($script:testShutdownRequests -eq 1 -and -not $script:shutdownAfter) 'Cancellation must prevent pending shutdown'
@@ -39,7 +41,7 @@ Invoke-GuardTick ($testNow.AddSeconds(122))
 Assert-Guard ($script:testShutdownRequests -eq $sleepBefore+1 -and $dialog -and $script:deadline -eq $testNow.AddSeconds(122).AddMinutes(2)) 'Simulated sleep must keep the countdown and reset a two-minute save window'
 Invoke-GuardTick ($testNow.AddHours(5))
 Assert-Guard (-not $dialog) 'Countdown must close once the night window has ended'
-$cfg.Enabled=$false;$cfg.Action='Shutdown';if($dialog){$dialog.Close()};$script:shutdownAfter=$null
+$cfg.Enabled=$false;$cfg.Action='Shutdown';$cfg.GuardedNight='';if($dialog){$dialog.Close()};$script:shutdownAfter=$null
 Assert-Guard ([Wanwan.Power]::TokenStructureSize -eq 16) 'Native TOKEN_PRIVILEGES layout must be 16 bytes'
 $privilege=[Wanwan.Power]::TryEnableShutdownPrivilege();$powerError=[Wanwan.Power]::LastError
 Assert-Guard ($privilege -and $powerError -eq 0) ('Shutdown privilege unavailable; error='+$powerError)

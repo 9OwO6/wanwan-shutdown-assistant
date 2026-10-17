@@ -1,6 +1,6 @@
-﻿param([switch]$SmokeTest,[switch]$InteractionTest,[switch]$AnimationTest,[switch]$VoiceTest,[switch]$CompanionTest,[switch]$DialogueTest,[switch]$PetTest,[switch]$GuardTest,[switch]$LifecycleTest,[switch]$PetControlsTest,[switch]$ShowcaseTest,[switch]$CountdownTest,[datetime]$ResumeCountdownDeadline=[datetime]::MinValue)
+﻿param([switch]$SmokeTest,[switch]$InteractionTest,[switch]$AnimationTest,[switch]$VoiceTest,[switch]$CompanionTest,[switch]$DialogueTest,[switch]$PetTest,[switch]$GuardTest,[switch]$LifecycleTest,[switch]$PetControlsTest,[switch]$ShowcaseTest,[switch]$CountdownTest,[switch]$WatchTest,[datetime]$ResumeCountdownDeadline=[datetime]::MinValue)
 $ErrorActionPreference='Stop'
-$script:isTestMode=[bool]($SmokeTest -or $InteractionTest -or $AnimationTest -or $VoiceTest -or $CompanionTest -or $DialogueTest -or $PetTest -or $GuardTest -or $LifecycleTest -or $PetControlsTest -or $ShowcaseTest -or $CountdownTest)
+$script:isTestMode=[bool]($SmokeTest -or $InteractionTest -or $AnimationTest -or $VoiceTest -or $CompanionTest -or $DialogueTest -or $PetTest -or $GuardTest -or $LifecycleTest -or $PetControlsTest -or $ShowcaseTest -or $CountdownTest -or $WatchTest)
 Add-Type -AssemblyName PresentationFramework,PresentationCore,WindowsBase,System.Windows.Forms,System.Drawing,System.Speech
 . "$PSScriptRoot\Schedule.ps1"
 $root = Split-Path $PSScriptRoot
@@ -15,10 +15,10 @@ if(-not $script:isTestMode){
 $data = Join-Path $env:LOCALAPPDATA 'WanwanShutdown'
 New-Item -ItemType Directory -Force $data | Out-Null
 $configFile=Join-Path $data 'settings.json'
-$script:cfg=@{Bedtime='23:30';WeekendBedtime='';Action='Shutdown';Grace=10;Nickname='你';Voice=$true;VoicePreset='N1';DesktopPet=$true;Enabled=$false;Cancelled='';Deferred=''}
+$script:cfg=@{Bedtime='23:30';WeekendBedtime='';Action='Shutdown';SleepHours=6;WakeGrace=5;AutoUpdate=$true;GuardedNight='';GreetedNight='';CaughtNight='';CaughtCount=0;Grace=10;Nickname='你';Voice=$true;VoicePreset='N1';DesktopPet=$true;Enabled=$false;Cancelled='';Deferred=''}
 if(Test-Path $configFile){try{$saved=Get-Content $configFile -Raw -Encoding UTF8|ConvertFrom-Json; foreach($p in $saved.PSObject.Properties){$script:cfg[$p.Name]=$p.Value}}catch{}}
 if($script:isTestMode){$configFile=Join-Path $root 'output\isolated-test-settings.json';$data=Join-Path $root 'output\isolated-test-data';New-Item -ItemType Directory -Force $data|Out-Null}
-if($ShowcaseTest){$script:cfg=@{Bedtime='23:30';WeekendBedtime='01:00';Action='Shutdown';Grace=10;Nickname='宝贝';Voice=$false;VoicePreset='N1';DesktopPet=$true;Enabled=$false;Cancelled='';Deferred=''}}
+if($ShowcaseTest){$script:cfg=@{Bedtime='23:30';WeekendBedtime='01:00';Action='Shutdown';SleepHours=6;WakeGrace=5;AutoUpdate=$true;GuardedNight='';GreetedNight='';CaughtNight='';CaughtCount=0;Grace=10;Nickname='宝贝';Voice=$false;VoicePreset='N1';DesktopPet=$true;Enabled=$false;Cancelled='';Deferred=''}}
 function Save-Config { $script:cfg|ConvertTo-Json|Set-Content $configFile -Encoding UTF8 }
 function Get-GuardActionName { if($script:cfg.Action -eq 'Sleep'){'睡眠'}else{'关机'} }
 function Set-LauncherShortcut([string]$Path){
@@ -34,7 +34,7 @@ if($voice){$script:synth.SelectVoice($voice.VoiceInfo.Name)}
 $script:synth.Rate=-2; $script:synth.Volume=80
 function Say([string]$message){if($script:cfg.Voice){$script:synth.SpeakAsyncCancelAll();$script:synth.SpeakAsync($message)|Out-Null}}
 [xml]$xaml=@'
-<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="晚晚 · 关机助理" Width="1080" Height="840" MinWidth="940" MinHeight="800" WindowStartupLocation="CenterScreen" Background="#FFF7FA" FontFamily="Microsoft YaHei UI" Foreground="#363138">
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="晚晚 · 关机助理" Width="1080" Height="880" MinWidth="940" MinHeight="840" WindowStartupLocation="CenterScreen" Background="#FFF7FA" FontFamily="Microsoft YaHei UI" Foreground="#363138">
  <Window.Resources>
   <Style TargetType="Button"><Setter Property="Cursor" Value="Hand"/><Setter Property="Padding" Value="20,12"/><Setter Property="Background" Value="#EFE7E2"/><Setter Property="Foreground" Value="#54454C"/><Setter Property="BorderThickness" Value="0"/><Setter Property="FontSize" Value="14"/><Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Button"><Border x:Name="b" CornerRadius="14" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"><ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><ControlTemplate.Triggers><Trigger Property="IsMouseOver" Value="True"><Setter TargetName="b" Property="Opacity" Value="0.82"/></Trigger><Trigger Property="IsPressed" Value="True"><Setter TargetName="b" Property="Opacity" Value="0.65"/></Trigger><Trigger Property="IsEnabled" Value="False"><Setter TargetName="b" Property="Opacity" Value="0.4"/></Trigger></ControlTemplate.Triggers></ControlTemplate></Setter.Value></Setter></Style>
   <Style TargetType="TextBox"><Setter Property="Padding" Value="12,10"/><Setter Property="FontSize" Value="15"/><Setter Property="BorderBrush" Value="#DED4D1"/><Setter Property="Background" Value="#FFFCFA"/></Style>
@@ -56,7 +56,7 @@ function Say([string]$message){if($script:cfg.Voice){$script:synth.SpeakAsyncCan
      <DockPanel><TextBlock Text="今晚休息时间" Foreground="#95868E"/><TextBlock x:Name="ModeLabel" Text="守护未开启" HorizontalAlignment="Right" Foreground="#A47C8B"/></DockPanel>
      <TextBlock x:Name="TimeDisplay" Text="23:30" FontSize="46" Margin="0,8,0,3"/>
      <TextBlock x:Name="Countdown" Text="我会提前半小时轻轻提醒你" Foreground="#95868E"/>
-     <ProgressBar x:Name="Progress" Height="4" Margin="0,16,0,0" Maximum="100" Value="0" Foreground="#BE91A1" Background="#F2EBEE" BorderThickness="0"/><TextBlock x:Name="VoiceBadge" Text="♫  选一个喜欢的声音" Foreground="#AD8B9C" FontSize="12" Margin="0,12,0,0"/>
+     <ProgressBar x:Name="Progress" Height="4" Margin="0,16,0,0" Maximum="100" Value="0" Foreground="#BE91A1" Background="#F2EBEE" BorderThickness="0"/><DockPanel Margin="0,12,0,0"><TextBlock x:Name="StreakText" DockPanel.Dock="Right" Text="" Foreground="#A47C8B" FontSize="12"/><TextBlock x:Name="VoiceBadge" Text="♫  选一个喜欢的声音" Foreground="#AD8B9C" FontSize="12"/></DockPanel>
     </StackPanel></Border>
     <WrapPanel Margin="0,0,0,17"><Button x:Name="Preview" Content="♡  听听晚晚的提醒" Background="#A7778B" Foreground="White" Margin="0,0,10,8"/><Button x:Name="Demo" Content="体验睡前倒计时" Margin="0,0,8,8"/><Button x:Name="Auditions" Content="♫ 音色试听" Padding="12,12" Margin="0,0,0,8"/></WrapPanel>
     <WrapPanel Margin="0,0,0,14"><Button x:Name="MoodIdle" Content="陪伴" Padding="12,8" Margin="0,0,6,0"/><Button x:Name="MoodWrap" Content="收尾" Padding="12,8" Margin="0,0,6,0"/><Button x:Name="MoodNight" Content="晚安" Padding="12,8" Margin="0,0,6,0"/><Button x:Name="Interactions" Content="♡ 互动小剧场" Padding="12,8" Margin="0,0,10,0"/><CheckBox x:Name="MotionToggle" Content="减少动态" VerticalAlignment="Center"/></WrapPanel><Border Background="#F6E8EE" CornerRadius="16" Padding="16"><StackPanel>
@@ -68,10 +68,11 @@ function Say([string]$message){if($script:cfg.Voice){$script:synth.SpeakAsyncCan
      </Grid>
      <WrapPanel Margin="0,13,0,0"><CheckBox x:Name="VoiceToggle" Content="温柔语音" IsChecked="True" Margin="0,0,18,0"/><CheckBox x:Name="EnabledToggle" Content="到点自动守护" ToolTip="勾选并保存后生效；超过截止时间时先提醒保存，倒计时后按下方选择正常关机或睡眠。" Margin="0,0,18,0"/><CheckBox x:Name="StartupToggle" Content="开机陪伴" ToolTip="登录 Windows 后启动晚晚；是否自动关机由旁边的开关决定。" Margin="0,0,18,0"/><CheckBox x:Name="PetToggle" Content="桌面陪伴"/></WrapPanel>
      <WrapPanel Margin="0,10,0,0"><TextBlock Text="到点后" Foreground="#87767F" VerticalAlignment="Center" Margin="0,0,12,0"/><RadioButton x:Name="ActionShutdown" Content="正常关机" GroupName="GuardAction" IsChecked="True" VerticalAlignment="Center" Margin="0,0,16,0"/><RadioButton x:Name="ActionSleep" Content="睡眠（窗口和文件都保留）" GroupName="GuardAction" VerticalAlignment="Center" ToolTip="怕丢进度就选睡眠：到点让电脑进入睡眠，醒来一切都在。"/></WrapPanel>
+     <WrapPanel Margin="0,10,0,0" ToolTip="睡后守护时间内重新开机或唤醒电脑，晚晚会出来催你回去睡觉，并留几分钟处理急事。需要勾选「开机陪伴」，晚晚才能在开机后出现。"><TextBlock Text="起夜监督  睡后" Foreground="#87767F" VerticalAlignment="Center"/><TextBox x:Name="SleepHoursInput" Text="6" MaxLength="2" Width="44" Padding="6,4" Margin="6,0" FontSize="13"/><TextBlock Text="小时内再开机，给" Foreground="#87767F" VerticalAlignment="Center"/><TextBox x:Name="WakeGraceInput" Text="5" MaxLength="2" Width="44" Padding="6,4" Margin="6,0" FontSize="13"/><TextBlock Text="分钟处理急事" Foreground="#87767F" VerticalAlignment="Center"/></WrapPanel>
      <DockPanel Margin="0,14,0,0"><Button x:Name="Save" Content="保存约定" Padding="12,8" Background="#E3D5DB"/><Button x:Name="ArmGuard" Content="保存并开启守护" Padding="12,8" Margin="8,0,0,0" Background="#A7778B" Foreground="White" ToolTip="保存当前时间并开启到点守护。已超时会立即开始两分钟保存倒计时。"/><TextBlock x:Name="Feedback" Text="" Foreground="#8A6878" VerticalAlignment="Center" Margin="12,0,0,0" TextWrapping="Wrap"/></DockPanel>
     </StackPanel></Border>
    </StackPanel>
-   <DockPanel Grid.Row="2" Margin="0,16,0,0"><TextBlock Text="本地运行 · 不联网 · 关机前会提醒保存" Foreground="#A3979D" FontSize="11"/><Button x:Name="PetPreview" Content="桌宠提醒体验 ♡" FontSize="11" Padding="8,6" Margin="10,0,8,0"/><Button x:Name="Hide" Content="收起到托盘 ↗" FontSize="11" Padding="8,6" HorizontalAlignment="Right"/></DockPanel>
+   <DockPanel Grid.Row="2" Margin="0,16,0,0"><TextBlock x:Name="FooterText" Text="本地运行 · 不上传数据" Foreground="#A3979D" FontSize="11" VerticalAlignment="Center"/><Button x:Name="PetPreview" Content="桌宠提醒体验 ♡" FontSize="11" Padding="8,6" Margin="10,0,6,0"/><Button x:Name="CheckUpdate" Content="检查更新" FontSize="11" Padding="8,6" Margin="0,0,8,0" ToolTip="从 GitHub 检查并一键安装新版本；设置和打卡记录会保留"/><Button x:Name="Hide" Content="收起到托盘 ↗" FontSize="11" Padding="8,6" HorizontalAlignment="Right"/></DockPanel>
   </Grid>
  </Grid>
 </Window>
@@ -80,14 +81,14 @@ $reader=New-Object System.Xml.XmlNodeReader $xaml
 $script:win=[Windows.Markup.XamlReader]::Load($reader)
 Set-WanwanIcon $script:win
 $ui=@{}; foreach($n in 'Portrait','Clock','Headline','Message','ModeLabel','TimeDisplay','Countdown','Progress','Preview','Demo','BedInput','GraceInput','NameInput','VoiceToggle','EnabledToggle','Save','Feedback','Hide'){$ui[$n]=$win.FindName($n)}
-$ui.StartupToggle=$win.FindName('StartupToggle');foreach($n in 'WeekendInput','ActionShutdown','ActionSleep'){$ui[$n]=$win.FindName($n)}
+$ui.StartupToggle=$win.FindName('StartupToggle');foreach($n in 'WeekendInput','ActionShutdown','ActionSleep','SleepHoursInput','WakeGraceInput','StreakText','CheckUpdate','FooterText'){$ui[$n]=$win.FindName($n)}
 $startupFile=Join-Path ([Environment]::GetFolderPath('Startup')) '晚晚关机助理.lnk'
 $ui.StartupToggle.IsChecked=Test-Path $startupFile
 # 旧版本的开机快捷方式指向 wscript.exe + VBS；启动时静默迁移到直接调用 PowerShell。
 if(-not $script:isTestMode -and (Test-Path $startupFile)){try{$existing=(New-Object -ComObject WScript.Shell).CreateShortcut($startupFile);if($existing.TargetPath -like '*wscript.exe'){Set-LauncherShortcut $startupFile}}catch{}}
 $art=Join-Path $root 'assets\wanwan.png';if(Test-Path $art){$ui.Portrait.Source=[Windows.Media.Imaging.BitmapImage]::new([uri]$art)}
-$ui.BedInput.Text=$cfg.Bedtime;$ui.WeekendInput.Text=[string]$cfg.WeekendBedtime;if($cfg.Action -eq 'Sleep'){$ui.ActionSleep.IsChecked=$true}else{$ui.ActionShutdown.IsChecked=$true};$ui.GraceInput.Text=[string]$cfg.Grace;$ui.NameInput.Text=$cfg.Nickname;$ui.VoiceToggle.IsChecked=[bool]$cfg.Voice;$ui.EnabledToggle.IsChecked=[bool]$cfg.Enabled
-$script:lastPhase='';$script:dialog=$null;$script:demoMode=$false;$script:deadline=$null;$script:lastAttempt=[datetime]::MinValue
+$ui.BedInput.Text=$cfg.Bedtime;$ui.WeekendInput.Text=[string]$cfg.WeekendBedtime;if($cfg.Action -eq 'Sleep'){$ui.ActionSleep.IsChecked=$true}else{$ui.ActionShutdown.IsChecked=$true};$ui.GraceInput.Text=[string]$cfg.Grace;$ui.SleepHoursInput.Text=[string]$cfg.SleepHours;$ui.WakeGraceInput.Text=[string]$cfg.WakeGrace;$ui.NameInput.Text=$cfg.Nickname;$ui.VoiceToggle.IsChecked=[bool]$cfg.Voice;$ui.EnabledToggle.IsChecked=[bool]$cfg.Enabled
+$script:lastPhase='';$script:dialog=$null;$script:demoMode=$false;$script:caughtMode=$false;$script:deadline=$null;$script:lastAttempt=[datetime]::MinValue
 . "$PSScriptRoot\Visuals.ps1"
 . "$PSScriptRoot\Dialogue.ps1"
 . "$PSScriptRoot\Voice.ps1"
@@ -95,7 +96,10 @@ $script:lastPhase='';$script:dialog=$null;$script:demoMode=$false;$script:deadli
 . "$PSScriptRoot\Auditions.ps1"
 . "$PSScriptRoot\CountdownView.ps1"
 function Write-Event([string]$event){Add-Content (Join-Path $data 'events.log') ((Get-Date -Format o)+' '+$event) -Encoding UTF8}
-function Show-BedDialog([bool]$demo,[datetime]$Now=(Get-Date),[switch]$Quiet){
+. "$PSScriptRoot\Watch.ps1"
+$ui.FooterText.Text='本地运行 · 不上传数据 · v'+$script:appVersion
+Update-StreakDisplay
+function Show-BedDialog([bool]$demo,[datetime]$Now=(Get-Date),[switch]$Quiet,[switch]$Caught){
  $state=Get-NightState $Now $cfg
  if($script:dialog){return}
  $script:demoMode=$demo
@@ -107,7 +111,7 @@ function Show-BedDialog([bool]$demo,[datetime]$Now=(Get-Date),[switch]$Quiet){
   <Grid><StackPanel Margin="12,72,0,0" HorizontalAlignment="Left"><TextBlock Text="今天辛苦啦" Foreground="#A7778B" FontSize="16"/><TextBlock Text="晚晚陪你，&#10;慢慢收尾 ♡" Foreground="#9B7589" FontSize="12" LineHeight="22" Margin="0,8,0,0"/></StackPanel><Image x:Name="DialogPortrait" Width="245" Stretch="Uniform" HorizontalAlignment="Right"/><Image x:Name="DialogFade" Width="245" Stretch="Uniform" HorizontalAlignment="Right" Opacity="0" IsHitTestVisible="False"/></Grid>
   <Border Grid.Row="1" Background="#FFF7FA" CornerRadius="24" BorderBrush="#E7C8D7" BorderThickness="1" Padding="21,18"><Border.Effect><DropShadowEffect Color="#805065" BlurRadius="16" ShadowDepth="3" Opacity="0.14"/></Border.Effect><StackPanel>
    <TextBlock x:Name="ReminderTime" Text="晚晚陪你收尾" Foreground="#AD7991" FontSize="12"/>
-   <TextBlock Text="好啦，该睡觉了～" FontSize="25" Margin="0,12,0,10" Foreground="#40313C"/>
+   <TextBlock x:Name="Headline" Text="好啦，该睡觉了～" FontSize="25" Margin="0,12,0,10" Foreground="#40313C"/>
    <TextBlock x:Name="Info" Text="先保存文件，我陪你收尾。" TextWrapping="Wrap" FontSize="14" LineHeight="24" Foreground="#85717D"/>
    <DockPanel Margin="0,12,0,10"><TextBlock x:Name="Remaining" FontSize="37" Foreground="#A7778B"/><TextBlock Text="  留给你保存的时间" Foreground="#AA8E9C" FontSize="11" VerticalAlignment="Center"/></DockPanel>
    <TextBlock x:Name="Safety" Text="正常关机保留应用的未保存提示。" TextWrapping="Wrap" Foreground="#9C8793" FontSize="11" Margin="0,0,0,14"/>
@@ -149,27 +153,29 @@ function Show-BedDialog([bool]$demo,[datetime]$Now=(Get-Date),[switch]$Quiet){
  })
  $dialog.FindName('CancelNight').Add_Click({
   if($script:demoMode){Stop-Voice;$script:dialog.Close();$ui.Feedback.Text='体验已结束，今晚的守护设置没有改变';Start-Interaction 'heart' '好呀，体验先到这里。';return}
-  $answer=[Windows.MessageBox]::Show('取消后，今晚不会再自动关机。确实有紧急事情要继续吗？','取消今晚的约定','YesNo','Question')
-  if($answer -eq 'Yes'){$cfg.Cancelled=(Get-NightState (Get-Date) $cfg).Key;Save-Config;Write-Event 'Cancelled';$script:dialog.Close();Say-Cue cancel}
+  $answer=[Windows.MessageBox]::Show($(if($script:caughtMode){'取消后，今晚晚晚不再监督，明天照常守护。真的有急事要处理吗？'}else{'取消后，今晚不会再自动关机。确实有紧急事情要继续吗？'}),'取消今晚的约定','YesNo','Question')
+  if($answer -eq 'Yes'){$key=(Get-NightState (Get-Date) $cfg).Key;$cfg.Cancelled=$key;Save-Config;Set-TonightResult $key 'cancelled';Write-Event 'Cancelled';$script:dialog.Close();Say-Cue cancel}
  })
  $dialog.Add_Closing({param($sender,$e) if(-not $script:demoMode -and $cfg.Enabled -and $cfg.Cancelled -ne (Get-NightState (Get-Date) $cfg).Key -and (Get-Date) -ge (Get-NightState (Get-Date) $cfg).End.AddMinutes(-2)){$e.Cancel=$true}})
- $dialog.Add_Closed({$script:dialog=$null;$script:miniDialogSurface=$null;$script:countdownView='Expanded';$script:demoMode=$false;if($cfg.DesktopPet -and -not $script:quitting){Show-DesktopPet -Compact}})
- $dialog.Show(); Set-CompanionMode '晚安'; if($script:motionEnabled){Animate-Double $dialog ([Windows.UIElement]::OpacityProperty) 0 1 0.4;Animate-Double ($dialog.FindName('Remaining')) ([Windows.UIElement]::OpacityProperty) 0.55 1 1.8 $true}; if(-not $Quiet){if($demo){Say-Cue dialog -Demo}else{Say-ClockReminder -Now $Now -Cue $(if($state.Phase -eq 'Due'){if($cfg.Action -eq 'Sleep'){'final'}else{'due'}}elseif($state.Phase -eq 'Final'){'final'}else{'bed'})}}
+ $dialog.Add_Closed({$script:dialog=$null;$script:miniDialogSurface=$null;$script:countdownView='Expanded';$script:demoMode=$false;$script:caughtMode=$false;if($cfg.DesktopPet -and -not $script:quitting){Show-DesktopPet -Compact}})
+ $dialog.Show(); Set-CompanionMode '晚安'; if($script:motionEnabled){Animate-Double $dialog ([Windows.UIElement]::OpacityProperty) 0 1 0.4;Animate-Double ($dialog.FindName('Remaining')) ([Windows.UIElement]::OpacityProperty) 0.55 1 1.8 $true}; if($Caught){Enter-CaughtMode $Now -Quiet:$Quiet}elseif(-not $Quiet){if($demo){Say-Cue dialog -Demo}else{Say-ClockReminder -Now $Now -Cue $(if($state.Phase -eq 'Due'){if($cfg.Action -eq 'Sleep'){'final'}else{'due'}}elseif($state.Phase -eq 'Final'){'final'}else{'bed'})}}
 }
 $ui.Preview.Add_Click({$cfg.Voice=[bool]$ui.VoiceToggle.IsChecked;Say-Cue preview;$ui.Feedback.Text=if($cfg.Voice){$(if($cfg.VoicePreset -eq 'System'){'正在播放系统女声'}else{'正在播放 AI 音色 '+$cfg.VoicePreset})}else{'语音已关闭'}})
 $ui.Demo.Add_Click({Show-BedDialog $true})
 function Save-WanwanSettings([switch]$EnableGuard){
  $parsed=[datetime]::MinValue;$minutes=0;$weekend=$ui.WeekendInput.Text.Trim()
  if($weekend -and -not [datetime]::TryParseExact($weekend,'HH:mm',[cultureinfo]::InvariantCulture,[Globalization.DateTimeStyles]::None,[ref]$parsed)){$ui.Feedback.Text='周五六晚请填 01:00 这样的时间，或留空';return}
+ $sleepHours=0;$wakeGrace=0
+ if(-not [int]::TryParse($ui.SleepHoursInput.Text,[ref]$sleepHours) -or $sleepHours -lt 1 -or $sleepHours -gt 12 -or -not [int]::TryParse($ui.WakeGraceInput.Text,[ref]$wakeGrace) -or $wakeGrace -lt 1 -or $wakeGrace -gt 15){$ui.Feedback.Text='起夜监督：睡后 1–12 小时，急事时间 1–15 分钟';return}
  if(-not [datetime]::TryParseExact($ui.BedInput.Text,'HH:mm',[cultureinfo]::InvariantCulture,[Globalization.DateTimeStyles]::None,[ref]$parsed) -or -not [int]::TryParse($ui.GraceInput.Text,[ref]$minutes) -or $minutes -lt 2 -or $minutes -gt 30){$ui.Feedback.Text='时间格式 23:30；收尾时间 2–30 分钟';return}
  if($EnableGuard){$ui.EnabledToggle.IsChecked=$true}
- $cfg.Bedtime=$ui.BedInput.Text;$cfg.WeekendBedtime=$weekend;$cfg.Action=if($ui.ActionSleep.IsChecked){'Sleep'}else{'Shutdown'};$cfg.Grace=$minutes;$cfg.Nickname=$ui.NameInput.Text.Trim();$cfg.Voice=[bool]$ui.VoiceToggle.IsChecked;$cfg.Enabled=[bool]$ui.EnabledToggle.IsChecked
+ $cfg.Bedtime=$ui.BedInput.Text;$cfg.WeekendBedtime=$weekend;$cfg.Action=if($ui.ActionSleep.IsChecked){'Sleep'}else{'Shutdown'};$cfg.Grace=$minutes;$cfg.SleepHours=$sleepHours;$cfg.WakeGrace=$wakeGrace;$cfg.Nickname=$ui.NameInput.Text.Trim();$cfg.Voice=[bool]$ui.VoiceToggle.IsChecked;$cfg.Enabled=[bool]$ui.EnabledToggle.IsChecked
  if(-not $script:isTestMode){if($ui.StartupToggle.IsChecked){Set-LauncherShortcut $startupFile}elseif(Test-Path $startupFile){Remove-Item -LiteralPath $startupFile}}
  if(-not $cfg.Enabled -and $script:dialog -and -not $script:demoMode){$script:dialog.Close()}
  Save-Config;$script:lastPhase='';$script:lastAttempt=[datetime]::MinValue;$script:shutdownAfter=$null;
  $ui.Feedback.Text=if($cfg.Enabled){if($cfg.Action -eq 'Sleep'){'已保存 · 到点会提醒并进入睡眠 ♡'}else{'已保存 · 到点会提醒并正常关机 ♡'}}else{'已保存 · 仅陪伴，到点守护未开启'};Write-Event ('Settings saved; guard='+$cfg.Enabled+'; action='+$cfg.Action+'; weekend='+$cfg.WeekendBedtime);
  if($cfg.Enabled){Say-Cue saved -Interaction}else{Say-GuardLine disabled}
- Update-PetGuardStatus
+ Update-PetGuardStatus;Update-StreakDisplay
 }
 $ui.Save.Add_Click({Save-WanwanSettings})
 $win.FindName('ArmGuard').Add_Click({Save-WanwanSettings -EnableGuard})
@@ -183,6 +189,7 @@ $petMenu=$menu.Items.Add('叫晚晚出来 · 桌宠提醒体验');$petMenu.Add_C
 $showPet=$menu.Items.Add('显示常驻桌宠');$showPet.Add_Click({$ui.PetToggle.IsChecked=$true;Save-Config;Show-DesktopPet -Compact})
 $desktopShortcut=$menu.Items.Add('在桌面创建晚晚快捷方式');$desktopShortcut.Add_Click({$path=Join-Path ([Environment]::GetFolderPath('Desktop')) '晚晚 · 睡前陪伴.lnk';Set-LauncherShortcut $path;$tray.ShowBalloonTip(2500,'快捷方式已创建','以后双击桌面上的晚晚头像就能打开。',[System.Windows.Forms.ToolTipIcon]::Info);Write-Event 'Desktop shortcut created'})
 $showCountdown=$menu.Items.Add('查看睡前倒计时');$showCountdown.Add_Click({if($script:dialog){Set-CountdownView Compact}else{$ui.Feedback.Text='当前没有正在运行的睡前倒计时';Open-Wanwan}})
+$updateMenu=$menu.Items.Add('检查更新');$updateMenu.Add_Click({Open-Wanwan;Start-UpdateCheck -Manual})
 $quit=$menu.Items.Add('退出助理（停止自动守护）');$quit.Add_Click({$script:quitting=$true;$cfg.Enabled=$false;if($script:dialog){$script:dialog.Close()};$win.Close()})
 $tray.ContextMenuStrip=$menu;$tray.Add_DoubleClick({Open-Wanwan})
 $ui.Hide.Add_Click({Hide-Wanwan;$tray.ShowBalloonTip(2500,'晚晚在这里','右下角的小头像、托盘图标或桌面快捷方式，都能找回晚晚。',[System.Windows.Forms.ToolTipIcon]::Info)})
@@ -195,11 +202,15 @@ function Invoke-GuardTick([datetime]$now=(Get-Date)){
  # 用真实时钟发现电脑睡眠后被唤醒：截止时间已过的倒计时重新给两分钟保存，而不是一醒来就立刻再次关机/睡眠。
  $realNow=[datetime]::UtcNow
  if($script:lastRealTick -ne [datetime]::MinValue -and ($realNow-$script:lastRealTick).TotalSeconds -gt 60 -and $script:dialog -and -not $script:demoMode -and $script:deadline -lt $now.AddMinutes(2)){
-  $script:deadline=$now.AddMinutes(2);$script:shutdownAfter=$null
-  $script:dialog.FindName('Info').Text='欢迎回来～再给你两分钟保存，之后晚晚会继续帮你休息。';Write-Event 'Resumed after a pause; two-minute save window'
+  if($cfg.Enabled -and $cfg.GuardedNight -eq (Get-NightState $now $cfg).Key -and (Get-NightState $now $cfg).Phase -eq 'Due'){Enter-CaughtMode $now}
+  else{
+   $script:deadline=$now.AddMinutes(2);$script:shutdownAfter=$null
+   $script:dialog.FindName('Info').Text='欢迎回来～再给你两分钟保存，之后晚晚会继续帮你休息。';Write-Event 'Resumed after a pause; two-minute save window'
+  }
  }
  $script:lastRealTick=$realNow
  $s=Get-NightState $now $cfg
+ Invoke-HistoryTick $now $s.Phase
  Update-PetGuardStatus
  $ui.Clock.Text=$now.ToString('HH:mm');$ui.TimeDisplay.Text=$s.Bed.ToString('HH:mm')
  $ui.ModeLabel.Text=if($cfg.Enabled){'守护已开启 · 到点'+(Get-GuardActionName)+' ♡'}else{'仅陪伴 · 不会自动关机'}
@@ -219,11 +230,12 @@ function Invoke-GuardTick([datetime]$now=(Get-Date)){
   if($cue){if($s.Phase -in @('Bed','Final')){Set-CompanionMode '晚安'}else{Set-CompanionMode '收尾'};if(-not $script:dialog -and ($s.Phase -eq 'Final' -or ($s.Phase -eq 'Bed' -and $cfg.Deferred -ne $s.Key))){Show-BedDialog $false $now}else{Say-ClockReminder -Now $now -Cue $cue}}
  }
  if($s.Phase -eq 'Bed' -and $cfg.Deferred -ne $s.Key -and -not $script:dialog){Show-BedDialog $false $now}
- if(($s.Phase -eq 'Final' -or $s.Phase -eq 'Due') -and -not $script:dialog){Show-BedDialog $false $now}
+ if(($s.Phase -eq 'Final' -or $s.Phase -eq 'Due') -and -not $script:dialog){Show-BedDialog $false $now -Caught:($s.Phase -eq 'Due' -and $cfg.GuardedNight -eq $s.Key)}
  if($s.Phase -eq 'Due' -and $script:dialog -and -not $script:demoMode -and $now -ge $script:deadline -and ($now-$script:lastAttempt).TotalSeconds -ge 180){
   if(-not $script:shutdownAfter){
    if(-not $script:dialog.IsVisible){Set-CountdownView Compact}
-   if($cfg.Action -eq 'Sleep'){
+   if($script:caughtMode){Say-WatchLine final|Out-Null}
+   elseif($cfg.Action -eq 'Sleep'){
     # 现有 N1 守护录音说的是“关机”；睡眠模式改用不提关机的晚安台词。
     Say-Cue goodnight
     $record=$script:n1Records|Where-Object {$_.id -eq $script:lastSpokenLine.id}|Select-Object -First 1
@@ -239,6 +251,7 @@ function Invoke-GuardTick([datetime]$now=(Get-Date)){
    if($script:isTestMode){$script:testShutdownRequests++;$ok=$true;Write-Event ('TEST simulated '+$cfg.Action+' request; native API not called')}
    elseif($sleep){$ok=[System.Windows.Forms.Application]::SetSuspendState([System.Windows.Forms.PowerState]::Suspend,$false,$false);Write-Event ('Sleep requested; accepted='+$ok)}
    else{$ok=[Wanwan.Power]::ExitWindowsEx(1,0);Write-Event ('Normal shutdown requested; accepted='+$ok+'; error='+[Wanwan.Power]::LastError)}
+   if($ok){$cfg.GuardedNight=$s.Key;Save-Config;Set-TonightResult $s.Key 'slept'}
    if($sleep){
     # 睡眠后进程继续运行：唤醒时重新给两分钟保存时间。
     $script:deadline=$now.AddMinutes(2)
@@ -250,12 +263,13 @@ function Invoke-GuardTick([datetime]$now=(Get-Date)){
 }
 $timer.Add_Tick({Invoke-GuardTick})
 . "$PSScriptRoot\Power.ps1"
-if($SmokeTest -or $InteractionTest -or $AnimationTest -or $VoiceTest -or $CompanionTest -or $DialogueTest -or $PetTest -or $GuardTest -or $PetControlsTest -or $ShowcaseTest -or $CountdownTest){
+if($SmokeTest -or $InteractionTest -or $AnimationTest -or $VoiceTest -or $CompanionTest -or $DialogueTest -or $PetTest -or $GuardTest -or $PetControlsTest -or $ShowcaseTest -or $CountdownTest -or $WatchTest){
  $cfg.Enabled=$false;$cfg.DesktopPet=$false;$ui.PetToggle.IsChecked=$false;$cfg.Voice=$false;$ui.EnabledToggle.IsChecked=$false;$ui.VoiceToggle.IsChecked=$false;$win.Show();$win.UpdateLayout()
  Start-Interaction 'peek'
  $initialFrame=[Windows.Threading.DispatcherFrame]::new();$initialWait=[Windows.Threading.DispatcherTimer]::new();$initialWait.Interval=[timespan]::FromMilliseconds(250);$initialWait.Add_Tick({$initialFrame.Continue=$false;$initialWait.Stop()});$initialWait.Start();[Windows.Threading.Dispatcher]::PushFrame($initialFrame)
  if($GuardTest){. "$PSScriptRoot\Guard.Tests.ps1"}
  if($CountdownTest){. "$PSScriptRoot\Countdown.Tests.ps1"}
+ if($WatchTest){. "$PSScriptRoot\Watch.Tests.ps1"}
  if($PetControlsTest){. "$PSScriptRoot\PetControls.Tests.ps1"}
  if($ShowcaseTest){. "$PSScriptRoot\Showcase.Tests.ps1"}
  if($PetTest){. "$PSScriptRoot\DesktopPet.Tests.ps1"}
@@ -348,4 +362,9 @@ if($LifecycleTest){
  });$lifecycleTimer.Start()
 }
 $timer.Start()
+if(-not $script:isTestMode -and $cfg.AutoUpdate){
+ # 每天最多自动检查一次，启动 20 秒后在后台进行；只访问 GitHub 的发布信息。
+ $lastCheck=[datetime]::MinValue;if($cfg.LastUpdateCheck){[datetime]::TryParse([string]$cfg.LastUpdateCheck,[ref]$lastCheck)|Out-Null}
+ if(((Get-Date)-$lastCheck).TotalHours -ge 20){$script:autoUpdateTimer=New-Object Windows.Threading.DispatcherTimer;$script:autoUpdateTimer.Interval=[timespan]::FromSeconds(20);$script:autoUpdateTimer.Add_Tick({$script:autoUpdateTimer.Stop();Start-UpdateCheck});$script:autoUpdateTimer.Start()}
+}
 try{$script:application.Run($win)|Out-Null}finally{$timer.Stop();$tray.Dispose();$script:trayIcon.Dispose();$synth.Dispose();if($script:openSignal){$script:openSignal.Dispose()};if($script:instanceMutex){$script:instanceMutex.ReleaseMutex();$script:instanceMutex.Dispose()}}
