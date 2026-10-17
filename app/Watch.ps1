@@ -125,6 +125,7 @@ function Request-UpdateInstall {
 function Install-DownloadedUpdate([string]$Source){
  # 把安装脚本复制到临时目录运行，它会等晚晚退出、覆盖文件、再重新打开晚晚。
  $runner=Join-Path ([IO.Path]::GetTempPath()) 'WanwanUpdate\ApplyUpdate.ps1'
+ New-Item -ItemType Directory -Force (Split-Path -Parent $runner)|Out-Null
  Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'ApplyUpdate.ps1') -Destination $runner -Force
  $arguments=@('-NoProfile','-ExecutionPolicy','Bypass','-WindowStyle','Hidden','-File',('"'+$runner+'"'),'-WaitPid',$PID,'-Source',('"'+$Source+'"'),'-Target',('"'+$root+'"'),'-LogFile',('"'+(Join-Path $data 'update.log')+'"'))
  if($script:dialog -and -not $script:demoMode){$arguments+=@('-ResumeDeadline',('"'+$script:deadline.ToString('o')+'"'))}
