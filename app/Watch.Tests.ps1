@@ -62,7 +62,7 @@ $cfg.Enabled=$false;$dialog.Close()
 $script:watchRecords=@((Get-Content $script:watchManifestPath -Raw -Encoding UTF8|ConvertFrom-Json)|ForEach-Object {$_})
 $cfg.VoicePreset='N1';$script:voicePlayer.Volume=0
 foreach($cue in @('caught','caught-again','final','streak','reset')){
- Assert-Watch ((Get-WatchLine $cue).file) "N1 clip missing for $cue"
+ Assert-Watch ([bool](Get-WatchLine $cue).file) "N1 clip missing for $cue"
  $cfg.Voice=$true;$script:watchMediaReady=$false;$loop=[Windows.Threading.DispatcherFrame]::new()
  $handler=[System.EventHandler]{$script:watchMediaReady=$true;$loop.Continue=$false};$script:voicePlayer.Add_MediaOpened($handler)
  Say-WatchLine $cue|Out-Null
