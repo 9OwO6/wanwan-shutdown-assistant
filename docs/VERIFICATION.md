@@ -2,7 +2,7 @@
 
 ## Automated checks
 
-GitHub Actions runs 21 schedule boundary tests (including Fri/Sat weekend bedtimes and after-midnight nights) on Windows and a standard-library Python audit of required runtime assets, catalog counts, transcript/manifest matching, MP3 runtime hashes, WAV master hashes and PCM format. It also syntax-parses PowerShell source and builds/audits the slim portable package.
+GitHub Actions runs 26 schedule boundary tests, 16 bedtime-history tests and 16 update tests (version order, asset origin, installer file replacement) (including Fri/Sat weekend bedtimes, after-midnight nights and sleep-watch windows) on Windows and a standard-library Python audit of required runtime assets, catalog counts, transcript/manifest matching, MP3 runtime hashes, WAV master hashes and PCM format. It also syntax-parses PowerShell source and builds/audits the slim portable package.
 
 Interactive WPF tests require a Windows desktop session; they are not advertised as headless CI coverage.
 
@@ -16,6 +16,7 @@ Interactive WPF tests require a Windows desktop session; they are not advertised
 | `PetControlsTest` | Routed down/up events with controlled move coordinates, position persistence, hide/menu controls, activation persistence and an overdue reminder with the pet hidden |
 | `LifecycleTest` | Explicit application lifetime, background ticks while hidden and restore |
 | `CountdownTest` | Acknowledge-to-compact, live ticking, hide/restore/expand, deadline preservation, hidden demo completion, final announcement restoration and simulated shutdown |
+| `WatchTest` | Sleep watch after a guarded night (WakeGrace countdown, caught and caught-again lines, final line before the simulated request, caught record kept), window end, unguarded overdue unchanged, morning streak greeting once, update installer arguments resuming an active countdown |
 | `ShowcaseTest` | Six real UI captures and a 32-frame runtime animation sequence using a synthetic schedule |
 
 All consequential requests in test modes are simulated. `GuardTest` enables the shutdown privilege only in its own test process, but never calls `ExitWindowsEx` or `SetSuspendState`. The source deliberately separates that from proof of an actual completed system shutdown.

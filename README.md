@@ -10,7 +10,7 @@
 
 [![Download](https://img.shields.io/github/v/release/9OwO6/wanwan-shutdown-assistant?label=%E4%B8%8B%E8%BD%BD%20Download&color=A7778B)](https://github.com/9OwO6/wanwan-shutdown-assistant/releases/latest)
 [![Windows](https://img.shields.io/badge/Windows-10%20%2F%2011-0078D4)](#30-秒上手)
-[![Offline](https://img.shields.io/badge/离线运行-无需联网%20%2F%20API%20Key-7B8B74)](#隐私)
+[![Local](https://img.shields.io/badge/本地运行-不上传数据%20%2F%20无需%20API%20Key-7B8B74)](#隐私)
 [![Checks](https://github.com/9OwO6/wanwan-shutdown-assistant/actions/workflows/verify.yml/badge.svg)](https://github.com/9OwO6/wanwan-shutdown-assistant/actions/workflows/verify.yml)
 
 **[⬇ 下载最新版（约 25 MB，解压即用）](https://github.com/9OwO6/wanwan-shutdown-assistant/releases/latest)** · [中文](#中文) · [English](#english) · [AI 工程案例 / Case study](docs/AI_ENGINEERING.md)
@@ -29,6 +29,9 @@
 - 💾 **到点先给你收尾时间**，最后两分钟倒计时，提醒保存文件
 - 🌙 **到点自动关机或睡眠**——怕丢进度就选睡眠，窗口和文件都保留
 - 📅 **周末作息**：周五、周六晚上可以单独设一个更晚的时间
+- 👀 **起夜监督**：关机后的几个小时里偷偷开机，晚晚会出来说“怎么又偷偷起来呀”，给你几分钟处理急事，然后再帮你关机；真有急事可以取消当晚监督
+- ☆ **早睡打卡**：自动记录每晚有没有按时睡，显示连续早睡天数和最近 7 晚，早上见面时晚晚会告诉你昨晚的结果
+- ⬆ **一键更新**：「检查更新」直接从 GitHub 下载新版并自动重启，设置和打卡记录都保留
 - 🎙 **191 句离线 AI 语音**、10 种角色互动动画、可拖动的桌面小头像
 - 🛡 **安全感优先**：默认不开启关机；正常关机不强杀程序；每晚可延期一次；有急事可以紧急取消
 
@@ -70,7 +73,7 @@
 <details>
 <summary><b>需要联网吗？会收集数据吗？</b></summary>
 
-<a id="隐私"></a>不需要。语音是提前生成好的音频，运行时不加载 AI 模型、不调用任何云端 API。设置和事件记录只保存在本机 `%LOCALAPPDATA%\WanwanShutdown`。
+<a id="隐私"></a>平时不需要。语音是提前生成好的音频，运行时不加载 AI 模型、不调用任何云端 API。唯一的联网是“检查更新”：每天最多一次读取本仓库在 GitHub 上的最新版本信息，你同意后才下载安装包（会校验 SHA-256）。设置、事件和打卡记录只保存在本机 `%LOCALAPPDATA%\WanwanShutdown`，不会上传。
 </details>
 
 <details>
@@ -87,7 +90,7 @@ Windows 10 / 11 自带的 Windows PowerShell 5.1 和 .NET Framework（WPF）即�
 
 ### 这是一个 AI 辅助开发的作品
 
-晚晚是我用 AI 做完整产品的一次实践：需求、WPF 界面、C# 系统调用、测试由 **Codex** 协助实现；角色形象和 N1 语音由生成式模型制作；v0.3 的产品评审、发布包瘦身（103 MB → 约 25 MB）、周末作息、睡眠模式和宣传片由 **Claude** 协助完成。AI 生成的代码和素材都被当作“需要验证的输入”：有调度边界测试、素材哈希校验、隔离的 WPF 运行测试和 CI。详见 [AI 工程案例](docs/AI_ENGINEERING.md)。
+晚晚是我用 AI 做完整产品的一次实践：需求、WPF 界面、C# 系统调用、测试由 **Codex** 协助实现；角色形象和 N1 语音由生成式模型制作；v0.3 的产品评审、发布包瘦身（103 MB → 约 25 MB）、周末作息、睡眠模式、起夜监督、早睡打卡、一键更新和宣传片由 **Claude** 协助完成，Claude 还直接在 Codex 的线程里请它生成新台词的 N1 语音。AI 生成的代码和素材都被当作“需要验证的输入”：有调度边界测试、素材哈希校验、隔离的 WPF 运行测试和 CI。详见 [AI 工程案例](docs/AI_ENGINEERING.md)。
 
 ---
 
@@ -102,6 +105,9 @@ It is a personal **AI-assisted product engineering portfolio project** — nativ
 - **Staged bedtime flow** — reminders at −30 and −10 minutes, a wrap-up window, a final two-minute countdown and a goodnight before the power request. One deferral per night and a confirmed emergency cancel.
 - **Shutdown or sleep** — normal `ExitWindowsEx` shutdown without force (apps can still block it to save work), or sleep via `SetSuspendState`. After waking, the countdown grants a fresh two-minute save window instead of immediately sleeping again.
 - **Weekend bedtimes** — Friday and Saturday nights can use a later time; after-midnight bedtimes belong to the previous evening.
+- **Sleep watch** — powering the computer back on within the sleep window (default 6 h after bedtime) after a guarded shutdown opens a “caught you” countdown with a configurable grace period (default 5 min) and a one-night emergency cancel.
+- **Bedtime streak** — each night is recorded as slept / early / late / caught / cancelled from power requests and the last time the app saw the computer awake; the window shows the streak and the last seven nights, and a morning greeting reports the result.
+- **One-click updates** — a background check of this repository's latest GitHub release, asset-origin and SHA-256 checks, and a detached installer that keeps settings and resumes an active countdown.
 - **Offline AI voice** — 92 companion lines, 96 hour-aware reminders and 3 guard lines, shipped as compact MP3s with hash-verified WAV masters in the repository.
 - **Desktop companion** — draggable avatar with visible guard state, ten animated interactions (40 poses), reduced-motion option, tray icon, single-instance activation.
 - **Video-ready transparent frames** — forty reviewed 640×640 PNGs in [`assets/frames/`](assets/frames/), with neighboring-sleeve artifacts removed; the app plays these same exports ([crop audit](docs/FRAME_REPAIR.md)).
@@ -125,11 +131,11 @@ Try **体验睡前倒计时** (“try bedtime countdown”) first — a 35-secon
 | Windows integration | C# P/Invoke, WinForms power API, mutex, named event, tray | Token privileges, normal shutdown, sleep, single-instance reopening |
 | Media | Prepared audio catalogs, transcript routing, MP3 runtime + WAV masters | Consistent caption/voice pairing without live inference |
 | Delivery | `tools/build_release.py` + tag-triggered GitHub Actions release | Reproducible 25 MB portable ZIP, audited before publishing |
-| Validation | 21 schedule boundary tests, isolated WPF test modes, asset audit, CI | Separating visible behavior from a successful build |
+| Validation | 26 schedule, 16 history and 16 update tests, isolated WPF test modes, asset audit, CI | Separating visible behavior from a successful build |
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File tests\Schedule.Tests.ps1
-powershell.exe -NoProfile -STA -ExecutionPolicy Bypass -File app\Main.ps1 -GuardTest      # also: -PetTest -PetControlsTest -DialogueTest -LifecycleTest -CountdownTest -VoiceTest
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File tests\Schedule.Tests.ps1   # also tests\History.Tests.ps1, tests\Update.Tests.ps1
+powershell.exe -NoProfile -STA -ExecutionPolicy Bypass -File app\Main.ps1 -WatchTest      # also: -GuardTest -PetTest -PetControlsTest -DialogueTest -LifecycleTest -CountdownTest -VoiceTest
 python tools\verify_release_assets.py
 python tools\build_release.py v0.3.0
 ```
@@ -141,7 +147,7 @@ Test modes use isolated settings and simulated power requests; they never call t
 ```text
 app/                  WPF UI, schedule, voice, desktop pet, power interop and WPF test modes
 assets/               Character art, icons, dialogue catalogs, MP3 runtime clips and WAV masters
-tests/                Deterministic schedule tests (run anywhere PowerShell runs)
+tests/                Deterministic schedule, history and update tests (run anywhere PowerShell runs)
 tools/                Release build, asset audit, media generation and encoding
 docs/                 Case study, architecture, verification, release notes, screenshots
 ```

@@ -86,7 +86,7 @@ function Enter-CaughtMode([datetime]$Now,[switch]$Quiet){
  $cfg.CaughtNight=$state.Key;$cfg.CaughtCount=$count;Save-Config
  Set-TonightResult $state.Key 'caught'
  $d=$script:dialog
- $d.FindName('Headline').Text='诶嘿，被晚晚发现啦'
+ $d.FindName('Headline').Text='嘘，现在是睡觉时间～'
  $d.FindName('ReminderTime').Text='起夜监督 · '+$Now.ToString('HH:mm')
  $d.FindName('Safety').Text="真的有急事就点下面的「今晚真的有急事」：今晚不再监督，明天照常。否则 $minutes 分钟后晚晚会再帮你"+(Get-GuardActionName)+'。'
  $d.FindName('Acknowledge').Content='好嘛，我这就去睡 ♡'

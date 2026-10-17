@@ -30,6 +30,7 @@ RUNTIME_GLOBS = [
     'assets/voices/N1/manifest.json',
     'assets/voices/N1-clock/manifest.json',
     'assets/voices/N1-guard/manifest.json',
+    'assets/voices/N1-watch/manifest.json',
 ]
 EXCLUDE_PARTS = {'reference', 'parts'}
 EXCLUDE_NAMES = {'voice-lab-candidates.json'}

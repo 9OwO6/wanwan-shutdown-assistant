@@ -9,7 +9,7 @@ $cfg.GuardedNight=$key;$script:lastPhase='';$script:lastAttempt=[datetime]::MinV
 Invoke-GuardTick $night
 Assert-Watch ($dialog -and $script:caughtMode) 'Booting inside the sleep window after a guarded night must open the watch'
 Assert-Watch ($script:deadline -eq $night.AddMinutes(5) -and $dialog.FindName('Remaining').Text -eq '05:00') 'Watch must grant exactly WakeGrace minutes'
-Assert-Watch ($script:lastSpokenLine.cue -eq 'caught' -and $dialog.FindName('Headline').Text -like '*被晚晚发现*') 'Caught line and headline must be shown'
+Assert-Watch ($script:lastSpokenLine.cue -eq 'caught' -and $dialog.FindName('Headline').Text -like '*睡觉时间*') 'Caught line and headline must be shown'
 Assert-Watch ($dialog.FindName('Defer').Visibility -eq [Windows.Visibility]::Collapsed -and $dialog.FindName('CancelNight').Content -like '*急事*') 'Watch must offer only the emergency option'
 Assert-Watch ($script:nights[$key] -eq 'caught' -and $cfg.CaughtCount -eq 1) 'Night must be recorded as caught'
 $dialog.UpdateLayout();$bmp=[Windows.Media.Imaging.RenderTargetBitmap]::new([int]$dialog.ActualWidth,[int]$dialog.ActualHeight,96,96,[Windows.Media.PixelFormats]::Pbgra32);$bmp.Render($dialog);$enc=[Windows.Media.Imaging.PngBitmapEncoder]::new();$enc.Frames.Add([Windows.Media.Imaging.BitmapFrame]::Create($bmp));$file=[IO.File]::Create((Join-Path $root 'output\caught-watch.png'));$enc.Save($file);$file.Dispose()

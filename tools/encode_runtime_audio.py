@@ -23,6 +23,7 @@ BANKS = [
     ('assets/companion-lines.json', 'assets/voices/N1/manifest.json'),
     ('assets/clock-lines.json', 'assets/voices/N1-clock/manifest.json'),
     ('assets/guard-lines.json', 'assets/voices/N1-guard/manifest.json'),
+    ('assets/watch-lines.json', 'assets/voices/N1-watch/manifest.json'),
 ]
 
 
@@ -75,7 +76,7 @@ for catalog_rel, manifest_rel in BANKS:
         record['runtime_file'] = row['file']
         record['runtime_sha256'] = sha256(mp3)
         encoded += 1
-    write(catalog_rel, catalog, compact_lines=catalog_rel.endswith('guard-lines.json'))
+    write(catalog_rel, catalog, compact_lines=catalog_rel.endswith(('guard-lines.json', 'watch-lines.json')))
     write(manifest_rel, manifest)
 
 # Legacy 11-line presets A-D and their audition previews.

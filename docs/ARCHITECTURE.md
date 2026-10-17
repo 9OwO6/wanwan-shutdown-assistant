@@ -32,6 +32,9 @@ The native and simulated shutdown paths are selected by the test-mode guard. The
 | `Dialogue.ps1` | Scene catalogs, non-repeating line selection and system-voice addressing |
 | `Voice.ps1` / `GuardVoice.ps1` | Exact caption/asset routing and audio duration |
 | `Icons.ps1` | Window/tray branding and work-area placement |
+| `History.ps1` | Per-night results, inference from the last time the computer was seen awake, streak and last-seven-nights marks (pure functions) |
+| `Watch.ps1` | Sleep watch (caught countdown), streak display and morning greeting, background update check/download and installer hand-off |
+| `UpdateCore.ps1` / `ApplyUpdate.ps1` | Version comparison and asset selection; detached installer that waits for exit, copies files and relaunches |
 | `Power.ps1` | Token privilege handling and non-forced shutdown API (sleep uses `Application.SetSuspendState`) |
 
 ## State and lifetime
