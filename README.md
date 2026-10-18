@@ -1,145 +1,159 @@
-# Wanwan · Bedtime Companion
+<div align="center">
 
-**A Windows desktop companion that turns “one more task” into a gentler end to the day.**
+<img src="assets/icons/wanwan-256.png" width="112" alt="Wanwan icon">
 
-[![Windows](https://img.shields.io/badge/platform-Windows-0078D4)](#quick-start)
-[![PowerShell + WPF](https://img.shields.io/badge/runtime-PowerShell%205.1%20%2B%20WPF-95647A)](#engineering)
-[![AI-assisted engineering](https://img.shields.io/badge/built_with-AI--assisted%20engineering-A7778B)](docs/AI_ENGINEERING.md)
+# 晚晚 · 睡前陪伴关机助理
+
+**一个会温柔催你睡觉的 Windows 桌面小伙伴。到点提醒、陪你收尾、帮你关机或睡眠。**
+
+*Wanwan — a Windows desktop companion that turns “one more task” into a gentler end to the day.*
+
+[![Download](https://img.shields.io/github/v/release/9OwO6/wanwan-shutdown-assistant?label=%E4%B8%8B%E8%BD%BD%20Download&color=A7778B)](https://github.com/9OwO6/wanwan-shutdown-assistant/releases/latest)
+[![Windows](https://img.shields.io/badge/Windows-10%20%2F%2011-0078D4)](#30-秒上手)
+[![Local](https://img.shields.io/badge/本地运行-不上传数据%20%2F%20无需%20API%20Key-7B8B74)](#隐私)
 [![Checks](https://github.com/9OwO6/wanwan-shutdown-assistant/actions/workflows/verify.yml/badge.svg)](https://github.com/9OwO6/wanwan-shutdown-assistant/actions/workflows/verify.yml)
 
-![Wanwan: real Windows UI, desktop companion and bedtime reminders](docs/screenshots/showcase.png)
+**[⬇ 下载最新版（约 25 MB，解压即用）](https://github.com/9OwO6/wanwan-shutdown-assistant/releases/latest)** · [中文](#中文) · [English](#english) · [AI 工程案例 / Case study](docs/AI_ENGINEERING.md)
 
-Wanwan (晚晚, “evening”) combines a warm companion personality, animated character art, an original AI-designed Mandarin voice, and a deterministic bedtime schedule. She appears on your desktop, reminds you to wrap up, leaves time to save your work, and can request a **normal Windows shutdown** after a final goodnight.
+![晚晚的真实运行画面](docs/screenshots/showcase.png)
 
-This is a personal **AI-assisted product engineering portfolio project**: native desktop interaction, generative media pipelines, OS integration, and testable behavior in one runnable application. The interface and voice are currently **Simplified Chinese**; this README and the engineering walkthrough are in English.
+</div>
 
-**[Download the portable preview](https://github.com/9OwO6/wanwan-shutdown-assistant/releases/latest)** · [Engineering case study](docs/AI_ENGINEERING.md) · [Architecture](docs/ARCHITECTURE.md) · [中文说明](docs/README.zh-CN.md)
+## 中文
 
-## See it in action
+### 为什么做它
 
-![Actual WPF character animation captured at runtime](docs/screenshots/companion-animation.gif)
+`shutdown -s -t 3600` 谁都会写，但冷冰冰的倒计时很容易被一句“再玩五分钟”打败。晚晚换了个思路：**不是强制关机，而是有人陪你把今天收个尾。**
 
-*Runtime capture of the desktop reminder, using a muted, isolated demo scenario. These are rendered application surfaces, not design mockups.*
+- 🕥 **提前半小时、十分钟轻声提醒**，用当前时间报时：“宝贝，已经晚上十一点啦……”
+- 💾 **到点先给你收尾时间**，最后两分钟倒计时，提醒保存文件
+- 🌙 **到点自动关机或睡眠**——怕丢进度就选睡眠，窗口和文件都保留
+- 📅 **周末作息**：周五、周六晚上可以单独设一个更晚的时间
+- 👀 **起夜监督**：关机后的几个小时里偷偷开机，晚晚会出来说“怎么又偷偷起来呀”，给你几分钟处理急事，然后再帮你关机；真有急事可以取消当晚监督
+- ☆ **早睡打卡**：自动记录每晚有没有按时睡，显示连续早睡天数和最近 7 晚，早上见面时晚晚会告诉你昨晚的结果
+- ⬆ **一键更新**：「检查更新」直接从 GitHub 下载新版并自动重启，设置和打卡记录都保留
+- 🎙 **191 句离线 AI 语音**、10 种角色互动动画、可拖动的桌面小头像
+- 🛡 **安全感优先**：默认不开启关机；正常关机不强杀程序；每晚可延期一次；有急事可以紧急取消
 
-| Desktop companion | Time-aware reminder | Save-before-shutdown demo |
+![运行时录制的角色动画](docs/screenshots/companion-animation.gif)
+
+### 30 秒上手
+
+1. 在 [Releases](https://github.com/9OwO6/wanwan-shutdown-assistant/releases/latest) 下载 `Wanwan-…-windows.zip`，**解压**到任意文件夹（不要直接在压缩包里双击）。
+2. 双击 **`启动晚晚.vbs`**。如果系统禁用了 VBScript，双击 **`启动晚晚.cmd`**。
+3. 先点 **「体验睡前倒计时」**：35 秒完整演示，**绝不会关机**。
+4. 设好睡觉时间（周末可以单独设），选择到点后「正常关机」或「睡眠」，点 **「保存并开启守护」**。
+
+> 小技巧：右键右下角托盘图标 →「在桌面创建晚晚快捷方式」，以后双击桌面头像就能打开；勾选「开机陪伴」则每天登录后自动出现。
+
+| 桌面小头像 | 准点提醒气泡 | 睡前收尾倒计时 |
 |:--:|:--:|:--:|
-| <img src="docs/screenshots/desktop-pet.png" width="142" alt="Draggable avatar with hide control and guard status"> | <img src="docs/screenshots/reminder-bubble.png" width="270" alt="Animated reminder with current time and matching Mandarin caption"> | <img src="docs/screenshots/bedtime-countdown.png" width="270" alt="35-second demo countdown with postpone and cancel controls"> |
+| <img src="docs/screenshots/desktop-pet.png" width="142" alt="可拖动的桌面头像"> | <img src="docs/screenshots/reminder-bubble.png" width="270" alt="带报时的提醒气泡"> | <img src="docs/screenshots/bedtime-countdown.png" width="270" alt="收尾倒计时"> |
+
+| 起夜监督：关机后又偷偷开机 | 早上的早睡打卡 |
+|:--:|:--:|
+| <img src="docs/screenshots/caught-watch.png" width="270" alt="起夜监督倒计时"> | <img src="docs/screenshots/streak-greeting.png" width="300" alt="早睡打卡问候"> |
+
+### 常见问题
 
 <details>
-<summary>Explore the interaction gallery and voice selector</summary>
+<summary><b>Windows 提示“已保护你的电脑”（SmartScreen）怎么办？</b></summary>
 
-![Ten character interactions in the actual WPF gallery](docs/screenshots/interaction-gallery.png)
-![Voice preset selection in the actual application](docs/screenshots/voice-picker.png)
-
+晚晚是开源的个人项目，没有购买代码签名证书，所以第一次运行时 Windows 可能提示未知发布者。点击「更多信息」→「仍要运行」即可。全部源码都在这个仓库里，可以自行审阅。
 </details>
 
-## What it does
+<details>
+<summary><b>会不会突然关机、丢掉我没保存的东西？</b></summary>
 
-- **Companion-style reminders.** Warm, affectionate Mandarin dialogue, with four variations per scene rather than a single repeated notification.
-- **A desktop pet you can actually control.** Drag the avatar, persist its position, open the main window, hide it, or restore it from the tray. Hiding the pet leaves an enabled schedule running.
-- **A staged bedtime flow.** Reminders 30 and 10 minutes before bedtime, a wrap-up window at bedtime, a final countdown, and a goodnight before the shutdown request. Overnight schedules are handled explicitly.
-- **Acknowledge and keep working.** “Okay, I'll finish up and go to bed” shrinks the reminder into an animated Wanwan + countdown widget. Hide or expand it without deferring or cancelling the schedule; restore it from the tray. The final announcement brings a hidden countdown back into view.
-- **Offline AI voice playback.** The selected N1 voice has **92 companion lines, 96 hour/phase reminders, and 3 guard-status lines**. The application plays prepared audio without loading a model or calling a cloud API.
-- **Ten animated interactions.** Forty reviewed PNG poses derived from ten transparent sprite atlases, with frame timing, short transitions, and a reduced-motion option.
-- **Video-ready transparent frames.** Forty reviewed 640×640 PNGs in [`assets/frames/`](assets/frames/), with neighboring-sleeve artifacts removed and shared placement. The application uses these same exports. [See the crop audit and before/after comparison](docs/FRAME_REPAIR.md).
-- **Explicit controls.** Automatic shutdown starts disabled. “Save & enable shutdown” persists the schedule and the desktop avatar displays its current guard status. One wrap-up deferral and an emergency cancellation are available.
-- **Windows-native behavior.** WPF windows, a system tray icon, optional per-user startup, single-instance activation, and a normal shutdown request through a small C# Win32 interop layer.
+不会强制关机。晚晚调用的是不带 FORCE 参数的正常关机，Word、记事本等程序弹出“是否保存”时，关机会停下来等你。到点前有提醒，到点后还有 2–30 分钟收尾时间和最后两分钟倒计时。如果仍然担心，把到点动作改成 **睡眠**：什么都不会关闭。
+</details>
 
-## Quick start
+<details>
+<summary><b>今晚真的有急事怎么办？</b></summary>
 
-**Requirements:** Windows with Windows PowerShell 5.1 and its built-in WPF/.NET Framework components. No Node.js, Python, .NET SDK, GPU, API key, or AI model is needed to run the application. Windows 11 was the local development environment; broader OS compatibility has not been certified.
+倒计时窗口里有「再给我一点收尾时间」（每晚一次）和「紧急取消今晚关机」（需二次确认，只影响今晚）。右键托盘 →「退出助理」会停止守护。
+</details>
 
-1. Download the portable preview and extract the ZIP, or clone this repository.
-2. Launch from the extracted/cloned directory:
+<details>
+<summary><b>需要联网吗？会收集数据吗？</b></summary>
 
-   ```powershell
-   powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Start-Wanwan.ps1
-   ```
+<a id="隐私"></a>平时不需要。语音是提前生成好的音频，运行时不加载 AI 模型、不调用任何云端 API。唯一的联网是“检查更新”：每天最多一次读取本仓库在 GitHub 上的最新版本信息，你同意后才下载安装包（会校验 SHA-256）。设置、事件和打卡记录只保存在本机 `%LOCALAPPDATA%\WanwanShutdown`，不会上传。
+</details>
 
-   Alternatively, double-click **`启动晚晚.vbs`**. The launcher opens a native window without keeping a console visible.
+<details>
+<summary><b>怎么卸载？</b></summary>
 
-3. Try **`体验睡前倒计时`** (“Try bedtime countdown”). This is a **35-second demonstration that never shuts down the computer**.
-4. For real use, set **`睡觉时间`** (bedtime) and **`收尾分钟`** (2–30 minutes to wrap up). Click **`保存并开启关机`** (“Save & enable shutdown”) only when you want actual scheduled shutdown.
+右键托盘图标 →「退出助理」，取消勾选「开机陪伴」并保存（或删除 `shell:startup` 里的晚晚快捷方式），然后删除解压的文件夹即可。想清除设置，再删除 `%LOCALAPPDATA%\WanwanShutdown`。
+</details>
 
-### A few useful translations
+<details>
+<summary><b>系统要求？</b></summary>
 
-| UI label | Meaning |
-|---|---|
-| 温柔语音 / 减少动态 | Voice / reduced motion |
-| 开机陪伴 / 桌面陪伴 | Start at Windows sign-in / keep the desktop avatar visible |
-| 自动关机未开启 / 自动关机已开启 | Shutdown guard is off / on |
-| 隐藏桌宠（守护继续） | Hide the pet; leave the guard running |
-| 紧急取消今晚关机 | Cancel tonight's scheduled shutdown |
+Windows 10 / 11 自带的 Windows PowerShell 5.1 和 .NET Framework（WPF）即可，不需要安装 Python、Node.js、显卡或任何 SDK。开发和测试环境是 Windows 11。
+</details>
 
-**Shutdown behavior:** the app requests normal Windows shutdown without force-killing applications. Unsaved-work dialogs may block shutdown; Wanwan cannot save documents for other applications. If launched after the deadline within the night's four-hour overdue window, it first gives two minutes to save. The final voice announcement finishes before the request. Requests can be retried after three minutes if the session remains active.
+### 这是一个 AI 辅助开发的作品
 
-Settings and event logs stay in `%LOCALAPPDATA%\WanwanShutdown`. Runtime operation is local; prepared AI media is bundled. Closing the main window hides it; choosing **Exit** in the tray stops the assistant. Launching it again restores the existing instance.
+晚晚是我用 AI 做完整产品的一次实践：需求、WPF 界面、C# 系统调用、测试由 **Codex** 协助实现；角色形象和 N1 语音由生成式模型制作；v0.3 的产品评审、发布包瘦身（103 MB → 约 25 MB）、周末作息、睡眠模式、起夜监督、早睡打卡、一键更新和宣传片由 **Claude** 协助完成，Claude 还直接在 Codex 的线程里请它生成新台词的 N1 语音。AI 生成的代码和素材都被当作“需要验证的输入”：有调度边界测试、素材哈希校验、隔离的 WPF 运行测试和 CI。详见 [AI 工程案例](docs/AI_ENGINEERING.md)。
 
-## Engineering
+---
 
-### A quieter countdown
+## English
 
-<img src="docs/screenshots/compact-countdown.png" width="190" alt="Actual compact countdown: animated Wanwan, remaining time, hide and expand controls">
+Wanwan (晚晚, “evening”) is a **native Windows bedtime companion**: an animated character with an original, offline Mandarin AI voice reminds you 30 and 10 minutes before bedtime, gives you time to wrap up and save, then requests a **normal shutdown or sleep**. The interface and voice are Simplified Chinese.
 
-*Actual WPF capture in the non-shutdown demo. Acknowledging, compacting, hiding and restoring all preserve the existing deadline.*
+It is a personal **AI-assisted product engineering portfolio project** — native desktop interaction, generative media pipelines, OS integration and testable behavior in one runnable application.
 
-The interesting part is the integration: a friendly interface still needs correct scheduling, clear state, dependable background lifetime, and careful OS behavior.
+### Highlights
+
+- **Staged bedtime flow** — reminders at −30 and −10 minutes, a wrap-up window, a final two-minute countdown and a goodnight before the power request. One deferral per night and a confirmed emergency cancel.
+- **Shutdown or sleep** — normal `ExitWindowsEx` shutdown without force (apps can still block it to save work), or sleep via `SetSuspendState`. After waking, the countdown grants a fresh two-minute save window instead of immediately sleeping again.
+- **Weekend bedtimes** — Friday and Saturday nights can use a later time; after-midnight bedtimes belong to the previous evening.
+- **Sleep watch** — powering the computer back on within the sleep window (default 6 h after bedtime) after a guarded shutdown opens a “caught you” countdown with a configurable grace period (default 5 min) and a one-night emergency cancel.
+- **Bedtime streak** — each night is recorded as slept / early / late / caught / cancelled from power requests and the last time the app saw the computer awake; the window shows the streak and the last seven nights, and a morning greeting reports the result.
+- **One-click updates** — a background check of this repository's latest GitHub release, asset-origin and SHA-256 checks, and a detached installer that keeps settings and resumes an active countdown.
+- **Offline AI voice** — 92 companion lines, 96 hour-aware reminders and 3 guard lines, shipped as compact MP3s with hash-verified WAV masters in the repository.
+- **Desktop companion** — draggable avatar with visible guard state, ten animated interactions (40 poses), reduced-motion option, tray icon, single-instance activation.
+- **Video-ready transparent frames** — forty reviewed 640×640 PNGs in [`assets/frames/`](assets/frames/), with neighboring-sleeve artifacts removed; the app plays these same exports ([crop audit](docs/FRAME_REPAIR.md)).
+
+### Quick start
+
+Download the [latest release](https://github.com/9OwO6/wanwan-shutdown-assistant/releases/latest), extract it, and double-click `启动晚晚.vbs` (or `启动晚晚.cmd`), or run:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Start-Wanwan.ps1
+```
+
+Try **体验睡前倒计时** (“try bedtime countdown”) first — a 35-second demo that never shuts down. Useful labels: 睡觉时间 bedtime · 周五六晚 Fri/Sat bedtime · 收尾分钟 wrap-up minutes · 到点后 正常关机 / 睡眠 at the deadline: shut down / sleep · 保存并开启守护 save & enable the guard.
+
+### Engineering
 
 | Area | Implementation | What it demonstrates |
 |---|---|---|
-| Desktop runtime | PowerShell 5.1 + WPF/XAML | Shipping a native prototype with built-in Windows components |
-| Scheduling | Pure `Get-NightState` function + Dispatcher timer | Explicit phases, midnight boundaries, overdue handling |
-| Character interaction | Shared sprite surfaces and frame sequencing | Coordinated animation across main UI, pet, gallery and countdown |
-| Audio | Prepared PCM assets, transcript routing, WPF playback | Consistent text/audio pairing without live inference |
-| Windows integration | C# P/Invoke, mutex, named event, tray | Token privileges, normal shutdown, reliable single-instance reopening |
-| Validation | Schedule tests, isolated WPF tests, asset manifests, CI | Separating visible behavior from a successful build or generated output |
-
-### What AI contributed—and what engineering had to establish
-
-Codex assisted with planning, implementation, debugging, test design and documentation. Generative tools supplied character artwork and the N1 synthetic voice. The project then treated those outputs as software inputs: catalogs, hashes, transcript checks, audio decoding, pose validation and real WPF playback tests.
-
-Two practical bugs became useful engineering lessons:
-
-1. **Hiding a modal main window ended the background lifetime.** The normal runtime now uses `Application.Run` with explicit shutdown, and a lifecycle test checks hide → background ticks → restore.
-2. **A running avatar looked like an active shutdown guard.** The UI now exposes the real guard status, has a dedicated save-and-enable action, and tests that activation persists before an overdue reminder appears.
-
-The case study also covers the Win32 privilege structure correction and the “voice first, shutdown request second” sequence. See [AI-assisted engineering](docs/AI_ENGINEERING.md).
-
-## Verification
-
-The GitHub workflow runs **headless schedule and asset-integrity checks**. Interactive behavior is verified locally on Windows through isolated WPF test modes:
+| Desktop runtime | PowerShell 5.1 + WPF/XAML | Shipping a native prototype with built-in Windows components only |
+| Scheduling | Pure `Get-NightState` / `Get-NightBedtime` + Dispatcher timer | Explicit phases, midnight and weekend boundaries, overdue and resume handling |
+| Windows integration | C# P/Invoke, WinForms power API, mutex, named event, tray | Token privileges, normal shutdown, sleep, single-instance reopening |
+| Media | Prepared audio catalogs, transcript routing, MP3 runtime + WAV masters | Consistent caption/voice pairing without live inference |
+| Delivery | `tools/build_release.py` + tag-triggered GitHub Actions release | Reproducible 25 MB portable ZIP, audited before publishing |
+| Validation | 26 schedule, 16 history and 16 update tests, isolated WPF test modes, asset audit, CI | Separating visible behavior from a successful build |
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File tests\Schedule.Tests.ps1
-powershell.exe -NoProfile -STA -ExecutionPolicy Bypass -File app\Main.ps1 -GuardTest
-powershell.exe -NoProfile -STA -ExecutionPolicy Bypass -File app\Main.ps1 -PetControlsTest
-powershell.exe -NoProfile -STA -ExecutionPolicy Bypass -File app\Main.ps1 -PetTest
-powershell.exe -NoProfile -STA -ExecutionPolicy Bypass -File app\Main.ps1 -DialogueTest
-powershell.exe -NoProfile -STA -ExecutionPolicy Bypass -File app\Main.ps1 -LifecycleTest
-powershell.exe -NoProfile -STA -ExecutionPolicy Bypass -File app\Main.ps1 -CountdownTest
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File tests\Schedule.Tests.ps1   # also tests\History.Tests.ps1, tests\Update.Tests.ps1
+powershell.exe -NoProfile -STA -ExecutionPolicy Bypass -File app\Main.ps1 -WatchTest      # also: -GuardTest -PetTest -PetControlsTest -DialogueTest -LifecycleTest -CountdownTest -VoiceTest
 python tools\verify_release_assets.py
+python tools\build_release.py v0.3.0
 ```
 
-Local checks cover **11 schedule boundaries**, overdue countdown and announcement ordering, cancellation, retry timing, persisted activation, pet controls, four scheduled reminder phases, and native muted audio opening. Test modes use isolated writes and substitute simulated shutdown requests; they do not call the native shutdown operation. `GuardTest` does exercise privilege acquisition in its own process.
+Test modes use isolated settings and simulated power requests; they never call the native shutdown or sleep operation. The published tests do **not** prove a completed OS shutdown or every third-party application's unsaved-work behavior — see [verification notes](docs/VERIFICATION.md) and [architecture](docs/ARCHITECTURE.md).
 
-**Evidence boundary:** configuration persistence, countdown visibility, simulated shutdown sequencing and native media playback have been verified. The published test suite does **not** prove a completed OS shutdown or every third-party application's unsaved-work behavior. See [verification notes](docs/VERIFICATION.md).
-
-## Source map
+### Source map
 
 ```text
-app/                  Native UI, schedule, voice, pet, interop and WPF tests
-assets/               Runtime artwork, icons, audio catalogs and manifests
-tests/                Deterministic schedule tests
-tools/                Media generation, composition, inspection and verification
-docs/                 English case study, architecture, screenshots and Chinese guide
-.github/workflows/    Windows schedule checks and portable asset verification
-Start-Wanwan.ps1      Portable English-named launcher
+app/                  WPF UI, schedule, voice, desktop pet, power interop and WPF test modes
+assets/               Character art, icons, dialogue catalogs, MP3 runtime clips and WAV masters
+tests/                Deterministic schedule, history and update tests (run anywhere PowerShell runs)
+tools/                Release build, asset audit, media generation and encoding
+docs/                 Case study, architecture, verification, release notes, screenshots
 ```
 
-Python media-production scripts are **optional development tools** and need their own model/audio environment. Historical audition scripts retain local-environment assumptions; they are not runtime dependencies. [Media provenance and licensing](docs/ASSETS.md) explains the distinction between application code, bundled media and external tools.
-
-## Project status
-
-Personal Windows prototype with a working companion flow. It is not a signed installer or a production service. English UI localization, weekend-specific schedules, accessibility expansion and broader Windows compatibility checks are future work.
-
-Application code is MIT licensed; bundled artwork/audio and third-party components have separate terms in [NOTICE](NOTICE.md). Created by [9OwO6](https://github.com/9OwO6) with AI-assisted development.
+Application code is MIT licensed; bundled artwork/audio have separate terms in [NOTICE](NOTICE.md) and [media provenance](docs/ASSETS.md). Created by [9OwO6](https://github.com/9OwO6) with AI-assisted development (Codex, Claude).

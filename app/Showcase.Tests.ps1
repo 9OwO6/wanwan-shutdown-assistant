@@ -7,7 +7,10 @@ function Capture-Showcase($Window,[string]$Path){
  $encoder=[Windows.Media.Imaging.PngBitmapEncoder]::new();$encoder.Frames.Add([Windows.Media.Imaging.BitmapFrame]::Create($bitmap));$stream=[IO.File]::Create($Path);$encoder.Save($stream);$stream.Dispose()
 }
 $ui.StartupToggle.IsChecked=$false;$script:voicePlayer.Volume=0;$script:synth.Volume=0;$cfg.Voice=$true;$ui.VoiceToggle.IsChecked=$true;$cfg.Enabled=$false;$cfg.DesktopPet=$true;$ui.PetToggle.IsChecked=$true
-Invoke-GuardTick ([datetime]'2026-10-12T23:00:00');Start-Interaction peek;Wait-Showcase 300
+Invoke-GuardTick ([datetime]'2026-10-12T23:00:00')
+# 展示用的早睡打卡样例：最近 5 晚按时，之前有一晚熬夜。
+$script:nights=@{};$index=0;foreach($pastNight in (Get-PastNights (Get-Date) $cfg 7)){$script:nights[$pastNight.Key]=@('slept','slept','early','slept','slept','late','early')[$index];$index++};Update-StreakDisplay
+Start-Interaction peek;Wait-Showcase 300
 Capture-Showcase $win (Join-Path $showcaseDirectory 'main-window.png')
 Show-DesktopPet -Compact;Wait-Showcase 150;Capture-Showcase $popup (Join-Path $showcaseDirectory 'desktop-pet.png')
 Say-ClockReminder -Now ([datetime]'2026-10-12T23:00:00') -Cue early -Demo;Wait-Showcase 300

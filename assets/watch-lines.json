@@ -1,0 +1,7 @@
+{"version":1,"preset":"N1","lines":[
+ {"id":"watch-caught","cue":"caught","action":"peek","text":"诶嘿，被晚晚发现啦。怎么又偷偷起来呀？现在是睡觉时间哦。真的有急事的话，就告诉晚晚一声。","file":"assets/voices/N1-watch/caught.mp3"},
+ {"id":"watch-caught-again","cue":"caught-again","action":"pat","text":"又被晚晚抓到啦。今晚已经说好要好好睡觉的，快回去躺下吧。","file":"assets/voices/N1-watch/caught-again.mp3"},
+ {"id":"watch-final","cue":"final","action":"goodnight","text":"好啦好啦，别再尝试了哦。今晚真的没有要紧的事，就快点睡觉吧。晚安。","file":"assets/voices/N1-watch/final.mp3"},
+ {"id":"watch-streak","cue":"streak","action":"cheer","text":"早呀！昨晚有按时睡觉，晚晚给你记上一颗小星星啦。","file":"assets/voices/N1-watch/streak.mp3"},
+ {"id":"watch-reset","cue":"reset","action":"heart","text":"昨晚是不是又熬夜啦？没关系，今晚我们重新开始，好不好？","file":"assets/voices/N1-watch/reset.mp3"}
+]}

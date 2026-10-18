@@ -8,3 +8,5 @@
 *.ico binary
 *.wav binary
 *.gif binary
+*.mp3 binary
+*.cmd text eol=crlf

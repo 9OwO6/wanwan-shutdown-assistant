@@ -45,6 +45,26 @@ For clock reminders, 24 whole-sentence hour prefixes are combined with four whol
 | A final spoken reminder could be interrupted | Playback was asynchronous, followed immediately by the OS request | Pending announcement state and an audio-duration wait | No simulated request before the announcement interval; cancellation clears pending state |
 | Extra sleeves appeared during animation/video export | Generated subjects crossed the atlas halfway lines; a uniform 8-pixel inset still included neighboring arms | Reviewed per-frame clipping and forty independent transparent exports | Seven contaminated slots corrected; opaque-pixel comparison, alpha/gutter checks, connected-component inspection and actual WPF playback |
 
+## v0.3: a product review pass with a second AI collaborator
+
+After v0.2 the application worked, but neither release had been downloaded. A product review with Claude started from that metric instead of from the feature list, and found the friction was mostly *before* first use:
+
+| Finding | Evidence | Change |
+|---|---|---|
+| The download was 103 MB for a bedtime timer | 86 MB of uncompressed 24 kHz PCM; 23 MB of RGBA sprite sheets | MP3 runtime clips with hash-tracked WAV masters; palette + alpha quantization of art in the release only → ~25 MB |
+| The biggest objection to auto-shutdown is losing work | Shutdown was the only action | Sleep action; a real-clock resume check grants a fresh two-minute save window instead of sleeping again immediately |
+| A fixed bedtime fails on Friday night | Listed as future work in v0.2 | `Get-NightBedtime` assigns each bedtime to its evening; Fri/Sat may use a later time; 10 new boundary tests |
+| Autostart depended on `wscript.exe` | VBScript is being deprecated in Windows | Shortcuts launch hidden PowerShell directly; existing shortcuts migrate on start |
+| The landing page was English-first for a Chinese-only UI | No Chinese quick start, no SmartScreen/uninstall guidance | Chinese-first README with FAQ; English section kept for reviewers |
+| Releases were hand-built ZIPs | — | `build_release.py` + tag-triggered workflow that audits the staged package before publishing |
+| Rebooting after a guarded shutdown restarted the evening flow | No notion of a sleep window | Configurable sleep watch with a short grace period, a one-night emergency cancel and its own voice lines |
+| No reason to come back the next day | No record of the night | Per-night results inferred from power requests and the last time the app saw the computer awake; streak and morning greeting |
+| Updating meant re-downloading a ZIP | — | Background release check, SHA-256 verified download, detached installer that resumes an active countdown |
+
+The new N1 lines were produced by handing a catalog to the Codex thread that owns the voice pipeline (same reference, loudness and ASR checks), while Claude integrated them into the branch: two AI collaborators, one reviewed pipeline.
+
+Two details show why AI output still needs review. The existing N1 guard recording literally says “正常关机” (normal shutdown), so the sleep path announces with an existing goodnight line rather than mislabeling the action. And a resume detector based on the *scheduled* clock would have broken the deterministic tests, which inject time jumps; it uses the real clock instead.
+
 ## Portfolio talking points
 
 - Built a native desktop product using PowerShell/WPF and a narrowly scoped C# interop layer.

@@ -16,7 +16,7 @@ function Get-VoiceAsset {
  if($Preset -notin @('A','B','C','D')){return $null}
  if(-not $LineId){$line=$script:voiceLines|Where-Object {$_.text -eq $Message}|Select-Object -First 1;$LineId=$line.id}
  if(-not $LineId -or $LineId -notin @($script:voiceLines.id)){return $null}
- $file=Join-Path $root "assets\voices\$Preset\$LineId.wav"
+ $file=Join-Path $root "assets\voices\$Preset\$LineId.mp3"
  if(Test-Path $file){return $file}
  return $null
 }
@@ -51,7 +51,7 @@ function Say {
   $manifestPath=Join-Path $root 'assets\voices\manifest.json'
   if($PreparedAsset -and $PreparedDuration -gt 0){$duration=$PreparedDuration}
   elseif($cfg.VoicePreset -eq 'N1'){$record=$script:n1Records|Where-Object {$_.id -eq $LineId}|Select-Object -First 1;if($record){$duration=$record.duration}}
-  elseif(Test-Path $manifestPath){$record=Get-Content $manifestPath -Raw -Encoding UTF8|ConvertFrom-Json|Where-Object {($_.preset -eq $cfg.VoicePreset) -and ((Split-Path $asset -Leaf) -eq ($_.id+'.wav'))}|Select-Object -First 1;if($record){$duration=$record.duration}}
+  elseif(Test-Path $manifestPath){$record=Get-Content $manifestPath -Raw -Encoding UTF8|ConvertFrom-Json|Where-Object {($_.preset -eq $cfg.VoicePreset) -and ((Split-Path $asset -Leaf) -eq ($_.id+'.mp3'))}|Select-Object -First 1;if($record){$duration=$record.duration}}
   $script:voiceUntil=(Get-Date).AddSeconds($duration)
   if($script:popup){$script:popupUntil=$script:animationClock.ElapsedMilliseconds+[math]::Max(5500,($duration*1000)+1200)}
  }else{$script:synth.SpeakAsync($message)|Out-Null}

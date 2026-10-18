@@ -11,6 +11,8 @@ Invoke-GuardTick ($testNow.AddMinutes(2));Assert-Guard ($script:testShutdownRequ
 Invoke-GuardTick ($testNow.AddSeconds(121));Assert-Guard ($script:testShutdownRequests -eq 0) 'Announcement display was cut short'
 Invoke-GuardTick ($testNow.AddSeconds(122));Assert-Guard ($script:testShutdownRequests -eq 1) 'Deadline did not reach simulated normal shutdown'
 Invoke-GuardTick ($testNow.AddSeconds(123));Assert-Guard ($script:testShutdownRequests -eq 1) 'Shutdown retry fired too early'
+Assert-Guard ($cfg.GuardedNight -eq (Get-NightState $testNow $cfg).Key) 'Accepted request must remember the guarded night for the sleep watch'
+$cfg.GuardedNight=''
 $cfg.Enabled=$false;$dialog.Close();$script:lastAttempt=[datetime]::MinValue;$script:lastPhase='';$cfg.Enabled=$true
 Invoke-GuardTick $testNow;Invoke-GuardTick ($testNow.AddMinutes(2));$cfg.Cancelled=(Get-NightState $testNow $cfg).Key;Invoke-GuardTick ($testNow.AddMinutes(3))
 Assert-Guard ($script:testShutdownRequests -eq 1 -and -not $script:shutdownAfter) 'Cancellation must prevent pending shutdown'
@@ -29,8 +31,19 @@ Invoke-GuardTick $testNow
 $cfg.Voice=$true;Invoke-GuardTick ($testNow.AddMinutes(2));Stop-Voice
 Assert-Guard (($script:shutdownAfter-$testNow.AddMinutes(2)).TotalSeconds -ge $script:lastGuardDuration) 'Voiced announcement duration not reserved'
 $cfg.Enabled=$false;$dialog.Close();$script:shutdownAfter=$null;$cfg.Voice=$false
+# Sleep action: no "shutdown" recording, a goodnight line before the simulated request, then a fresh two-minute window.
+$cfg.Action='Sleep';$cfg.Enabled=$true;$cfg.Cancelled='';$script:lastAttempt=[datetime]::MinValue;$script:lastPhase='';$sleepBefore=$script:testShutdownRequests
+Invoke-GuardTick $testNow
+Assert-Guard ($dialog -and $script:lastSpokenLine.cue -eq 'final' -and $dialog.FindName('Safety').Text -like '*睡眠*' -and $ui.ModeLabel.Text -like '*睡眠*') 'Sleep mode overdue reminder must avoid the shutdown recording and say sleep'
+Invoke-GuardTick ($testNow.AddMinutes(2))
+Assert-Guard ($script:lastSpokenLine.cue -eq 'goodnight' -and $script:testShutdownRequests -eq $sleepBefore) 'Sleep announcement must be a goodnight line before the request'
+Invoke-GuardTick ($testNow.AddSeconds(122))
+Assert-Guard ($script:testShutdownRequests -eq $sleepBefore+1 -and $dialog -and $script:deadline -eq $testNow.AddSeconds(122).AddMinutes(2)) 'Simulated sleep must keep the countdown and reset a two-minute save window'
+Invoke-GuardTick ($testNow.AddHours(5))
+Assert-Guard (-not $dialog) 'Countdown must close once the night window has ended'
+$cfg.Enabled=$false;$cfg.Action='Shutdown';$cfg.GuardedNight='';if($dialog){$dialog.Close()};$script:shutdownAfter=$null
 Assert-Guard ([Wanwan.Power]::TokenStructureSize -eq 16) 'Native TOKEN_PRIVILEGES layout must be 16 bytes'
 $privilege=[Wanwan.Power]::TryEnableShutdownPrivilege();$powerError=[Wanwan.Power]::LastError
 Assert-Guard ($privilege -and $powerError -eq 0) ('Shutdown privilege unavailable; error='+$powerError)
 @{scenario='02:00 bedtime, 30 minutes grace, now 03:37';initialSeconds=120;simulatedRequests=$script:testShutdownRequests;nativeShutdownCalled=$false;nativeTokenBytes=[Wanwan.Power]::TokenStructureSize;privilegeEnabled=$privilege;privilegeError=$powerError;mutedNativeAudioClips=3;cancelPendingPassed=$true;voiceWaitPassed=$true}|ConvertTo-Json|Set-Content (Join-Path $root 'output\guard-runtime-report.json') -Encoding UTF8
-Write-Output 'Guard tests passed: overdue at 03:37, save countdown, announcement before simulated request, retry, cancellation, 3 muted native audio opens, correct privilege layout and safe privilege enable. No native shutdown called.'
+Write-Output 'Guard tests passed: overdue at 03:37, sleep action (goodnight line, fresh save window, end-of-night close), save countdown, announcement before simulated request, retry, cancellation, 3 muted native audio opens, correct privilege layout and safe privilege enable. No native shutdown called.'

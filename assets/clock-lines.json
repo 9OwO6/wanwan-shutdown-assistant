@@ -9,7 +9,7 @@
       "hour": 0,
       "action": "water",
       "text": "宝贝，已经凌晨十二点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
-      "file": "assets/voices/N1-clock/00-early.wav"
+      "file": "assets/voices/N1-clock/00-early.mp3"
     },
     {
       "id": "clock-00-soon",
@@ -17,7 +17,7 @@
       "hour": 0,
       "action": "stretch",
       "text": "宝贝，已经凌晨十二点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
-      "file": "assets/voices/N1-clock/00-soon.wav"
+      "file": "assets/voices/N1-clock/00-soon.mp3"
     },
     {
       "id": "clock-00-bed",
@@ -25,7 +25,7 @@
       "hour": 0,
       "action": "nod",
       "text": "宝贝，已经凌晨十二点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
-      "file": "assets/voices/N1-clock/00-bed.wav"
+      "file": "assets/voices/N1-clock/00-bed.mp3"
     },
     {
       "id": "clock-00-final",
@@ -33,7 +33,7 @@
       "hour": 0,
       "action": "yawn",
       "text": "宝贝，已经凌晨十二点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
-      "file": "assets/voices/N1-clock/00-final.wav"
+      "file": "assets/voices/N1-clock/00-final.mp3"
     },
     {
       "id": "clock-01-early",
@@ -41,7 +41,7 @@
       "hour": 1,
       "action": "water",
       "text": "宝贝，已经凌晨一点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
-      "file": "assets/voices/N1-clock/01-early.wav"
+      "file": "assets/voices/N1-clock/01-early.mp3"
     },
     {
       "id": "clock-01-soon",
@@ -49,7 +49,7 @@
       "hour": 1,
       "action": "stretch",
       "text": "宝贝，已经凌晨一点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
-      "file": "assets/voices/N1-clock/01-soon.wav"
+      "file": "assets/voices/N1-clock/01-soon.mp3"
     },
     {
       "id": "clock-01-bed",
@@ -57,7 +57,7 @@
       "hour": 1,
       "action": "nod",
       "text": "宝贝，已经凌晨一点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
-      "file": "assets/voices/N1-clock/01-bed.wav"
+      "file": "assets/voices/N1-clock/01-bed.mp3"
     },
     {
       "id": "clock-01-final",
@@ -65,7 +65,7 @@
       "hour": 1,
       "action": "yawn",
       "text": "宝贝，已经凌晨一点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
-      "file": "assets/voices/N1-clock/01-final.wav"
+      "file": "assets/voices/N1-clock/01-final.mp3"
     },
     {
       "id": "clock-02-early",
@@ -73,7 +73,7 @@
       "hour": 2,
       "action": "water",
       "text": "宝贝，已经凌晨二点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
-      "file": "assets/voices/N1-clock/02-early.wav"
+      "file": "assets/voices/N1-clock/02-early.mp3"
     },
     {
       "id": "clock-02-soon",
@@ -81,7 +81,7 @@
       "hour": 2,
       "action": "stretch",
       "text": "宝贝，已经凌晨二点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
-      "file": "assets/voices/N1-clock/02-soon.wav"
+      "file": "assets/voices/N1-clock/02-soon.mp3"
     },
     {
       "id": "clock-02-bed",
@@ -89,7 +89,7 @@
       "hour": 2,
       "action": "nod",
       "text": "宝贝，已经凌晨二点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
-      "file": "assets/voices/N1-clock/02-bed.wav"
+      "file": "assets/voices/N1-clock/02-bed.mp3"
     },
     {
       "id": "clock-02-final",
@@ -97,7 +97,7 @@
       "hour": 2,
       "action": "yawn",
       "text": "宝贝，已经凌晨二点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
-      "file": "assets/voices/N1-clock/02-final.wav"
+      "file": "assets/voices/N1-clock/02-final.mp3"
     },
     {
       "id": "clock-03-early",
@@ -105,7 +105,7 @@
       "hour": 3,
       "action": "water",
       "text": "宝贝，已经凌晨三点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
-      "file": "assets/voices/N1-clock/03-early.wav"
+      "file": "assets/voices/N1-clock/03-early.mp3"
     },
     {
       "id": "clock-03-soon",
@@ -113,7 +113,7 @@
       "hour": 3,
       "action": "stretch",
       "text": "宝贝，已经凌晨三点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
-      "file": "assets/voices/N1-clock/03-soon.wav"
+      "file": "assets/voices/N1-clock/03-soon.mp3"
     },
     {
       "id": "clock-03-bed",
@@ -121,7 +121,7 @@
       "hour": 3,
       "action": "nod",
       "text": "宝贝，已经凌晨三点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
-      "file": "assets/voices/N1-clock/03-bed.wav"
+      "file": "assets/voices/N1-clock/03-bed.mp3"
     },
     {
       "id": "clock-03-final",
@@ -129,7 +129,7 @@
       "hour": 3,
       "action": "yawn",
       "text": "宝贝，已经凌晨三点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
-      "file": "assets/voices/N1-clock/03-final.wav"
+      "file": "assets/voices/N1-clock/03-final.mp3"
     },
     {
       "id": "clock-04-early",
@@ -137,7 +137,7 @@
       "hour": 4,
       "action": "water",
       "text": "宝贝，已经凌晨四点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
-      "file": "assets/voices/N1-clock/04-early.wav"
+      "file": "assets/voices/N1-clock/04-early.mp3"
     },
     {
       "id": "clock-04-soon",
@@ -145,7 +145,7 @@
       "hour": 4,
       "action": "stretch",
       "text": "宝贝，已经凌晨四点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
-      "file": "assets/voices/N1-clock/04-soon.wav"
+      "file": "assets/voices/N1-clock/04-soon.mp3"
     },
     {
       "id": "clock-04-bed",
@@ -153,7 +153,7 @@
       "hour": 4,
       "action": "nod",
       "text": "宝贝，已经凌晨四点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
-      "file": "assets/voices/N1-clock/04-bed.wav"
+      "file": "assets/voices/N1-clock/04-bed.mp3"
     },
     {
       "id": "clock-04-final",
@@ -161,7 +161,7 @@
       "hour": 4,
       "action": "yawn",
       "text": "宝贝，已经凌晨四点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
-      "file": "assets/voices/N1-clock/04-final.wav"
+      "file": "assets/voices/N1-clock/04-final.mp3"
     },
     {
       "id": "clock-05-early",
@@ -169,7 +169,7 @@
       "hour": 5,
       "action": "water",
       "text": "宝贝，已经凌晨五点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
-      "file": "assets/voices/N1-clock/05-early.wav"
+      "file": "assets/voices/N1-clock/05-early.mp3"
     },
     {
       "id": "clock-05-soon",
@@ -177,7 +177,7 @@
       "hour": 5,
       "action": "stretch",
       "text": "宝贝，已经凌晨五点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
-      "file": "assets/voices/N1-clock/05-soon.wav"
+      "file": "assets/voices/N1-clock/05-soon.mp3"
     },
     {
       "id": "clock-05-bed",
@@ -185,7 +185,7 @@
       "hour": 5,
       "action": "nod",
       "text": "宝贝，已经凌晨五点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
-      "file": "assets/voices/N1-clock/05-bed.wav"
+      "file": "assets/voices/N1-clock/05-bed.mp3"
     },
     {
       "id": "clock-05-final",
@@ -193,7 +193,7 @@
       "hour": 5,
       "action": "yawn",
       "text": "宝贝，已经凌晨五点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
-      "file": "assets/voices/N1-clock/05-final.wav"
+      "file": "assets/voices/N1-clock/05-final.mp3"
     },
     {
       "id": "clock-06-early",
@@ -201,7 +201,7 @@
       "hour": 6,
       "action": "water",
       "text": "宝贝，已经早上六点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
-      "file": "assets/voices/N1-clock/06-early.wav"
+      "file": "assets/voices/N1-clock/06-early.mp3"
     },
     {
       "id": "clock-06-soon",
@@ -209,7 +209,7 @@
       "hour": 6,
       "action": "stretch",
       "text": "宝贝，已经早上六点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
-      "file": "assets/voices/N1-clock/06-soon.wav"
+      "file": "assets/voices/N1-clock/06-soon.mp3"
     },
     {
       "id": "clock-06-bed",
@@ -217,7 +217,7 @@
       "hour": 6,
       "action": "nod",
       "text": "宝贝，已经早上六点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
-      "file": "assets/voices/N1-clock/06-bed.wav"
+      "file": "assets/voices/N1-clock/06-bed.mp3"
     },
     {
       "id": "clock-06-final",
@@ -225,7 +225,7 @@
       "hour": 6,
       "action": "yawn",
       "text": "宝贝，已经早上六点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
-      "file": "assets/voices/N1-clock/06-final.wav"
+      "file": "assets/voices/N1-clock/06-final.mp3"
     },
     {
       "id": "clock-07-early",
@@ -233,7 +233,7 @@
       "hour": 7,
       "action": "water",
       "text": "宝贝，已经早上七点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
-      "file": "assets/voices/N1-clock/07-early.wav"
+      "file": "assets/voices/N1-clock/07-early.mp3"
     },
     {
       "id": "clock-07-soon",
@@ -241,7 +241,7 @@
       "hour": 7,
       "action": "stretch",
       "text": "宝贝，已经早上七点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
-      "file": "assets/voices/N1-clock/07-soon.wav"
+      "file": "assets/voices/N1-clock/07-soon.mp3"
     },
     {
       "id": "clock-07-bed",
@@ -249,7 +249,7 @@
       "hour": 7,
       "action": "nod",
       "text": "宝贝，已经早上七点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
-      "file": "assets/voices/N1-clock/07-bed.wav"
+      "file": "assets/voices/N1-clock/07-bed.mp3"
     },
     {
       "id": "clock-07-final",
@@ -257,7 +257,7 @@
       "hour": 7,
       "action": "yawn",
       "text": "宝贝，已经早上七点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
-      "file": "assets/voices/N1-clock/07-final.wav"
+      "file": "assets/voices/N1-clock/07-final.mp3"
     },
     {
       "id": "clock-08-early",
@@ -265,7 +265,7 @@
       "hour": 8,
       "action": "water",
       "text": "宝贝，已经早上八点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
-      "file": "assets/voices/N1-clock/08-early.wav"
+      "file": "assets/voices/N1-clock/08-early.mp3"
     },
     {
       "id": "clock-08-soon",
@@ -273,7 +273,7 @@
       "hour": 8,
       "action": "stretch",
       "text": "宝贝，已经早上八点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
-      "file": "assets/voices/N1-clock/08-soon.wav"
+      "file": "assets/voices/N1-clock/08-soon.mp3"
     },
     {
       "id": "clock-08-bed",
@@ -281,7 +281,7 @@
       "hour": 8,
       "action": "nod",
       "text": "宝贝，已经早上八点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
-      "file": "assets/voices/N1-clock/08-bed.wav"
+      "file": "assets/voices/N1-clock/08-bed.mp3"
     },
     {
       "id": "clock-08-final",
@@ -289,7 +289,7 @@
       "hour": 8,
       "action": "yawn",
       "text": "宝贝，已经早上八点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
-      "file": "assets/voices/N1-clock/08-final.wav"
+      "file": "assets/voices/N1-clock/08-final.mp3"
     },
     {
       "id": "clock-09-early",
@@ -297,7 +297,7 @@
       "hour": 9,
       "action": "water",
       "text": "宝贝，已经早上九点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
-      "file": "assets/voices/N1-clock/09-early.wav"
+      "file": "assets/voices/N1-clock/09-early.mp3"
     },
     {
       "id": "clock-09-soon",
@@ -305,7 +305,7 @@
       "hour": 9,
       "action": "stretch",
       "text": "宝贝，已经早上九点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
-      "file": "assets/voices/N1-clock/09-soon.wav"
+      "file": "assets/voices/N1-clock/09-soon.mp3"
     },
     {
       "id": "clock-09-bed",
@@ -313,7 +313,7 @@
       "hour": 9,
       "action": "nod",
       "text": "宝贝，已经早上九点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
-      "file": "assets/voices/N1-clock/09-bed.wav"
+      "file": "assets/voices/N1-clock/09-bed.mp3"
     },
     {
       "id": "clock-09-final",
@@ -321,7 +321,7 @@
       "hour": 9,
       "action": "yawn",
       "text": "宝贝，已经早上九点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
-      "file": "assets/voices/N1-clock/09-final.wav"
+      "file": "assets/voices/N1-clock/09-final.mp3"
     },
     {
       "id": "clock-10-early",
@@ -329,7 +329,7 @@
       "hour": 10,
       "action": "water",
       "text": "宝贝，已经早上十点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
-      "file": "assets/voices/N1-clock/10-early.wav"
+      "file": "assets/voices/N1-clock/10-early.mp3"
     },
     {
       "id": "clock-10-soon",
@@ -337,7 +337,7 @@
       "hour": 10,
       "action": "stretch",
       "text": "宝贝，已经早上十点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
-      "file": "assets/voices/N1-clock/10-soon.wav"
+      "file": "assets/voices/N1-clock/10-soon.mp3"
     },
     {
       "id": "clock-10-bed",
@@ -345,7 +345,7 @@
       "hour": 10,
       "action": "nod",
       "text": "宝贝，已经早上十点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
-      "file": "assets/voices/N1-clock/10-bed.wav"
+      "file": "assets/voices/N1-clock/10-bed.mp3"
     },
     {
       "id": "clock-10-final",
@@ -353,7 +353,7 @@
       "hour": 10,
       "action": "yawn",
       "text": "宝贝，已经早上十点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
-      "file": "assets/voices/N1-clock/10-final.wav"
+      "file": "assets/voices/N1-clock/10-final.mp3"
     },
     {
       "id": "clock-11-early",
@@ -361,7 +361,7 @@
       "hour": 11,
       "action": "water",
       "text": "宝贝，已经早上十一点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
-      "file": "assets/voices/N1-clock/11-early.wav"
+      "file": "assets/voices/N1-clock/11-early.mp3"
     },
     {
       "id": "clock-11-soon",
@@ -369,7 +369,7 @@
       "hour": 11,
       "action": "stretch",
       "text": "宝贝，已经早上十一点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
-      "file": "assets/voices/N1-clock/11-soon.wav"
+      "file": "assets/voices/N1-clock/11-soon.mp3"
     },
     {
       "id": "clock-11-bed",
@@ -377,7 +377,7 @@
       "hour": 11,
       "action": "nod",
       "text": "宝贝，已经早上十一点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
-      "file": "assets/voices/N1-clock/11-bed.wav"
+      "file": "assets/voices/N1-clock/11-bed.mp3"
     },
     {
       "id": "clock-11-final",
@@ -385,7 +385,7 @@
       "hour": 11,
       "action": "yawn",
       "text": "宝贝，已经早上十一点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
-      "file": "assets/voices/N1-clock/11-final.wav"
+      "file": "assets/voices/N1-clock/11-final.mp3"
     },
     {
       "id": "clock-12-early",
@@ -393,7 +393,7 @@
       "hour": 12,
       "action": "water",
       "text": "宝贝，已经中午十二点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
-      "file": "assets/voices/N1-clock/12-early.wav"
+      "file": "assets/voices/N1-clock/12-early.mp3"
     },
     {
       "id": "clock-12-soon",
@@ -401,7 +401,7 @@
       "hour": 12,
       "action": "stretch",
       "text": "宝贝，已经中午十二点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
-      "file": "assets/voices/N1-clock/12-soon.wav"
+      "file": "assets/voices/N1-clock/12-soon.mp3"
     },
     {
       "id": "clock-12-bed",
@@ -409,7 +409,7 @@
       "hour": 12,
       "action": "nod",
       "text": "宝贝，已经中午十二点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
-      "file": "assets/voices/N1-clock/12-bed.wav"
+      "file": "assets/voices/N1-clock/12-bed.mp3"
     },
     {
       "id": "clock-12-final",
@@ -417,7 +417,7 @@
       "hour": 12,
       "action": "yawn",
       "text": "宝贝，已经中午十二点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
-      "file": "assets/voices/N1-clock/12-final.wav"
+      "file": "assets/voices/N1-clock/12-final.mp3"
     },
     {
       "id": "clock-13-early",
@@ -425,7 +425,7 @@
       "hour": 13,
       "action": "water",
       "text": "宝贝，已经下午一点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
-      "file": "assets/voices/N1-clock/13-early.wav"
+      "file": "assets/voices/N1-clock/13-early.mp3"
     },
     {
       "id": "clock-13-soon",
@@ -433,7 +433,7 @@
       "hour": 13,
       "action": "stretch",
       "text": "宝贝，已经下午一点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
-      "file": "assets/voices/N1-clock/13-soon.wav"
+      "file": "assets/voices/N1-clock/13-soon.mp3"
     },
     {
       "id": "clock-13-bed",
@@ -441,7 +441,7 @@
       "hour": 13,
       "action": "nod",
       "text": "宝贝，已经下午一点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
-      "file": "assets/voices/N1-clock/13-bed.wav"
+      "file": "assets/voices/N1-clock/13-bed.mp3"
     },
     {
       "id": "clock-13-final",
@@ -449,7 +449,7 @@
       "hour": 13,
       "action": "yawn",
       "text": "宝贝，已经下午一点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
-      "file": "assets/voices/N1-clock/13-final.wav"
+      "file": "assets/voices/N1-clock/13-final.mp3"
     },
     {
       "id": "clock-14-early",
@@ -457,7 +457,7 @@
       "hour": 14,
       "action": "water",
       "text": "宝贝，已经下午二点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
-      "file": "assets/voices/N1-clock/14-early.wav"
+      "file": "assets/voices/N1-clock/14-early.mp3"
     },
     {
       "id": "clock-14-soon",
@@ -465,7 +465,7 @@
       "hour": 14,
       "action": "stretch",
       "text": "宝贝，已经下午二点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
-      "file": "assets/voices/N1-clock/14-soon.wav"
+      "file": "assets/voices/N1-clock/14-soon.mp3"
     },
     {
       "id": "clock-14-bed",
@@ -473,7 +473,7 @@
       "hour": 14,
       "action": "nod",
       "text": "宝贝，已经下午二点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
-      "file": "assets/voices/N1-clock/14-bed.wav"
+      "file": "assets/voices/N1-clock/14-bed.mp3"
     },
     {
       "id": "clock-14-final",
@@ -481,7 +481,7 @@
       "hour": 14,
       "action": "yawn",
       "text": "宝贝，已经下午二点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
-      "file": "assets/voices/N1-clock/14-final.wav"
+      "file": "assets/voices/N1-clock/14-final.mp3"
     },
     {
       "id": "clock-15-early",
@@ -489,7 +489,7 @@
       "hour": 15,
       "action": "water",
       "text": "宝贝，已经下午三点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
-      "file": "assets/voices/N1-clock/15-early.wav"
+      "file": "assets/voices/N1-clock/15-early.mp3"
     },
     {
       "id": "clock-15-soon",
@@ -497,7 +497,7 @@
       "hour": 15,
       "action": "stretch",
       "text": "宝贝，已经下午三点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
-      "file": "assets/voices/N1-clock/15-soon.wav"
+      "file": "assets/voices/N1-clock/15-soon.mp3"
     },
     {
       "id": "clock-15-bed",
@@ -505,7 +505,7 @@
       "hour": 15,
       "action": "nod",
       "text": "宝贝，已经下午三点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
-      "file": "assets/voices/N1-clock/15-bed.wav"
+      "file": "assets/voices/N1-clock/15-bed.mp3"
     },
     {
       "id": "clock-15-final",
@@ -513,7 +513,7 @@
       "hour": 15,
       "action": "yawn",
       "text": "宝贝，已经下午三点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
-      "file": "assets/voices/N1-clock/15-final.wav"
+      "file": "assets/voices/N1-clock/15-final.mp3"
     },
     {
       "id": "clock-16-early",
@@ -521,7 +521,7 @@
       "hour": 16,
       "action": "water",
       "text": "宝贝，已经下午四点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
-      "file": "assets/voices/N1-clock/16-early.wav"
+      "file": "assets/voices/N1-clock/16-early.mp3"
     },
     {
       "id": "clock-16-soon",
@@ -529,7 +529,7 @@
       "hour": 16,
       "action": "stretch",
       "text": "宝贝，已经下午四点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
-      "file": "assets/voices/N1-clock/16-soon.wav"
+      "file": "assets/voices/N1-clock/16-soon.mp3"
     },
     {
       "id": "clock-16-bed",
@@ -537,7 +537,7 @@
       "hour": 16,
       "action": "nod",
       "text": "宝贝，已经下午四点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
-      "file": "assets/voices/N1-clock/16-bed.wav"
+      "file": "assets/voices/N1-clock/16-bed.mp3"
     },
     {
       "id": "clock-16-final",
@@ -545,7 +545,7 @@
       "hour": 16,
       "action": "yawn",
       "text": "宝贝，已经下午四点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
-      "file": "assets/voices/N1-clock/16-final.wav"
+      "file": "assets/voices/N1-clock/16-final.mp3"
     },
     {
       "id": "clock-17-early",
@@ -553,7 +553,7 @@
       "hour": 17,
       "action": "water",
       "text": "宝贝，已经下午五点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
-      "file": "assets/voices/N1-clock/17-early.wav"
+      "file": "assets/voices/N1-clock/17-early.mp3"
     },
     {
       "id": "clock-17-soon",
@@ -561,7 +561,7 @@
       "hour": 17,
       "action": "stretch",
       "text": "宝贝，已经下午五点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
-      "file": "assets/voices/N1-clock/17-soon.wav"
+      "file": "assets/voices/N1-clock/17-soon.mp3"
     },
     {
       "id": "clock-17-bed",
@@ -569,7 +569,7 @@
       "hour": 17,
       "action": "nod",
       "text": "宝贝，已经下午五点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
-      "file": "assets/voices/N1-clock/17-bed.wav"
+      "file": "assets/voices/N1-clock/17-bed.mp3"
     },
     {
       "id": "clock-17-final",
@@ -577,7 +577,7 @@
       "hour": 17,
       "action": "yawn",
       "text": "宝贝，已经下午五点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
-      "file": "assets/voices/N1-clock/17-final.wav"
+      "file": "assets/voices/N1-clock/17-final.mp3"
     },
     {
       "id": "clock-18-early",
@@ -585,7 +585,7 @@
       "hour": 18,
       "action": "water",
       "text": "宝贝，已经晚上六点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
-      "file": "assets/voices/N1-clock/18-early.wav"
+      "file": "assets/voices/N1-clock/18-early.mp3"
     },
     {
       "id": "clock-18-soon",
@@ -593,7 +593,7 @@
       "hour": 18,
       "action": "stretch",
       "text": "宝贝，已经晚上六点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
-      "file": "assets/voices/N1-clock/18-soon.wav"
+      "file": "assets/voices/N1-clock/18-soon.mp3"
     },
     {
       "id": "clock-18-bed",
@@ -601,7 +601,7 @@
       "hour": 18,
       "action": "nod",
       "text": "宝贝，已经晚上六点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
-      "file": "assets/voices/N1-clock/18-bed.wav"
+      "file": "assets/voices/N1-clock/18-bed.mp3"
     },
     {
       "id": "clock-18-final",
@@ -609,7 +609,7 @@
       "hour": 18,
       "action": "yawn",
       "text": "宝贝，已经晚上六点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
-      "file": "assets/voices/N1-clock/18-final.wav"
+      "file": "assets/voices/N1-clock/18-final.mp3"
     },
     {
       "id": "clock-19-early",
@@ -617,7 +617,7 @@
       "hour": 19,
       "action": "water",
       "text": "宝贝，已经晚上七点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
-      "file": "assets/voices/N1-clock/19-early.wav"
+      "file": "assets/voices/N1-clock/19-early.mp3"
     },
     {
       "id": "clock-19-soon",
@@ -625,7 +625,7 @@
       "hour": 19,
       "action": "stretch",
       "text": "宝贝，已经晚上七点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
-      "file": "assets/voices/N1-clock/19-soon.wav"
+      "file": "assets/voices/N1-clock/19-soon.mp3"
     },
     {
       "id": "clock-19-bed",
@@ -633,7 +633,7 @@
       "hour": 19,
       "action": "nod",
       "text": "宝贝，已经晚上七点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
-      "file": "assets/voices/N1-clock/19-bed.wav"
+      "file": "assets/voices/N1-clock/19-bed.mp3"
     },
     {
       "id": "clock-19-final",
@@ -641,7 +641,7 @@
       "hour": 19,
       "action": "yawn",
       "text": "宝贝，已经晚上七点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
-      "file": "assets/voices/N1-clock/19-final.wav"
+      "file": "assets/voices/N1-clock/19-final.mp3"
     },
     {
       "id": "clock-20-early",
@@ -649,7 +649,7 @@
       "hour": 20,
       "action": "water",
       "text": "宝贝，已经晚上八点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
-      "file": "assets/voices/N1-clock/20-early.wav"
+      "file": "assets/voices/N1-clock/20-early.mp3"
     },
     {
       "id": "clock-20-soon",
@@ -657,7 +657,7 @@
       "hour": 20,
       "action": "stretch",
       "text": "宝贝，已经晚上八点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
-      "file": "assets/voices/N1-clock/20-soon.wav"
+      "file": "assets/voices/N1-clock/20-soon.mp3"
     },
     {
       "id": "clock-20-bed",
@@ -665,7 +665,7 @@
       "hour": 20,
       "action": "nod",
       "text": "宝贝，已经晚上八点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
-      "file": "assets/voices/N1-clock/20-bed.wav"
+      "file": "assets/voices/N1-clock/20-bed.mp3"
     },
     {
       "id": "clock-20-final",
@@ -673,7 +673,7 @@
       "hour": 20,
       "action": "yawn",
       "text": "宝贝，已经晚上八点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
-      "file": "assets/voices/N1-clock/20-final.wav"
+      "file": "assets/voices/N1-clock/20-final.mp3"
     },
     {
       "id": "clock-21-early",
@@ -681,7 +681,7 @@
       "hour": 21,
       "action": "water",
       "text": "宝贝，已经晚上九点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
-      "file": "assets/voices/N1-clock/21-early.wav"
+      "file": "assets/voices/N1-clock/21-early.mp3"
     },
     {
       "id": "clock-21-soon",
@@ -689,7 +689,7 @@
       "hour": 21,
       "action": "stretch",
       "text": "宝贝，已经晚上九点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
-      "file": "assets/voices/N1-clock/21-soon.wav"
+      "file": "assets/voices/N1-clock/21-soon.mp3"
     },
     {
       "id": "clock-21-bed",
@@ -697,7 +697,7 @@
       "hour": 21,
       "action": "nod",
       "text": "宝贝，已经晚上九点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
-      "file": "assets/voices/N1-clock/21-bed.wav"
+      "file": "assets/voices/N1-clock/21-bed.mp3"
     },
     {
       "id": "clock-21-final",
@@ -705,7 +705,7 @@
       "hour": 21,
       "action": "yawn",
       "text": "宝贝，已经晚上九点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
-      "file": "assets/voices/N1-clock/21-final.wav"
+      "file": "assets/voices/N1-clock/21-final.mp3"
     },
     {
       "id": "clock-22-early",
@@ -713,7 +713,7 @@
       "hour": 22,
       "action": "water",
       "text": "宝贝，已经晚上十点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
-      "file": "assets/voices/N1-clock/22-early.wav"
+      "file": "assets/voices/N1-clock/22-early.mp3"
     },
     {
       "id": "clock-22-soon",
@@ -721,7 +721,7 @@
       "hour": 22,
       "action": "stretch",
       "text": "宝贝，已经晚上十点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
-      "file": "assets/voices/N1-clock/22-soon.wav"
+      "file": "assets/voices/N1-clock/22-soon.mp3"
     },
     {
       "id": "clock-22-bed",
@@ -729,7 +729,7 @@
       "hour": 22,
       "action": "nod",
       "text": "宝贝，已经晚上十点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
-      "file": "assets/voices/N1-clock/22-bed.wav"
+      "file": "assets/voices/N1-clock/22-bed.mp3"
     },
     {
       "id": "clock-22-final",
@@ -737,7 +737,7 @@
       "hour": 22,
       "action": "yawn",
       "text": "宝贝，已经晚上十点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
-      "file": "assets/voices/N1-clock/22-final.wav"
+      "file": "assets/voices/N1-clock/22-final.mp3"
     },
     {
       "id": "clock-23-early",
@@ -745,7 +745,7 @@
       "hour": 23,
       "action": "water",
       "text": "宝贝，已经晚上十一点啦。快到睡觉时间喽。先喝口水，把进度存好，我陪你准备休息。",
-      "file": "assets/voices/N1-clock/23-early.wav"
+      "file": "assets/voices/N1-clock/23-early.mp3"
     },
     {
       "id": "clock-23-soon",
@@ -753,7 +753,7 @@
       "hour": 23,
       "action": "stretch",
       "text": "宝贝，已经晚上十一点啦。离约好的休息时间不到十分钟啦。先保存文件，我们准备说晚安，好不好？",
-      "file": "assets/voices/N1-clock/23-soon.wav"
+      "file": "assets/voices/N1-clock/23-soon.mp3"
     },
     {
       "id": "clock-23-bed",
@@ -761,7 +761,7 @@
       "hour": 23,
       "action": "nod",
       "text": "宝贝，已经晚上十一点啦。到约好的睡觉时间啦。先保存文件，再关掉手上的程序，我们该休息啦。",
-      "file": "assets/voices/N1-clock/23-bed.wav"
+      "file": "assets/voices/N1-clock/23-bed.mp3"
     },
     {
       "id": "clock-23-final",
@@ -769,7 +769,7 @@
       "hour": 23,
       "action": "yawn",
       "text": "宝贝，已经晚上十一点啦。进入关机前的最后两分钟啦。先把重要的文件保存好，准备关机休息，好不好？",
-      "file": "assets/voices/N1-clock/23-final.wav"
+      "file": "assets/voices/N1-clock/23-final.mp3"
     }
   ]
 }

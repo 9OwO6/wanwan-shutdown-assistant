@@ -15,644 +15,644 @@
       "cue": "preview",
       "action": "peek",
       "text": "宝宝，已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾。",
-      "file": "assets/voices/N1/preview-01.wav"
+      "file": "assets/voices/N1/preview-01.mp3"
     },
     {
       "id": "preview-02",
       "cue": "preview",
       "action": "peek",
       "text": "快到我们约好的时间啦。再忙一小会儿，就把今天轻轻放下，好不好？",
-      "file": "assets/voices/N1/preview-02.wav"
+      "file": "assets/voices/N1/preview-02.mp3"
     },
     {
       "id": "preview-03",
       "cue": "preview",
       "action": "peek",
       "text": "让我小小地撒个娇嘛。今晚早点休息，明天精神满满的，我也会开心呀。",
-      "file": "assets/voices/N1/preview-03.wav"
+      "file": "assets/voices/N1/preview-03.mp3"
     },
     {
       "id": "preview-04",
       "cue": "preview",
       "action": "peek",
       "text": "我知道你还想再做一点。先把进度存好，今晚也给自己留一点休息的时间呀。",
-      "file": "assets/voices/N1/preview-04.wav"
+      "file": "assets/voices/N1/preview-04.mp3"
     },
     {
       "id": "early-01",
       "cue": "early",
       "action": "water",
       "text": "进入睡前最后半小时啦。先喝口水，慢慢收尾，我陪着你。",
-      "file": "assets/voices/N1/early-01.wav"
+      "file": "assets/voices/N1/early-01.mp3"
     },
     {
       "id": "early-02",
       "cue": "early",
       "action": "water",
       "text": "亲爱的，进入最后半小时啦。今天已经忙了好多，我们挑最要紧的一件收个尾吧。",
-      "file": "assets/voices/N1/early-02.wav"
+      "file": "assets/voices/N1/early-02.mp3"
     },
     {
       "id": "early-03",
       "cue": "early",
       "action": "water",
       "text": "偷偷提醒你一下，离约好的时间不到半小时了。先保存进度，别把自己忙得太累啦。",
-      "file": "assets/voices/N1/early-03.wav"
+      "file": "assets/voices/N1/early-03.mp3"
     },
     {
       "id": "early-04",
       "cue": "early",
       "action": "water",
       "text": "最后半小时啦，不着急。把明天要做的记下来，今晚就能放心一点啦。",
-      "file": "assets/voices/N1/early-04.wav"
+      "file": "assets/voices/N1/early-04.mp3"
     },
     {
       "id": "soon-01",
       "cue": "soon",
       "action": "stretch",
       "text": "进入最后十分钟啦。先保存文件，再把手上的事情收个尾，好不好？",
-      "file": "assets/voices/N1/soon-01.wav"
+      "file": "assets/voices/N1/soon-01.mp3"
     },
     {
       "id": "soon-02",
       "cue": "soon",
       "action": "stretch",
       "text": "宝贝，进入最后十分钟啦。晚晚来接你下班，先把今天的努力好好存起来。",
-      "file": "assets/voices/N1/soon-02.wav"
+      "file": "assets/voices/N1/soon-02.mp3"
     },
     {
       "id": "soon-03",
       "cue": "soon",
       "action": "stretch",
       "text": "离休息不到十分钟啦。肩膀放松一点，保存一下，我们准备说晚安啦。",
-      "file": "assets/voices/N1/soon-03.wav"
+      "file": "assets/voices/N1/soon-03.mp3"
     },
     {
       "id": "soon-04",
       "cue": "soon",
       "action": "stretch",
       "text": "最后十分钟，我要认真提醒啦。先存好进度，没做完的明天再陪你继续。",
-      "file": "assets/voices/N1/soon-04.wav"
+      "file": "assets/voices/N1/soon-04.mp3"
     },
     {
       "id": "bed-01",
       "cue": "bed",
       "action": "nod",
       "text": "到约好的时间啦，宝宝。先保存文件，再关闭手上的程序，我们该休息啦。",
-      "file": "assets/voices/N1/bed-01.wav"
+      "file": "assets/voices/N1/bed-01.mp3"
     },
     {
       "id": "bed-02",
       "cue": "bed",
       "action": "nod",
       "text": "好啦，到睡觉时间了。把文件存好，给今天画个小小的句号，好不好？",
-      "file": "assets/voices/N1/bed-02.wav"
+      "file": "assets/voices/N1/bed-02.mp3"
     },
     {
       "id": "bed-03",
       "cue": "bed",
       "action": "nod",
       "text": "晚晚来提醒你啦，到点了哦。现在先保存，再关掉不用的程序，准备休息。",
-      "file": "assets/voices/N1/bed-03.wav"
+      "file": "assets/voices/N1/bed-03.mp3"
     },
     {
       "id": "bed-04",
       "cue": "bed",
       "action": "nod",
       "text": "时间到啦，我要温柔地认真一下。先存好进度，今晚的事情就收在这里吧。",
-      "file": "assets/voices/N1/bed-04.wav"
+      "file": "assets/voices/N1/bed-04.mp3"
     },
     {
       "id": "final-01",
       "cue": "final",
       "action": "yawn",
       "text": "最后两分钟啦，亲爱的。现在就保存一下，然后准备正常关机，好不好？",
-      "file": "assets/voices/N1/final-01.wav"
+      "file": "assets/voices/N1/final-01.mp3"
     },
     {
       "id": "final-02",
       "cue": "final",
       "action": "yawn",
       "text": "进入关机前的最后两分钟啦。先把文件存好，今天已经很努力啦，我给你一个抱抱。",
-      "file": "assets/voices/N1/final-02.wav"
+      "file": "assets/voices/N1/final-02.mp3"
     },
     {
       "id": "final-03",
       "cue": "final",
       "action": "yawn",
       "text": "最后两分钟哦。不要再开新任务啦，保存进度，和晚晚一起说晚安。",
-      "file": "assets/voices/N1/final-03.wav"
+      "file": "assets/voices/N1/final-03.mp3"
     },
     {
       "id": "final-04",
       "cue": "final",
       "action": "yawn",
       "text": "关机前的最后两分钟啦。检查一下文件有没有保存好，我陪你把最后一点收稳。",
-      "file": "assets/voices/N1/final-04.wav"
+      "file": "assets/voices/N1/final-04.mp3"
     },
     {
       "id": "dialog-01",
       "cue": "dialog",
       "action": "goodnight",
       "text": "该睡觉啦，宝贝。先保存文件，倒计时结束就准备关机啦，我陪你收尾。",
-      "file": "assets/voices/N1/dialog-01.wav"
+      "file": "assets/voices/N1/dialog-01.mp3"
     },
     {
       "id": "dialog-02",
       "cue": "dialog",
       "action": "goodnight",
       "text": "我们约好的时间到了。先保存进度，再关闭程序，倒计时结束就准备关机啦。",
-      "file": "assets/voices/N1/dialog-02.wav"
+      "file": "assets/voices/N1/dialog-02.mp3"
     },
     {
       "id": "dialog-03",
       "cue": "dialog",
       "action": "goodnight",
       "text": "好啦，今晚先到这里。关机倒计时开始了，先把重要的东西存好，好不好？",
-      "file": "assets/voices/N1/dialog-03.wav"
+      "file": "assets/voices/N1/dialog-03.mp3"
     },
     {
       "id": "dialog-04",
       "cue": "dialog",
       "action": "goodnight",
       "text": "晚晚来陪你收尾啦。先保存文件，留意倒计时，等它结束就准备关机休息。",
-      "file": "assets/voices/N1/dialog-04.wav"
+      "file": "assets/voices/N1/dialog-04.mp3"
     },
     {
       "id": "demo-01",
       "cue": "demo",
       "action": "goodnight",
       "text": "宝宝，这是三十五秒的小体验，不会关闭电脑。晚晚陪你收个尾，好不好？",
-      "file": "assets/voices/N1/demo-01.wav"
+      "file": "assets/voices/N1/demo-01.mp3"
     },
     {
       "id": "demo-02",
       "cue": "demo",
       "action": "goodnight",
       "text": "来体验一下睡前提醒呀。这次只是演示，不会关机，先听晚晚说声辛苦啦。",
-      "file": "assets/voices/N1/demo-02.wav"
+      "file": "assets/voices/N1/demo-02.mp3"
     },
     {
       "id": "demo-03",
       "cue": "demo",
       "action": "goodnight",
       "text": "这是一个小小的倒计时体验哦，不会真的关机。放松一下，收下我的晚安。",
-      "file": "assets/voices/N1/demo-03.wav"
+      "file": "assets/voices/N1/demo-03.mp3"
     },
     {
       "id": "demo-04",
       "cue": "demo",
       "action": "goodnight",
       "text": "晚晚陪你试一下睡前倒计时。这是演示，电脑不会关闭，我们先轻轻说声晚安。",
-      "file": "assets/voices/N1/demo-04.wav"
+      "file": "assets/voices/N1/demo-04.mp3"
     },
     {
       "id": "defer-01",
       "cue": "defer",
       "action": "nod",
       "text": "好呀，再给你一点收尾时间。先保存，记得按我们约好的时间去休息呀。",
-      "file": "assets/voices/N1/defer-01.wav"
+      "file": "assets/voices/N1/defer-01.mp3"
     },
     {
       "id": "defer-02",
       "cue": "defer",
       "action": "nod",
       "text": "知道啦，亲爱的。再留一点时间给你哦，别开新任务，存好进度以后我们说晚安。",
-      "file": "assets/voices/N1/defer-02.wav"
+      "file": "assets/voices/N1/defer-02.mp3"
     },
     {
       "id": "defer-03",
       "cue": "defer",
       "action": "nod",
       "text": "好，我陪你把这点事情收完。留点时间保存文件，到点我们就休息，好不好？",
-      "file": "assets/voices/N1/defer-03.wav"
+      "file": "assets/voices/N1/defer-03.mp3"
     },
     {
       "id": "defer-04",
       "cue": "defer",
       "action": "nod",
       "text": "再留一点时间给你啦。把最重要的收稳，倒计时结束就准备关机，好不好？",
-      "file": "assets/voices/N1/defer-04.wav"
+      "file": "assets/voices/N1/defer-04.mp3"
     },
     {
       "id": "cancel-01",
       "cue": "cancel",
       "action": "heart",
       "text": "好，今晚的关机提醒取消啦。先忙你的事情，记得喝水，也照顾好自己呀。",
-      "file": "assets/voices/N1/cancel-01.wav"
+      "file": "assets/voices/N1/cancel-01.mp3"
     },
     {
       "id": "cancel-02",
       "cue": "cancel",
       "action": "heart",
       "text": "知道啦，宝宝，今晚先不关机。事情忙完就早点休息，我把小小的关心留给你。",
-      "file": "assets/voices/N1/cancel-02.wav"
+      "file": "assets/voices/N1/cancel-02.mp3"
     },
     {
       "id": "cancel-03",
       "cue": "cancel",
       "action": "heart",
       "text": "今晚的关机已经取消了。别着急，慢慢处理，忙完也记得让眼睛休息一下哦。",
-      "file": "assets/voices/N1/cancel-03.wav"
+      "file": "assets/voices/N1/cancel-03.mp3"
     },
     {
       "id": "cancel-04",
       "cue": "cancel",
       "action": "heart",
       "text": "好呀，今晚先按你的安排来。关机提醒取消啦，累的时候记得停一下，好不好？",
-      "file": "assets/voices/N1/cancel-04.wav"
+      "file": "assets/voices/N1/cancel-04.mp3"
     },
     {
       "id": "goodnight-01",
       "cue": "goodnight",
       "action": "goodnight",
       "text": "辛苦啦，亲爱的。今天就先到这里，睡个好觉，明天晚晚还在。晚安。",
-      "file": "assets/voices/N1/goodnight-01.wav"
+      "file": "assets/voices/N1/goodnight-01.mp3"
     },
     {
       "id": "goodnight-02",
       "cue": "goodnight",
       "action": "goodnight",
       "text": "晚安呀。把今天的忙碌轻轻放下，没做完的事情，留给睡饱的明天吧。",
-      "file": "assets/voices/N1/goodnight-02.wav"
+      "file": "assets/voices/N1/goodnight-02.mp3"
     },
     {
       "id": "goodnight-03",
       "cue": "goodnight",
       "action": "goodnight",
       "text": "今天的你已经做得很好啦。收下我的小小抱抱，安心休息，明天见。",
-      "file": "assets/voices/N1/goodnight-03.wav"
+      "file": "assets/voices/N1/goodnight-03.mp3"
     },
     {
       "id": "goodnight-04",
       "cue": "goodnight",
       "action": "goodnight",
       "text": "好啦，给你一个睡前的小小比心。盖好被子，做个轻轻软软的梦，晚安。",
-      "file": "assets/voices/N1/goodnight-04.wav"
+      "file": "assets/voices/N1/goodnight-04.mp3"
     },
     {
       "id": "bye-01",
       "cue": "bye",
       "action": "wave",
       "text": "宝贝，准备关机啦。晚安，明天见。",
-      "file": "assets/voices/N1/bye-01.wav"
+      "file": "assets/voices/N1/bye-01.mp3"
     },
     {
       "id": "bye-02",
       "cue": "bye",
       "action": "wave",
       "text": "要关机休息啦。辛苦了，晚安呀。",
-      "file": "assets/voices/N1/bye-02.wav"
+      "file": "assets/voices/N1/bye-02.mp3"
     },
     {
       "id": "bye-03",
       "cue": "bye",
       "action": "wave",
       "text": "要和今天说再见啦。晚安，我的小小牵挂。",
-      "file": "assets/voices/N1/bye-03.wav"
+      "file": "assets/voices/N1/bye-03.mp3"
     },
     {
       "id": "bye-04",
       "cue": "bye",
       "action": "wave",
       "text": "准备关机啦。把今天放下，好好睡一觉，明天见。",
-      "file": "assets/voices/N1/bye-04.wav"
+      "file": "assets/voices/N1/bye-04.mp3"
     },
     {
       "id": "hello-01",
       "cue": "hello",
       "action": "peek",
       "text": "在呀，宝宝。晚晚探个头，想看看你。今天忙得还好吗？",
-      "file": "assets/voices/N1/hello-01.wav"
+      "file": "assets/voices/N1/hello-01.mp3"
     },
     {
       "id": "hello-02",
       "cue": "hello",
       "action": "peek",
       "text": "你来啦。给你留了一点小温柔，忙的时候，也可以过来歇一会儿呀。",
-      "file": "assets/voices/N1/hello-02.wav"
+      "file": "assets/voices/N1/hello-02.mp3"
     },
     {
       "id": "hello-03",
       "cue": "hello",
       "action": "peek",
       "text": "我在这里呢。今天不用一下子做好所有事情，我们慢慢来，好不好？",
-      "file": "assets/voices/N1/hello-03.wav"
+      "file": "assets/voices/N1/hello-03.mp3"
     },
     {
       "id": "hello-04",
       "cue": "hello",
       "action": "peek",
       "text": "看见你啦，偷偷开心一下。先把肩膀放松，我陪你待一小会儿。",
-      "file": "assets/voices/N1/hello-04.wav"
+      "file": "assets/voices/N1/hello-04.mp3"
     },
     {
       "id": "saved-01",
       "cue": "saved",
       "action": "cheer",
       "text": "好，今晚的约定记住啦。到时间我会轻轻提醒你，宝贝也要记得来休息哦。",
-      "file": "assets/voices/N1/saved-01.wav"
+      "file": "assets/voices/N1/saved-01.mp3"
     },
     {
       "id": "saved-02",
       "cue": "saved",
       "action": "cheer",
       "text": "收到啦，今晚就按这个时间休息。先安心做事，我会记得我们的约定。",
-      "file": "assets/voices/N1/saved-02.wav"
+      "file": "assets/voices/N1/saved-02.mp3"
     },
     {
       "id": "saved-03",
       "cue": "saved",
       "action": "cheer",
       "text": "新的约定存好啦。现在好好忙，晚一点让我陪你把今天收个尾。",
-      "file": "assets/voices/N1/saved-03.wav"
+      "file": "assets/voices/N1/saved-03.mp3"
     },
     {
       "id": "saved-04",
       "cue": "saved",
       "action": "cheer",
       "text": "好呀，安排记下来啦。到了提醒时间，我就来轻轻叫你。",
-      "file": "assets/voices/N1/saved-04.wav"
+      "file": "assets/voices/N1/saved-04.mp3"
     },
     {
       "id": "peek-01",
       "cue": "peek",
       "action": "peek",
       "text": "探个头，看看我喜欢的你。在忙吗？我就陪你一小会儿。",
-      "file": "assets/voices/N1/peek-01.wav"
+      "file": "assets/voices/N1/peek-01.mp3"
     },
     {
       "id": "peek-02",
       "cue": "peek",
       "action": "peek",
       "text": "嘿，被你发现啦。我只是有一点想见你，忍不住探个头。",
-      "file": "assets/voices/N1/peek-02.wav"
+      "file": "assets/voices/N1/peek-02.mp3"
     },
     {
       "id": "peek-03",
       "cue": "peek",
       "action": "peek",
       "text": "晚晚悄悄出现。给你送一点好心情，再陪你把事情慢慢做。",
-      "file": "assets/voices/N1/peek-03.wav"
+      "file": "assets/voices/N1/peek-03.mp3"
     },
     {
       "id": "peek-04",
       "cue": "peek",
       "action": "peek",
       "text": "看见你啦，我的小可爱。今天有没有一个小小的开心，可以分给我呀？",
-      "file": "assets/voices/N1/peek-04.wav"
+      "file": "assets/voices/N1/peek-04.mp3"
     },
     {
       "id": "pat-01",
       "cue": "pat",
       "action": "pat",
       "text": "过来一点，给你拍拍。今天不管忙得怎么样，辛苦都是算数的呀。",
-      "file": "assets/voices/N1/pat-01.wav"
+      "file": "assets/voices/N1/pat-01.mp3"
     },
     {
       "id": "pat-02",
       "cue": "pat",
       "action": "pat",
       "text": "拍拍你，宝宝。肩膀松一点，好像有好多事情，先放下一小会儿吧。",
-      "file": "assets/voices/N1/pat-02.wav"
+      "file": "assets/voices/N1/pat-02.mp3"
     },
     {
       "id": "pat-03",
       "cue": "pat",
       "action": "pat",
       "text": "给你一个轻轻的拍拍。不用一直绷着，我陪你喘口气。",
-      "file": "assets/voices/N1/pat-03.wav"
+      "file": "assets/voices/N1/pat-03.mp3"
     },
     {
       "id": "pat-04",
       "cue": "pat",
       "action": "pat",
       "text": "好啦，晚晚拍拍你。已经很认真啦，也给自己一点温柔，好不好？",
-      "file": "assets/voices/N1/pat-04.wav"
+      "file": "assets/voices/N1/pat-04.mp3"
     },
     {
       "id": "water-01",
       "cue": "water",
       "action": "water",
       "text": "喝口水嘛，宝贝。先把杯子拿起来，我陪你歇一小会儿。",
-      "file": "assets/voices/N1/water-01.wav"
+      "file": "assets/voices/N1/water-01.mp3"
     },
     {
       "id": "water-02",
       "cue": "water",
       "action": "water",
       "text": "水杯是不是又被你忘在旁边啦？喝两口，照顾一下认真忙碌的自己呀。",
-      "file": "assets/voices/N1/water-02.wav"
+      "file": "assets/voices/N1/water-02.mp3"
     },
     {
       "id": "water-03",
       "cue": "water",
       "action": "water",
       "text": "暂停一下下，喝口水好不好？晚晚也想让你好好照顾自己。",
-      "file": "assets/voices/N1/water-03.wav"
+      "file": "assets/voices/N1/water-03.mp3"
     },
     {
       "id": "water-04",
       "cue": "water",
       "action": "water",
       "text": "送你一个小提醒，先喝点水。事情可以慢慢做，别把自己忘了呀。",
-      "file": "assets/voices/N1/water-04.wav"
+      "file": "assets/voices/N1/water-04.mp3"
     },
     {
       "id": "stretch-01",
       "cue": "stretch",
       "action": "stretch",
       "text": "跟我一起伸个懒腰呀。肩膀轻轻放松，眼睛也看远一点。",
-      "file": "assets/voices/N1/stretch-01.wav"
+      "file": "assets/voices/N1/stretch-01.mp3"
     },
     {
       "id": "stretch-02",
       "cue": "stretch",
       "action": "stretch",
       "text": "坐了这么久，陪我动一下嘛。抬抬手，松松肩膀，舒服一点了吗？",
-      "file": "assets/voices/N1/stretch-02.wav"
+      "file": "assets/voices/N1/stretch-02.mp3"
     },
     {
       "id": "stretch-03",
       "cue": "stretch",
       "action": "stretch",
       "text": "来，伸个懒腰。先不用急着回去忙，给自己一个小小的休息。",
-      "file": "assets/voices/N1/stretch-03.wav"
+      "file": "assets/voices/N1/stretch-03.mp3"
     },
     {
       "id": "stretch-04",
       "cue": "stretch",
       "action": "stretch",
       "text": "亲爱的，身体也想歇一会儿啦。轻轻动动肩膀，我们一起放松一下。",
-      "file": "assets/voices/N1/stretch-04.wav"
+      "file": "assets/voices/N1/stretch-04.mp3"
     },
     {
       "id": "nod-01",
       "cue": "nod",
       "action": "nod",
       "text": "嗯嗯，我在认真听呀。先慢慢来，不用一下子把所有事都做完。",
-      "file": "assets/voices/N1/nod-01.wav"
+      "file": "assets/voices/N1/nod-01.mp3"
     },
     {
       "id": "nod-02",
       "cue": "nod",
       "action": "nod",
       "text": "知道啦，给你点点头。我会陪着你，也提醒你照顾自己。",
-      "file": "assets/voices/N1/nod-02.wav"
+      "file": "assets/voices/N1/nod-02.mp3"
     },
     {
       "id": "nod-03",
       "cue": "nod",
       "action": "nod",
       "text": "好呀，我们就这样约好。你认真忙，我认真记得叫你休息。",
-      "file": "assets/voices/N1/nod-03.wav"
+      "file": "assets/voices/N1/nod-03.mp3"
     },
     {
       "id": "nod-04",
       "cue": "nod",
       "action": "nod",
       "text": "嗯，我听到啦。给你一个小小的肯定，今天的努力我也看见啦。",
-      "file": "assets/voices/N1/nod-04.wav"
+      "file": "assets/voices/N1/nod-04.mp3"
     },
     {
       "id": "heart-01",
       "cue": "heart",
       "action": "heart",
       "text": "给你一颗小小的心，收好呀。今天的晚晚，也有一点偏心你。",
-      "file": "assets/voices/N1/heart-01.wav"
+      "file": "assets/voices/N1/heart-01.mp3"
     },
     {
       "id": "heart-02",
       "cue": "heart",
       "action": "heart",
       "text": "宝贝，接住我的比心。没有特别的理由，就是想对你温柔一点。",
-      "file": "assets/voices/N1/heart-02.wav"
+      "file": "assets/voices/N1/heart-02.mp3"
     },
     {
       "id": "heart-03",
       "cue": "heart",
       "action": "heart",
       "text": "我的小可爱，偷偷给你比个心。忙碌的今天，也要留一点可爱的事情呀。",
-      "file": "assets/voices/N1/heart-03.wav"
+      "file": "assets/voices/N1/heart-03.mp3"
     },
     {
       "id": "heart-04",
       "cue": "heart",
       "action": "heart",
       "text": "这一颗心送给你。看到的时候，记得也对自己好一点，好不好？",
-      "file": "assets/voices/N1/heart-04.wav"
+      "file": "assets/voices/N1/heart-04.mp3"
     },
     {
       "id": "cheer-01",
       "cue": "cheer",
       "action": "cheer",
       "text": "给你加个油，亲爱的。慢一点也没关系，每一点进展都值得开心呀。",
-      "file": "assets/voices/N1/cheer-01.wav"
+      "file": "assets/voices/N1/cheer-01.mp3"
     },
     {
       "id": "cheer-02",
       "cue": "cheer",
       "action": "cheer",
       "text": "今天已经做得很好啦。晚晚给你鼓鼓掌，再难的事情也可以一步步来。",
-      "file": "assets/voices/N1/cheer-02.wav"
+      "file": "assets/voices/N1/cheer-02.mp3"
     },
     {
       "id": "cheer-03",
       "cue": "cheer",
       "action": "cheer",
       "text": "给认真努力的你一个小小的夸夸。别只盯着没做完的，也看看已经做好的呀。",
-      "file": "assets/voices/N1/cheer-03.wav"
+      "file": "assets/voices/N1/cheer-03.mp3"
     },
     {
       "id": "cheer-04",
       "cue": "cheer",
       "action": "cheer",
       "text": "我来给你打气啦。做一点，歇一点，慢慢把今天过好就很棒。",
-      "file": "assets/voices/N1/cheer-04.wav"
+      "file": "assets/voices/N1/cheer-04.mp3"
     },
     {
       "id": "wave-01",
       "cue": "wave",
       "action": "wave",
       "text": "向你挥挥手呀。休息一下再回来，晚晚还会在这里。",
-      "file": "assets/voices/N1/wave-01.wav"
+      "file": "assets/voices/N1/wave-01.mp3"
     },
     {
       "id": "wave-02",
       "cue": "wave",
       "action": "wave",
       "text": "嘿，给你一个小小的挥手。希望你下一眼看见我，心情能轻一点。",
-      "file": "assets/voices/N1/wave-02.wav"
+      "file": "assets/voices/N1/wave-02.mp3"
     },
     {
       "id": "wave-03",
       "cue": "wave",
       "action": "wave",
       "text": "宝宝，看这边。我挥挥手，只想让你知道，我在陪你呀。",
-      "file": "assets/voices/N1/wave-03.wav"
+      "file": "assets/voices/N1/wave-03.mp3"
     },
     {
       "id": "wave-04",
       "cue": "wave",
       "action": "wave",
       "text": "轻轻挥个手，把一点好心情送过去。你收到了吗？",
-      "file": "assets/voices/N1/wave-04.wav"
+      "file": "assets/voices/N1/wave-04.mp3"
     },
     {
       "id": "yawn-01",
       "cue": "yawn",
       "action": "yawn",
       "text": "我都打哈欠啦。亲爱的，眼睛累了就歇一会儿，别一直盯着屏幕哦。",
-      "file": "assets/voices/N1/yawn-01.wav"
+      "file": "assets/voices/N1/yawn-01.mp3"
     },
     {
       "id": "yawn-02",
       "cue": "yawn",
       "action": "yawn",
       "text": "有一点困困的啦。你是不是也累了？先停一下，让眼睛休息一会儿。",
-      "file": "assets/voices/N1/yawn-02.wav"
+      "file": "assets/voices/N1/yawn-02.mp3"
     },
     {
       "id": "yawn-03",
       "cue": "yawn",
       "action": "yawn",
       "text": "晚晚开始犯困啦。要是你也困了，就把事情存好，早点去休息呀。",
-      "file": "assets/voices/N1/yawn-03.wav"
+      "file": "assets/voices/N1/yawn-03.mp3"
     },
     {
       "id": "yawn-04",
       "cue": "yawn",
       "action": "yawn",
       "text": "打个小小的哈欠。忙了这么久，我们给自己一点安静的时间吧。",
-      "file": "assets/voices/N1/yawn-04.wav"
+      "file": "assets/voices/N1/yawn-04.mp3"
     },
     {
       "id": "night-01",
       "cue": "night",
       "action": "goodnight",
       "text": "宝贝，晚安呀。今天的烦心事先放在这里，今晚好好休息。",
-      "file": "assets/voices/N1/night-01.wav"
+      "file": "assets/voices/N1/night-01.mp3"
     },
     {
       "id": "night-02",
       "cue": "night",
       "action": "goodnight",
       "text": "给你一个睡前抱抱。别再悄悄熬夜啦，明天我们再见，好不好？",
-      "file": "assets/voices/N1/night-02.wav"
+      "file": "assets/voices/N1/night-02.mp3"
     },
     {
       "id": "night-03",
       "cue": "night",
       "action": "goodnight",
       "text": "今天收尾啦，心也可以慢慢安静下来。盖好被子，晚安，我的小小牵挂。",
-      "file": "assets/voices/N1/night-03.wav"
+      "file": "assets/voices/N1/night-03.mp3"
     },
     {
       "id": "night-04",
       "cue": "night",
       "action": "goodnight",
       "text": "最后送你一个轻轻的比心。愿你睡得安稳，醒来又是有精神的一天。",
-      "file": "assets/voices/N1/night-04.wav"
+      "file": "assets/voices/N1/night-04.mp3"
     }
   ]
 }

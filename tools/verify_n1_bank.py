@@ -11,9 +11,9 @@ reference=hashlib.sha256((ROOT/'assets/voices/reference/N1-reference.wav').read_
 hashes=set();checked=[]
 for row in catalog['lines']:
     record=next(r for r in records if r['id']==row['id'])
-    assert record['text']==row['text'] and record['file']==row['file']
+    assert record['text']==row['text'] and record.get('runtime_file',record['file'])==row['file']
     assert record['reference_sha256']==reference
-    path=ROOT/row['file'];digest=hashlib.sha256(path.read_bytes()).hexdigest()
+    path=ROOT/record['file'];digest=hashlib.sha256(path.read_bytes()).hexdigest()
     assert digest==record['sha256'] and digest not in hashes;hashes.add(digest)
     subprocess.run(['ffmpeg','-v','error','-i',str(path),'-f','null','-'],check=True)
     with wave.open(str(path)) as w:

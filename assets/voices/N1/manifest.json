@@ -15,7 +15,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20263702
+    "seed": 20263702,
+    "runtime_file": "assets/voices/N1/heart-02.mp3",
+    "runtime_sha256": "242dafdd635ce34846a01ccfd608d1501c04cdfed13a3ecfb87dd094403269ad"
   },
   {
     "id": "preview-02",
@@ -33,7 +35,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20267079
+    "seed": 20267079,
+    "runtime_file": "assets/voices/N1/preview-02.mp3",
+    "runtime_sha256": "58ac5e86dc0184f9886350de9ad86eca6cc09b2c9cbce9589a1e92eed5b965db"
   },
   {
     "id": "preview-03",
@@ -51,7 +55,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20267079
+    "seed": 20267079,
+    "runtime_file": "assets/voices/N1/preview-03.mp3",
+    "runtime_sha256": "9d09e8222ef8c444eb12ab57e1edffc0fb9220ff57c011a0809297c4991880d6"
   },
   {
     "id": "preview-04",
@@ -69,7 +75,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20267079
+    "seed": 20267079,
+    "runtime_file": "assets/voices/N1/preview-04.mp3",
+    "runtime_sha256": "7aa78603a00af7a3b027c0bc3be9706533958df5806489f69a3e7a2fd7aee45f"
   },
   {
     "id": "early-01",
@@ -87,7 +95,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20267079
+    "seed": 20267079,
+    "runtime_file": "assets/voices/N1/early-01.mp3",
+    "runtime_sha256": "bb22cc8c8d13224869333a7a7f16e2c64dd14bc5892f0622bfe53af1a2a0dce9"
   },
   {
     "id": "early-03",
@@ -105,7 +115,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20267079
+    "seed": 20267079,
+    "runtime_file": "assets/voices/N1/early-03.mp3",
+    "runtime_sha256": "15676d97605e55d246080481595d2e19a031bb3d1503e6665a7a0ad0c07e0816"
   },
   {
     "id": "early-04",
@@ -123,7 +135,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20267079
+    "seed": 20267079,
+    "runtime_file": "assets/voices/N1/early-04.mp3",
+    "runtime_sha256": "6f4c4fc608f65d317aa477884c4593be4ee2365332cfec5c091c95b1a425c709"
   },
   {
     "id": "soon-01",
@@ -141,7 +155,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20267079
+    "seed": 20267079,
+    "runtime_file": "assets/voices/N1/soon-01.mp3",
+    "runtime_sha256": "b52f637da62bbe61802de0bd7a2cff95d4c33f43adf71f7ee1f411919993a201"
   },
   {
     "id": "soon-02",
@@ -159,7 +175,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265217
+    "seed": 20265217,
+    "runtime_file": "assets/voices/N1/soon-02.mp3",
+    "runtime_sha256": "835ace8aa5b3fac5c905cd7455ca6883f6e4e5e173fdfdd970e89ee01f00caa7"
   },
   {
     "id": "soon-03",
@@ -177,7 +195,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265217
+    "seed": 20265217,
+    "runtime_file": "assets/voices/N1/soon-03.mp3",
+    "runtime_sha256": "2e62fd19168c679b982d5b5156667ba55be3668b0c425914a1fb1ef383cc079a"
   },
   {
     "id": "soon-04",
@@ -195,7 +215,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265217
+    "seed": 20265217,
+    "runtime_file": "assets/voices/N1/soon-04.mp3",
+    "runtime_sha256": "b8f7769808a8fca858c94868c004ac1256b0ba15b05c9e9252316175198984c5"
   },
   {
     "id": "bed-02",
@@ -213,7 +235,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265217
+    "seed": 20265217,
+    "runtime_file": "assets/voices/N1/bed-02.mp3",
+    "runtime_sha256": "fa1c4eb77683025ad0cb4c3f2f00be02896acebe5e74b61656157512800df4ec"
   },
   {
     "id": "bed-03",
@@ -231,7 +255,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265217
+    "seed": 20265217,
+    "runtime_file": "assets/voices/N1/bed-03.mp3",
+    "runtime_sha256": "9722f9e3f299628c2456a8308d9c2ce17424c3ad16bf6a12f4fdffbba89f1810"
   },
   {
     "id": "bed-04",
@@ -249,7 +275,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265217
+    "seed": 20265217,
+    "runtime_file": "assets/voices/N1/bed-04.mp3",
+    "runtime_sha256": "e5071d43ca77e254c3979ec90a72cdd2d810f4ecbf1ca2e63a7534be4fb0c47d"
   },
   {
     "id": "final-02",
@@ -267,7 +295,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266641
+    "seed": 20266641,
+    "runtime_file": "assets/voices/N1/final-02.mp3",
+    "runtime_sha256": "0c716b2bb520c73846a619e3dc56dc1482fe24af10449eb881a98851f6317b23"
   },
   {
     "id": "final-03",
@@ -285,7 +315,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266641
+    "seed": 20266641,
+    "runtime_file": "assets/voices/N1/final-03.mp3",
+    "runtime_sha256": "3083c97ddb32078033ba336b39ffc09c4d3587fe7ecfe08e66552cd51a6d7e4a"
   },
   {
     "id": "final-04",
@@ -303,7 +335,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266641
+    "seed": 20266641,
+    "runtime_file": "assets/voices/N1/final-04.mp3",
+    "runtime_sha256": "44bbb497b906990f84bf7a11077b8446d1e8aac1a8e209ae5a48b00f342f3307"
   },
   {
     "id": "dialog-02",
@@ -321,7 +355,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266641
+    "seed": 20266641,
+    "runtime_file": "assets/voices/N1/dialog-02.mp3",
+    "runtime_sha256": "d3d57564a2839cad6f77eb5915bd34ef915218b0313431ad959ed1d35a494f5e"
   },
   {
     "id": "dialog-03",
@@ -339,7 +375,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266641
+    "seed": 20266641,
+    "runtime_file": "assets/voices/N1/dialog-03.mp3",
+    "runtime_sha256": "1904a1a63b6afcc838f800fb32a371e1fb68e1cbbbe3f7fcf792dc4ce34300d7"
   },
   {
     "id": "demo-02",
@@ -357,7 +395,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266107
+    "seed": 20266107,
+    "runtime_file": "assets/voices/N1/demo-02.mp3",
+    "runtime_sha256": "6ba394e8be94aa60cbc85e1e8cf068e404933db9830c884dab62a700e2071b00"
   },
   {
     "id": "demo-03",
@@ -375,7 +415,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266107
+    "seed": 20266107,
+    "runtime_file": "assets/voices/N1/demo-03.mp3",
+    "runtime_sha256": "a5faa8cf08febd08e198e36e6bee9e80e16aa3339efe303c09dc28b05f33cd74"
   },
   {
     "id": "demo-04",
@@ -393,7 +435,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266107
+    "seed": 20266107,
+    "runtime_file": "assets/voices/N1/demo-04.mp3",
+    "runtime_sha256": "021e0016b428cafc25c55113f434be0f53eaea1b3da5dfb86c0d7d59642d2001"
   },
   {
     "id": "defer-04",
@@ -411,7 +455,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266107
+    "seed": 20266107,
+    "runtime_file": "assets/voices/N1/defer-04.mp3",
+    "runtime_sha256": "f01968059e4ee09adba9274080d11db242a02a459f0b51d3b0b17491a90e8819"
   },
   {
     "id": "cancel-01",
@@ -429,7 +475,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266107
+    "seed": 20266107,
+    "runtime_file": "assets/voices/N1/cancel-01.mp3",
+    "runtime_sha256": "9410c87a602585ab7abe98e2cf69b3761dead0081fce52ff7ba4a63e52991422"
   },
   {
     "id": "cancel-03",
@@ -447,7 +495,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20267530
+    "seed": 20267530,
+    "runtime_file": "assets/voices/N1/cancel-03.mp3",
+    "runtime_sha256": "de2eb3fead3f66486c383843fe60e5a534386637fba449628a21fb8a887e2228"
   },
   {
     "id": "cancel-04",
@@ -465,7 +515,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20267530
+    "seed": 20267530,
+    "runtime_file": "assets/voices/N1/cancel-04.mp3",
+    "runtime_sha256": "b8d2d08e8ed43c5ed217b18ef93a924e9c2596ff84fbb56f1f9c0889d6068607"
   },
   {
     "id": "goodnight-02",
@@ -483,7 +535,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20267530
+    "seed": 20267530,
+    "runtime_file": "assets/voices/N1/goodnight-02.mp3",
+    "runtime_sha256": "d18b967d465ef38a699aab40e655ef25622e750a7a85d8daaf6948f5d3f8d6f3"
   },
   {
     "id": "goodnight-03",
@@ -501,7 +555,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20267530
+    "seed": 20267530,
+    "runtime_file": "assets/voices/N1/goodnight-03.mp3",
+    "runtime_sha256": "10c86210c9c9dbc8eed4e4b77c61d0b80e15b2791706a51f64b100b10da9c9c8"
   },
   {
     "id": "goodnight-04",
@@ -519,7 +575,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20267530
+    "seed": 20267530,
+    "runtime_file": "assets/voices/N1/goodnight-04.mp3",
+    "runtime_sha256": "2e0008244b5006e30fce5eb4fa8464ac79c6da347c84b276613f7f4894ef8095"
   },
   {
     "id": "hello-02",
@@ -537,7 +595,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265988
+    "seed": 20265988,
+    "runtime_file": "assets/voices/N1/hello-02.mp3",
+    "runtime_sha256": "676b0d797845af11932cddc41385004d76e922796e65dc0289df5689725ea494"
   },
   {
     "id": "hello-03",
@@ -555,7 +615,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265988
+    "seed": 20265988,
+    "runtime_file": "assets/voices/N1/hello-03.mp3",
+    "runtime_sha256": "ec1f9bca10946e3d532370d3f61d277255b791c95d13a4a31f4d55f237b47dd9"
   },
   {
     "id": "hello-04",
@@ -573,7 +635,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265988
+    "seed": 20265988,
+    "runtime_file": "assets/voices/N1/hello-04.mp3",
+    "runtime_sha256": "4625ecc811e227d575dfdc9a7ea7738f2338d985d3b2ccaf1078f00ed50fc8af"
   },
   {
     "id": "saved-01",
@@ -591,7 +655,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265988
+    "seed": 20265988,
+    "runtime_file": "assets/voices/N1/saved-01.mp3",
+    "runtime_sha256": "9cdd3c15b2a5e56df6b8f5c67c3a1fe61d5248132c01d61c6f2acbe309792a4b"
   },
   {
     "id": "saved-02",
@@ -609,7 +675,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265988
+    "seed": 20265988,
+    "runtime_file": "assets/voices/N1/saved-02.mp3",
+    "runtime_sha256": "e9c847ea29fbeba9b5aa7b5a8cdc2677b74e5e3c771996f7616b64dd1e78389f"
   },
   {
     "id": "saved-03",
@@ -627,7 +695,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265554
+    "seed": 20265554,
+    "runtime_file": "assets/voices/N1/saved-03.mp3",
+    "runtime_sha256": "b9b822c6e9f60fd81927895225074a552b7414d59cb527647ced51dc13228a4f"
   },
   {
     "id": "saved-04",
@@ -645,7 +715,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265554
+    "seed": 20265554,
+    "runtime_file": "assets/voices/N1/saved-04.mp3",
+    "runtime_sha256": "594a2567e32da847d68509d3884e49d05250b6d30ef4c5fafb2ba99a1ac9c4fa"
   },
   {
     "id": "peek-01",
@@ -663,7 +735,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265554
+    "seed": 20265554,
+    "runtime_file": "assets/voices/N1/peek-01.mp3",
+    "runtime_sha256": "e920dfadc29408b585da3f4399fd580d8ce2841dab3c92995b2135ba705e984a"
   },
   {
     "id": "peek-02",
@@ -681,7 +755,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265554
+    "seed": 20265554,
+    "runtime_file": "assets/voices/N1/peek-02.mp3",
+    "runtime_sha256": "b469454abd740b2fa6f149f49505c8b7eed1ce567189a7e1317a92cf1f84ef0b"
   },
   {
     "id": "peek-03",
@@ -699,7 +775,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265554
+    "seed": 20265554,
+    "runtime_file": "assets/voices/N1/peek-03.mp3",
+    "runtime_sha256": "0e4a1f789b2f4c51cf35d94bb32e27455141030c05faf38fba1effb4e8996612"
   },
   {
     "id": "pat-01",
@@ -717,7 +795,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265554
+    "seed": 20265554,
+    "runtime_file": "assets/voices/N1/pat-01.mp3",
+    "runtime_sha256": "20eb14a1bbbcf8e62e5876145cc1a6c7d93b7abc9161c6efe9c02832bc8f350c"
   },
   {
     "id": "pat-03",
@@ -735,7 +815,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266526
+    "seed": 20266526,
+    "runtime_file": "assets/voices/N1/pat-03.mp3",
+    "runtime_sha256": "2705207307329db8977326d4f0cb8f5ea89cded6f195e78f28de68990bfb0e05"
   },
   {
     "id": "pat-04",
@@ -753,7 +835,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266526
+    "seed": 20266526,
+    "runtime_file": "assets/voices/N1/pat-04.mp3",
+    "runtime_sha256": "56444952904440226c5253e6f27c9a93e90953299730f5ad0caa27eb2b08d2c9"
   },
   {
     "id": "water-01",
@@ -771,7 +855,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266526
+    "seed": 20266526,
+    "runtime_file": "assets/voices/N1/water-01.mp3",
+    "runtime_sha256": "f589c8e25189a9eb8bb801675d4d289b4f5bd2329272d99d20c70d6398d7b730"
   },
   {
     "id": "water-02",
@@ -789,7 +875,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266526
+    "seed": 20266526,
+    "runtime_file": "assets/voices/N1/water-02.mp3",
+    "runtime_sha256": "628aa069c2a0d656698a2fe94de7edca43de42688a082d420f3dbfded35af0d9"
   },
   {
     "id": "water-03",
@@ -807,7 +895,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266526
+    "seed": 20266526,
+    "runtime_file": "assets/voices/N1/water-03.mp3",
+    "runtime_sha256": "d5c0b502ea1721e23562ed58573f8c03775b166b93a5358f1205972c7c0b7142"
   },
   {
     "id": "water-04",
@@ -825,7 +915,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266526
+    "seed": 20266526,
+    "runtime_file": "assets/voices/N1/water-04.mp3",
+    "runtime_sha256": "74f32df93fd9427f29379ef09482323128e139b49387cf58c335745b2af8e57e"
   },
   {
     "id": "stretch-01",
@@ -843,7 +935,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266526
+    "seed": 20266526,
+    "runtime_file": "assets/voices/N1/stretch-01.mp3",
+    "runtime_sha256": "df78053fced9cb8fa637438dfdc66b8a2a13b38c3f575d9b27863849f7f3e52f"
   },
   {
     "id": "stretch-02",
@@ -861,7 +955,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266526
+    "seed": 20266526,
+    "runtime_file": "assets/voices/N1/stretch-02.mp3",
+    "runtime_sha256": "a4e20d2d31c329a4f079f0f30e2964e6d4bc3b2e48033ad480153816e9153c76"
   },
   {
     "id": "stretch-03",
@@ -879,7 +975,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266037
+    "seed": 20266037,
+    "runtime_file": "assets/voices/N1/stretch-03.mp3",
+    "runtime_sha256": "d867020ec59072ede20ef53f2e2aeaeac726714f9f07423f17c295d83ca96f31"
   },
   {
     "id": "nod-01",
@@ -897,7 +995,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266037
+    "seed": 20266037,
+    "runtime_file": "assets/voices/N1/nod-01.mp3",
+    "runtime_sha256": "cc65edfbed5352b153ef3bb7207bbe0ccb362a606460cebcbe9efa582c0f460e"
   },
   {
     "id": "nod-02",
@@ -915,7 +1015,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266037
+    "seed": 20266037,
+    "runtime_file": "assets/voices/N1/nod-02.mp3",
+    "runtime_sha256": "b36c7ec079b3b91713a7b603f8e065be14b4c80ce8da0aa138d7f1797497e4d8"
   },
   {
     "id": "nod-03",
@@ -933,7 +1035,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266037
+    "seed": 20266037,
+    "runtime_file": "assets/voices/N1/nod-03.mp3",
+    "runtime_sha256": "4f6de8720cd2a03266761a9193ae04e174bc736b03d254c7da65128bbb3a551a"
   },
   {
     "id": "nod-04",
@@ -951,7 +1055,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266037
+    "seed": 20266037,
+    "runtime_file": "assets/voices/N1/nod-04.mp3",
+    "runtime_sha256": "eaa18ba86bbcd8be8ec879ee6aa58246910c3feb4681b36b3a4fd5a3bdde7b93"
   },
   {
     "id": "heart-01",
@@ -969,7 +1075,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266037
+    "seed": 20266037,
+    "runtime_file": "assets/voices/N1/heart-01.mp3",
+    "runtime_sha256": "6a7897f5634b8a33045962dd489af66697dfc434f9b576145769ec88ff6c36f1"
   },
   {
     "id": "heart-04",
@@ -987,7 +1095,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266071
+    "seed": 20266071,
+    "runtime_file": "assets/voices/N1/heart-04.mp3",
+    "runtime_sha256": "a346f3060b8d9c8ea5a9996d969d3b3d26ed3351fcd59fd51488b51ace349a6e"
   },
   {
     "id": "cheer-02",
@@ -1005,7 +1115,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266071
+    "seed": 20266071,
+    "runtime_file": "assets/voices/N1/cheer-02.mp3",
+    "runtime_sha256": "2060198bf0fb67a818d3a4536a320c14c9e866aaccceebcf1ae6045951812d72"
   },
   {
     "id": "cheer-03",
@@ -1023,7 +1135,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266071
+    "seed": 20266071,
+    "runtime_file": "assets/voices/N1/cheer-03.mp3",
+    "runtime_sha256": "d58199ece4abde4dfd18660e18a9032622d6f076841320e5f335e753ba8087cb"
   },
   {
     "id": "cheer-04",
@@ -1041,7 +1155,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266071
+    "seed": 20266071,
+    "runtime_file": "assets/voices/N1/cheer-04.mp3",
+    "runtime_sha256": "3dfd990b103168ee7bdd1e68a6929484955fc6a6d24fb876f19836844084b75e"
   },
   {
     "id": "wave-01",
@@ -1059,7 +1175,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266071
+    "seed": 20266071,
+    "runtime_file": "assets/voices/N1/wave-01.mp3",
+    "runtime_sha256": "f2cb62ec8b995d699242498e1f5d8446890f6188adb9ea12a60415d409083c6b"
   },
   {
     "id": "wave-02",
@@ -1077,7 +1195,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266071
+    "seed": 20266071,
+    "runtime_file": "assets/voices/N1/wave-02.mp3",
+    "runtime_sha256": "54b66874aa6b6d9df47f866c9d5fcea245bfe15fe5f8dce9b911157a6e74af1c"
   },
   {
     "id": "wave-04",
@@ -1095,7 +1215,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265995
+    "seed": 20265995,
+    "runtime_file": "assets/voices/N1/wave-04.mp3",
+    "runtime_sha256": "120c2d9d8dff79e1e1dd2d92f1d66ace753621e781d8d4ad0ae67891dcf779b1"
   },
   {
     "id": "yawn-02",
@@ -1113,7 +1235,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265995
+    "seed": 20265995,
+    "runtime_file": "assets/voices/N1/yawn-02.mp3",
+    "runtime_sha256": "99d4709154f5b5d7582452950fbd1ce7c93fd0dd6ca5d20ae111a749dc66dde9"
   },
   {
     "id": "yawn-03",
@@ -1131,7 +1255,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265995
+    "seed": 20265995,
+    "runtime_file": "assets/voices/N1/yawn-03.mp3",
+    "runtime_sha256": "b92ac6ef75df0695d0f88d3634c278e57834bf56c5b5ae02cdfa570213facac3"
   },
   {
     "id": "yawn-04",
@@ -1149,7 +1275,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265995
+    "seed": 20265995,
+    "runtime_file": "assets/voices/N1/yawn-04.mp3",
+    "runtime_sha256": "6e925f8a6cf63b4b3df491a9348222d3aa764409abe3597dbe01d2c59aad3066"
   },
   {
     "id": "night-01",
@@ -1167,7 +1295,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265995
+    "seed": 20265995,
+    "runtime_file": "assets/voices/N1/night-01.mp3",
+    "runtime_sha256": "afd440e64226f471dcc293aace40e912d42316e5b3fb8f45507fecb916f286be"
   },
   {
     "id": "night-02",
@@ -1185,7 +1315,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265995
+    "seed": 20265995,
+    "runtime_file": "assets/voices/N1/night-02.mp3",
+    "runtime_sha256": "f343e863677662010d2fb3ffac782d3c1f2d40b584b4dea161611b6dc057f755"
   },
   {
     "id": "night-03",
@@ -1203,7 +1335,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265995
+    "seed": 20265995,
+    "runtime_file": "assets/voices/N1/night-03.mp3",
+    "runtime_sha256": "2b6042d8e92b506fe41a851cc91ba997ef09be3c4f582e9d94aabd89cedc085b"
   },
   {
     "id": "night-04",
@@ -1221,7 +1355,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20261693
+    "seed": 20261693,
+    "runtime_file": "assets/voices/N1/night-04.mp3",
+    "runtime_sha256": "2b70a1eba720e4cb7227843cc55c9e27a0995935af33e41185d5d3d105e427fb"
   },
   {
     "id": "dialog-01",
@@ -1239,7 +1375,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265721
+    "seed": 20265721,
+    "runtime_file": "assets/voices/N1/dialog-01.mp3",
+    "runtime_sha256": "b64e5208db97f3c0f219a5a40f144e191ee37f6c4ef19340e0075c4f1ef169a1"
   },
   {
     "id": "dialog-04",
@@ -1257,7 +1395,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265721
+    "seed": 20265721,
+    "runtime_file": "assets/voices/N1/dialog-04.mp3",
+    "runtime_sha256": "bc0d7d65c91fe9116c18bb23b3dcee0b2d1f7684b3868c85859973690668eb3e"
   },
   {
     "id": "defer-01",
@@ -1275,7 +1415,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265721
+    "seed": 20265721,
+    "runtime_file": "assets/voices/N1/defer-01.mp3",
+    "runtime_sha256": "dbcdcd82b14defa8e354eea8a96acb5fcaa01a60d0ba23475f5f3b1a2825c238"
   },
   {
     "id": "defer-03",
@@ -1293,7 +1435,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265721
+    "seed": 20265721,
+    "runtime_file": "assets/voices/N1/defer-03.mp3",
+    "runtime_sha256": "b6387b6cbdc0074a5cff2477f50374ca811cbde276f48bf055482657a864283d"
   },
   {
     "id": "bye-01",
@@ -1311,7 +1455,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265721
+    "seed": 20265721,
+    "runtime_file": "assets/voices/N1/bye-01.mp3",
+    "runtime_sha256": "e6febb0dde5c6d76ca3ceef1bc5831f35b09da8ba18910f3bbdc9e637ac2b108"
   },
   {
     "id": "bye-02",
@@ -1329,7 +1475,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265721
+    "seed": 20265721,
+    "runtime_file": "assets/voices/N1/bye-02.mp3",
+    "runtime_sha256": "b52f2ae30f428a2d77b31494322fbe7259bfa8aaca63c57dc14cf81fff5e5ca6"
   },
   {
     "id": "bye-03",
@@ -1347,7 +1495,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265721
+    "seed": 20265721,
+    "runtime_file": "assets/voices/N1/bye-03.mp3",
+    "runtime_sha256": "2f13f49a46ae9af5bce07762cc597e3416849cad855829cca4cd3c76cb085808"
   },
   {
     "id": "bye-04",
@@ -1365,7 +1515,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20265721
+    "seed": 20265721,
+    "runtime_file": "assets/voices/N1/bye-04.mp3",
+    "runtime_sha256": "b09da3c64b75382067be244a9bd9cb0f9f0297d6986bb05693b71b7180b558f2"
   },
   {
     "id": "preview-01",
@@ -1383,7 +1535,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266797
+    "seed": 20266797,
+    "runtime_file": "assets/voices/N1/preview-01.mp3",
+    "runtime_sha256": "803fc5fe3b54ca090ae4bbc88f1c15ebb8921bccc4e7f074aaf52e553df22f8c"
   },
   {
     "id": "early-02",
@@ -1401,7 +1555,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266797
+    "seed": 20266797,
+    "runtime_file": "assets/voices/N1/early-02.mp3",
+    "runtime_sha256": "28448dd2478ac5cfb62099687f82a32123e105085fda6d51fc892bd15f176c04"
   },
   {
     "id": "bed-01",
@@ -1419,7 +1575,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266797
+    "seed": 20266797,
+    "runtime_file": "assets/voices/N1/bed-01.mp3",
+    "runtime_sha256": "083e3c0372a0a1df2393f257b75e9ad9950f302225d092fedc30d90be1f7044e"
   },
   {
     "id": "final-01",
@@ -1437,7 +1595,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266797
+    "seed": 20266797,
+    "runtime_file": "assets/voices/N1/final-01.mp3",
+    "runtime_sha256": "3c9efbf8bd36b39dbb572249dd833e27cab76f302029297b688b62c744eaf3d9"
   },
   {
     "id": "demo-01",
@@ -1455,7 +1615,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266797
+    "seed": 20266797,
+    "runtime_file": "assets/voices/N1/demo-01.mp3",
+    "runtime_sha256": "43bf8417ea5bdd9b6a5708e742c59d0408027d01c497fe54a1967e7ef4288a0e"
   },
   {
     "id": "defer-02",
@@ -1473,7 +1635,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266797
+    "seed": 20266797,
+    "runtime_file": "assets/voices/N1/defer-02.mp3",
+    "runtime_sha256": "8c3dc4cbeafc61d762d337fc45ce41acd945b42cbcb250c1acabf2a7d0919278"
   },
   {
     "id": "cancel-02",
@@ -1491,7 +1655,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266797
+    "seed": 20266797,
+    "runtime_file": "assets/voices/N1/cancel-02.mp3",
+    "runtime_sha256": "fd6a1d2e17ab0814b3525ae98a1d9e3c6e3c00806bd8a8df796557058b60e723"
   },
   {
     "id": "goodnight-01",
@@ -1509,7 +1675,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266797
+    "seed": 20266797,
+    "runtime_file": "assets/voices/N1/goodnight-01.mp3",
+    "runtime_sha256": "0e835be79621a607e748ba23a9b544fdd09f1a1271a72d5b7ec94581365f996f"
   },
   {
     "id": "hello-01",
@@ -1527,7 +1695,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266133
+    "seed": 20266133,
+    "runtime_file": "assets/voices/N1/hello-01.mp3",
+    "runtime_sha256": "5fa3584adddff65f07999de659ca3816055cda6731d8b48b171995b3a435f11d"
   },
   {
     "id": "peek-04",
@@ -1545,7 +1715,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266133
+    "seed": 20266133,
+    "runtime_file": "assets/voices/N1/peek-04.mp3",
+    "runtime_sha256": "6f4226deb7cf3134375ac5952ad705c8acc675e899ff795d46463dc0191d3f30"
   },
   {
     "id": "pat-02",
@@ -1563,7 +1735,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266133
+    "seed": 20266133,
+    "runtime_file": "assets/voices/N1/pat-02.mp3",
+    "runtime_sha256": "4b0e7b1907c2bbbf5f36218fafeb03106900b4a2508aaeebc8e59fa8a3648350"
   },
   {
     "id": "stretch-04",
@@ -1581,7 +1755,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266133
+    "seed": 20266133,
+    "runtime_file": "assets/voices/N1/stretch-04.mp3",
+    "runtime_sha256": "202beb823157278e2d6e4018c4d744a353cc54da417cd8bad63dffaf86dbcc6d"
   },
   {
     "id": "heart-03",
@@ -1599,7 +1775,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266133
+    "seed": 20266133,
+    "runtime_file": "assets/voices/N1/heart-03.mp3",
+    "runtime_sha256": "3b90c32f8d38c7e2a0d5038b3f5313fa0734421e8503e0da5578d28312571c82"
   },
   {
     "id": "cheer-01",
@@ -1617,7 +1795,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266133
+    "seed": 20266133,
+    "runtime_file": "assets/voices/N1/cheer-01.mp3",
+    "runtime_sha256": "3877c448319d7e531889337f56aecf8e2534e8c376b04942673ff5e9e1dd7f66"
   },
   {
     "id": "wave-03",
@@ -1635,7 +1815,9 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266133
+    "seed": 20266133,
+    "runtime_file": "assets/voices/N1/wave-03.mp3",
+    "runtime_sha256": "093a1f61afd1f5cccd2c9d17675cce7f205d6edc5a0c8263c175277b4e314dc4"
   },
   {
     "id": "yawn-01",
@@ -1653,6 +1835,8 @@
     "reference_sha256": "3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec",
     "reference_text": "已经有点晚啦。先保存一下，好不好？我陪你慢慢收尾，晚安。",
     "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
-    "seed": 20266133
+    "seed": 20266133,
+    "runtime_file": "assets/voices/N1/yawn-01.mp3",
+    "runtime_sha256": "199859e09e5f498cc5a20b4d2cf836b39a8f54cf9cc3df8074a34011756d1beb"
   }
 ]
