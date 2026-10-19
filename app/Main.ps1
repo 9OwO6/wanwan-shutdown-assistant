@@ -203,7 +203,7 @@ function Show-BedDialog([bool]$demo,[datetime]$Now=(Get-Date),[switch]$Quiet,[sw
   $answer=[Windows.MessageBox]::Show($(if($script:caughtMode){'取消后，今晚晚晚不再监督，明天照常守护。真的有急事要处理吗？'}else{'取消后，今晚不会再自动关机。确实有紧急事情要继续吗？'}),'取消今晚的约定','YesNo','Question')
   if($answer -eq 'Yes'){$key=(Get-NightState (Get-Date) $cfg).Key;$cfg.Cancelled=$key;Save-Config;Set-TonightResult $key 'cancelled';Write-Event 'Cancelled';$script:dialog.Close();Say-Cue cancel}
  })
- $dialog.Add_Closing({param($sender,$e) if(-not $script:demoMode -and $cfg.Enabled -and $cfg.Cancelled -ne (Get-NightState (Get-Date) $cfg).Key -and (Get-Date) -ge (Get-NightState (Get-Date) $cfg).End.AddMinutes(-2)){$e.Cancel=$true}})
+ $dialog.Add_Closing({param($sender,$e) if(-not $script:nightWindowOver -and -not $script:demoMode -and $cfg.Enabled -and $cfg.Cancelled -ne (Get-NightState (Get-Date) $cfg).Key -and (Get-Date) -ge (Get-NightState (Get-Date) $cfg).End.AddMinutes(-2)){$e.Cancel=$true}})
  $dialog.Add_Closed({$script:dialog=$null;$script:miniDialogSurface=$null;$script:countdownView='Expanded';$script:demoMode=$false;$script:caughtMode=$false;if($cfg.DesktopPet -and -not $script:quitting){Show-DesktopPet -Compact}})
  $dialog.Show(); Set-CompanionMode '晚安'; if($script:motionEnabled){Animate-Double $dialog ([Windows.UIElement]::OpacityProperty) 0 1 0.4;Animate-Double ($dialog.FindName('Remaining')) ([Windows.UIElement]::OpacityProperty) 0.55 1 1.8 $true}; if($Caught){Enter-CaughtMode $Now -Quiet:$Quiet}elseif(-not $Quiet){if($demo){Say-Cue dialog -Demo}else{Say-ClockReminder -Now $Now -Cue $(if($state.Phase -eq 'Due'){if($cfg.Action -eq 'Sleep'){'final'}else{'due'}}elseif($state.Phase -eq 'Final'){'final'}else{'bed'})}}
 }
@@ -278,7 +278,8 @@ function Invoke-GuardTick([datetime]$now=(Get-Date)){
  $weekendNote=if($cfg.WeekendBedtime){' · 周五六晚 '+$cfg.WeekendBedtime}else{''}
  $ui.Countdown.Text=if(-not $cfg.Enabled){'要到点关机或睡眠，点下面的「开启到点守护」'}elseif($cfg.Cancelled -eq $s.Key){'今晚已取消，好好照顾自己'}elseif($s.Phase -eq 'Day' -or $s.Phase -eq 'Quiet'){'我会提前半小时轻轻提醒你'+$weekendNote}else{'最晚 '+$s.End.ToString('HH:mm')+'，我们就休息'}
  # 夜晚区间结束（例如睡眠到第二天才唤醒）时，收起遗留的倒计时。
- if($script:dialog -and -not $script:demoMode -and $s.Phase -in @('Day','Quiet','Early','Soon')){$script:dialog.Close();if(-not $script:dialog){Write-Event 'Night window ended; countdown closed'}}
+ # 用这次检查的时间判断（不是系统当前时间），睡眠唤醒或测试时都能正确收起。
+ if($script:dialog -and -not $script:demoMode -and $s.Phase -in @('Day','Quiet','Early','Soon')){$script:nightWindowOver=$true;try{$script:dialog.Close()}finally{$script:nightWindowOver=$false};if(-not $script:dialog){Write-Event 'Night window ended; countdown closed'}}
  $ui.Progress.Value=[math]::Max(0,[math]::Min(100,(($now-$s.Bed.AddMinutes(-30)).TotalMinutes/(30+$cfg.Grace))*100))
  if($script:dialog){
   $left=Update-CountdownText $now
