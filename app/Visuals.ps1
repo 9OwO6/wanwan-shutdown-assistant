@@ -104,7 +104,7 @@ $ui.Portrait.Add_MouseLeftButtonDown({$touch=@('pat','heart','cheer','wave','pee
 $script:visualTimer=[Windows.Threading.DispatcherTimer]::new();$script:visualTimer.Interval=[timespan]::FromMilliseconds(50)
 $script:visualTimer.Add_Tick({
  $ms=$script:animationClock.ElapsedMilliseconds
- $badge=$win.FindName('VoiceBadge');if($badge){$badge.Text=if(-not $cfg.Voice){'♫  语音已关闭，小动作还会陪着你'}elseif($script:voiceUntil -and (Get-Date) -lt $script:voiceUntil){'♫  晚晚正在轻轻和你说话…'}elseif($cfg.VoicePreset -eq 'N1'){'♫  晚晚的声音 · 清甜温柔'}else{'♫  系统朗读 · 在设置里可以换回晚晚的声音'}}
+ $badge=$win.FindName('VoiceBadge');if($badge){$badge.Text=if(-not $cfg.Voice){'♫  语音已关闭，小动作还会陪着你'}elseif($script:voiceUntil -and (Get-Date) -lt $script:voiceUntil){'♫  晚晚正在轻轻和你说话…'}elseif($cfg.VoicePreset -ne 'System'){$voiceInfo=$script:voiceCatalog|Where-Object id -eq $cfg.VoicePreset|Select-Object -First 1;'♫  晚晚的声音 · '+$(if($voiceInfo){$voiceInfo.name}else{'清甜温柔'})}else{'♫  系统朗读 · 在设置里可以换回晚晚的声音'}}
  if($script:popup -and $ms -gt $script:popupUntil -and -not $script:petDragging){Complete-DesktopPetReminder}
  $active=$script:action -and $ms -lt $script:action.End
  $holding=$script:action -and $script:voiceUntil -and (Get-Date) -lt $script:voiceUntil

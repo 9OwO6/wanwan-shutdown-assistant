@@ -128,7 +128,7 @@ function Update-GuardSummary {
  $parts+=('到点'+(Get-GuardActionName));$parts+=('起夜监督 '+$cfg.SleepHours+' 小时')
  $ui.GuardSummary.Text=($parts -join ' · ')
  $bed=(Get-NightState (Get-Date) $cfg).Bed;$end=$bed.AddMinutes([int]$cfg.Grace)
- $steps=@(@($bed.AddMinutes(-30),'轻声提醒'),@($bed.AddMinutes(-10),'记得保存'),@($bed,'开始收尾 '+$cfg.Grace+' 分钟'),@($end,$(if($cfg.Enabled){'帮你'+(Get-GuardActionName)}else{'只提醒，不'+(Get-GuardActionName)})))
+ $steps=@(@($bed.AddMinutes(-30),'轻声提醒'),@($bed.AddMinutes(-10),'记得保存'),@($bed,'收尾 '+$cfg.Grace+' 分钟'),@($end,$(if($cfg.Enabled){'帮你'+(Get-GuardActionName)}else{'只提醒，不'+(Get-GuardActionName)})))
  $ui.Timeline.Children.Clear()
  foreach($step in $steps){$cell=[Windows.Controls.StackPanel]::new();$t=[Windows.Controls.TextBlock]::new();$t.Text=$step[0].ToString('HH:mm');$t.FontSize=17;$t.Foreground=[Windows.Media.BrushConverter]::new().ConvertFromString('#6E5A64');$l=[Windows.Controls.TextBlock]::new();$l.Text=$step[1];$l.FontSize=11;$l.Foreground=[Windows.Media.BrushConverter]::new().ConvertFromString('#A08C96');$l.Margin=[Windows.Thickness]::new(0,2,0,0);$cell.Children.Add($t)|Out-Null;$cell.Children.Add($l)|Out-Null;$ui.Timeline.Children.Add($cell)|Out-Null}
  $ui.GuardSwitch.Content=if($cfg.Enabled){'暂停守护'}else{'开启到点守护'}
@@ -153,7 +153,7 @@ function Get-FormVoice {foreach($voiceId in 'V3','V4','System'){if($ui['Voice'+$
 function Update-AddressHint {
  $address=Get-FormAddress;$voice=Get-FormVoice
  $ui.NameInput.IsEnabled=($address -eq 'custom');$ui.NameInput.Visibility=if($address -eq 'custom'){[Windows.Visibility]::Visible}else{[Windows.Visibility]::Collapsed}
- $ui.AddressHint.Text=if($voice -eq 'N1' -and $address -ne 'rotate'){'清甜（N1）是整句录音，暂时只会按原台词轮流叫；换称呼请选「知性」「清冷」或系统朗读。'}elseif($address -eq 'custom' -and $voice -ne 'System'){'自定义名字会显示在提醒气泡里；录音里不叫称呼。想听到名字可以选「系统朗读」。'}else{''}
+ $ui.AddressHint.Text=if($voice -eq 'N1' -and $address -ne 'rotate'){'清甜（N1）是整句录音，暂时只会按原台词轮流叫；想换称呼请选'+((@(Get-AvailableVoices|Where-Object id -ne 'N1'|ForEach-Object {'「'+$_.name.Substring(0,2)+'」'})+'系统朗读') -join '、')+'。'}elseif($address -eq 'custom' -and $voice -ne 'System'){'自定义名字会显示在提醒气泡里；录音里不叫称呼。想听到名字可以选「系统朗读」。'}else{''}
 }
 $ui.AddressInput.Add_SelectionChanged({Update-AddressHint})
 foreach($voiceId in 'N1','V3','V4','System'){$ui['Voice'+$voiceId].Add_Checked({Update-AddressHint})}
