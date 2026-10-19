@@ -54,6 +54,27 @@ $script:UpdateDownloadWork = {
     [pscustomobject]@{ Source = $source; Sha256 = $hash }
 }
 
+# 旧版本留下、新版本已不再使用的程序文件。更新只覆盖不删除，所以由新版本启动时清理。
+$script:ObsoleteWanwanPaths = @(
+    'app\Auditions.ps1',
+    'assets\voice-lines.json',
+    'assets\voices\manifest.json',
+    'assets\voices\A', 'assets\voices\B', 'assets\voices\C', 'assets\voices\D',
+    'assets\voices\auditions', 'assets\voices\C-cleanup.json'
+)
+function Remove-ObsoleteWanwanFiles([string]$Root) {
+    # 只在发布包目录里清理（开发仓库里有 .git，交给 git 管理）。
+    if (-not (Test-Path -LiteralPath (Join-Path $Root 'app\Main.ps1')) -or -not (Test-Path -LiteralPath (Join-Path $Root 'VERSION')) -or (Test-Path -LiteralPath (Join-Path $Root '.git'))) { return @() }
+    $removed = @()
+    foreach ($relative in $script:ObsoleteWanwanPaths) {
+        $path = Join-Path $Root $relative
+        if (Test-Path -LiteralPath $path) {
+            try { Remove-Item -LiteralPath $path -Recurse -Force; $removed += $relative } catch {}
+        }
+    }
+    return $removed
+}
+
 function Start-BackgroundWork([scriptblock]$Work, [object[]]$Arguments) {
     $ps = [powershell]::Create()
     $ps.AddScript($Work.ToString()) | Out-Null

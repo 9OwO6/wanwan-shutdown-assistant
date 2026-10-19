@@ -13,7 +13,7 @@ function Save-Visual($window,[string]$name){
  $window.UpdateLayout();$render=[Windows.Media.Imaging.RenderTargetBitmap]::new([int]$window.ActualWidth,[int]$window.ActualHeight,96,96,[Windows.Media.PixelFormats]::Pbgra32);$render.Render($window)
  $enc=[Windows.Media.Imaging.PngBitmapEncoder]::new();$enc.Frames.Add([Windows.Media.Imaging.BitmapFrame]::Create($render));$file=[IO.File]::Create((Join-Path $captureDirectory $name));$enc.Save($file);$file.Dispose()
 }
-$win.FindName('Interactions').RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent))
+$ui.Interactions.RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent))
 if(-not $script:gallery -or $gallery.FindName('Scenes').Children.Count -ne 10){throw 'Gallery must expose ten working buttons'}
 Wait-Visual 200;Save-Visual $gallery 'gallery.png'
 $report=@()

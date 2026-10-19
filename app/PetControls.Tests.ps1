@@ -28,7 +28,7 @@ $cfg.Enabled=$false;$cfg.DesktopPet=$true;Show-DesktopPet -Compact
 $popup.FindName('CompactPet').ContextMenu.Items[1].RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.MenuItem]::ClickEvent))
 Assert-Control (-not $popup -and -not $cfg.DesktopPet) 'Right-click Hide command failed'
 $ui.BedInput.Text='02:00';$ui.GraceInput.Text='30';$ui.EnabledToggle.IsChecked=$false;$ui.VoiceToggle.IsChecked=$false
-$win.FindName('ArmGuard').RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent))
+$ui.ArmGuard.RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent))
 $persisted=Get-Content $configFile -Raw -Encoding UTF8|ConvertFrom-Json
 Assert-Control ($persisted.Enabled -and $cfg.Enabled -and $ui.EnabledToggle.IsChecked) 'Activation button failed to enable and persist guard'
 Invoke-GuardTick ([datetime]'2026-10-12T03:42:00')

@@ -13,10 +13,8 @@ foreach($cue in $cues){
  if($seen.Count -ne 4){throw "Variation coverage failed: $cue"}
 }
 if(Get-VoiceAsset -Message 'unrelated text' -Preset N1 -LineId preview-01){throw 'N1 must not play a mismatched transcript'}
-$picker=New-VoicePicker -NoSave;$picker.Show();$picker.FindName('ChooseN1').IsChecked=$true
-if(-not $picker.FindName('UseVoice').IsEnabled){throw 'N1 cannot be selected'}
-$picker.FindName('UseVoice').RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent))
-if($cfg.VoicePreset -ne 'N1'){throw 'N1 picker commit failed'}
+$ui.VoiceN1.IsChecked=$true;$ui.Save.RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent))
+if($cfg.VoicePreset -ne 'N1'){throw 'N1 settings commit failed'}
 $cfg.Voice=$false
 $ui.Preview.RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent))
 if($ui.Message.Text -ne $script:lastSpokenLine.text -or $script:lastSpokenLine.cue -ne 'preview'){throw 'Preview caption mismatch'}
@@ -47,4 +45,4 @@ if($script:mainSurface.Key -notlike 'heart:*'){throw 'Character pose ended befor
 Stop-Voice;$cfg.Voice=$false
 New-Item -ItemType Directory -Force (Join-Path $root 'output\voice-lab')|Out-Null
 $opened|ConvertTo-Json -Depth 4|Set-Content (Join-Path $root 'output\voice-lab\n1-runtime-report.json') -Encoding UTF8
-Write-Output "Dialogue tests passed: $($opened.Count) native WAV opens, $($cues.Count) varied cues, no adjacent repeats, N1 picker, preview and ten gallery captions/actions; muted, no shutdown"
+Write-Output "Dialogue tests passed: $($opened.Count) native WAV opens, $($cues.Count) varied cues, no adjacent repeats, N1 settings choice, preview and ten gallery captions/actions; muted, no shutdown"

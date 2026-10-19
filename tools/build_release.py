@@ -1,4 +1,4 @@
-"""Build the slim portable Windows ZIP from the runtime files only.
+﻿"""Build the slim portable Windows ZIP from the runtime files only.
 
     python tools/build_release.py v0.3.0
 
@@ -26,7 +26,6 @@ RUNTIME_GLOBS = [
     'assets/icons/*',
     'assets/frames/*/*.png',
     'assets/voices/**/*.mp3',
-    'assets/voices/manifest.json',
     'assets/voices/N1/manifest.json',
     'assets/voices/N1-clock/manifest.json',
     'assets/voices/N1-guard/manifest.json',

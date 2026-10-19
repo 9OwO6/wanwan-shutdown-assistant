@@ -23,12 +23,6 @@ function Say-Cue {
  param([string]$Cue,[switch]$Interaction,[switch]$Demo)
  if($Demo -and $Cue -eq 'dialog'){$Cue='demo'}
  $line=Get-CompanionLine $Cue
- # 旧音色包保留它们实际录制的台词；互动新台词没有旧录音时由系统朗读。
- if($cfg.VoicePreset -in @('A','B','C','D') -and -not $Interaction){
-  $legacyCue=if($Cue -eq 'night'){'goodnight'}else{$Cue}
-  $legacy=$script:voiceLines|Where-Object {$_.id -eq $legacyCue}|Select-Object -First 1
-  if($legacy){$line=[pscustomobject]@{id=$legacy.id;cue=$Cue;action=$line.action;text=$legacy.text}}
- }
  $script:lastSpokenLine=$line
  if($cfg.VoicePreset -eq 'System' -and $cfg.Nickname -and $cfg.Nickname -ne '你'){
   $line=[pscustomobject]@{id='';cue=$line.cue;action=$line.action;text=(Format-CompanionAddress $line.text $cfg.Nickname)}

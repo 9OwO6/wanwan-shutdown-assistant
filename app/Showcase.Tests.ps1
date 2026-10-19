@@ -23,7 +23,7 @@ $popup.Close();Show-BedDialog $true;Wait-Showcase 300
 Capture-Showcase $dialog (Join-Path $showcaseDirectory 'bedtime-countdown.png');$dialog.Close()
 $gallery=New-InteractionGallery;$gallery.Show();Wait-Showcase 200
 Capture-Showcase $gallery (Join-Path $showcaseDirectory 'interaction-gallery.png');$gallery.Close()
-$picker=New-VoicePicker -NoSave;$picker.Show();Wait-Showcase 200
-Capture-Showcase $picker (Join-Path $showcaseDirectory 'voice-picker.png');$picker.Close()
+Open-Settings;Wait-Showcase 200
+Capture-Showcase $settingsWin (Join-Path $showcaseDirectory 'settings.png');$settingsWin.Hide()
 $cfg.DesktopPet=$false;if($popup){$popup.Close()}
 Write-Output 'Six real WPF showcase surfaces and 32 animation frames captured; synthetic settings, muted voice, no native shutdown.'

@@ -79,18 +79,4 @@ for catalog_rel, manifest_rel in BANKS:
     write(catalog_rel, catalog, compact_lines=catalog_rel.endswith(('guard-lines.json', 'watch-lines.json')))
     write(manifest_rel, manifest)
 
-# Legacy 11-line presets A-D and their audition previews.
-legacy_rel = 'assets/voices/manifest.json'
-legacy = read(legacy_rel)
-for record in legacy:
-    master_rel = 'assets/voices/' + record['file']
-    mp3 = encode(master_rel)
-    record['runtime_file'] = to_mp3_path(record['file'])
-    record['runtime_sha256'] = sha256(mp3)
-    encoded += 1
-write(legacy_rel, legacy)
-for preset in 'ABCD':
-    encode(f'assets/voices/auditions/{preset}.wav')
-    encoded += 1
-
 print(f'Encoded {encoded} runtime clips as {BITRATE} MP3.')

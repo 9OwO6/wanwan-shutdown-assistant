@@ -19,7 +19,7 @@ The N1 voice reference was generated with Qwen3-TTS VoiceDesign, using the N1 br
 
 **Runtime format.** The WAV files are production masters. The application plays 64 kbps mono MP3 copies created by `python tools/encode_runtime_audio.py` (needs FFmpeg); catalogs point at the MP3, manifests keep the master `file`/`sha256` and add `runtime_file`/`runtime_sha256`. Re-run the encoder after regenerating any line. The portable release ships only the MP3 copies and palette-quantized character art.
 
-Legacy A/B/C/D clips and their auditions remain to keep the existing voice selector runnable. N1 is the selected and featured production voice. Legacy raw backups, experimental captures, generation logs and third-party executables are excluded from the public repository.
+N1 is the only bundled voice (v0.3.1 removed the noisy prototype voices A/B/C/D and the audition window; Windows speech is the fallback for any unrecorded text). Raw backups, experimental captures, generation logs and third-party executables are excluded from the public repository.
 
 ## Optional development dependencies
 
@@ -36,6 +36,6 @@ python tools/generate_n1_bank.py --model C:/Models/Qwen3-TTS-Base --catalog asse
 
 Generation is resumable and records text, hashes, durations and model revision. Clock composition uses complete spoken fragments with a 100 ms pause. Validation should include waveform decoding, text checks and listening; a matching hash alone says nothing about whether a voice sounds natural.
 
-Historical voice-lab/AllTalk/XTTS scripts preserve their original environment assumptions and are provided as development history, not turnkey setup instructions. The optional DeepFilterNet binary must be obtained separately; its license notice is retained.
+The remaining voice-lab scripts preserve their original environment assumptions and are provided as development history, not turnkey setup instructions.
 
 See `NOTICE.md` for code/media licensing boundaries.

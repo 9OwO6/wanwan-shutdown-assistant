@@ -27,11 +27,11 @@ Assert-PetBounds $popup;Capture-Pet $popup 'compact.png'
 $compactTouch=[Windows.Input.MouseButtonEventArgs]::new([Windows.Input.Mouse]::PrimaryDevice,0,[Windows.Input.MouseButton]::Left);$compactTouch.RoutedEvent=[Windows.UIElement]::MouseLeftButtonUpEvent
 $win.Hide();$popup.FindName('CompactOpen').RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent));Wait-Pet 100
 if(-not $win.IsVisible -or $script:petExpanded){throw 'Compact avatar touch did not restore the main window'}
-$win.FindName('PetPreview').RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent));Wait-Pet 100
+$ui.PetPreview.RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent));Wait-Pet 100
 $win.Hide();$popup.FindName('PetOpen').RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent));Wait-Pet 100
 if(-not $win.IsVisible){throw 'Open Wanwan button did not restore the main window'}
 $foreground=[Wanwan.Desktop]::GetForegroundWindow()
-$win.FindName('PetPreview').RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent));Wait-Pet 300
+$ui.PetPreview.RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent));Wait-Pet 300
 if(-not $script:petExpanded -or $popup.FindName('PetStatus').Text -notlike '提醒体验 · *' -or $popup.FindName('PopupText').Text -ne $script:lastSpokenLine.text){throw 'Pet preview text/clock state mismatch'}
 if($cfg.Enabled -or $script:dialog -or $popup.FindName('PetPromise').Text -ne ('约好 '+$cfg.Bedtime+' 休息')){throw 'Preview changed guard state or started a countdown'}
 if([Wanwan.Desktop]::GetForegroundWindow() -ne $foreground){throw 'Reminder stole keyboard focus'}

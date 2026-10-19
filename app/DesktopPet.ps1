@@ -133,8 +133,8 @@ function Say-ClockReminder {
  if($script:dialog){$script:dialog.FindName('Info').Text=$message;$script:dialog.FindName('ReminderTime').Text='晚晚 · '+$line.time}
  else{Show-DesktopPet $message $(if($Demo){'提醒体验 · '+$line.time}else{'晚晚 · '+$line.time});Extend-DesktopPetLifetime}
 }
-$win.FindName('PetPreview').Add_Click({Say-ClockReminder -Now (Get-Date) -Cue early -Demo})
-$ui.PetToggle=$win.FindName('PetToggle');$ui.PetToggle.IsChecked=[bool]$cfg.DesktopPet
+$ui.PetPreview.Add_Click({Say-ClockReminder -Now (Get-Date) -Cue early -Demo})
+$ui.PetToggle.IsChecked=[bool]$cfg.DesktopPet
 $ui.PetToggle.Add_Checked({$cfg.DesktopPet=$true;if(-not $script:dialog){Show-DesktopPet -Compact}})
 $ui.PetToggle.Add_Unchecked({$cfg.DesktopPet=$false;if($script:popup -and -not $script:petExpanded){$script:popup.Close()}})
 $win.Add_ContentRendered({if($cfg.DesktopPet -and -not $script:popup){Show-DesktopPet -Compact}})

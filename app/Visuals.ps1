@@ -57,7 +57,6 @@ function Start-Interaction {
  if($script:actionHistory.Count -gt 100){$script:actionHistory.RemoveAt(0)}
 }
 function Invoke-ReminderInteraction([string]$message,[string]$lineId){
- if(-not $lineId -and $script:voiceLines){$lineId=($script:voiceLines|Where-Object {$_.text -eq $message}|Select-Object -First 1).id}
  $id=switch($lineId){'preview'{'peek'}'early'{'water'}'soon'{'stretch'}'bed'{'nod'}'final'{'yawn'}'dialog'{'goodnight'}'defer'{'nod'}'cancel'{'heart'}'goodnight'{'goodnight'}'bye'{'wave'}'hello'{'pat'}default{'peek'}}
  # 主窗口可见时在画面里回应；收起后通过独立小窗提醒。
  Start-Interaction $id $message -Popup:((-not $win.IsVisible -or $win.WindowState -eq [Windows.WindowState]::Minimized) -and -not $script:dialog)
@@ -94,21 +93,18 @@ function New-InteractionGallery {
  $gallery.Add_Closed({$script:surfaces=@($script:surfaces|Where-Object {$_.Window -ne $script:gallery});$script:gallery=$null;$script:gallerySurface=$null})
  $gallery.Show();Start-Interaction 'peek';return $gallery
 }
-$ui.Mood=$win.FindName('Mood');$ui.MotionToggle=$win.FindName('MotionToggle')
+$ui.Mood=$win.FindName('Mood')
 $script:mainSurface=Register-CharacterSurface $ui.Portrait ($win.FindName('PortraitFade')) $win
 $ui.MotionToggle.IsChecked=[bool]$cfg.ReducedMotion
 $ui.MotionToggle.Add_Checked({$cfg.ReducedMotion=$true;Set-Motion $false;Save-Config})
 $ui.MotionToggle.Add_Unchecked({$cfg.ReducedMotion=$false;Set-Motion $true;Save-Config})
-$win.FindName('MoodIdle').Add_Click({Set-CompanionMode '陪伴';Say-Cue hello -Interaction})
-$win.FindName('MoodWrap').Add_Click({Set-CompanionMode '收尾';Say-Cue stretch -Interaction})
-$win.FindName('MoodNight').Add_Click({Set-CompanionMode '晚安';Say-Cue night -Interaction})
-$win.FindName('Interactions').Add_Click({New-InteractionGallery|Out-Null})
+$ui.Interactions.Add_Click({New-InteractionGallery|Out-Null})
 $script:touchCount=0
 $ui.Portrait.Add_MouseLeftButtonDown({$touch=@('pat','heart','cheer','wave','peek');Say-Cue $touch[$script:touchCount%$touch.Count] -Interaction;$script:touchCount++})
 $script:visualTimer=[Windows.Threading.DispatcherTimer]::new();$script:visualTimer.Interval=[timespan]::FromMilliseconds(50)
 $script:visualTimer.Add_Tick({
  $ms=$script:animationClock.ElapsedMilliseconds
- $badge=$win.FindName('VoiceBadge');if($badge){$badge.Text=if(-not $cfg.Voice){'♫  语音已关闭，小动作还会陪着你'}elseif($script:voiceUntil -and (Get-Date) -lt $script:voiceUntil){'♫  晚晚正在轻轻和你说话…'}elseif($cfg.VoicePreset -eq 'N1'){'♫  晚晚的声音 · 清甜温柔'}elseif($cfg.VoicePreset -in @('A','B','C','D')){'♫  晚晚的声音 · '+$cfg.VoicePreset}else{'♫  在音色试听里，选一个喜欢的声音'}}
+ $badge=$win.FindName('VoiceBadge');if($badge){$badge.Text=if(-not $cfg.Voice){'♫  语音已关闭，小动作还会陪着你'}elseif($script:voiceUntil -and (Get-Date) -lt $script:voiceUntil){'♫  晚晚正在轻轻和你说话…'}elseif($cfg.VoicePreset -eq 'N1'){'♫  晚晚的声音 · 清甜温柔'}else{'♫  系统朗读 · 在设置里可以换回晚晚的声音'}}
  if($script:popup -and $ms -gt $script:popupUntil -and -not $script:petDragging){Complete-DesktopPetReminder}
  $active=$script:action -and $ms -lt $script:action.End
  $holding=$script:action -and $script:voiceUntil -and (Get-Date) -lt $script:voiceUntil
