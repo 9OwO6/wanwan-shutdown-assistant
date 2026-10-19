@@ -17,12 +17,8 @@ function Get-WatchLine([string]$Cue){
  return [pscustomobject]@{id=$line.id;cue=$Cue;action=$line.action;text=$line.text;file=$(if($hasClip){$file}else{''});duration=$duration}
 }
 function Say-WatchLine([string]$Cue){
- $line=Get-WatchLine $Cue;$script:lastSpokenLine=$line;$script:lastGuardDuration=$line.duration
- $message=$line.text
- if($cfg.VoicePreset -eq 'System'){$message=Format-CompanionAddress $message $cfg.Nickname}
- $asset=if($cfg.VoicePreset -eq 'N1' -and $line.file){$line.file}else{''}
- Say $message -LineId $line.id -ActionId $line.action -PreparedAsset $asset -PreparedDuration $line.duration|Out-Null
- return $line
+ $spoken=Speak-Line (Get-WatchLine $Cue);$script:lastGuardDuration=$spoken.duration
+ return $spoken
 }
 
 # ---------- 早睡打卡记录 ----------

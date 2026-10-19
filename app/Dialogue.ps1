@@ -22,12 +22,6 @@ function Format-CompanionAddress([string]$Text,[string]$Nickname){
 function Say-Cue {
  param([string]$Cue,[switch]$Interaction,[switch]$Demo)
  if($Demo -and $Cue -eq 'dialog'){$Cue='demo'}
- $line=Get-CompanionLine $Cue
- $script:lastSpokenLine=$line
- if($cfg.VoicePreset -eq 'System' -and $cfg.Nickname -and $cfg.Nickname -ne '你'){
-  $line=[pscustomobject]@{id='';cue=$line.cue;action=$line.action;text=(Format-CompanionAddress $line.text $cfg.Nickname)}
-  $script:lastSpokenLine=$line
- }
- Say $line.text -LineId $line.id -ActionId $line.action
+ $line=Speak-Line (Get-CompanionLine $Cue)
  if($script:dialog -and $Cue -in @('dialog','demo','final','bye')){$script:dialog.FindName('Info').Text=$line.text}
 }

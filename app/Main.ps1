@@ -92,8 +92,9 @@ Set-WanwanIcon $script:win
   </StackPanel></Border>
   <Border Background="#FFFFFF" CornerRadius="16" Padding="18" Margin="0,12,0,0"><StackPanel>
    <TextBlock Text="声音与陪伴" Foreground="#9B7B88" FontSize="12" Margin="0,0,0,10"/>
-   <WrapPanel><RadioButton x:Name="VoiceN1" Content="晚晚的声音（推荐）" GroupName="VoiceChoice" Margin="0,0,22,8" ToolTip="完整录制的提醒、整点报时和互动台词"/><RadioButton x:Name="VoiceSystem" Content="系统朗读" GroupName="VoiceChoice" Margin="0,0,22,8" ToolTip="用 Windows 自带的中文语音朗读，会使用下面的称呼"/></WrapPanel>
-   <DockPanel Margin="0,4,0,10"><TextBlock Text="称呼" Foreground="#87767F" VerticalAlignment="Center" Margin="0,0,12,0"/><TextBox x:Name="NameInput" Text="你" MaxLength="12" ToolTip="系统声音会使用这个称呼；N1 的录音会自然轮换宝贝、宝宝、亲爱的等称呼。" Width="180" HorizontalAlignment="Left" Padding="8,6" FontSize="14"/><TextBlock Text="系统朗读会用这个称呼" Foreground="#AA97A0" FontSize="11" VerticalAlignment="Center" Margin="12,0,0,0"/></DockPanel>
+   <WrapPanel><RadioButton x:Name="VoiceN1" Content="清甜（推荐）" GroupName="VoiceChoice" Margin="0,0,18,8" VerticalAlignment="Center" ToolTip="清甜温柔，默认的晚晚。整句录音，称呼按原台词轮流叫"/><RadioButton x:Name="VoiceV3" Content="知性" GroupName="VoiceChoice" Margin="0,0,18,8" VerticalAlignment="Center" ToolTip="沉稳柔和，像温柔的姐姐"/><RadioButton x:Name="VoiceV4" Content="清冷" GroupName="VoiceChoice" Margin="0,0,18,8" VerticalAlignment="Center" ToolTip="清澈安静，语气克制"/><RadioButton x:Name="VoiceSystem" Content="系统朗读" GroupName="VoiceChoice" Margin="0,0,18,8" VerticalAlignment="Center" ToolTip="用 Windows 自带的中文语音朗读，自定义名字也能读出来"/><Button x:Name="VoicePreview" Content="▶ 试听" FontSize="12" Padding="10,5" Margin="0,0,0,8" ToolTip="用选中的声音和称呼读一句，不会保存"/></WrapPanel>
+   <DockPanel Margin="0,4,0,4"><TextBlock Text="称呼" Foreground="#87767F" VerticalAlignment="Center" Margin="0,0,12,0"/><ComboBox x:Name="AddressInput" Width="200" FontSize="13" Padding="8,5" VerticalAlignment="Center"/><TextBox x:Name="NameInput" Text="" MaxLength="12" Width="140" Margin="10,0,0,0" Padding="8,5" FontSize="13" ToolTip="自定义名字会显示在提醒气泡里；选「系统朗读」时也会读出来"/></DockPanel>
+   <TextBlock x:Name="AddressHint" Text="" Foreground="#AA97A0" FontSize="11" Margin="0,2,0,10" TextWrapping="Wrap"/>
    <WrapPanel><CheckBox x:Name="VoiceToggle" Content="温柔语音" IsChecked="True" Margin="0,0,22,8"/><CheckBox x:Name="PetToggle" Content="桌面陪伴" Margin="0,0,22,8"/><CheckBox x:Name="MotionToggle" Content="减少动态" Margin="0,0,22,8"/></WrapPanel>
   </StackPanel></Border>
   <Border Background="#FFFFFF" CornerRadius="16" Padding="18" Margin="0,12,0,0"><StackPanel>
@@ -109,17 +110,17 @@ $settingsWin.Resources.MergedDictionaries.Add($win.Resources);Set-WanwanIcon $se
 # 主窗口只放今晚的状态和快捷操作；所有可改的约定都在「设置」窗口里。
 $ui=@{}
 foreach($n in 'Portrait','Clock','Headline','Message','ModeLabel','TimeDisplay','Countdown','Progress','Preview','Demo','Interactions','GuardSwitch','GuardSummary','Timeline','Feedback','Hide','StreakText','CheckUpdate','FooterText','OpenSettings','PetPreview'){$ui[$n]=$win.FindName($n)}
-foreach($n in 'BedInput','WeekendInput','GraceInput','NameInput','VoiceToggle','VoiceN1','VoiceSystem','EnabledToggle','StartupToggle','PetToggle','MotionToggle','AutoUpdateToggle','ActionShutdown','ActionSleep','SleepHoursInput','WakeGraceInput','Save','ArmGuard','CloseSettings','SettingsFeedback'){$ui[$n]=$settingsWin.FindName($n)}
+foreach($n in 'BedInput','WeekendInput','GraceInput','NameInput','VoiceToggle','VoiceN1','VoiceV3','VoiceV4','VoiceSystem','VoicePreview','AddressInput','AddressHint','EnabledToggle','StartupToggle','PetToggle','MotionToggle','AutoUpdateToggle','ActionShutdown','ActionSleep','SleepHoursInput','WakeGraceInput','Save','ArmGuard','CloseSettings','SettingsFeedback'){$ui[$n]=$settingsWin.FindName($n)}
 foreach($n in @($ui.Keys)){if(-not $ui[$n]){throw "Missing control: $n"}}
 $startupFile=Join-Path ([Environment]::GetFolderPath('Startup')) '晚晚关机助理.lnk'
 # 旧版本的开机快捷方式指向 wscript.exe + VBS；启动时静默迁移到直接调用 PowerShell。
 if(-not $script:isTestMode -and (Test-Path $startupFile)){try{$existing=(New-Object -ComObject WScript.Shell).CreateShortcut($startupFile);if($existing.TargetPath -like '*wscript.exe'){Set-LauncherShortcut $startupFile}}catch{}}
 $art=Join-Path $root 'assets\wanwan.png';if(Test-Path $art){$ui.Portrait.Source=[Windows.Media.Imaging.BitmapImage]::new([uri]$art)}
 # 旧版本的 A/B/C/D 音色已下线：统一迁移到晚晚的声音（N1）；N1 录音缺失时自动用系统朗读兜底。
-if($cfg.VoicePreset -notin @('N1','System')){$cfg.VoicePreset='N1'}
 function Sync-SettingsForm {
- $ui.BedInput.Text=$cfg.Bedtime;$ui.WeekendInput.Text=[string]$cfg.WeekendBedtime;if($cfg.Action -eq 'Sleep'){$ui.ActionSleep.IsChecked=$true}else{$ui.ActionShutdown.IsChecked=$true};$ui.GraceInput.Text=[string]$cfg.Grace;$ui.SleepHoursInput.Text=[string]$cfg.SleepHours;$ui.WakeGraceInput.Text=[string]$cfg.WakeGrace;$ui.NameInput.Text=$cfg.Nickname;$ui.VoiceToggle.IsChecked=[bool]$cfg.Voice;$ui.EnabledToggle.IsChecked=[bool]$cfg.Enabled
- if($cfg.VoicePreset -eq 'System'){$ui.VoiceSystem.IsChecked=$true}else{$ui.VoiceN1.IsChecked=$true}
+ $ui.BedInput.Text=$cfg.Bedtime;$ui.WeekendInput.Text=[string]$cfg.WeekendBedtime;if($cfg.Action -eq 'Sleep'){$ui.ActionSleep.IsChecked=$true}else{$ui.ActionShutdown.IsChecked=$true};$ui.GraceInput.Text=[string]$cfg.Grace;$ui.SleepHoursInput.Text=[string]$cfg.SleepHours;$ui.WakeGraceInput.Text=[string]$cfg.WakeGrace;$ui.VoiceToggle.IsChecked=[bool]$cfg.Voice;$ui.EnabledToggle.IsChecked=[bool]$cfg.Enabled
+ $voiceRadio=$ui['Voice'+$cfg.VoicePreset];if(-not $voiceRadio -or $voiceRadio.Visibility -ne [Windows.Visibility]::Visible){$voiceRadio=$ui.VoiceN1};$voiceRadio.IsChecked=$true
+ Select-AddressItem $cfg.Address;$ui.NameInput.Text=if($cfg.Address -eq 'custom'){[string]$cfg.Nickname}else{''};Update-AddressHint
  $ui.AutoUpdateToggle.IsChecked=[bool]$cfg.AutoUpdate;$ui.StartupToggle.IsChecked=Test-Path $startupFile
 }
 function Update-GuardSummary {
@@ -134,11 +135,35 @@ function Update-GuardSummary {
  $ui.GuardSwitch.Background=[Windows.Media.BrushConverter]::new().ConvertFromString($(if($cfg.Enabled){'#E3D5DB'}else{'#A7778B'}))
  $ui.GuardSwitch.Foreground=if($cfg.Enabled){[Windows.Media.BrushConverter]::new().ConvertFromString('#54454C')}else{[Windows.Media.Brushes]::White}
 }
-Sync-SettingsForm
 $script:lastPhase='';$script:dialog=$null;$script:demoMode=$false;$script:caughtMode=$false;$script:deadline=$null;$script:lastAttempt=[datetime]::MinValue
 . "$PSScriptRoot\Visuals.ps1"
 . "$PSScriptRoot\Dialogue.ps1"
 . "$PSScriptRoot\Voice.ps1"
+. "$PSScriptRoot\VoiceBank.ps1"
+# 设置里的声音和称呼：只显示已经装好的声音包；称呼下拉框来自 voice-script.json。
+foreach($voiceId in 'V3','V4'){if(-not (Test-SplitVoice $voiceId)){$ui['Voice'+$voiceId].Visibility=[Windows.Visibility]::Collapsed}}
+$ui.AddressInput.Items.Clear()
+$addressItems=[ordered]@{rotate='轮流叫（宝宝 / 宝贝 / 亲爱的）'}
+foreach($row in @($script:voiceScript.addresses)){$addressItems[$row.id]=$row.label}
+$addressItems['none']='不叫称呼';$addressItems['custom']='自定义名字…'
+foreach($key in $addressItems.Keys){$item=[Windows.Controls.ComboBoxItem]::new();$item.Tag=$key;$item.Content=$addressItems[$key];$ui.AddressInput.Items.Add($item)|Out-Null}
+function Select-AddressItem([string]$Id){foreach($item in $ui.AddressInput.Items){if($item.Tag -eq $Id){$ui.AddressInput.SelectedItem=$item;return}};$ui.AddressInput.SelectedIndex=0}
+function Get-FormAddress {if($ui.AddressInput.SelectedItem){[string]$ui.AddressInput.SelectedItem.Tag}else{'rotate'}}
+function Get-FormVoice {foreach($voiceId in 'V3','V4','System'){if($ui['Voice'+$voiceId].IsChecked){return $voiceId}};return 'N1'}
+function Update-AddressHint {
+ $address=Get-FormAddress;$voice=Get-FormVoice
+ $ui.NameInput.IsEnabled=($address -eq 'custom');$ui.NameInput.Visibility=if($address -eq 'custom'){[Windows.Visibility]::Visible}else{[Windows.Visibility]::Collapsed}
+ $ui.AddressHint.Text=if($voice -eq 'N1' -and $address -ne 'rotate'){'清甜（N1）是整句录音，暂时只会按原台词轮流叫；换称呼请选「知性」「清冷」或系统朗读。'}elseif($address -eq 'custom' -and $voice -ne 'System'){'自定义名字会显示在提醒气泡里；录音里不叫称呼。想听到名字可以选「系统朗读」。'}else{''}
+}
+$ui.AddressInput.Add_SelectionChanged({Update-AddressHint})
+foreach($voiceId in 'N1','V3','V4','System'){$ui['Voice'+$voiceId].Add_Checked({Update-AddressHint})}
+$ui.VoicePreview.Add_Click({
+ # 用表单里的声音和称呼读一句，读完不改设置。
+ $saved=@{Voice=$cfg.Voice;VoicePreset=$cfg.VoicePreset;Address=$cfg.Address;Nickname=$cfg.Nickname}
+ $cfg.Voice=$true;$cfg.VoicePreset=Get-FormVoice;$cfg.Address=Get-FormAddress;if($cfg.Address -eq 'custom'){$cfg.Nickname=$ui.NameInput.Text.Trim()}
+ try{Say-Cue preview;$ui.SettingsFeedback.Text='试听：'+$script:lastSpokenLine.text}finally{foreach($key in $saved.Keys){$cfg[$key]=$saved[$key]}}
+})
+Sync-SettingsForm
 . "$PSScriptRoot\DesktopPet.ps1"
 . "$PSScriptRoot\CountdownView.ps1"
 function Write-Event([string]$event){Add-Content (Join-Path $data 'events.log') ((Get-Date -Format o)+' '+$event) -Encoding UTF8}
@@ -217,7 +242,7 @@ function Save-WanwanSettings([switch]$EnableGuard){
  if(-not [int]::TryParse($ui.SleepHoursInput.Text,[ref]$sleepHours) -or $sleepHours -lt 1 -or $sleepHours -gt 12 -or -not [int]::TryParse($ui.WakeGraceInput.Text,[ref]$wakeGrace) -or $wakeGrace -lt 1 -or $wakeGrace -gt 15){Set-SettingsMessage '起夜监督：睡后 1–12 小时，急事时间 1–15 分钟';return}
  if(-not [datetime]::TryParseExact($ui.BedInput.Text,'HH:mm',[cultureinfo]::InvariantCulture,[Globalization.DateTimeStyles]::None,[ref]$parsed) -or -not [int]::TryParse($ui.GraceInput.Text,[ref]$minutes) -or $minutes -lt 2 -or $minutes -gt 30){Set-SettingsMessage '时间格式 23:30；收尾时间 2–30 分钟';return}
  if($EnableGuard){$ui.EnabledToggle.IsChecked=$true}
- $cfg.Bedtime=$ui.BedInput.Text;$cfg.WeekendBedtime=$weekend;$cfg.Action=if($ui.ActionSleep.IsChecked){'Sleep'}else{'Shutdown'};$cfg.Grace=$minutes;$cfg.SleepHours=$sleepHours;$cfg.WakeGrace=$wakeGrace;$cfg.Nickname=$ui.NameInput.Text.Trim();$cfg.Voice=[bool]$ui.VoiceToggle.IsChecked;$cfg.Enabled=[bool]$ui.EnabledToggle.IsChecked;$cfg.VoicePreset=if($ui.VoiceSystem.IsChecked){'System'}else{'N1'};$cfg.AutoUpdate=[bool]$ui.AutoUpdateToggle.IsChecked
+ $cfg.Bedtime=$ui.BedInput.Text;$cfg.WeekendBedtime=$weekend;$cfg.Action=if($ui.ActionSleep.IsChecked){'Sleep'}else{'Shutdown'};$cfg.Grace=$minutes;$cfg.SleepHours=$sleepHours;$cfg.WakeGrace=$wakeGrace;$cfg.Voice=[bool]$ui.VoiceToggle.IsChecked;$cfg.Enabled=[bool]$ui.EnabledToggle.IsChecked;$cfg.VoicePreset=Get-FormVoice;$cfg.Address=Get-FormAddress;if($cfg.Address -eq 'custom'){$cfg.Nickname=$ui.NameInput.Text.Trim()};$cfg.AutoUpdate=[bool]$ui.AutoUpdateToggle.IsChecked
  if(-not $script:isTestMode){if($ui.StartupToggle.IsChecked){Set-LauncherShortcut $startupFile}elseif(Test-Path $startupFile){Remove-Item -LiteralPath $startupFile}}
  if(-not $cfg.Enabled -and $script:dialog -and -not $script:demoMode){$script:dialog.Close()}
  Save-Config;$script:lastPhase='';$script:lastAttempt=[datetime]::MinValue;$script:shutdownAfter=$null;
@@ -300,8 +325,7 @@ function Invoke-GuardTick([datetime]$now=(Get-Date)){
    elseif($cfg.Action -eq 'Sleep'){
     # 现有 N1 守护录音说的是“关机”；睡眠模式改用不提关机的晚安台词。
     Say-Cue goodnight
-    $record=$script:n1Records|Where-Object {$_.id -eq $script:lastSpokenLine.id}|Select-Object -First 1
-    $script:lastGuardDuration=if($record){[double]$record.duration}else{6}
+    $script:lastGuardDuration=if($script:lastSpokenLine.duration){[double]$script:lastSpokenLine.duration}else{6}
    }else{Say-GuardLine shutdown}
    $seconds=if($cfg.Voice){[math]::Max(2,$script:lastGuardDuration+1)}else{2}
    $script:shutdownAfter=$now.AddSeconds($seconds)
@@ -356,8 +380,36 @@ if($SmokeTest -or $InteractionTest -or $AnimationTest -or $VoiceTest -or $Compan
   # N1 没有录音的句子（例如自定义称呼后的文字）交给系统朗读。
   Say '这句话没有录音' ;if($script:lastVoiceAsset){throw 'Unrecorded text must fall back to system speech'};Stop-Voice
   $cfg.VoicePreset='System';Say-Cue preview;if($script:lastVoiceAsset){throw 'System voice must not play N1 clips'};Stop-Voice
+  # 分段声音包（v0.4.0 起）：设置保存、称呼 + 正文按顺序原生播放、每个片段都能打开。
+  $splitReport=@()
+  foreach($voiceId in @('V3','V4')|Where-Object {Test-SplitVoice $_}){
+   if($ui['Voice'+$voiceId].Visibility -ne [Windows.Visibility]::Visible){throw "$voiceId radio must be visible"}
+   $ui['Voice'+$voiceId].IsChecked=$true;Select-AddressItem 'xiaobendan';Save-WanwanSettings
+   $persisted=Get-Content $configFile -Raw -Encoding UTF8|ConvertFrom-Json
+   if($cfg.VoicePreset -ne $voiceId -or $persisted.VoicePreset -ne $voiceId -or $persisted.Address -ne 'xiaobendan'){throw "$voiceId and address not saved"}
+   $ui.VoiceToggle.IsChecked=$true;$cfg.Voice=$true;$script:voicePlayer.Volume=0
+   $opened=0
+   foreach($clip in $script:voiceBanks[$voiceId].Values){
+    $script:clipOpened=$false;$clipFrame=[Windows.Threading.DispatcherFrame]::new();$clipHandler=[System.EventHandler]{$script:clipOpened=$true;$clipFrame.Continue=$false};$script:voicePlayer.Add_MediaOpened($clipHandler)
+    $script:voicePlayer.Open([uri]$clip.file);$clipWait=[Windows.Threading.DispatcherTimer]::new();$clipWait.Interval=[timespan]::FromSeconds(3);$clipWait.Add_Tick({$clipFrame.Continue=$false;$clipWait.Stop()});$clipWait.Start();[Windows.Threading.Dispatcher]::PushFrame($clipFrame);$clipWait.Stop();$script:voicePlayer.Remove_MediaOpened($clipHandler)
+    if(-not $script:clipOpened){throw "$voiceId clip did not open: $($clip.file)"};$opened++
+   }
+   $script:voicePlayer.Stop()
+   $previewLine=$script:dialogue.lines|Where-Object id -eq 'preview-01'|Select-Object -First 1
+   Speak-Line $previewLine|Out-Null
+   if($script:lastVoiceClips.Count -ne 2 -or $script:lastVoiceClips[0] -notlike '*\address\xiaobendan.mp3' -or $script:lastSpokenLine.text -notlike '小笨蛋，*'){throw "$voiceId address + body routing failed"}
+   # 等第一个片段播完，确认队列接着播正文。
+   $queueFrame=[Windows.Threading.DispatcherFrame]::new();$queueWait=[Windows.Threading.DispatcherTimer]::new();$queueWait.Interval=[timespan]::FromMilliseconds(250)
+   $script:queueDeadline=(Get-Date).AddSeconds(8);$queueWait.Add_Tick({if(($script:voicePlayer.Source -and [string]$script:voicePlayer.Source.LocalPath -eq $script:lastVoiceClips[1]) -or (Get-Date) -gt $script:queueDeadline){$queueFrame.Continue=$false;$queueWait.Stop()}});$queueWait.Start();[Windows.Threading.Dispatcher]::PushFrame($queueFrame)
+   if([string]$script:voicePlayer.Source.LocalPath -ne $script:lastVoiceClips[1]){throw "$voiceId did not continue from the address to the body"}
+   Stop-Voice
+   Select-AddressItem 'none';Save-WanwanSettings;Speak-Line $previewLine|Out-Null
+   if($script:lastVoiceClips.Count -ne 1 -or $script:lastSpokenLine.text -notlike '已经有点晚*'){throw "$voiceId no-address routing failed"};Stop-Voice
+   $splitReport+="$voiceId ($opened clips opened)"
+  }
+  Select-AddressItem 'rotate';$ui.VoiceN1.IsChecked=$true;Save-WanwanSettings
   $cfg.VoicePreset='N1';$ui.VoiceToggle.IsChecked=$false;$cfg.Voice=$false
-  Write-Output 'Voice tests passed: N1 bank complete, A-D removed and migrated, settings voice choice saved both ways, muted N1 native preview, system fallback for unrecorded text; real settings unchanged'
+  Write-Output ('Voice tests passed: N1 bank complete, A-D removed and migrated, settings voice choice saved both ways, muted N1 native preview, system fallback for unrecorded text; split voices: '+$(if($splitReport){$splitReport -join ', '}else{'none installed'})+'; real settings unchanged')
  }
  if($AnimationTest){
   if($script:interactionAssets.Count -ne 10){throw 'Ten interaction sheets required'}

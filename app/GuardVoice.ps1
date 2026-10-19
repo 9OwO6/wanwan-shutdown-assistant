@@ -7,9 +7,5 @@ function Get-GuardLine([string]$Cue){
  return [pscustomobject]@{id=$line.id;cue=$Cue;action=$line.action;text=$line.text;file=$line.file;duration=$record.duration}
 }
 function Say-GuardLine([string]$Cue){
- $line=Get-GuardLine $Cue;$script:lastSpokenLine=$line;$script:lastGuardDuration=$line.duration
- $message=$line.text
- if($cfg.VoicePreset -eq 'System'){$message=Format-CompanionAddress $message $cfg.Nickname}
- $asset=if($cfg.VoicePreset -eq 'N1'){Join-Path $root $line.file}else{''}
- Say $message -LineId $line.id -ActionId $line.action -PreparedAsset $asset -PreparedDuration $line.duration
+ $spoken=Speak-Line (Get-GuardLine $Cue);$script:lastGuardDuration=$spoken.duration
 }

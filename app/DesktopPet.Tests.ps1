@@ -96,9 +96,9 @@ foreach($row in $script:clockLines){
  $opened+=@{id=$row.id;hour=$row.hour;cue=$row.cue;nativeOpened=$true};Stop-Voice
 }
 $cfg.Voice=$false;$cfg.Bedtime='23:30';$cfg.DesktopPet=$false;if($popup){$popup.Close()}
-$cfg.VoicePreset='System';$cfg.Nickname='亲爱的朋友';Say-ClockReminder -Now ([datetime]'2026-10-10T23:37:00') -Cue early -Demo
+$cfg.VoicePreset='System';$cfg.Address='custom';$cfg.Nickname='亲爱的朋友';Say-ClockReminder -Now ([datetime]'2026-10-10T23:37:00') -Cue early -Demo
 if($popup.FindName('PopupText').Text -notlike '亲爱的朋友，*' -or $script:lastSpokenLine.text -ne $popup.FindName('PopupText').Text){throw 'System nickname did not match the visible clock caption'}
-$popup.Close();$cfg.VoicePreset='N1';$cfg.Nickname='你';$ui.TimeDisplay.Text=$cfg.Bedtime;$ui.ModeLabel.Text='守护未开启';$ui.Clock.Text=(Get-Date).ToString('HH:mm');$ui.Countdown.Text='我会提前半小时轻轻提醒你';Set-CompanionMode '陪伴';Set-Motion $false;Start-Interaction peek;Wait-Pet 150
+$popup.Close();$cfg.VoicePreset='N1';$cfg.Address='rotate';$cfg.Nickname='你';$ui.TimeDisplay.Text=$cfg.Bedtime;$ui.ModeLabel.Text='守护未开启';$ui.Clock.Text=(Get-Date).ToString('HH:mm');$ui.Countdown.Text='我会提前半小时轻轻提醒你';Set-CompanionMode '陪伴';Set-Motion $false;Start-Interaction peek;Wait-Pet 150
 Capture-Pet $win 'main-window.png'
 if($script:surfaces.Count -ne 1){throw 'Desktop windows leaked animation surfaces'}
 @{nativeOpens=$opened;titleBarIcon=$true;trayIcon=$true;appIdentity=$true;compact=$true;nonActivating=$true;rightCorner=$true;midnight=$true;fourPoses=@($poses);scheduledPhases=$scheduled;finalCountdown=$true;reducedMotion=$true;shutdownInvoked=$false;testModeBlocksPowerApi=$script:isTestMode}|ConvertTo-Json -Depth 6|Set-Content (Join-Path $petOutput 'runtime-report.json') -Encoding UTF8

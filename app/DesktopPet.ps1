@@ -125,11 +125,7 @@ function Complete-DesktopPetReminder {
 }
 function Say-ClockReminder {
  param([datetime]$Now=(Get-Date),[string]$Cue='early',[switch]$Demo)
- $line=Get-ClockReminder $Now $Cue;$script:lastSpokenLine=$line
- $message=$line.text
- if($cfg.VoicePreset -eq 'System'){$message=Format-CompanionAddress $message $cfg.Nickname;$line.text=$message}
- $asset=if($cfg.VoicePreset -eq 'N1'){Join-Path $root $line.file}else{''}
- Say $message -LineId $line.id -ActionId $line.action -PreparedAsset $asset -PreparedDuration $line.duration
+ $line=Speak-Line (Get-ClockReminder $Now $Cue);$message=$line.text
  if($script:dialog){$script:dialog.FindName('Info').Text=$message;$script:dialog.FindName('ReminderTime').Text='晚晚 · '+$line.time}
  else{Show-DesktopPet $message $(if($Demo){'提醒体验 · '+$line.time}else{'晚晚 · '+$line.time});Extend-DesktopPetLifetime}
 }

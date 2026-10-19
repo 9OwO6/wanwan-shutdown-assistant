@@ -26,6 +26,7 @@ RUNTIME_GLOBS = [
     'assets/icons/*',
     'assets/frames/*/*.png',
     'assets/voices/**/*.mp3',
+    'assets/voices/*/bank.json',
     'assets/voices/N1/manifest.json',
     'assets/voices/N1-clock/manifest.json',
     'assets/voices/N1-guard/manifest.json',

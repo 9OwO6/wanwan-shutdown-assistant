@@ -77,7 +77,29 @@ for frame in layout['frames']:
     assert data[:8] == b'\x89PNG\r\n\x1a\n' and (width, height, depth) == (640, 640, 8) and color in ((3, 6) if release_mode else (6,))
     if not release_mode:
         assert hashlib.sha256(checked_path(frame['source']).read_bytes()).hexdigest() == frame['source_sha256']
-for path in ('assets/wanwan.png', 'assets/icons/wanwan.ico', 'assets/icons/wanwan-256.png', 'Start-Wanwan.ps1', '启动晚晚.vbs', '启动晚晚.cmd', 'app/Main.ps1', 'app/Voice.ps1', 'app/Power.ps1', 'app/Schedule.ps1', 'app/History.ps1', 'app/Watch.ps1', 'app/UpdateCore.ps1', 'app/ApplyUpdate.ps1', 'assets/watch-lines.json', 'VERSION'):
+# Split voice banks (address + body): every clip in voice-script.json, exact text, hashed runtime file.
+script = read('assets/voice-script.json')
+wanted = {('line', r['id']): r['body'] for r in script['lines']}
+wanted.update({('hour', r['id']): r['body'] for r in script['clock']['hours']})
+wanted.update({('tail', r['id']): r['body'] for r in script['clock']['tails']})
+wanted.update({('address', r['id']): r['text'] for r in script['addresses']})
+split_banks = []
+for voice in read('assets/voices.json')['voices']:
+    bank_path = f"assets/voices/{voice['id']}/bank.json"
+    if voice['id'] == 'N1' or not (ROOT / bank_path).is_file():
+        continue
+    bank = read(bank_path)
+    have = {(c['kind'], c['id']): c for c in bank['clips']}
+    assert set(have) == set(wanted), f"{voice['id']}: clips differ from voice-script.json"
+    for key, text in wanted.items():
+        clip = have[key]
+        assert clip['text'] == text, f"{voice['id']} {key}: text differs"
+        assert hashlib.sha256(checked_path(clip['file']).read_bytes()).hexdigest() == clip['runtime_sha256']
+        if not release_mode:
+            assert hashlib.sha256(checked_path(clip['master_file']).read_bytes()).hexdigest() == clip['sha256']
+        checked += 1
+    split_banks.append(f"{voice['id']} ({len(have)})")
+for path in ('assets/wanwan.png', 'assets/icons/wanwan.ico', 'assets/icons/wanwan-256.png', 'Start-Wanwan.ps1', '启动晚晚.vbs', '启动晚晚.cmd', 'app/Main.ps1', 'app/Voice.ps1', 'app/VoiceBank.ps1', 'assets/voice-script.json', 'assets/voices.json', 'app/Power.ps1', 'app/Schedule.ps1', 'app/History.ps1', 'app/Watch.ps1', 'app/UpdateCore.ps1', 'app/ApplyUpdate.ps1', 'assets/watch-lines.json', 'VERSION'):
     checked_path(path)
 mode = f'{masters} WAV masters PCM-checked' if masters else 'release mode, MP3 only'
-print(f'PASS: {checked} N1 runtime clips ({mode}), exact catalog/transcript/hash matching, 24-hour routing, 40 reviewed character frames and required runtime files.')
+print(f'PASS: {checked} runtime clips ({mode}; split banks: {", ".join(split_banks) or "none"}), exact catalog/transcript/hash matching, 24-hour routing, 40 reviewed character frames and required runtime files.')
