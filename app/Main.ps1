@@ -34,7 +34,7 @@ if($voice){$script:synth.SelectVoice($voice.VoiceInfo.Name)}
 $script:synth.Rate=-2; $script:synth.Volume=80
 function Say([string]$message){if($script:cfg.Voice){$script:synth.SpeakAsyncCancelAll();$script:synth.SpeakAsync($message)|Out-Null}}
 [xml]$xaml=@'
-<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="晚晚 · 关机助理" Width="1080" Height="820" MinWidth="940" MinHeight="780" WindowStartupLocation="CenterScreen" Background="#FFF7FA" FontFamily="Microsoft YaHei UI" Foreground="#363138">
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="晚晚 · 关机助理" Width="1080" Height="800" MinWidth="940" MinHeight="780" WindowStartupLocation="CenterScreen" Background="#FFF7FA" FontFamily="Microsoft YaHei UI" Foreground="#363138">
  <Window.Resources>
   <Style TargetType="Button"><Setter Property="Cursor" Value="Hand"/><Setter Property="Padding" Value="20,12"/><Setter Property="Background" Value="#EFE7E2"/><Setter Property="Foreground" Value="#54454C"/><Setter Property="BorderThickness" Value="0"/><Setter Property="FontSize" Value="14"/><Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Button"><Border x:Name="b" CornerRadius="14" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"><ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><ControlTemplate.Triggers><Trigger Property="IsMouseOver" Value="True"><Setter TargetName="b" Property="Opacity" Value="0.82"/></Trigger><Trigger Property="IsPressed" Value="True"><Setter TargetName="b" Property="Opacity" Value="0.65"/></Trigger><Trigger Property="IsEnabled" Value="False"><Setter TargetName="b" Property="Opacity" Value="0.4"/></Trigger></ControlTemplate.Triggers></ControlTemplate></Setter.Value></Setter></Style>
   <Style TargetType="TextBox"><Setter Property="Padding" Value="12,10"/><Setter Property="FontSize" Value="15"/><Setter Property="BorderBrush" Value="#DED4D1"/><Setter Property="Background" Value="#FFFCFA"/></Style>
@@ -60,6 +60,7 @@ function Say([string]$message){if($script:cfg.Voice){$script:synth.SpeakAsyncCan
     </StackPanel></Border>
     <WrapPanel Margin="0,0,0,14"><Button x:Name="Preview" Content="♡  听听晚晚的提醒" Background="#A7778B" Foreground="White" Margin="0,0,10,8"/><Button x:Name="Demo" Content="体验睡前倒计时" Margin="0,0,10,8"/><Button x:Name="Interactions" Content="♡ 互动小剧场" Margin="0,0,0,8"/></WrapPanel>
     <Border Background="#F6E8EE" CornerRadius="16" Padding="18,14"><DockPanel><Button x:Name="GuardSwitch" DockPanel.Dock="Right" Content="开启到点守护" Padding="14,9" Background="#A7778B" Foreground="White" Margin="14,0,0,0" VerticalAlignment="Center"/><StackPanel VerticalAlignment="Center"><TextBlock x:Name="GuardSummary" Text="" Foreground="#6E5A64" FontSize="13" TextWrapping="Wrap" LineHeight="21"/><TextBlock x:Name="Feedback" Text="" Foreground="#8A6878" FontSize="12" Margin="0,4,0,0" TextWrapping="Wrap"/></StackPanel></DockPanel></Border>
+    <Border Background="#FFFFFF" CornerRadius="16" Padding="18,12" Margin="0,12,0,0"><StackPanel><TextBlock Text="今晚的节奏" Foreground="#95868E" FontSize="12" Margin="0,0,0,6"/><UniformGrid x:Name="Timeline" Columns="4"/></StackPanel></Border>
    </StackPanel>
    <DockPanel Grid.Row="2" Margin="0,16,0,0"><TextBlock x:Name="FooterText" Text="本地运行 · 不上传数据" Foreground="#A3979D" FontSize="11" VerticalAlignment="Center"/><Button x:Name="PetPreview" Content="桌宠提醒体验 ♡" FontSize="11" Padding="8,6" Margin="10,0,6,0"/><Button x:Name="CheckUpdate" Content="检查更新" FontSize="11" Padding="8,6" Margin="0,0,8,0" ToolTip="从 GitHub 检查并一键安装新版本；设置和打卡记录会保留"/><Button x:Name="Hide" Content="收起到托盘 ↗" FontSize="11" Padding="8,6" HorizontalAlignment="Right"/></DockPanel>
   </Grid>
@@ -75,7 +76,7 @@ Set-WanwanIcon $script:win
   <TextBlock Text="⚙  设置" FontSize="21" FontWeight="SemiBold"/>
   <TextBlock Text="改完点「保存」才会生效；声音、桌宠和动态开关会立即生效。" Foreground="#9B8B93" FontSize="12" Margin="0,6,0,4"/>
   <Border Background="#FFFFFF" CornerRadius="16" Padding="18" Margin="0,14,0,0"><StackPanel>
-   <TextBlock Text="睡觉时间" Foreground="#9B7B88" FontSize="12" Margin="0,0,0,10"/>
+   <TextBlock Text="今晚的约定" Foreground="#9B7B88" FontSize="12" Margin="0,0,0,10"/>
    <Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions>
       <StackPanel Margin="0,0,10,0"><TextBlock Text="睡觉时间" Margin="0,0,0,7" Foreground="#87767F"/><TextBox x:Name="BedInput" Text="23:30" MaxLength="5"/></StackPanel>
       <StackPanel Grid.Column="1" Margin="0,0,10,0"><TextBlock Text="周五六晚" Margin="0,0,0,7" Foreground="#87767F" ToolTip="周五、周六晚上的睡觉时间；留空则与平时相同。例如 01:00 表示周六、周日凌晨一点。"/><TextBox x:Name="WeekendInput" Text="" MaxLength="5" ToolTip="留空 = 和平时一样；例如 00:30 或 01:00"/></StackPanel>
@@ -86,7 +87,7 @@ Set-WanwanIcon $script:win
   </StackPanel></Border>
   <Border Background="#FFFFFF" CornerRadius="16" Padding="18" Margin="0,12,0,0"><StackPanel>
    <TextBlock Text="起夜监督" Foreground="#9B7B88" FontSize="12" Margin="0,0,0,10"/>
-   <WrapPanel ToolTip="睡后守护时间内重新开机或唤醒电脑，晚晚会出来催你回去睡觉，并留几分钟处理急事。需要勾选「开机陪伴」，晚晚才能在开机后出现。"><TextBlock Text="起夜监督  睡后" Foreground="#87767F" VerticalAlignment="Center"/><TextBox x:Name="SleepHoursInput" Text="6" MaxLength="2" Width="44" Padding="6,4" Margin="6,0" FontSize="13"/><TextBlock Text="小时内再开机，给" Foreground="#87767F" VerticalAlignment="Center"/><TextBox x:Name="WakeGraceInput" Text="5" MaxLength="2" Width="44" Padding="6,4" Margin="6,0" FontSize="13"/><TextBlock Text="分钟处理急事" Foreground="#87767F" VerticalAlignment="Center"/></WrapPanel>
+   <WrapPanel ToolTip="睡后守护时间内重新开机或唤醒电脑，晚晚会出来催你回去睡觉，并留几分钟处理急事。需要勾选「开机陪伴」，晚晚才能在开机后出现。"><TextBlock Text="睡后" Foreground="#87767F" VerticalAlignment="Center"/><TextBox x:Name="SleepHoursInput" Text="6" MaxLength="2" Width="44" Padding="6,4" Margin="6,0" FontSize="13"/><TextBlock Text="小时内再开机，给" Foreground="#87767F" VerticalAlignment="Center"/><TextBox x:Name="WakeGraceInput" Text="5" MaxLength="2" Width="44" Padding="6,4" Margin="6,0" FontSize="13"/><TextBlock Text="分钟处理急事" Foreground="#87767F" VerticalAlignment="Center"/></WrapPanel>
    <TextBlock Text="需要同时打开下面的「开机陪伴」，晚晚才能在你重新开机后出现。" Foreground="#AA97A0" FontSize="11" Margin="0,8,0,0" TextWrapping="Wrap"/>
   </StackPanel></Border>
   <Border Background="#FFFFFF" CornerRadius="16" Padding="18" Margin="0,12,0,0"><StackPanel>
@@ -107,7 +108,7 @@ $script:settingsWin=[Windows.Markup.XamlReader]::Load([System.Xml.XmlNodeReader]
 $settingsWin.Resources.MergedDictionaries.Add($win.Resources);Set-WanwanIcon $settingsWin
 # 主窗口只放今晚的状态和快捷操作；所有可改的约定都在「设置」窗口里。
 $ui=@{}
-foreach($n in 'Portrait','Clock','Headline','Message','ModeLabel','TimeDisplay','Countdown','Progress','Preview','Demo','Interactions','GuardSwitch','GuardSummary','Feedback','Hide','StreakText','CheckUpdate','FooterText','OpenSettings','PetPreview'){$ui[$n]=$win.FindName($n)}
+foreach($n in 'Portrait','Clock','Headline','Message','ModeLabel','TimeDisplay','Countdown','Progress','Preview','Demo','Interactions','GuardSwitch','GuardSummary','Timeline','Feedback','Hide','StreakText','CheckUpdate','FooterText','OpenSettings','PetPreview'){$ui[$n]=$win.FindName($n)}
 foreach($n in 'BedInput','WeekendInput','GraceInput','NameInput','VoiceToggle','VoiceN1','VoiceSystem','EnabledToggle','StartupToggle','PetToggle','MotionToggle','AutoUpdateToggle','ActionShutdown','ActionSleep','SleepHoursInput','WakeGraceInput','Save','ArmGuard','CloseSettings','SettingsFeedback'){$ui[$n]=$settingsWin.FindName($n)}
 foreach($n in @($ui.Keys)){if(-not $ui[$n]){throw "Missing control: $n"}}
 $startupFile=Join-Path ([Environment]::GetFolderPath('Startup')) '晚晚关机助理.lnk'
@@ -125,6 +126,10 @@ function Update-GuardSummary {
  $parts=@('平时 '+$cfg.Bedtime);if($cfg.WeekendBedtime){$parts+='周五六晚 '+$cfg.WeekendBedtime}
  $parts+=('到点'+(Get-GuardActionName));$parts+=('起夜监督 '+$cfg.SleepHours+' 小时')
  $ui.GuardSummary.Text=($parts -join ' · ')
+ $bed=(Get-NightState (Get-Date) $cfg).Bed;$end=$bed.AddMinutes([int]$cfg.Grace)
+ $steps=@(@($bed.AddMinutes(-30),'轻声提醒'),@($bed.AddMinutes(-10),'记得保存'),@($bed,'开始收尾 '+$cfg.Grace+' 分钟'),@($end,$(if($cfg.Enabled){'帮你'+(Get-GuardActionName)}else{'只提醒，不'+(Get-GuardActionName)})))
+ $ui.Timeline.Children.Clear()
+ foreach($step in $steps){$cell=[Windows.Controls.StackPanel]::new();$t=[Windows.Controls.TextBlock]::new();$t.Text=$step[0].ToString('HH:mm');$t.FontSize=17;$t.Foreground=[Windows.Media.BrushConverter]::new().ConvertFromString('#6E5A64');$l=[Windows.Controls.TextBlock]::new();$l.Text=$step[1];$l.FontSize=11;$l.Foreground=[Windows.Media.BrushConverter]::new().ConvertFromString('#A08C96');$l.Margin=[Windows.Thickness]::new(0,2,0,0);$cell.Children.Add($t)|Out-Null;$cell.Children.Add($l)|Out-Null;$ui.Timeline.Children.Add($cell)|Out-Null}
  $ui.GuardSwitch.Content=if($cfg.Enabled){'暂停守护'}else{'开启到点守护'}
  $ui.GuardSwitch.Background=[Windows.Media.BrushConverter]::new().ConvertFromString($(if($cfg.Enabled){'#E3D5DB'}else{'#A7778B'}))
  $ui.GuardSwitch.Foreground=if($cfg.Enabled){[Windows.Media.BrushConverter]::new().ConvertFromString('#54454C')}else{[Windows.Media.Brushes]::White}
@@ -266,11 +271,12 @@ function Invoke-GuardTick([datetime]$now=(Get-Date)){
  $script:lastRealTick=$realNow
  $s=Get-NightState $now $cfg
  Invoke-HistoryTick $now $s.Phase
+ if($script:summaryKey -ne $s.Key){$script:summaryKey=$s.Key;Update-GuardSummary}
  Update-PetGuardStatus
  $ui.Clock.Text=$now.ToString('HH:mm');$ui.TimeDisplay.Text=$s.Bed.ToString('HH:mm')
  $ui.ModeLabel.Text=if($cfg.Enabled){'守护已开启 · 到点'+(Get-GuardActionName)+' ♡'}else{'仅陪伴 · 不会自动关机'}
  $weekendNote=if($cfg.WeekendBedtime){' · 周五六晚 '+$cfg.WeekendBedtime}else{''}
- $ui.Countdown.Text=if(-not $cfg.Enabled){'要到点关机或睡眠，请勾选「到点自动守护」并保存'}elseif($cfg.Cancelled -eq $s.Key){'今晚已取消，好好照顾自己'}elseif($s.Phase -eq 'Day' -or $s.Phase -eq 'Quiet'){'我会提前半小时轻轻提醒你'+$weekendNote}else{'最晚 '+$s.End.ToString('HH:mm')+'，我们就休息'}
+ $ui.Countdown.Text=if(-not $cfg.Enabled){'要到点关机或睡眠，点下面的「开启到点守护」'}elseif($cfg.Cancelled -eq $s.Key){'今晚已取消，好好照顾自己'}elseif($s.Phase -eq 'Day' -or $s.Phase -eq 'Quiet'){'我会提前半小时轻轻提醒你'+$weekendNote}else{'最晚 '+$s.End.ToString('HH:mm')+'，我们就休息'}
  # 夜晚区间结束（例如睡眠到第二天才唤醒）时，收起遗留的倒计时。
  if($script:dialog -and -not $script:demoMode -and $s.Phase -in @('Day','Quiet','Early','Soon')){$script:dialog.Close();if(-not $script:dialog){Write-Event 'Night window ended; countdown closed'}}
  $ui.Progress.Value=[math]::Max(0,[math]::Min(100,(($now-$s.Bed.AddMinutes(-30)).TotalMinutes/(30+$cfg.Grace))*100))
@@ -341,7 +347,7 @@ if($SmokeTest -or $InteractionTest -or $AnimationTest -or $VoiceTest -or $Compan
   $persisted=Get-Content $configFile -Raw -Encoding UTF8|ConvertFrom-Json;if($cfg.VoicePreset -ne 'System' -or $persisted.VoicePreset -ne 'System'){throw 'System voice choice not saved'}
   $ui.VoiceN1.IsChecked=$true;Save-WanwanSettings
   $persisted=Get-Content $configFile -Raw -Encoding UTF8|ConvertFrom-Json;if($cfg.VoicePreset -ne 'N1' -or $persisted.VoicePreset -ne 'N1'){throw 'N1 voice choice not saved'}
-  $cfg.Voice=$true;$script:voicePlayer.Volume=0;$script:synth.Volume=0;$script:voiceMediaReady=$false;$audioFrame=[Windows.Threading.DispatcherFrame]::new()
+  $ui.VoiceToggle.IsChecked=$true;$cfg.Voice=$true;$script:voicePlayer.Volume=0;$script:synth.Volume=0;$script:voiceMediaReady=$false;$audioFrame=[Windows.Threading.DispatcherFrame]::new()
   $mediaReadyHandler=[System.EventHandler]{$script:voiceMediaReady=$true;$audioFrame.Continue=$false};$script:voicePlayer.Add_MediaOpened($mediaReadyHandler)
   $ui.Preview.RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent))
   $audioTimeout=[Windows.Threading.DispatcherTimer]::new();$audioTimeout.Interval=[timespan]::FromSeconds(3);$audioTimeout.Add_Tick({$audioFrame.Continue=$false;$audioTimeout.Stop()});$audioTimeout.Start();[Windows.Threading.Dispatcher]::PushFrame($audioFrame);$audioTimeout.Stop();$script:voicePlayer.Remove_MediaOpened($mediaReadyHandler)
@@ -349,7 +355,7 @@ if($SmokeTest -or $InteractionTest -or $AnimationTest -or $VoiceTest -or $Compan
   # N1 没有录音的句子（例如自定义称呼后的文字）交给系统朗读。
   Say '这句话没有录音' ;if($script:lastVoiceAsset){throw 'Unrecorded text must fall back to system speech'};Stop-Voice
   $cfg.VoicePreset='System';Say-Cue preview;if($script:lastVoiceAsset){throw 'System voice must not play N1 clips'};Stop-Voice
-  $cfg.VoicePreset='N1';$cfg.Voice=$false
+  $cfg.VoicePreset='N1';$ui.VoiceToggle.IsChecked=$false;$cfg.Voice=$false
   Write-Output 'Voice tests passed: N1 bank complete, A-D removed and migrated, settings voice choice saved both ways, muted N1 native preview, system fallback for unrecorded text; real settings unchanged'
  }
  if($AnimationTest){
