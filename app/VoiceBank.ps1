@@ -67,7 +67,7 @@ function Resolve-Speech($Line,[string]$Voice=$cfg.VoicePreset){
  $legacyDuration=if($Line.duration){[double]$Line.duration}else{$record=$script:n1Records|Where-Object {$_.id -eq $Line.id}|Select-Object -First 1;if($record){[double]$record.duration}else{0}}
  # 不在台词表里的句子（例如测试用文字）：原样朗读。
  if(-not $parts.Count){
-  $clips=if($Voice -eq 'N1' -and $legacyFile -and (Test-Path $legacyFile)){@($legacyFile)}else{@()}
+  $clips=@(if($Voice -eq 'N1' -and $legacyFile -and (Test-Path $legacyFile)){$legacyFile})
   return @{Text=$Line.text;Clips=$clips;Duration=$legacyDuration}
  }
  $address=if($addressed){Get-AddressChoice $n1Address}else{@{Id=$null;Label=''}}

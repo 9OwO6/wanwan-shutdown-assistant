@@ -1,4 +1,4 @@
-$ErrorActionPreference='Stop'
+﻿$ErrorActionPreference='Stop'
 # 称呼 + 正文的解析逻辑：用一个假的分段声音包（空文件）测试，不需要 WPF 或真实录音。
 function Assert-Bank([bool]$Pass,[string]$Message){if(-not $Pass){throw $Message}}
 $repo=Split-Path $PSScriptRoot
@@ -70,6 +70,10 @@ Assert-Bank ($r.Text -like '诶嘿，被晚晚发现啦*' -and $r.Clips.Count -e
 Remove-Item (Join-Path $root 'assets/voices/V9/address-baobao.mp3');$r=Resolve-Speech $preview
 Assert-Bank ($r.Clips.Count -eq 0 -and $r.Text -like '宝宝，*') 'Missing clip must fall back to speech, never half a sentence'
 
+# 7b. N1 整句录音：单个片段也必须是数组（PowerShell 会把单元素数组展开成字符串）
+$legacy=Join-Path $root 'assets/legacy.mp3';Set-Content $legacy 'x'
+$r=Resolve-Speech ([pscustomobject]@{id='free-text';cue='x';action='peek';text='随便说一句';file=$legacy;duration=1.5}) 'N1'
+Assert-Bank ($r.Clips -is [array] -and $r.Clips.Count -eq 1 -and $r.Clips[0] -eq $legacy) 'Single legacy clip must stay an array'
 # 8. 旧设置迁移
 foreach($case in @(@('宝贝','baobei'),@('亲爱的朋友','custom'),@('','rotate'))){
     $cfg=@{VoicePreset='V9';Nickname=$case[0]};Repair-AddressSetting
@@ -78,4 +82,4 @@ foreach($case in @(@('宝贝','baobei'),@('亲爱的朋友','custom'),@('','rota
 $cfg=@{Address='gone'};Repair-AddressSetting;Assert-Bank ($cfg.Address -eq 'rotate') 'Unknown address resets to rotate'
 
 Remove-Item -LiteralPath $root -Recurse -Force
-Write-Output '20 voice bank tests passed (address + body splicing, rotate/none/chosen/custom, clock three-part, guard/watch, missing-clip fallback, migration)'
+Write-Output '21 voice bank tests passed (address + body splicing, rotate/none/chosen/custom, clock three-part, guard/watch, missing-clip fallback, migration)'

@@ -77,7 +77,7 @@ def main(voice, source):
             'generation_parameters': first.get('generation_parameters'), 'clips': clips}
     (out / 'bank.json').write_text(json.dumps(bank, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
     total = sum(c['duration'] for c in clips)
-    flagged = [c['kind'] + ':' + c['id'] for c in clips if c['asr_status'] not in ('ok', 'minor_asr_variation')]
+    flagged = [c['kind'] + ':' + c['id'] for c in clips if c['asr_status'] not in ('verified', 'accepted_variant')]
     print(f'{voice}: imported {len(clips)} clips ({total / 60:.1f} min) into assets/voices/{voice}/; '
           f'ASR needs review: {", ".join(flagged) if flagged else "none"}')
 

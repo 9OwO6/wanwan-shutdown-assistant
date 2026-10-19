@@ -34,7 +34,8 @@ function Say {
  Stop-Voice
  if(-not $script:cfg.Voice){return}
  # 一句话可以由多个片段组成（称呼 + 正文，或称呼 + 整点 + 提醒），依次播放，中间停顿一小会儿。
- $clips=if($PreparedClips.Count){@($PreparedClips)}elseif($PreparedAsset){@($PreparedAsset)}else{$single=Get-VoiceAsset -Message $message -Preset $cfg.VoicePreset -LineId $LineId;if($single){@($single)}else{@()}}
+ # 注意：if 语句会把单元素数组展开成字符串，所以外面再包一层 @()。
+ $clips=@(if($PreparedClips.Count){$PreparedClips}elseif($PreparedAsset){$PreparedAsset}else{$single=Get-VoiceAsset -Message $message -Preset $cfg.VoicePreset -LineId $LineId;if($single){$single}})
  $script:lastVoiceClips=$clips;$script:lastVoiceAsset=if($clips.Count){$clips[0]}else{$null};$script:lastVoiceMessage=$message
  if($clips.Count){
   for($i=1;$i -lt $clips.Count;$i++){$script:voiceQueue.Enqueue($clips[$i])}
