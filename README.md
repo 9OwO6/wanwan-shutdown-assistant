@@ -45,11 +45,11 @@
 3. 先点 **「体验睡前倒计时」**：35 秒完整演示，**绝不会关机**。
 4. 点右上角 **「⚙ 设置」**：设好睡觉时间（周末可以单独设），选择到点后「正常关机」或「睡眠」，点 **「保存并开启守护」**。以后在主窗口点「暂停守护 / 开启到点守护」就能一键切换。
 
-> 小技巧：右键右下角托盘图标 →「在桌面创建晚晚快捷方式」，以后双击桌面头像就能打开；在设置里勾选「开机陪伴」则每天登录后自动出现。
+> 小技巧：右键右下角托盘图标 →「在桌面创建晚晚快捷方式」，以后双击桌面头像就能打开；在设置里勾选「开机自动启动」则每天登录后自动出现。
 
-| 桌面小头像 | 准点提醒气泡 | 睡前收尾倒计时 |
+| 书桌前的晚晚（喝水 / 你离开时趴着睡） | 准点提醒气泡 | 睡前收尾倒计时 |
 |:--:|:--:|:--:|
-| <img src="docs/screenshots/desktop-pet.png" width="142" alt="可拖动的桌面头像"> | <img src="docs/screenshots/reminder-bubble.png" width="270" alt="带报时的提醒气泡"> | <img src="docs/screenshots/bedtime-countdown.png" width="270" alt="收尾倒计时"> |
+| <img src="docs/screenshots/desk-pet-drink.png" width="142" alt="桌宠在书桌前喝水"> <img src="docs/screenshots/desk-pet-nap.png" width="142" alt="桌宠趴着睡、台灯关掉"> | <img src="docs/screenshots/reminder-bubble.png" width="270" alt="带报时的提醒气泡"> | <img src="docs/screenshots/bedtime-countdown.png" width="270" alt="收尾倒计时"> |
 
 | 起夜监督：关机后又偷偷开机 | 早上的早睡打卡 |
 |:--:|:--:|
