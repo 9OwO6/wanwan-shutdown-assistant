@@ -49,7 +49,7 @@
 
 | 书桌前的晚晚（喝水 / 你离开时趴着睡） | 准点提醒气泡 | 睡前收尾倒计时 |
 |:--:|:--:|:--:|
-| <img src="docs/screenshots/desk-pet-drink.png" width="142" alt="桌宠在书桌前喝水"> <img src="docs/screenshots/desk-pet-nap.png" width="142" alt="桌宠趴着睡、台灯关掉"> | <img src="docs/screenshots/reminder-bubble.png" width="270" alt="带报时的提醒气泡"> | <img src="docs/screenshots/bedtime-countdown.png" width="270" alt="收尾倒计时"> |
+| <img src="docs/screenshots/desk-pet-drink.png" width="142" alt="桌宠在书桌前喝水"> <img src="docs/screenshots/desk-pet-nap.png" width="142" alt="桌宠趴着睡、安静趴着"> | <img src="docs/screenshots/reminder-bubble.png" width="270" alt="带报时的提醒气泡"> | <img src="docs/screenshots/bedtime-countdown.png" width="270" alt="收尾倒计时"> |
 
 | 起夜监督：关机后又偷偷开机 | 早上的早睡打卡 |
 |:--:|:--:|
