@@ -53,7 +53,7 @@ function Get-NextBehaviorDelay([int]$Sleepiness,[Random]$Random){
 }
 
 # 行为 → 现有动作帧（书桌素材到位前的替代）。有书桌素材时用 desk-<行为>。
-$script:BehaviorFallback=@{write='nod';drink='water';stretch='stretch';peek='peek';yawn='yawn';sleep='goodnight';watch='peek';play='cheer'}
+$script:BehaviorFallback=@{write='nod';drink='water';stretch='stretch';peek='peek';yawn='yawn';sleep='goodnight';watch='peek';play='cheer';poked='pat';goodnight='goodnight'}
 function Get-BehaviorAnimation([string]$Behavior,$Available){
  if($Available -contains ('desk-'+$Behavior)){return 'desk-'+$Behavior}
  if($script:BehaviorFallback.ContainsKey($Behavior)){return $script:BehaviorFallback[$Behavior]}

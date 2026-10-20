@@ -16,6 +16,13 @@ if($script:deskScene){
  Assert-Pet ($script:petAvatarSurface.Key -like 'desk-write:*' -and $script:petAvatarSurface.Cup.Visibility -eq [Windows.Visibility]::Visible) 'Other actions keep the mug on the desk'
  # 主窗口的立绘不用书桌素材
  Assert-Pet ($script:mainSurface.Key -notlike 'desk-*') 'Main portrait keeps the standing frames'
+ # 提醒用的站姿动作在书桌上换成对应动作；书桌动作放到主窗口立绘时换回站姿
+ if($script:interactionAssets.ContainsKey('desk-poked')){
+  Set-SurfaceFrame $script:petAvatarSurface 'pat' 0;Assert-Pet ($script:petAvatarSurface.Key -eq 'desk-poked:0') "Poke maps to the desk poke, got $($script:petAvatarSurface.Key)"
+  Set-SurfaceFrame $script:petAvatarSurface 'goodnight' 0;Assert-Pet ($script:petAvatarSurface.Key -eq 'desk-goodnight:0') 'Goodnight maps to the desk wave'
+  Set-SurfaceFrame $script:mainSurface 'desk-poked' 0;Assert-Pet ($script:mainSurface.Key -eq 'pat:0') 'Desk poke shows the standing pat in the main window'
+ }
+ Set-SurfaceFrame $script:petAvatarSurface 'heart' 0;Assert-Pet ($script:petAvatarSurface.Key -like 'desk-*') 'Every standing gesture has a desk equivalent'
 }
 # 1. 自己的小动作：到时间才做，不改主窗口文字，不说话
 $message=$ui.Message.Text;$script:petBehavior.NextAt=[datetime]'2026-10-12T21:00:00';$script:petBehavior.Last=''

@@ -48,11 +48,13 @@ function Register-CharacterSurface($image,$fade,$window){
  if($script:frames){$image.Source=$script:frames[0]}
  return $surface
 }
+# 站姿动作在书桌上的对应动作（按顺序取第一个已有的）。
+$script:DeskEquivalent=@{water=@('desk-drink');yawn=@('desk-yawn');goodnight=@('desk-goodnight','desk-sleep');stretch=@('desk-stretch');peek=@('desk-peek');wave=@('desk-goodnight','desk-peek');nod=@('desk-peek');heart=@('desk-peek');cheer=@('desk-play','desk-peek');pat=@('desk-poked','desk-peek')}
 function Set-SurfaceFrame($surface,[string]$id,[int]$index){
  # 书桌动作只在桌宠小窗里用；主窗口等立绘画面换成对应的站姿动作。
  if($id -like 'desk-*' -and -not $surface.Desk){$id=if($script:BehaviorFallback -and $script:BehaviorFallback.ContainsKey($id.Substring(5))){$script:BehaviorFallback[$id.Substring(5)]}else{'peek'}}
  # 反过来，桌宠小窗有书桌场景时，提醒用的站姿动作换成书桌上的近似动作。
- if($surface.Desk -and $id -notlike 'desk-*'){$deskId='desk-'+$(switch($id){'water'{'drink'}'yawn'{'yawn'}'goodnight'{'sleep'}default{'write'}});if($script:interactionAssets.ContainsKey($deskId)){$id=$deskId}}
+ if($surface.Desk -and $id -notlike 'desk-*'){foreach($deskId in @($script:DeskEquivalent[$id])+@('desk-write')){if($deskId -and $script:interactionAssets.ContainsKey($deskId)){$id=$deskId;break}}}
  if(-not $script:interactionAssets.ContainsKey($id)){return}
  $key=$id+':'+$index;if($surface.Key -eq $key){return}
  # 只在更换动作时淡化；姿态间直接切帧，避免两张脸重叠。

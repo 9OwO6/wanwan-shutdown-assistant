@@ -20,6 +20,12 @@ BEHAVIORS = {
     'drink': {'name': '喝水', 'frames': [0, 1, 2, 2, 3, 0], 'step': 480, 'hide_cup': True},
     'yawn': {'name': '打哈欠', 'frames': [0, 1, 2, 3, 2, 0], 'step': 460},
     'sleep': {'name': '趴着睡', 'frames': [0, 1, 2, 3, 2, 1], 'step': 700},
+    'watch': {'name': '陪你看视频', 'frames': [0, 1, 0, 2, 3, 2], 'step': 520},
+    'play': {'name': '陪你玩游戏', 'frames': [0, 1, 2, 1, 2, 3], 'step': 380},
+    'stretch': {'name': '伸懒腰', 'frames': [0, 1, 2, 2, 3, 0], 'step': 460},
+    'peek': {'name': '抬头看你', 'frames': [0, 1, 2, 3, 2, 1], 'step': 420},
+    'poked': {'name': '被戳了', 'frames': [0, 1, 2, 3], 'step': 360},
+    'goodnight': {'name': '说晚安', 'frames': [0, 1, 2, 1, 2, 3], 'step': 460},
 }
 # Layer order (Codex render recipe): back + desk back -> character -> desk front occlusion -> mug.
 # The two back plates are flattened here; lamp on/off variants for the back and the front.
