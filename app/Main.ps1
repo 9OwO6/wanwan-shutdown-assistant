@@ -429,7 +429,7 @@ if($SmokeTest -or $InteractionTest -or $AnimationTest -or $VoiceTest -or $Compan
   Write-Output ('Voice tests passed: persona migration, settings persona/address lists saved, '+($report -join ', ')+', whole-sentence address routing, two-part clock, system speech with custom name; real settings unchanged')
  }
  if($AnimationTest){
-  if($script:interactionAssets.Count -ne 10){throw 'Ten interaction sheets required'}
+  if(@($script:interactionAssets.Keys|Where-Object {$_ -notlike 'desk-*'}).Count -ne 10){throw 'Ten interaction sheets required'}
   $captureDirectory=Join-Path $root 'output\animation';New-Item -ItemType Directory -Force $captureDirectory|Out-Null
   Start-Interaction 'wave';$script:captureNumber=0;$script:seenFrames=@()
   $captureTimer=[Windows.Threading.DispatcherTimer]::new();$captureTimer.Interval=[timespan]::FromMilliseconds(160)

@@ -111,7 +111,7 @@ function New-InteractionGallery {
 '@
  $script:gallery=[Windows.Markup.XamlReader]::Load([Xml.XmlNodeReader]::new($gx));$gallery.Resources.MergedDictionaries.Add($win.Resources);$gallery.Owner=$win
  $script:gallerySurface=Register-CharacterSurface ($gallery.FindName('ScenePortrait')) ($gallery.FindName('SceneFade')) $gallery
- foreach($item in $script:interactionCatalog){
+ foreach($item in @($script:interactionCatalog|Where-Object {$_.id -notlike 'desk-*'})){
   $button=[Windows.Controls.Button]::new();$button.Width=170;$button.Margin=[Windows.Thickness]::new(0,0,10,10);$button.Padding=[Windows.Thickness]::new(10);$button.Background=[Windows.Media.BrushConverter]::new().ConvertFromString('#FFFFFF');$button.Tag=$item.id;$button.ToolTip=$item.caption
   $panel=[Windows.Controls.StackPanel]::new();$thumb=[Windows.Controls.Image]::new();$thumb.Height=70;$thumb.Stretch=[Windows.Media.Stretch]::Uniform;if($script:interactionAssets.ContainsKey($item.id)){$thumb.Source=$script:interactionAssets[$item.id][2]};$panel.Children.Add($thumb)|Out-Null
   $text=[Windows.Controls.TextBlock]::new();$text.Text=$item.symbol+'  '+$item.name;$text.FontSize=14;$text.Margin=[Windows.Thickness]::new(0,6,0,2);$text.HorizontalAlignment=[Windows.HorizontalAlignment]::Center;$panel.Children.Add($text)|Out-Null;$button.Content=$panel

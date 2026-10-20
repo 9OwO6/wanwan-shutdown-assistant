@@ -1,6 +1,6 @@
 ﻿# 在真实 WPF Dispatcher 中操作按钮、抓帧，所有测试均禁用声音和关机。
-if($script:interactionAssets.Count -ne 10){throw 'Expected ten independent interaction sheets'}
-foreach($entry in $script:interactionAssets.GetEnumerator()){
+if(@($script:interactionAssets.Keys|Where-Object {$_ -notlike 'desk-*'}).Count -ne 10){throw 'Expected ten independent interaction sheets'}
+foreach($entry in @($script:interactionAssets.GetEnumerator()|Where-Object {$_.Key -notlike 'desk-*'})){
  if($entry.Value.Count -ne 4){throw 'Each action must load four reviewed frames'}
  foreach($frame in $entry.Value){if($frame.PixelWidth -ne 640 -or $frame.PixelHeight -ne 640 -or $frame -isnot [Windows.Media.Imaging.BitmapImage]){throw 'Runtime must load independent 640x640 frames instead of re-splitting source atlases'}}
 }
@@ -17,7 +17,7 @@ $ui.Interactions.RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.But
 if(-not $script:gallery -or $gallery.FindName('Scenes').Children.Count -ne 10){throw 'Gallery must expose ten working buttons'}
 Wait-Visual 200;Save-Visual $gallery 'gallery.png'
 $report=@()
-foreach($item in $script:interactionCatalog){
+foreach($item in @($script:interactionCatalog|Where-Object {$_.id -notlike 'desk-*'})){
  $button=$gallery.FindName('Scenes').Children|Where-Object {$_.Tag -eq $item.id}|Select-Object -First 1
  $button.RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent))
  $seen=[Collections.Generic.HashSet[int]]::new();$saved=[Collections.Generic.HashSet[int]]::new();$deadline=[datetime]::Now.AddMilliseconds($item.step*$item.frames.Count+80)
