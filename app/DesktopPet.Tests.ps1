@@ -12,13 +12,13 @@ function Assert-PetBounds($Window){
  $area=Get-DesktopWorkArea
  if($Window.Left -lt $area.Left-1 -or $Window.Top -lt $area.Top-1 -or $Window.Left+$Window.Width -gt $area.Right+1 -or $Window.Top+$Window.Height -gt $area.Bottom+1){throw 'Pet overlaps taskbar or leaves the work area'}
 }
-if($script:clockLines.Count -ne 96 -or $script:clockRecords.Count -ne 96){throw 'Complete 24-hour, four-phase clock bank required'}
+if(@($script:personaLines|Where-Object cue -eq 'hour').Count -ne 48){throw 'Both personas need 24 hourly lines'}
 if($script:appIdentityResult -ne 0 -or -not $win.Icon -or $tray.Icon.Handle -eq [IntPtr]::Zero){throw 'Branded window and tray resources missing'}
 $handle=[Windows.Interop.WindowInteropHelper]::new($win).Handle
 if([Wanwan.Desktop]::SendMessage($handle,0x7f,[IntPtr]::Zero,[IntPtr]::Zero) -eq [IntPtr]::Zero){throw 'Native title-bar icon was not set'}
 $negative=Get-PetPlacement ([Windows.Rect]::new(-1920,-200,1920,1040)) 390 420
 if($negative.Left -ne -408 -or $negative.Top -ne 402){throw 'Negative monitor coordinates are incorrect'}
-$cfg.VoicePreset='N1';$cfg.Voice=$false;$cfg.DesktopPet=$true
+$cfg.VoicePreset='Recorded';$cfg.Persona='girlfriend';$cfg.Address='baobao';$cfg.Voice=$false;$cfg.DesktopPet=$true
 $win.Activate()|Out-Null;Wait-Pet 100;$foreground=[Wanwan.Desktop]::GetForegroundWindow()
 Show-DesktopPet -Compact;Wait-Pet 150
 if(-not $popup.IsVisible -or $popup.ShowActivated -or $script:petExpanded -or $popup.Width -ne 142){throw 'Compact companion did not appear without activation'}
@@ -38,9 +38,9 @@ if([Wanwan.Desktop]::GetForegroundWindow() -ne $foreground){throw 'Reminder stol
 Assert-PetBounds $popup;Capture-Pet $popup 'reminder.png'
 $touch=[Windows.Input.MouseButtonEventArgs]::new([Windows.Input.Mouse]::PrimaryDevice,0,[Windows.Input.MouseButton]::Left);$touch.RoutedEvent=[Windows.UIElement]::MouseLeftButtonDownEvent
 $popup.FindName('PopupPortrait').RaiseEvent($touch)
-if($script:lastSpokenLine.cue -ne 'pat'){throw 'Touch did not trigger the companion response'}
+if($script:lastSpokenLine.cue -notlike 'poke*'){throw 'Touch did not trigger the poke response'}
 # Record actual advancing poses while the popup is visible.
-Start-Interaction wave '宝贝，晚晚在这里呀。' -Popup
+Start-Interaction wave '你回来啦。' -Popup
 $poses=[Collections.Generic.HashSet[int]]::new()
 for($i=0;$i -lt 24;$i++){Wait-Pet 100;if($script:action.Item.id -eq 'wave'){$poses.Add($script:frameIndex)|Out-Null;Capture-Pet $popup ('motion-'+$script:frameIndex+'.png')}}
 if($poses.Count -lt 4){throw 'Desktop pet did not advance through four real poses'}
@@ -84,22 +84,23 @@ if($dialog.FindName('CancelNight').ActualHeight -lt 24 -or $dialog.FindName('Can
 $dialog.Close()
 # Every prepared audio file is opened by the native WPF backend at zero volume.
 $cfg.Voice=$true;$script:voicePlayer.Volume=0;$opened=@()
-foreach($row in $script:clockLines){
+foreach($row in @(foreach($h in 0..23){foreach($c in 'early','soon','bed','final'){[pscustomobject]@{hour=$h;cue=$c}}})){
  $now=[datetime]'2026-10-10T00:37:00';$now=$now.AddHours([int]$row.hour);$resolved=Get-ClockReminder $now $row.cue
- if($resolved.id -ne $row.id -or $resolved.text -ne $row.text -or $resolved.time -ne ('{0:00}:37' -f $row.hour)){throw 'Hour/phase voice route is incorrect'}
+ if($resolved.cue -ne $row.cue -or $resolved.parts[0].hour -ne $row.hour -or $resolved.time -ne ('{0:00}:37' -f $row.hour)){throw 'Hour/phase voice route is incorrect'}
+ if(-not (Test-PersonaBank)){$opened+=@{hour=$row.hour;cue=$row.cue;nativeOpened=$false};continue}
  $ready=$false;$audioLoop=[Windows.Threading.DispatcherFrame]::new();$handler=[System.EventHandler]{$script:petClipReady=$true;$audioLoop.Continue=$false};$script:petClipReady=$false
  $script:voicePlayer.Add_MediaOpened($handler)
- Say $resolved.text -LineId $resolved.id -ActionId $resolved.action -PreparedAsset (Join-Path $root $resolved.file) -PreparedDuration $resolved.duration
+ Speak-Line $resolved|Out-Null
  $timeout=[Windows.Threading.DispatcherTimer]::new();$timeout.Interval=[timespan]::FromSeconds(3);$timeout.Add_Tick({$audioLoop.Continue=$false;$timeout.Stop()});$timeout.Start();[Windows.Threading.Dispatcher]::PushFrame($audioLoop);$timeout.Stop();$script:voicePlayer.Remove_MediaOpened($handler)
- if(-not $script:petClipReady -or $script:lastVoiceAsset -ne (Join-Path $root $row.file)){throw "Native hourly audio failed: $($row.id)"}
- if(($script:voiceUntil-(Get-Date)).TotalSeconds -lt $resolved.duration-2){throw 'Pet lifetime does not reflect actual spoken duration'}
- $opened+=@{id=$row.id;hour=$row.hour;cue=$row.cue;nativeOpened=$true};Stop-Voice
+ if(-not $script:petClipReady -or $script:lastVoiceClips.Count -ne 2 -or $script:lastVoiceAsset -notlike ('*hour-{0:00}@baobao.mp3' -f $row.hour)){throw "Native hourly audio failed: $($row.hour) $($row.cue)"}
+ if(($script:voiceUntil-(Get-Date)).TotalSeconds -lt $script:lastSpokenLine.duration-2){throw 'Pet lifetime does not reflect actual spoken duration'}
+ $opened+=@{hour=$row.hour;cue=$row.cue;nativeOpened=$true};Stop-Voice
 }
 $cfg.Voice=$false;$cfg.Bedtime='23:30';$cfg.DesktopPet=$false;if($popup){$popup.Close()}
 $cfg.VoicePreset='System';$cfg.Address='custom';$cfg.Nickname='亲爱的朋友';Say-ClockReminder -Now ([datetime]'2026-10-10T23:37:00') -Cue early -Demo
 if($popup.FindName('PopupText').Text -notlike '亲爱的朋友，*' -or $script:lastSpokenLine.text -ne $popup.FindName('PopupText').Text){throw 'System nickname did not match the visible clock caption'}
-$popup.Close();$cfg.VoicePreset='N1';$cfg.Address='rotate';$cfg.Nickname='你';$ui.TimeDisplay.Text=$cfg.Bedtime;$ui.ModeLabel.Text='守护未开启';$ui.Clock.Text=(Get-Date).ToString('HH:mm');$ui.Countdown.Text='我会提前半小时轻轻提醒你';Set-CompanionMode '陪伴';Set-Motion $false;Start-Interaction peek;Wait-Pet 150
+$popup.Close();$cfg.VoicePreset='Recorded';$cfg.Address='baobao';$cfg.Nickname='';$ui.TimeDisplay.Text=$cfg.Bedtime;$ui.ModeLabel.Text='守护未开启';$ui.Clock.Text=(Get-Date).ToString('HH:mm');$ui.Countdown.Text='我会提前半小时轻轻提醒你';Set-CompanionMode '陪伴';Set-Motion $false;Start-Interaction peek;Wait-Pet 150
 Capture-Pet $win 'main-window.png'
 if($script:surfaces.Count -ne 1){throw 'Desktop windows leaked animation surfaces'}
 @{nativeOpens=$opened;titleBarIcon=$true;trayIcon=$true;appIdentity=$true;compact=$true;nonActivating=$true;rightCorner=$true;midnight=$true;fourPoses=@($poses);scheduledPhases=$scheduled;finalCountdown=$true;reducedMotion=$true;shutdownInvoked=$false;testModeBlocksPowerApi=$script:isTestMode}|ConvertTo-Json -Depth 6|Set-Content (Join-Path $petOutput 'runtime-report.json') -Encoding UTF8
-Write-Output 'Desktop pet passed: compact/expanded forms, focus preserved, taskbar-safe placement, four poses, mute, reduced motion, midnight, all four actual scheduled phases, final pet countdown and 96 native audio opens; test mode blocks power API'
+Write-Output 'Desktop pet passed: compact/expanded forms, focus preserved, taskbar-safe placement, four poses, mute, reduced motion, midnight, all four actual scheduled phases, final pet countdown and 96 hour/phase routes (native opens when the voice bank is installed); test mode blocks power API'

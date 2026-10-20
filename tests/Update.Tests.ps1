@@ -36,11 +36,11 @@ $failed=$false;try{& "$PSScriptRoot\..\app\ApplyUpdate.ps1" -Source $src -Target
 Assert-Update ((Get-Content "$dst/app/Main.ps1") -eq 'new main' -and (Get-Content $log -Raw) -match 'Update failed') 'incomplete source must not be applied'
 # 旧版本文件清理：只删清单里的路径，其它文件保留；开发仓库（有 .git）不动。
 $pkg=Join-Path $tmp 'pkg'
-foreach($d in @("$pkg/app","$pkg/assets/voices/A","$pkg/assets/voices/auditions","$pkg/assets/voices/N1")){New-Item -ItemType Directory -Force $d|Out-Null}
-Set-Content "$pkg/app/Main.ps1" 'main';Set-Content "$pkg/VERSION" '0.3.1';Set-Content "$pkg/app/Auditions.ps1" 'old';Set-Content "$pkg/assets/voices/A/preview.mp3" 'old';Set-Content "$pkg/assets/voices/N1/keep.mp3" 'keep';Set-Content "$pkg/assets/voice-lines.json" '[]'
+foreach($d in @("$pkg/app","$pkg/assets/voices/A","$pkg/assets/voices/auditions","$pkg/assets/voices/girlfriend")){New-Item -ItemType Directory -Force $d|Out-Null}
+Set-Content "$pkg/app/Main.ps1" 'main';Set-Content "$pkg/VERSION" '0.3.1';Set-Content "$pkg/app/Auditions.ps1" 'old';Set-Content "$pkg/assets/voices/A/preview.mp3" 'old';Set-Content "$pkg/assets/voices/girlfriend/keep.mp3" 'keep';Set-Content "$pkg/assets/voice-lines.json" '[]'
 $removed=@(Remove-ObsoleteWanwanFiles $pkg)
 Assert-Update ($removed.Count -eq 4 -and -not (Test-Path "$pkg/app/Auditions.ps1") -and -not (Test-Path "$pkg/assets/voices/A") -and -not (Test-Path "$pkg/assets/voices/auditions") -and -not (Test-Path "$pkg/assets/voice-lines.json")) "Obsolete files must be removed: $($removed -join ',')"
-Assert-Update ((Test-Path "$pkg/assets/voices/N1/keep.mp3") -and (Test-Path "$pkg/app/Main.ps1")) 'Current files must be kept'
+Assert-Update ((Test-Path "$pkg/assets/voices/girlfriend/keep.mp3") -and (Test-Path "$pkg/app/Main.ps1")) 'Current files must be kept'
 New-Item -ItemType Directory -Force "$pkg/.git","$pkg/assets/voices/B"|Out-Null
 Assert-Update (@(Remove-ObsoleteWanwanFiles $pkg).Count -eq 0 -and (Test-Path "$pkg/assets/voices/B")) 'Developer checkouts must not be cleaned'
 Remove-Item -LiteralPath $tmp -Recurse -Force

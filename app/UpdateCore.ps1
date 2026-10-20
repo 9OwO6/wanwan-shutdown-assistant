@@ -60,7 +60,12 @@ $script:ObsoleteWanwanPaths = @(
     'assets\voice-lines.json',
     'assets\voices\manifest.json',
     'assets\voices\A', 'assets\voices\B', 'assets\voices\C', 'assets\voices\D',
-    'assets\voices\auditions', 'assets\voices\C-cleanup.json'
+    'assets\voices\auditions', 'assets\voices\C-cleanup.json',
+    # v0.4.0：两种性格的新录音替换了旧 N1 整句包和旧台词表
+    'app\Dialogue.ps1', 'app\GuardVoice.ps1', 'app\VoiceBank.ps1',
+    'assets\companion-lines.json', 'assets\clock-lines.json', 'assets\clock-parts.json', 'assets\guard-lines.json', 'assets\watch-lines.json',
+    'assets\voice-script.json', 'assets\voices.json',
+    'assets\voices\N1', 'assets\voices\N1-clock', 'assets\voices\N1-guard', 'assets\voices\N1-watch', 'assets\voices\V3'
 )
 function Remove-ObsoleteWanwanFiles([string]$Root) {
     # 只在发布包目录里清理（开发仓库里有 .git，交给 git 管理）。

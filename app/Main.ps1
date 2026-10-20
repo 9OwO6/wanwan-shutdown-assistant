@@ -15,10 +15,10 @@ if(-not $script:isTestMode){
 $data = Join-Path $env:LOCALAPPDATA 'WanwanShutdown'
 New-Item -ItemType Directory -Force $data | Out-Null
 $configFile=Join-Path $data 'settings.json'
-$script:cfg=@{Bedtime='23:30';WeekendBedtime='';Action='Shutdown';SleepHours=6;WakeGrace=5;AutoUpdate=$true;GuardedNight='';GreetedNight='';CaughtNight='';CaughtCount=0;Grace=10;Nickname='你';Voice=$true;VoicePreset='N1';DesktopPet=$true;Enabled=$false;Cancelled='';Deferred=''}
+$script:cfg=@{Bedtime='23:30';WeekendBedtime='';Action='Shutdown';SleepHours=6;WakeGrace=5;AutoUpdate=$true;GuardedNight='';GreetedNight='';CaughtNight='';CaughtCount=0;Grace=10;Nickname='';Voice=$true;VoicePreset='Recorded';Persona='girlfriend';Address='baobao';Companion=$false;DesktopPet=$true;Enabled=$false;Cancelled='';Deferred=''}
 if(Test-Path $configFile){try{$saved=Get-Content $configFile -Raw -Encoding UTF8|ConvertFrom-Json; foreach($p in $saved.PSObject.Properties){$script:cfg[$p.Name]=$p.Value}}catch{}}
 if($script:isTestMode){$configFile=Join-Path $root 'output\isolated-test-settings.json';$data=Join-Path $root 'output\isolated-test-data';New-Item -ItemType Directory -Force $data|Out-Null}
-if($ShowcaseTest){$script:cfg=@{Bedtime='23:30';WeekendBedtime='01:00';Action='Shutdown';SleepHours=6;WakeGrace=5;AutoUpdate=$true;GuardedNight='';GreetedNight='';CaughtNight='';CaughtCount=0;Grace=10;Nickname='宝贝';Voice=$false;VoicePreset='N1';DesktopPet=$true;Enabled=$false;Cancelled='';Deferred=''}}
+if($ShowcaseTest){$script:cfg=@{Bedtime='23:30';WeekendBedtime='01:00';Action='Shutdown';SleepHours=6;WakeGrace=5;AutoUpdate=$true;GuardedNight='';GreetedNight='';CaughtNight='';CaughtCount=0;Grace=10;Nickname='';Voice=$false;VoicePreset='Recorded';Persona='girlfriend';Address='baobao';Companion=$false;DesktopPet=$true;Enabled=$false;Cancelled='';Deferred=''}}
 function Save-Config { $script:cfg|ConvertTo-Json|Set-Content $configFile -Encoding UTF8 }
 function Get-GuardActionName { if($script:cfg.Action -eq 'Sleep'){'睡眠'}else{'关机'} }
 function Set-LauncherShortcut([string]$Path){
@@ -43,7 +43,7 @@ function Say([string]$message){if($script:cfg.Voice){$script:synth.SpeakAsyncCan
   <Border Grid.Column="0" CornerRadius="24" ClipToBounds="True" Margin="0,0,24,0">
    <Border.Background><LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#E9D7DF" Offset="0"/><GradientStop Color="#99808F" Offset="0.65"/><GradientStop Color="#564759" Offset="1"/></LinearGradientBrush></Border.Background>
    <Grid><Image x:Name="Portrait" Height="400" Margin="0,42,0,0" Stretch="Uniform" VerticalAlignment="Top" Cursor="Hand" ToolTip="轻轻点一下晚晚，收下一个小动作"/><Image x:Name="PortraitFade" Height="400" Margin="0,42,0,0" Stretch="Uniform" VerticalAlignment="Top" IsHitTestVisible="False" Opacity="0"/><Canvas x:Name="Stars" IsHitTestVisible="False" VerticalAlignment="Top" Height="180"/><Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="22" Background="#993D3341" CornerRadius="14" Padding="14,9"><TextBlock x:Name="Mood" Text="✦  晚晚在你身边" Foreground="#FFF1E7" FontSize="12"/></Border>
-    <Border VerticalAlignment="Top" Margin="22,450,22,0" Background="#22FFF2F8" CornerRadius="20" Padding="18"><StackPanel><TextBlock Text="♡  点点我，收下一点小温柔" Foreground="#FFF1F7" FontSize="15"/><TextBlock Text="探头  ·  拍一拍  ·  给你一颗心" Foreground="#E8D5DF" FontSize="12" Margin="0,10,0,0"/></StackPanel></Border><StackPanel VerticalAlignment="Bottom" Margin="28,0,28,32"><TextBlock Text="WANWAN / 晚晚" Foreground="#F2DED4" FontSize="12"/><TextBlock Text="夜深了，&#10;还有我陪你。" Foreground="White" FontSize="32" Margin="0,12,0,12"/><TextBlock Text="把今天轻轻放下，明天再继续。" Foreground="#F1E2DE" FontSize="13"/></StackPanel>
+    <Border VerticalAlignment="Top" Margin="22,450,22,0" Background="#22FFF2F8" CornerRadius="20" Padding="18"><StackPanel><TextBlock Text="♡  点点我，收下一点小温柔" Foreground="#FFF1F7" FontSize="15"/><TextBlock Text="探头  ·  拍一拍  ·  给你一颗心" Foreground="#E8D5DF" FontSize="12" Margin="0,10,0,0"/></StackPanel></Border><StackPanel VerticalAlignment="Bottom" Margin="28,0,28,32"><TextBlock Text="WANWAN / 晚晚" Foreground="#F2DED4" FontSize="12"/><TextBlock Text="夜深了，&#10;早点休息吧。" Foreground="White" FontSize="32" Margin="0,12,0,12"/><TextBlock Text="把今天轻轻放下，明天再继续。" Foreground="#F1E2DE" FontSize="13"/></StackPanel>
    </Grid>
   </Border>
   <Grid Grid.Column="1"><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
@@ -87,19 +87,21 @@ Set-WanwanIcon $script:win
   </StackPanel></Border>
   <Border Background="#FFFFFF" CornerRadius="16" Padding="18" Margin="0,12,0,0"><StackPanel>
    <TextBlock Text="起夜监督" Foreground="#9B7B88" FontSize="12" Margin="0,0,0,10"/>
-   <WrapPanel ToolTip="睡后守护时间内重新开机或唤醒电脑，晚晚会出来催你回去睡觉，并留几分钟处理急事。需要勾选「开机陪伴」，晚晚才能在开机后出现。"><TextBlock Text="睡后" Foreground="#87767F" VerticalAlignment="Center"/><TextBox x:Name="SleepHoursInput" Text="6" MaxLength="2" Width="44" Padding="6,4" Margin="6,0" FontSize="13"/><TextBlock Text="小时内再开机，给" Foreground="#87767F" VerticalAlignment="Center"/><TextBox x:Name="WakeGraceInput" Text="5" MaxLength="2" Width="44" Padding="6,4" Margin="6,0" FontSize="13"/><TextBlock Text="分钟处理急事" Foreground="#87767F" VerticalAlignment="Center"/></WrapPanel>
-   <TextBlock Text="需要同时打开下面的「开机陪伴」，晚晚才能在你重新开机后出现。" Foreground="#AA97A0" FontSize="11" Margin="0,8,0,0" TextWrapping="Wrap"/>
+   <WrapPanel ToolTip="睡后守护时间内重新开机或唤醒电脑，晚晚会出来催你回去睡觉，并留几分钟处理急事。需要勾选「开机自动启动」，晚晚才能在开机后出现。"><TextBlock Text="睡后" Foreground="#87767F" VerticalAlignment="Center"/><TextBox x:Name="SleepHoursInput" Text="6" MaxLength="2" Width="44" Padding="6,4" Margin="6,0" FontSize="13"/><TextBlock Text="小时内再开机，给" Foreground="#87767F" VerticalAlignment="Center"/><TextBox x:Name="WakeGraceInput" Text="5" MaxLength="2" Width="44" Padding="6,4" Margin="6,0" FontSize="13"/><TextBlock Text="分钟处理急事" Foreground="#87767F" VerticalAlignment="Center"/></WrapPanel>
+   <TextBlock Text="需要同时打开下面的「开机自动启动」，晚晚才能在你重新开机后出现。" Foreground="#AA97A0" FontSize="11" Margin="0,8,0,0" TextWrapping="Wrap"/>
   </StackPanel></Border>
   <Border Background="#FFFFFF" CornerRadius="16" Padding="18" Margin="0,12,0,0"><StackPanel>
-   <TextBlock Text="声音与陪伴" Foreground="#9B7B88" FontSize="12" Margin="0,0,0,10"/>
-   <WrapPanel><RadioButton x:Name="VoiceN1" Content="清甜（推荐）" GroupName="VoiceChoice" Margin="0,0,18,8" VerticalAlignment="Center" ToolTip="清甜温柔，默认的晚晚。整句录音，称呼按原台词轮流叫"/><RadioButton x:Name="VoiceV3" Content="知性" GroupName="VoiceChoice" Margin="0,0,18,8" VerticalAlignment="Center" ToolTip="沉稳柔和，像温柔的姐姐"/><RadioButton x:Name="VoiceV4" Content="清冷" GroupName="VoiceChoice" Margin="0,0,18,8" VerticalAlignment="Center" ToolTip="清澈安静，语气克制"/><RadioButton x:Name="VoiceSystem" Content="系统朗读" GroupName="VoiceChoice" Margin="0,0,18,8" VerticalAlignment="Center" ToolTip="用 Windows 自带的中文语音朗读，自定义名字也能读出来"/><Button x:Name="VoicePreview" Content="▶ 试听" FontSize="12" Padding="10,5" Margin="0,0,0,8" ToolTip="用选中的声音和称呼读一句，不会保存"/></WrapPanel>
+   <TextBlock Text="晚晚" Foreground="#9B7B88" FontSize="12" Margin="0,0,0,10"/>
+   <WrapPanel><TextBlock Text="晚晚是你的" Foreground="#87767F" VerticalAlignment="Center" Margin="0,0,12,8"/><RadioButton x:Name="PersonaGirlfriend" Content="女友" GroupName="Persona" Margin="0,0,18,8" VerticalAlignment="Center" ToolTip="爱撒娇、黏人，清甜温柔的声音"/><RadioButton x:Name="PersonaSister" Content="姐姐" GroupName="Persona" Margin="0,0,18,8" VerticalAlignment="Center" ToolTip="成熟温柔、会照顾人，御姐声音"/><Button x:Name="VoicePreview" Content="▶ 试听" FontSize="12" Padding="10,5" Margin="0,0,0,8" ToolTip="用选中的性格和称呼读一句，不会保存"/></WrapPanel>
    <DockPanel Margin="0,4,0,4"><TextBlock Text="称呼" Foreground="#87767F" VerticalAlignment="Center" Margin="0,0,12,0"/><ComboBox x:Name="AddressInput" Width="200" FontSize="13" Padding="8,5" VerticalAlignment="Center"/><TextBox x:Name="NameInput" Text="" MaxLength="12" Width="140" Margin="10,0,0,0" Padding="8,5" FontSize="13" ToolTip="自定义名字会显示在提醒气泡里；选「系统朗读」时也会读出来"/></DockPanel>
-   <TextBlock x:Name="AddressHint" Text="" Foreground="#AA97A0" FontSize="11" Margin="0,2,0,10" TextWrapping="Wrap"/>
-   <WrapPanel><CheckBox x:Name="VoiceToggle" Content="温柔语音" IsChecked="True" Margin="0,0,22,8"/><CheckBox x:Name="PetToggle" Content="桌面陪伴" Margin="0,0,22,8"/><CheckBox x:Name="MotionToggle" Content="减少动态" Margin="0,0,22,8"/></WrapPanel>
+   <TextBlock x:Name="AddressHint" Text="" Foreground="#AA97A0" FontSize="11" Margin="0,2,0,8" TextWrapping="Wrap"/>
+   <WrapPanel><CheckBox x:Name="VoiceToggle" Content="说话" IsChecked="True" Margin="0,0,22,8" ToolTip="关掉后只显示文字和动作"/><CheckBox x:Name="VoiceSystem" Content="改用系统朗读" Margin="0,0,22,8" ToolTip="用 Windows 自带的中文语音朗读，自定义名字也能读出来"/><CheckBox x:Name="PetToggle" Content="显示桌宠" Margin="0,0,22,8"/><CheckBox x:Name="MotionToggle" Content="减少动态" Margin="0,0,22,8"/></WrapPanel>
+   <CheckBox x:Name="CompanionToggle" Content="晚晚陪伴：根据你在做什么，晚晚跟着做" Margin="0,6,0,2" ToolTip="你看视频她一起看，打游戏她也玩，工作她就学习；你离开电脑她会趴下睡。"/>
+   <TextBlock Text="只在这台电脑上判断你在用哪一类程序、有没有在操作电脑，不记录内容、不联网。默认关闭。" Foreground="#AA97A0" FontSize="11" Margin="22,0,0,0" TextWrapping="Wrap"/>
   </StackPanel></Border>
   <Border Background="#FFFFFF" CornerRadius="16" Padding="18" Margin="0,12,0,0"><StackPanel>
    <TextBlock Text="启动与更新" Foreground="#9B7B88" FontSize="12" Margin="0,0,0,10"/>
-   <WrapPanel><CheckBox x:Name="StartupToggle" Content="开机陪伴" ToolTip="登录 Windows 后启动晚晚；是否自动关机由旁边的开关决定。" Margin="0,0,22,8"/><CheckBox x:Name="AutoUpdateToggle" Content="每天自动检查更新" Margin="0,0,22,8" ToolTip="只访问 GitHub 的发布信息；有新版本时由你决定是否安装"/></WrapPanel>
+   <WrapPanel><CheckBox x:Name="StartupToggle" Content="开机自动启动" ToolTip="登录 Windows 后启动晚晚；是否自动关机由旁边的开关决定。" Margin="0,0,22,8"/><CheckBox x:Name="AutoUpdateToggle" Content="每天自动检查更新" Margin="0,0,22,8" ToolTip="只访问 GitHub 的发布信息；有新版本时由你决定是否安装"/></WrapPanel>
   </StackPanel></Border>
   <DockPanel Margin="0,18,0,0"><Button x:Name="Save" Content="保存" Padding="18,9" Background="#E3D5DB"/><Button x:Name="ArmGuard" Content="保存并开启守护" Padding="14,9" Margin="8,0,0,0" Background="#A7778B" Foreground="White" ToolTip="保存当前时间并开启到点守护。已超时会立即开始两分钟保存倒计时。"/><Button x:Name="CloseSettings" Content="关闭" DockPanel.Dock="Right" Padding="14,9"/><TextBlock x:Name="SettingsFeedback" Text="" Foreground="#8A6878" VerticalAlignment="Center" Margin="12,0,8,0" TextWrapping="Wrap"/></DockPanel>
  </StackPanel>
@@ -110,17 +112,17 @@ $settingsWin.Resources.MergedDictionaries.Add($win.Resources);Set-WanwanIcon $se
 # 主窗口只放今晚的状态和快捷操作；所有可改的约定都在「设置」窗口里。
 $ui=@{}
 foreach($n in 'Portrait','Clock','Headline','Message','ModeLabel','TimeDisplay','Countdown','Progress','Preview','Demo','Interactions','GuardSwitch','GuardSummary','Timeline','Feedback','Hide','StreakText','CheckUpdate','FooterText','OpenSettings','PetPreview'){$ui[$n]=$win.FindName($n)}
-foreach($n in 'BedInput','WeekendInput','GraceInput','NameInput','VoiceToggle','VoiceN1','VoiceV3','VoiceV4','VoiceSystem','VoicePreview','AddressInput','AddressHint','EnabledToggle','StartupToggle','PetToggle','MotionToggle','AutoUpdateToggle','ActionShutdown','ActionSleep','SleepHoursInput','WakeGraceInput','Save','ArmGuard','CloseSettings','SettingsFeedback'){$ui[$n]=$settingsWin.FindName($n)}
+foreach($n in 'BedInput','WeekendInput','GraceInput','NameInput','VoiceToggle','PersonaGirlfriend','PersonaSister','VoiceSystem','CompanionToggle','VoicePreview','AddressInput','AddressHint','EnabledToggle','StartupToggle','PetToggle','MotionToggle','AutoUpdateToggle','ActionShutdown','ActionSleep','SleepHoursInput','WakeGraceInput','Save','ArmGuard','CloseSettings','SettingsFeedback'){$ui[$n]=$settingsWin.FindName($n)}
 foreach($n in @($ui.Keys)){if(-not $ui[$n]){throw "Missing control: $n"}}
 $startupFile=Join-Path ([Environment]::GetFolderPath('Startup')) '晚晚关机助理.lnk'
 # 旧版本的开机快捷方式指向 wscript.exe + VBS；启动时静默迁移到直接调用 PowerShell。
 if(-not $script:isTestMode -and (Test-Path $startupFile)){try{$existing=(New-Object -ComObject WScript.Shell).CreateShortcut($startupFile);if($existing.TargetPath -like '*wscript.exe'){Set-LauncherShortcut $startupFile}}catch{}}
 $art=Join-Path $root 'assets\wanwan.png';if(Test-Path $art){$ui.Portrait.Source=[Windows.Media.Imaging.BitmapImage]::new([uri]$art)}
-# 旧版本的 A/B/C/D 音色已下线：统一迁移到晚晚的声音（N1）；N1 录音缺失时自动用系统朗读兜底。
 function Sync-SettingsForm {
  $ui.BedInput.Text=$cfg.Bedtime;$ui.WeekendInput.Text=[string]$cfg.WeekendBedtime;if($cfg.Action -eq 'Sleep'){$ui.ActionSleep.IsChecked=$true}else{$ui.ActionShutdown.IsChecked=$true};$ui.GraceInput.Text=[string]$cfg.Grace;$ui.SleepHoursInput.Text=[string]$cfg.SleepHours;$ui.WakeGraceInput.Text=[string]$cfg.WakeGrace;$ui.VoiceToggle.IsChecked=[bool]$cfg.Voice;$ui.EnabledToggle.IsChecked=[bool]$cfg.Enabled
- $voiceRadio=$ui['Voice'+$cfg.VoicePreset];if(-not $voiceRadio -or $voiceRadio.Visibility -ne [Windows.Visibility]::Visible){$voiceRadio=$ui.VoiceN1};$voiceRadio.IsChecked=$true
- Select-AddressItem $cfg.Address;$ui.NameInput.Text=if($cfg.Address -eq 'custom'){[string]$cfg.Nickname}else{''};Update-AddressHint
+ if($cfg.Persona -eq 'sister'){$ui.PersonaSister.IsChecked=$true}else{$ui.PersonaGirlfriend.IsChecked=$true}
+ $ui.VoiceSystem.IsChecked=($cfg.VoicePreset -eq 'System');$ui.CompanionToggle.IsChecked=[bool]$cfg.Companion
+ Fill-AddressItems $cfg.Persona;Select-AddressItem $cfg.Address;$ui.NameInput.Text=if($cfg.Address -eq 'custom'){[string]$cfg.Nickname}else{''};Update-AddressHint
  $ui.AutoUpdateToggle.IsChecked=[bool]$cfg.AutoUpdate;$ui.StartupToggle.IsChecked=Test-Path $startupFile
 }
 function Update-GuardSummary {
@@ -137,30 +139,33 @@ function Update-GuardSummary {
 }
 $script:lastPhase='';$script:dialog=$null;$script:demoMode=$false;$script:caughtMode=$false;$script:deadline=$null;$script:lastAttempt=[datetime]::MinValue
 . "$PSScriptRoot\Visuals.ps1"
-. "$PSScriptRoot\Dialogue.ps1"
 . "$PSScriptRoot\Voice.ps1"
-. "$PSScriptRoot\VoiceBank.ps1"
-# 设置里的声音和称呼：只显示已经装好的声音包；称呼下拉框来自 voice-script.json。
-foreach($voiceId in 'V3','V4'){if(-not (Test-SplitVoice $voiceId)){$ui['Voice'+$voiceId].Visibility=[Windows.Visibility]::Collapsed}}
-$ui.AddressInput.Items.Clear()
-$addressItems=[ordered]@{rotate='轮流叫（宝宝 / 宝贝 / 亲爱的）'}
-foreach($row in @($script:voiceScript.addresses)){$addressItems[$row.id]=$row.label}
-$addressItems['none']='不叫称呼';$addressItems['custom']='自定义名字…'
-foreach($key in $addressItems.Keys){$item=[Windows.Controls.ComboBoxItem]::new();$item.Tag=$key;$item.Content=$addressItems[$key];$ui.AddressInput.Items.Add($item)|Out-Null}
+. "$PSScriptRoot\Persona.ps1"
+$script:voiceGapTimer.Interval=[timespan]::FromMilliseconds($script:personaScript.clock_pause_ms)
+# 设置里的性格和称呼：称呼下拉框按所选性格列出（女友：宝宝 / 亲爱的；姐姐：小笨蛋），另有「不叫称呼」和「自定义名字」。
+function Get-FormPersona {if($ui.PersonaSister.IsChecked){'sister'}else{'girlfriend'}}
+function Fill-AddressItems([string]$Persona){
+ $current=if($ui.AddressInput.SelectedItem){[string]$ui.AddressInput.SelectedItem.Tag}else{''}
+ $ui.AddressInput.Items.Clear()
+ $items=[ordered]@{};foreach($row in @($script:personas[$Persona].addresses)){$items[$row.id]=$row.label};$items['none']='不叫称呼';$items['custom']='自定义名字…'
+ foreach($key in $items.Keys){$item=[Windows.Controls.ComboBoxItem]::new();$item.Tag=$key;$item.Content=$items[$key];$ui.AddressInput.Items.Add($item)|Out-Null}
+ if($current -and $items.Contains($current)){Select-AddressItem $current}else{Select-AddressItem $script:personas[$Persona].default_address}
+}
 function Select-AddressItem([string]$Id){foreach($item in $ui.AddressInput.Items){if($item.Tag -eq $Id){$ui.AddressInput.SelectedItem=$item;return}};$ui.AddressInput.SelectedIndex=0}
-function Get-FormAddress {if($ui.AddressInput.SelectedItem){[string]$ui.AddressInput.SelectedItem.Tag}else{'rotate'}}
-function Get-FormVoice {foreach($voiceId in 'V3','V4','System'){if($ui['Voice'+$voiceId].IsChecked){return $voiceId}};return 'N1'}
+function Get-FormAddress {if($ui.AddressInput.SelectedItem){[string]$ui.AddressInput.SelectedItem.Tag}else{'none'}}
 function Update-AddressHint {
- $address=Get-FormAddress;$voice=Get-FormVoice
+ $address=Get-FormAddress
  $ui.NameInput.IsEnabled=($address -eq 'custom');$ui.NameInput.Visibility=if($address -eq 'custom'){[Windows.Visibility]::Visible}else{[Windows.Visibility]::Collapsed}
- $ui.AddressHint.Text=if($voice -eq 'N1' -and $address -ne 'rotate'){'清甜（N1）是整句录音，暂时只会按原台词轮流叫；想换称呼请选'+((@(Get-AvailableVoices|Where-Object id -ne 'N1'|ForEach-Object {'「'+$_.name.Substring(0,2)+'」'})+'系统朗读') -join '、')+'。'}elseif($address -eq 'custom' -and $voice -ne 'System'){'自定义名字会显示在提醒气泡里；录音里不叫称呼。想听到名字可以选「系统朗读」。'}else{''}
+ $ui.AddressHint.Text=if($address -eq 'custom' -and -not $ui.VoiceSystem.IsChecked){'自定义名字会显示在提醒气泡里；录音里不叫称呼。想听到名字，可以勾选「改用系统朗读」。'}elseif(-not (Test-PersonaBank (Get-FormPersona)) -and -not $ui.VoiceSystem.IsChecked){'这个性格的录音还没装好，暂时用系统朗读。'}else{''}
 }
 $ui.AddressInput.Add_SelectionChanged({Update-AddressHint})
-foreach($voiceId in 'N1','V3','V4','System'){$ui['Voice'+$voiceId].Add_Checked({Update-AddressHint})}
+$ui.PersonaGirlfriend.Add_Checked({Fill-AddressItems 'girlfriend';Update-AddressHint})
+$ui.PersonaSister.Add_Checked({Fill-AddressItems 'sister';Update-AddressHint})
+$ui.VoiceSystem.Add_Checked({Update-AddressHint});$ui.VoiceSystem.Add_Unchecked({Update-AddressHint})
 $ui.VoicePreview.Add_Click({
- # 用表单里的声音和称呼读一句，读完不改设置。
- $saved=@{Voice=$cfg.Voice;VoicePreset=$cfg.VoicePreset;Address=$cfg.Address;Nickname=$cfg.Nickname}
- $cfg.Voice=$true;$cfg.VoicePreset=Get-FormVoice;$cfg.Address=Get-FormAddress;if($cfg.Address -eq 'custom'){$cfg.Nickname=$ui.NameInput.Text.Trim()}
+ # 用表单里的性格和称呼读一句，读完不改设置。
+ $saved=@{Voice=$cfg.Voice;VoicePreset=$cfg.VoicePreset;Address=$cfg.Address;Nickname=$cfg.Nickname;Persona=$cfg.Persona}
+ $cfg.Voice=$true;$cfg.Persona=Get-FormPersona;$cfg.VoicePreset=if($ui.VoiceSystem.IsChecked){'System'}else{'Recorded'};$cfg.Address=Get-FormAddress;if($cfg.Address -eq 'custom'){$cfg.Nickname=$ui.NameInput.Text.Trim()}
  try{Say-Cue preview;$ui.SettingsFeedback.Text='试听：'+$script:lastSpokenLine.text}finally{foreach($key in $saved.Keys){$cfg[$key]=$saved[$key]}}
 })
 Sync-SettingsForm
@@ -180,14 +185,14 @@ function Show-BedDialog([bool]$demo,[datetime]$Now=(Get-Date),[switch]$Quiet,[sw
 <Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="晚晚 · 该休息啦" Width="410" Height="650" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" Background="Transparent" ShowActivated="False" ShowInTaskbar="False" Topmost="True" FontFamily="Microsoft YaHei UI">
  <Grid>
  <Grid x:Name="FullReminder" Margin="12"><Grid.RowDefinitions><RowDefinition Height="190"/><RowDefinition Height="*"/></Grid.RowDefinitions>
-  <Grid><StackPanel Margin="12,72,0,0" HorizontalAlignment="Left"><TextBlock Text="今天辛苦啦" Foreground="#A7778B" FontSize="16"/><TextBlock Text="晚晚陪你，&#10;慢慢收尾 ♡" Foreground="#9B7589" FontSize="12" LineHeight="22" Margin="0,8,0,0"/></StackPanel><Image x:Name="DialogPortrait" Width="245" Stretch="Uniform" HorizontalAlignment="Right"/><Image x:Name="DialogFade" Width="245" Stretch="Uniform" HorizontalAlignment="Right" Opacity="0" IsHitTestVisible="False"/></Grid>
+  <Grid><StackPanel Margin="12,72,0,0" HorizontalAlignment="Left"><TextBlock Text="今天辛苦啦" Foreground="#A7778B" FontSize="16"/><TextBlock Text="晚晚在这儿，&#10;别熬太晚啦 ♡" Foreground="#9B7589" FontSize="12" LineHeight="22" Margin="0,8,0,0"/></StackPanel><Image x:Name="DialogPortrait" Width="245" Stretch="Uniform" HorizontalAlignment="Right"/><Image x:Name="DialogFade" Width="245" Stretch="Uniform" HorizontalAlignment="Right" Opacity="0" IsHitTestVisible="False"/></Grid>
   <Border Grid.Row="1" Background="#FFF7FA" CornerRadius="24" BorderBrush="#E7C8D7" BorderThickness="1" Padding="21,18"><Border.Effect><DropShadowEffect Color="#805065" BlurRadius="16" ShadowDepth="3" Opacity="0.14"/></Border.Effect><StackPanel>
-   <TextBlock x:Name="ReminderTime" Text="晚晚陪你收尾" Foreground="#AD7991" FontSize="12"/>
+   <TextBlock x:Name="ReminderTime" Text="晚晚 · 睡前提醒" Foreground="#AD7991" FontSize="12"/>
    <TextBlock x:Name="Headline" Text="好啦，该睡觉了～" FontSize="25" Margin="0,12,0,10" Foreground="#40313C"/>
-   <TextBlock x:Name="Info" Text="先保存文件，我陪你收尾。" TextWrapping="Wrap" FontSize="14" LineHeight="24" Foreground="#85717D"/>
+   <TextBlock x:Name="Info" Text="先保存文件，再准备休息。" TextWrapping="Wrap" FontSize="14" LineHeight="24" Foreground="#85717D"/>
    <DockPanel Margin="0,12,0,10"><TextBlock x:Name="Remaining" FontSize="37" Foreground="#A7778B"/><TextBlock Text="  留给你保存的时间" Foreground="#AA8E9C" FontSize="11" VerticalAlignment="Center"/></DockPanel>
    <TextBlock x:Name="Safety" Text="正常关机保留应用的未保存提示。" TextWrapping="Wrap" Foreground="#9C8793" FontSize="11" Margin="0,0,0,14"/>
-   <Button x:Name="Acknowledge" Content="好啦宝宝，我收完尾就睡觉 ♡" Padding="10,9" Background="#A7778B" Foreground="White" Margin="0,0,0,8"/>
+   <Button x:Name="Acknowledge" Content="好啦，我收完尾就睡 ♡" Padding="10,9" Background="#A7778B" Foreground="White" Margin="0,0,0,8"/>
    <Button x:Name="Defer" Content="再给我一点收尾时间" Padding="10,9" Margin="0,0,0,8"/><Button x:Name="CancelNight" Content="紧急取消今晚关机…" Padding="10,9"/>
   </StackPanel></Border>
  </Grid>
@@ -196,7 +201,7 @@ function Show-BedDialog([bool]$demo,[datetime]$Now=(Get-Date),[switch]$Quiet,[sw
    <DockPanel x:Name="MiniDragHandle" Cursor="SizeAll"><Button x:Name="MiniHide" Content="×" DockPanel.Dock="Right" Padding="7,0" FontSize="16" ToolTip="隐藏倒计时，后台计时与关机继续"/><TextBlock Text="晚晚帮你计时 ♡" Foreground="#9B7589" FontSize="12" VerticalAlignment="Center"/></DockPanel>
    <Grid Height="132"><Image x:Name="MiniPortrait" Stretch="Uniform"/><Image x:Name="MiniFade" Stretch="Uniform" Opacity="0" IsHitTestVisible="False"/></Grid>
    <TextBlock x:Name="MiniRemaining" FontSize="32" FontWeight="SemiBold" Foreground="#A7778B" HorizontalAlignment="Center"/>
-   <TextBlock x:Name="MiniStatus" Text="我陪你收尾，时间照常走 ♡" FontSize="10" Foreground="#9B7589" HorizontalAlignment="Center" Margin="0,2,0,8"/>
+   <TextBlock x:Name="MiniStatus" Text="时间照常走，记得保存 ♡" FontSize="10" Foreground="#9B7589" HorizontalAlignment="Center" Margin="0,2,0,8"/>
    <Button x:Name="MiniExpand" Content="展开倒计时 ↗" Padding="8,6" FontSize="11" ToolTip="展开后可延期或紧急取消关机"/>
   </StackPanel>
  </Border>
@@ -232,7 +237,7 @@ function Show-BedDialog([bool]$demo,[datetime]$Now=(Get-Date),[switch]$Quiet,[sw
  $dialog.Add_Closed({$script:dialog=$null;$script:miniDialogSurface=$null;$script:countdownView='Expanded';$script:demoMode=$false;$script:caughtMode=$false;if($cfg.DesktopPet -and -not $script:quitting){Show-DesktopPet -Compact}})
  $dialog.Show(); Set-CompanionMode '晚安'; if($script:motionEnabled){Animate-Double $dialog ([Windows.UIElement]::OpacityProperty) 0 1 0.4;Animate-Double ($dialog.FindName('Remaining')) ([Windows.UIElement]::OpacityProperty) 0.55 1 1.8 $true}; if($Caught){Enter-CaughtMode $Now -Quiet:$Quiet}elseif(-not $Quiet){if($demo){Say-Cue dialog -Demo}else{Say-ClockReminder -Now $Now -Cue $(if($state.Phase -eq 'Due'){if($cfg.Action -eq 'Sleep'){'final'}else{'due'}}elseif($state.Phase -eq 'Final'){'final'}else{'bed'})}}
 }
-$ui.Preview.Add_Click({$cfg.Voice=[bool]$ui.VoiceToggle.IsChecked;Say-Cue preview;$ui.Feedback.Text=if($cfg.Voice){$(if($cfg.VoicePreset -eq 'System' -or -not $script:lastVoiceAsset){'正在用系统声音朗读'}else{'正在播放晚晚的声音'})}else{'语音已关闭'}})
+$ui.Preview.Add_Click({$cfg.Voice=[bool]$ui.VoiceToggle.IsChecked;Say-Cue preview;$ui.Feedback.Text=if($cfg.Voice){$(if($cfg.VoicePreset -eq 'System' -or -not $script:lastVoiceAsset){'正在用系统声音朗读'}else{'正在播放'+(Get-Persona).name+'晚晚的声音'})}else{'语音已关闭'}})
 $ui.Demo.Add_Click({Show-BedDialog $true})
 function Set-SettingsMessage([string]$Text){$ui.Feedback.Text=$Text;$ui.SettingsFeedback.Text=$Text}
 function Save-WanwanSettings([switch]$EnableGuard){
@@ -242,12 +247,12 @@ function Save-WanwanSettings([switch]$EnableGuard){
  if(-not [int]::TryParse($ui.SleepHoursInput.Text,[ref]$sleepHours) -or $sleepHours -lt 1 -or $sleepHours -gt 12 -or -not [int]::TryParse($ui.WakeGraceInput.Text,[ref]$wakeGrace) -or $wakeGrace -lt 1 -or $wakeGrace -gt 15){Set-SettingsMessage '起夜监督：睡后 1–12 小时，急事时间 1–15 分钟';return}
  if(-not [datetime]::TryParseExact($ui.BedInput.Text,'HH:mm',[cultureinfo]::InvariantCulture,[Globalization.DateTimeStyles]::None,[ref]$parsed) -or -not [int]::TryParse($ui.GraceInput.Text,[ref]$minutes) -or $minutes -lt 2 -or $minutes -gt 30){Set-SettingsMessage '时间格式 23:30；收尾时间 2–30 分钟';return}
  if($EnableGuard){$ui.EnabledToggle.IsChecked=$true}
- $cfg.Bedtime=$ui.BedInput.Text;$cfg.WeekendBedtime=$weekend;$cfg.Action=if($ui.ActionSleep.IsChecked){'Sleep'}else{'Shutdown'};$cfg.Grace=$minutes;$cfg.SleepHours=$sleepHours;$cfg.WakeGrace=$wakeGrace;$cfg.Voice=[bool]$ui.VoiceToggle.IsChecked;$cfg.Enabled=[bool]$ui.EnabledToggle.IsChecked;$cfg.VoicePreset=Get-FormVoice;$cfg.Address=Get-FormAddress;if($cfg.Address -eq 'custom'){$cfg.Nickname=$ui.NameInput.Text.Trim()};$cfg.AutoUpdate=[bool]$ui.AutoUpdateToggle.IsChecked
+ $cfg.Bedtime=$ui.BedInput.Text;$cfg.WeekendBedtime=$weekend;$cfg.Action=if($ui.ActionSleep.IsChecked){'Sleep'}else{'Shutdown'};$cfg.Grace=$minutes;$cfg.SleepHours=$sleepHours;$cfg.WakeGrace=$wakeGrace;$cfg.Voice=[bool]$ui.VoiceToggle.IsChecked;$cfg.Enabled=[bool]$ui.EnabledToggle.IsChecked;$cfg.Persona=Get-FormPersona;$cfg.VoicePreset=if($ui.VoiceSystem.IsChecked){'System'}else{'Recorded'};$cfg.Address=Get-FormAddress;if($cfg.Address -eq 'custom'){$cfg.Nickname=$ui.NameInput.Text.Trim()};$cfg.Companion=[bool]$ui.CompanionToggle.IsChecked;$cfg.AutoUpdate=[bool]$ui.AutoUpdateToggle.IsChecked
  if(-not $script:isTestMode){if($ui.StartupToggle.IsChecked){Set-LauncherShortcut $startupFile}elseif(Test-Path $startupFile){Remove-Item -LiteralPath $startupFile}}
  if(-not $cfg.Enabled -and $script:dialog -and -not $script:demoMode){$script:dialog.Close()}
  Save-Config;$script:lastPhase='';$script:lastAttempt=[datetime]::MinValue;$script:shutdownAfter=$null;
- Set-SettingsMessage if($cfg.Enabled){if($cfg.Action -eq 'Sleep'){'已保存 · 到点会提醒并进入睡眠 ♡'}else{'已保存 · 到点会提醒并正常关机 ♡'}}else{'已保存 · 仅陪伴，到点守护未开启'};Write-Event ('Settings saved; guard='+$cfg.Enabled+'; action='+$cfg.Action+'; weekend='+$cfg.WeekendBedtime);
- if($cfg.Enabled){Say-Cue saved -Interaction}else{Say-GuardLine disabled}
+ Set-SettingsMessage if($cfg.Enabled){if($cfg.Action -eq 'Sleep'){'已保存 · 到点会提醒并进入睡眠 ♡'}else{'已保存 · 到点会提醒并正常关机 ♡'}}else{'已保存 · 只提醒，到点守护未开启'};Write-Event ('Settings saved; guard='+$cfg.Enabled+'; action='+$cfg.Action+'; weekend='+$cfg.WeekendBedtime);
+ if($cfg.Enabled){Say-Cue saved}else{Say-GuardLine disabled|Out-Null}
  Update-PetGuardStatus;Update-StreakDisplay;Update-GuardSummary
 }
 $ui.Save.Add_Click({Save-WanwanSettings})
@@ -323,10 +328,9 @@ function Invoke-GuardTick([datetime]$now=(Get-Date)){
    if(-not $script:dialog.IsVisible){Set-CountdownView Compact}
    if($script:caughtMode){Say-WatchLine final|Out-Null}
    elseif($cfg.Action -eq 'Sleep'){
-    # 现有 N1 守护录音说的是“关机”；睡眠模式改用不提关机的晚安台词。
-    Say-Cue goodnight
-    $script:lastGuardDuration=if($script:lastSpokenLine.duration){[double]$script:lastSpokenLine.duration}else{6}
-   }else{Say-GuardLine shutdown}
+    # 睡眠模式用不提「关机」的那句。
+    Say-GuardLine sleep|Out-Null
+   }else{Say-GuardLine shutdown|Out-Null}
    $seconds=if($cfg.Voice){[math]::Max(2,$script:lastGuardDuration+1)}else{2}
    $script:shutdownAfter=$now.AddSeconds($seconds)
    $script:dialog.FindName('Info').Text=$script:lastSpokenLine.text
@@ -362,54 +366,65 @@ if($SmokeTest -or $InteractionTest -or $AnimationTest -or $VoiceTest -or $Compan
  if($DialogueTest){. "$PSScriptRoot\Dialogue.Tests.ps1"}
  if($CompanionTest){. "$PSScriptRoot\Companion.Tests.ps1"}
  if($VoiceTest){
-  # 只剩两种声音：晚晚（N1）和系统朗读。检查旧设置迁移、设置窗口保存、N1 原生播放和系统兜底。
-  if(-not (Test-VoicePresetReady N1)){throw 'N1 bank is incomplete'}
-  foreach($legacy in @('A','B','C','D')){if(Test-VoicePresetReady $legacy){throw "Legacy voice $legacy must be gone"}}
+  # 两种性格（女友 N1 / 姐姐 V3）：旧设置迁移、设置保存、称呼整句录音、整点两段播放、系统朗读兜底。
+  $originalConfigFile=$configFile;$configFile=Join-Path $root 'output\voice-test-settings.json'
   if(Test-Path (Join-Path $root 'app\Auditions.ps1')){throw 'Voice picker must be removed'}
-  $cfg.VoicePreset='C';Repair-VoicePreset;if($cfg.VoicePreset -ne 'N1'){throw 'Legacy preset must migrate to N1'}
-  Sync-SettingsForm;if(-not $ui.VoiceN1.IsChecked){throw 'Settings must show N1'}
-  $ui.VoiceSystem.IsChecked=$true;Save-WanwanSettings
-  $persisted=Get-Content $configFile -Raw -Encoding UTF8|ConvertFrom-Json;if($cfg.VoicePreset -ne 'System' -or $persisted.VoicePreset -ne 'System'){throw 'System voice choice not saved'}
-  $ui.VoiceN1.IsChecked=$true;Save-WanwanSettings
-  $persisted=Get-Content $configFile -Raw -Encoding UTF8|ConvertFrom-Json;if($cfg.VoicePreset -ne 'N1' -or $persisted.VoicePreset -ne 'N1'){throw 'N1 voice choice not saved'}
-  $ui.VoiceToggle.IsChecked=$true;$cfg.Voice=$true;$script:voicePlayer.Volume=0;$script:synth.Volume=0;$script:voiceMediaReady=$false;$audioFrame=[Windows.Threading.DispatcherFrame]::new()
-  $mediaReadyHandler=[System.EventHandler]{$script:voiceMediaReady=$true;$audioFrame.Continue=$false};$script:voicePlayer.Add_MediaOpened($mediaReadyHandler)
-  $ui.Preview.RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent))
-  $audioTimeout=[Windows.Threading.DispatcherTimer]::new();$audioTimeout.Interval=[timespan]::FromSeconds(3);$audioTimeout.Add_Tick({$audioFrame.Continue=$false;$audioTimeout.Stop()});$audioTimeout.Start();[Windows.Threading.Dispatcher]::PushFrame($audioFrame);$audioTimeout.Stop();$script:voicePlayer.Remove_MediaOpened($mediaReadyHandler)
-  if(-not $script:voiceMediaReady -or $script:lastVoiceAsset -notlike '*\N1\*.mp3' -or $ui.Feedback.Text -ne '正在播放晚晚的声音'){throw 'N1 preview did not open natively'};Stop-Voice
-  # N1 没有录音的句子（例如自定义称呼后的文字）交给系统朗读。
-  Say '这句话没有录音' ;if($script:lastVoiceAsset){throw 'Unrecorded text must fall back to system speech'};Stop-Voice
-  $cfg.VoicePreset='System';Say-Cue preview;if($script:lastVoiceAsset){throw 'System voice must not play N1 clips'};Stop-Voice
-  # 分段声音包（v0.4.0 起）：设置保存、称呼 + 正文按顺序原生播放、每个片段都能打开。
-  $splitReport=@()
-  foreach($voiceId in @('V3','V4')|Where-Object {Test-SplitVoice $_}){
-   if($ui['Voice'+$voiceId].Visibility -ne [Windows.Visibility]::Visible){throw "$voiceId radio must be visible"}
-   $ui['Voice'+$voiceId].IsChecked=$true;Select-AddressItem 'xiaobendan';Save-WanwanSettings
-   $persisted=Get-Content $configFile -Raw -Encoding UTF8|ConvertFrom-Json
-   if($cfg.VoicePreset -ne $voiceId -or $persisted.VoicePreset -ne $voiceId -or $persisted.Address -ne 'xiaobendan'){throw "$voiceId and address not saved"}
-   $ui.VoiceToggle.IsChecked=$true;$cfg.Voice=$true;$script:voicePlayer.Volume=0
+  $cfg.Remove('Persona');$cfg.Remove('Address');$cfg.VoicePreset='V3';$cfg.Nickname='宝贝';Repair-PersonaSettings
+  if($cfg.Persona -ne 'sister' -or $cfg.VoicePreset -ne 'Recorded' -or $cfg.Address -ne 'xiaobendan' -and $cfg.Address -ne 'none'){throw "V3 must migrate to the sister persona: $($cfg.Persona)/$($cfg.Address)"}
+  $cfg.Remove('Persona');$cfg.Remove('Address');$cfg.VoicePreset='N1';$cfg.Nickname='小明';Repair-PersonaSettings
+  if($cfg.Persona -ne 'girlfriend' -or $cfg.Address -ne 'custom'){throw 'Old custom nickname must stay a custom name'}
+  # 设置窗口：切换性格会换称呼列表，保存后写进配置。
+  Sync-SettingsForm;$ui.PersonaSister.IsChecked=$true
+  if(@($ui.AddressInput.Items|ForEach-Object Tag) -join ',' -ne 'xiaobendan,none,custom'){throw 'Sister address list wrong'}
+  Select-AddressItem 'xiaobendan';Save-WanwanSettings
+  $persisted=Get-Content $configFile -Raw -Encoding UTF8|ConvertFrom-Json
+  if($persisted.Persona -ne 'sister' -or $persisted.Address -ne 'xiaobendan'){throw 'Sister persona not saved'}
+  $ui.PersonaGirlfriend.IsChecked=$true
+  if(@($ui.AddressInput.Items|ForEach-Object Tag) -join ',' -ne 'baobao,qinaide,none,custom'){throw 'Girlfriend address list wrong'}
+  Select-AddressItem 'qinaide';$ui.CompanionToggle.IsChecked=$true;Save-WanwanSettings
+  $persisted=Get-Content $configFile -Raw -Encoding UTF8|ConvertFrom-Json
+  if($persisted.Persona -ne 'girlfriend' -or $persisted.Address -ne 'qinaide' -or -not $persisted.Companion){throw 'Girlfriend persona not saved'}
+  $ui.CompanionToggle.IsChecked=$false;Save-WanwanSettings
+  $ui.VoiceToggle.IsChecked=$true;$cfg.Voice=$true;$script:voicePlayer.Volume=0;$script:synth.Volume=0
+  $report=@()
+  foreach($personaId in @('girlfriend','sister')){
+   $cfg.Persona=$personaId;$cfg.VoicePreset='Recorded'
+   $preview=$script:personaLines|Where-Object {$_.persona -eq $personaId -and $_.cue -eq 'preview'}|Select-Object -First 1
+   $label=$script:personas[$personaId].addresses[0]
+   if(-not (Test-PersonaBank $personaId)){
+    $cfg.Address=$label.id;$r=Resolve-Speech $preview
+    if($r.Clips.Count -or $r.Text -notlike ($label.label+'*')){throw "$personaId without a bank must fall back to system speech"}
+    $report+="$personaId (no bank yet: system speech)";continue
+   }
+   # 每个片段都能被 WPF 原生打开（静音）。
    $opened=0
-   foreach($clip in $script:voiceBanks[$voiceId].Values){
+   foreach($clip in $script:personaBanks[$personaId].Values){
     $script:clipOpened=$false;$clipFrame=[Windows.Threading.DispatcherFrame]::new();$clipHandler=[System.EventHandler]{$script:clipOpened=$true;$clipFrame.Continue=$false};$script:voicePlayer.Add_MediaOpened($clipHandler)
     $script:voicePlayer.Open([uri]$clip.file);$clipWait=[Windows.Threading.DispatcherTimer]::new();$clipWait.Interval=[timespan]::FromSeconds(3);$clipWait.Add_Tick({$clipFrame.Continue=$false;$clipWait.Stop()});$clipWait.Start();[Windows.Threading.Dispatcher]::PushFrame($clipFrame);$clipWait.Stop();$script:voicePlayer.Remove_MediaOpened($clipHandler)
-    if(-not $script:clipOpened){throw "$voiceId clip did not open: $($clip.file)"};$opened++
+    if(-not $script:clipOpened){throw "$personaId clip did not open: $($clip.file)"};$opened++
    }
    $script:voicePlayer.Stop()
-   $previewLine=$script:dialogue.lines|Where-Object id -eq 'preview-01'|Select-Object -First 1
-   Speak-Line $previewLine|Out-Null
-   if($script:lastVoiceClips.Count -ne 2 -or $script:lastVoiceClips[0] -notlike '*\address\xiaobendan.mp3' -or $script:lastSpokenLine.text -notlike '小笨蛋，*'){throw "$voiceId address + body routing failed"}
-   # 等第一个片段播完，确认队列接着播正文。
+   # 称呼：整句录音、文字和录音一致。
+   $cfg.Address=$label.id;Speak-Line $preview|Out-Null
+   if($script:lastVoiceClips.Count -ne 1 -or $script:lastVoiceClips[0] -notlike ('*@'+$label.id+'.mp3') -or $script:lastSpokenLine.text -notlike ('*'+$label.label+'*')){throw "$personaId address routing failed"};Stop-Voice
+   $cfg.Address='none';Speak-Line $preview|Out-Null
+   if($script:lastVoiceClips[0] -like '*@*' -or $script:lastSpokenLine.text.Contains($label.label) -or $script:lastSpokenLine.text.Contains('{')){throw "$personaId no-address routing failed"};Stop-Voice
+   $cfg.Address='custom';$cfg.Nickname='小明';Speak-Line $preview|Out-Null
+   if($script:lastVoiceClips[0] -like '*@*' -or -not $script:lastSpokenLine.text.Contains('小明')){throw "$personaId custom name must be text-only"};Stop-Voice
+   # 整点报时：两段依次播放。
+   $cfg.Address=$label.id;Speak-Line (Get-ClockReminder ([datetime]'2026-10-12T23:00:00') early)|Out-Null
+   if($script:lastVoiceClips.Count -ne 2){throw "$personaId clock must be hour + reminder"}
    $queueFrame=[Windows.Threading.DispatcherFrame]::new();$queueWait=[Windows.Threading.DispatcherTimer]::new();$queueWait.Interval=[timespan]::FromMilliseconds(250)
    $script:queueDeadline=(Get-Date).AddSeconds(8);$queueWait.Add_Tick({if(($script:voicePlayer.Source -and [string]$script:voicePlayer.Source.LocalPath -eq $script:lastVoiceClips[1]) -or (Get-Date) -gt $script:queueDeadline){$queueFrame.Continue=$false;$queueWait.Stop()}});$queueWait.Start();[Windows.Threading.Dispatcher]::PushFrame($queueFrame)
-   if([string]$script:voicePlayer.Source.LocalPath -ne $script:lastVoiceClips[1]){throw "$voiceId did not continue from the address to the body"}
-   Stop-Voice
-   Select-AddressItem 'none';Save-WanwanSettings;Speak-Line $previewLine|Out-Null
-   if($script:lastVoiceClips.Count -ne 1 -or $script:lastSpokenLine.text -notlike '已经有点晚*'){throw "$voiceId no-address routing failed"};Stop-Voice
-   $splitReport+="$voiceId ($opened clips opened)"
+   if([string]$script:voicePlayer.Source.LocalPath -ne $script:lastVoiceClips[1]){throw "$personaId clock did not continue to the reminder"};Stop-Voice
+   $report+="$personaId ($opened clips opened)"
   }
-  Select-AddressItem 'rotate';$ui.VoiceN1.IsChecked=$true;Save-WanwanSettings
-  $cfg.VoicePreset='N1';$ui.VoiceToggle.IsChecked=$false;$cfg.Voice=$false
-  Write-Output ('Voice tests passed: N1 bank complete, A-D removed and migrated, settings voice choice saved both ways, muted N1 native preview, system fallback for unrecorded text; split voices: '+$(if($splitReport){$splitReport -join ', '}else{'none installed'})+'; real settings unchanged')
+  # 系统朗读：不播录音，自定义名字也会读出来。
+  $cfg.Persona='girlfriend';$cfg.VoicePreset='System';$cfg.Address='custom';$cfg.Nickname='小明';Say-Cue preview
+  if($script:lastVoiceAsset -or -not $script:lastSpokenLine.text.Contains('小明')){throw 'System voice must read the custom name without clips'};Stop-Voice
+  $cfg.VoicePreset='Recorded';$cfg.Address='baobao';$cfg.Nickname='';$ui.VoiceToggle.IsChecked=$false;$cfg.Voice=$false
+  $configFile=$originalConfigFile
+  Write-Output ('Voice tests passed: persona migration, settings persona/address lists saved, '+($report -join ', ')+', whole-sentence address routing, two-part clock, system speech with custom name; real settings unchanged')
  }
  if($AnimationTest){
   if($script:interactionAssets.Count -ne 10){throw 'Ten interaction sheets required'}
@@ -432,7 +447,7 @@ if($SmokeTest -or $InteractionTest -or $AnimationTest -or $VoiceTest -or $Compan
  }
  if($InteractionTest){
   if($script:frames.Count -ne 4){throw 'Missing character animation frames'}
-  Set-CompanionMode '收尾';if($ui.Mood.Text -ne '♡  我陪你慢慢收尾'){throw 'Companion state failed'}
+  Set-CompanionMode '收尾';if($ui.Mood.Text -ne '✦  快到睡觉时间了'){throw 'Companion state failed'}
   Set-Motion $false;if($script:motionEnabled){throw 'Reduced motion failed'};Set-Motion $true
   $ui.Demo.RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent))
   if(-not $script:dialog -or -not $script:demoMode){throw 'Demo did not open safely'}

@@ -1,9 +1,4 @@
-﻿. "$PSScriptRoot\GuardVoice.ps1"
-# 桌面常驻小头像，提醒时展开。复用同一角色动作，不抢当前应用的键盘焦点。
-$script:clockCatalogPath=Join-Path $root 'assets\clock-lines.json'
-$script:clockManifestPath=Join-Path $root 'assets\voices\N1-clock\manifest.json'
-$script:clockLines=if(Test-Path $script:clockCatalogPath){(Get-Content $script:clockCatalogPath -Raw -Encoding UTF8|ConvertFrom-Json).lines}else{@()}
-$script:clockRecords=if(Test-Path $script:clockManifestPath){Get-Content $script:clockManifestPath -Raw -Encoding UTF8|ConvertFrom-Json}else{@()}
+﻿# 桌面常驻小头像，提醒时展开。复用同一角色动作，不抢当前应用的键盘焦点。
 $script:petExpanded=$false;$script:petDragging=$false
 function Limit-PetPosition([double]$Left,[double]$Top,$Area,[double]$Width,[double]$Height){
  return @{Left=[math]::Max($Area.Left,[math]::Min($Left,$Area.Right-$Width));Top=[math]::Max($Area.Top,[math]::Min($Top,$Area.Bottom-$Height))}
@@ -35,15 +30,6 @@ function Move-PetDrag($Cursor,[bool]$Pressed){
  if($delta.Length -ge 4){$script:petDragging=$true}
  if($script:petDragging){Set-PetPosition ($script:petDragLeft+$delta.X) ($script:petDragTop+$delta.Y)}
 }
-function Get-ClockReminder([datetime]$Now,[string]$Cue){
- if($Cue -eq 'due'){$line=Get-GuardLine due;return [pscustomobject]@{id=$line.id;cue=$Cue;action=$line.action;text=$line.text;file=$line.file;duration=$line.duration;time=$Now.ToString('HH:mm');hour=$Now.Hour}}
- if($Cue -notin @('early','soon','bed','final')){throw 'Unknown clock reminder phase'}
- $line=$script:clockLines|Where-Object {$_.hour -eq $Now.Hour -and $_.cue -eq $Cue}|Select-Object -First 1
- if(-not $line){throw '当前报时语音包尚未完整生成'}
- $record=$script:clockRecords|Where-Object {$_.id -eq $line.id -and $_.text -eq $line.text}|Select-Object -First 1
- if(-not $record -or -not (Test-Path (Join-Path $root $line.file))){throw '报时台词与录音不一致'}
- return [pscustomobject]@{id=$line.id;cue=$Cue;action=$line.action;text=$line.text;file=$line.file;duration=$record.duration;time=$Now.ToString('HH:mm');hour=$Now.Hour}
-}
 function New-DesktopPet {
  if($script:popup){return}
  [xml]$px=@'
@@ -58,7 +44,7 @@ function New-DesktopPet {
   <Grid x:Name="ExpandedPet" Visibility="Collapsed" Margin="12,10,12,8">
    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="18"/><RowDefinition Height="*"/></Grid.RowDefinitions>
    <Border Background="#FFF7FA" CornerRadius="24" Padding="20,16" BorderBrush="#E7C8D7" BorderThickness="1"><Border.Effect><DropShadowEffect Color="#805065" BlurRadius="16" ShadowDepth="3" Opacity="0.14"/></Border.Effect><StackPanel>
-    <DockPanel x:Name="PetDragHandle" Cursor="SizeAll"><Button x:Name="PopupClose" DockPanel.Dock="Right" Content="收起 ×" Padding="8,3" FontSize="11" Background="#F3E5EC"/><TextBlock x:Name="PetStatus" Text="晚晚来陪你啦" FontSize="12" Foreground="#A7738C" VerticalAlignment="Center"/></DockPanel>
+    <DockPanel x:Name="PetDragHandle" Cursor="SizeAll"><Button x:Name="PopupClose" DockPanel.Dock="Right" Content="收起 ×" Padding="8,3" FontSize="11" Background="#F3E5EC"/><TextBlock x:Name="PetStatus" Text="晚晚来啦" FontSize="12" Foreground="#A7738C" VerticalAlignment="Center"/></DockPanel>
     <TextBlock x:Name="PopupText" TextWrapping="Wrap" FontSize="16" Foreground="#57424F" LineHeight="27" Margin="0,12,0,12"/>
     <DockPanel><Button x:Name="PetOpen" DockPanel.Dock="Right" Content="打开晚晚 ↗" Padding="10,6" FontSize="11" Background="#EFE1E8"/><TextBlock x:Name="PetPromise" FontSize="11" Foreground="#AD919F" VerticalAlignment="Center"/></DockPanel>
    </StackPanel></Border>
@@ -93,12 +79,12 @@ function New-DesktopPet {
  $compact.ContextMenu=$context
  $script:popup.FindName('PopupClose').Add_Click({Stop-Voice;Complete-DesktopPetReminder})
  $script:popup.FindName('PetOpen').Add_Click({Open-Wanwan})
- $script:popup.FindName('PopupPortrait').Add_MouseLeftButtonDown({Say-Cue pat -Interaction;Show-DesktopPet $script:lastSpokenLine.text;Extend-DesktopPetLifetime})
+ $script:popup.FindName('PopupPortrait').Add_MouseLeftButtonDown({$poke=Invoke-Poke;Show-DesktopPet $poke.text;Extend-DesktopPetLifetime})
  $script:popup.FindName('PetDragHandle').Add_MouseLeftButtonDown({param($sender,$e) if($e.OriginalSource -is [Windows.Controls.TextBlock]){$script:petDragging=$true;try{$script:popup.DragMove();Set-PetPosition $script:popup.Left $script:popup.Top;Save-PetPosition}finally{$script:petDragging=$false}}})
  $script:popup.Add_Closed({param($sender,$e) $script:surfaces=@($script:surfaces|Where-Object {$_.Window -ne $sender});$script:popup=$null;$script:popupSurface=$null;$script:petExpanded=$false})
 }
 function Show-DesktopPet {
- param([string]$Caption='',[string]$Status='晚晚来陪你啦',[switch]$Compact)
+ param([string]$Caption='',[string]$Status='晚晚来啦',[switch]$Compact)
  if($script:dialog){return}
  New-DesktopPet
  $script:petExpanded=-not $Compact

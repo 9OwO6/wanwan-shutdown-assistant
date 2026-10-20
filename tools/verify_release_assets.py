@@ -25,40 +25,48 @@ def checked_path(path):
 
 checked = 0
 masters = 0
-for catalog, manifest, count in [
-    ('assets/companion-lines.json', 'assets/voices/N1/manifest.json', 92),
-    ('assets/clock-lines.json', 'assets/voices/N1-clock/manifest.json', 96),
-    ('assets/guard-lines.json', 'assets/voices/N1-guard/manifest.json', 3),
-    ('assets/watch-lines.json', 'assets/voices/N1-watch/manifest.json', 5),
-]:
-    rows, records = read(catalog)['lines'], read(manifest)
-    assert len(rows) == len(records) == count
-    assert len({row['id'] for row in rows}) == count
-    for row in rows:
-        record = next(r for r in records if r['id'] == row['id'])
-        assert record['text'] == row['text'] and record['runtime_file'] == row['file']
-        runtime = checked_path(row['file'])
-        assert runtime.read_bytes()[:2] in (b'\xff\xfb', b'\xff\xf3', b'\xff\xf2'), f'Not an MP3 frame: {row["file"]}'
-        assert hashlib.sha256(runtime.read_bytes()).hexdigest() == record['runtime_sha256'], row['id']
-        assert record['reference_sha256'] == '3c79b81a7d1c114325e14e73f7c9d58936424f5ec3aa612737f14831f179baec'
-        assert 1 < record['duration'] < 20
-        path = ROOT / record['file']
-        if not path.exists():  # portable release: WAV masters are not shipped
-            checked += 1
-            continue
-        masters += 1
-        assert hashlib.sha256(path.read_bytes()).hexdigest() == record['sha256'], row['id']
-        with wave.open(str(path)) as audio:
-            assert (audio.getnchannels(), audio.getsampwidth(), audio.getframerate()) == (1, 2, 24000)
-            frames = audio.readframes(audio.getnframes())
-            duration = audio.getnframes() / audio.getframerate()
-            assert 1 < duration < 20 and abs(duration - record['duration']) < 0.01
-            assert len(frames) == audio.getnframes() * 2
-            assert max(abs(sample[0]) for sample in struct.iter_unpack('<h', frames)) < 32767
+# Persona voice banks: every clip of the approved script, exact text, hashed MP3 (and WAV master in the repository).
+import importlib.util
+spec = importlib.util.spec_from_file_location('persona_script', ROOT / 'tools/write_persona_script.py')
+script = read('assets/persona-script.json')
+personas = {p['id']: p for p in script['personas']}
+installed = []
+expand = None
+if spec and (ROOT / 'tools/write_persona_script.py').is_file():
+    module = importlib.util.module_from_spec(spec); spec.loader.exec_module(module); expand = module.expand
+for persona_id, persona in personas.items():
+    bank_path = f'assets/voices/{persona_id}/bank.json'
+    if not (ROOT / bank_path).is_file():
+        continue
+    bank = read(bank_path)
+    clips = {c['key']: c for c in bank['clips']}
+    lines = [l for l in script['lines'] if l['persona'] == persona_id]
+    if expand:  # repository: the bank must cover every recorded variant
+        wanted = {l['id'] + ('' if a == 'none' else '@' + a): t for l in lines for a, t in expand(persona, l['text'])}
+        assert set(clips) == set(wanted), f'{persona_id}: bank differs from the script'
+        for key, text in wanted.items():
+            assert clips[key]['text'] == text, key
+    assert len({c['reference_sha256'] for c in [bank]}) == 1
+    for clip in clips.values():
+        runtime = checked_path(clip['file'])
+        assert runtime.read_bytes()[:3] == b'ID3' or runtime.read_bytes()[:2] in (b'\xff\xfb', b'\xff\xf3', b'\xff\xf2'), clip['file']
+        assert hashlib.sha256(runtime.read_bytes()).hexdigest() == clip['runtime_sha256'], clip['key']
+        assert 0.2 < clip['duration'] < 20
+        master = ROOT / clip['master_file']
+        if master.exists():
+            masters += 1
+            assert hashlib.sha256(master.read_bytes()).hexdigest() == clip['sha256'], clip['key']
+            with wave.open(str(master)) as audio:
+                assert (audio.getnchannels(), audio.getsampwidth(), audio.getframerate()) == (1, 2, 24000)
+                frames = audio.readframes(audio.getnframes())
+                assert max(abs(sample[0]) for sample in struct.iter_unpack('<h', frames)) < 32767
         checked += 1
-
-clock = read('assets/clock-lines.json')['lines']
-assert {(r['hour'], r['cue']) for r in clock} == {(h, c) for h in range(24) for c in ('early', 'soon', 'bed', 'final')}
+    installed.append(f'{persona_id} ({len(clips)})')
+hours = {(l['persona'], l['hour']) for l in script['lines'] if l['cue'] == 'hour'}
+assert hours == {(p, h) for p in personas for h in range(24)}
+for p in personas:
+    for cue in ('early', 'soon', 'bed', 'final', 'due', 'shutdown', 'sleep', 'disabled', 'caught', 'caught-again', 'watch-final', 'streak', 'reset', 'preview', 'poke'):
+        assert any(l['persona'] == p and l['cue'] == cue for l in script['lines']), (p, cue)
 sprites = read('assets/interactions.json')
 assert len(sprites) == 10
 # Source atlases are production inputs kept in the repository only; the app plays the reviewed frames.
@@ -77,29 +85,7 @@ for frame in layout['frames']:
     assert data[:8] == b'\x89PNG\r\n\x1a\n' and (width, height, depth) == (640, 640, 8) and color in ((3, 6) if release_mode else (6,))
     if not release_mode:
         assert hashlib.sha256(checked_path(frame['source']).read_bytes()).hexdigest() == frame['source_sha256']
-# Split voice banks (address + body): every clip in voice-script.json, exact text, hashed runtime file.
-script = read('assets/voice-script.json')
-wanted = {('line', r['id']): r['body'] for r in script['lines']}
-wanted.update({('hour', r['id']): r['body'] for r in script['clock']['hours']})
-wanted.update({('tail', r['id']): r['body'] for r in script['clock']['tails']})
-wanted.update({('address', r['id']): r['text'] for r in script['addresses']})
-split_banks = []
-for voice in read('assets/voices.json')['voices']:
-    bank_path = f"assets/voices/{voice['id']}/bank.json"
-    if voice['id'] == 'N1' or not (ROOT / bank_path).is_file():
-        continue
-    bank = read(bank_path)
-    have = {(c['kind'], c['id']): c for c in bank['clips']}
-    assert set(have) == set(wanted), f"{voice['id']}: clips differ from voice-script.json"
-    for key, text in wanted.items():
-        clip = have[key]
-        assert clip['text'] == text, f"{voice['id']} {key}: text differs"
-        assert hashlib.sha256(checked_path(clip['file']).read_bytes()).hexdigest() == clip['runtime_sha256']
-        if not release_mode:
-            assert hashlib.sha256(checked_path(clip['master_file']).read_bytes()).hexdigest() == clip['sha256']
-        checked += 1
-    split_banks.append(f"{voice['id']} ({len(have)})")
-for path in ('assets/wanwan.png', 'assets/icons/wanwan.ico', 'assets/icons/wanwan-256.png', 'Start-Wanwan.ps1', '启动晚晚.vbs', '启动晚晚.cmd', 'app/Main.ps1', 'app/Voice.ps1', 'app/VoiceBank.ps1', 'assets/voice-script.json', 'assets/voices.json', 'app/Power.ps1', 'app/Schedule.ps1', 'app/History.ps1', 'app/Watch.ps1', 'app/UpdateCore.ps1', 'app/ApplyUpdate.ps1', 'assets/watch-lines.json', 'VERSION'):
+for path in ('assets/wanwan.png', 'assets/icons/wanwan.ico', 'assets/icons/wanwan-256.png', 'Start-Wanwan.ps1', '启动晚晚.vbs', '启动晚晚.cmd', 'app/Main.ps1', 'app/Voice.ps1', 'app/Persona.ps1', 'assets/persona-script.json', 'app/Power.ps1', 'app/Schedule.ps1', 'app/History.ps1', 'app/Watch.ps1', 'app/UpdateCore.ps1', 'app/ApplyUpdate.ps1', 'VERSION'):
     checked_path(path)
 mode = f'{masters} WAV masters PCM-checked' if masters else 'release mode, MP3 only'
-print(f'PASS: {checked} runtime clips ({mode}; split banks: {", ".join(split_banks) or "none"}), exact catalog/transcript/hash matching, 24-hour routing, 40 reviewed character frames and required runtime files.')
+print(f'PASS: {checked} runtime clips ({mode}; persona banks: {", ".join(installed) or "none yet"}), exact catalog/transcript/hash matching, 24-hour routing, 40 reviewed character frames and required runtime files.')

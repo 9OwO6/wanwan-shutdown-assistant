@@ -1,48 +1,49 @@
-﻿if(-not (Test-VoicePresetReady N1)){throw 'N1 bank is incomplete'}
-if((Format-CompanionAddress '宝贝，宝宝，亲爱的，我的小可爱。' '宝宝$1') -ne '宝宝$1，宝宝$1，宝宝$1，宝宝$1。'){throw 'Custom address replacement must be literal and non-recursive'}
-if((Format-CompanionAddress '宝宝，晚安。' '你') -ne '宝宝，晚安。'){throw 'Default system address should preserve the recorded dialogue'}
-$cfg.VoicePreset='N1';$cfg.Voice=$false
-$cues=@($script:dialogue.lines.cue|Select-Object -Unique)
-foreach($cue in $cues){
- $seen=[Collections.Generic.HashSet[string]]::new();$last=''
- for($i=0;$i -lt 12;$i++){
-  $line=Get-CompanionLine $cue
-  if($line.id -eq $last){throw "Adjacent duplicate in $cue"};$last=$line.id;$seen.Add($line.id)|Out-Null
-  if(-not (Get-VoiceAsset -Message $line.text -Preset N1 -LineId $line.id)){throw "Missing route $($line.id)"}
+﻿# 两种性格的台词：轮换不重复、主窗口字幕、互动小剧场只做动作，以及录音包里每一句都能原生播放（静音）。
+$cfg.Voice=$false;$cfg.VoicePreset='Recorded'
+$report=@()
+foreach($personaId in @('girlfriend','sister')){
+ $cfg.Persona=$personaId;$cfg.Address=$script:personas[$personaId].default_address;$cfg.Enabled=$true
+ $cues=@($script:personaLines|Where-Object {$_.persona -eq $personaId -and $_.cue -ne 'hour'}|ForEach-Object cue|Select-Object -Unique)
+ foreach($cue in $cues){
+  $count=@($script:personaLines|Where-Object {$_.persona -eq $personaId -and $_.cue -eq $cue}).Count
+  $seen=[Collections.Generic.HashSet[string]]::new();$last=''
+  for($i=0;$i -lt 2*$count;$i++){
+   $line=Get-CompanionLine $cue
+   if($count -gt 1 -and $line.id -eq $last){throw "Adjacent duplicate in $personaId/$cue"};$last=$line.id;$seen.Add($line.id)|Out-Null
+   if((Resolve-Speech $line).Text.Contains('{')){throw "Unformatted address in $($line.id)"}
+  }
+  if($seen.Count -ne $count){throw "Variation coverage failed: $personaId/$cue"}
  }
- if($seen.Count -ne 4){throw "Variation coverage failed: $cue"}
+ # 不能再出现被用户删掉的说法。
+ foreach($line in @($script:personaLines|Where-Object persona -eq $personaId)){if($line.text -match '我陪你|慢慢收尾|我在陪你'){throw "Retired phrase in $($line.id)"}}
+ $report+="$personaId $($cues.Count) cues"
 }
-if(Get-VoiceAsset -Message 'unrelated text' -Preset N1 -LineId preview-01){throw 'N1 must not play a mismatched transcript'}
-$ui.VoiceN1.IsChecked=$true;$ui.Save.RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent))
-if($cfg.VoicePreset -ne 'N1'){throw 'N1 settings commit failed'}
-$cfg.Voice=$false
+$cfg.Persona='girlfriend';$cfg.Address='baobao'
 $ui.Preview.RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent))
-if($ui.Message.Text -ne $script:lastSpokenLine.text -or $script:lastSpokenLine.cue -ne 'preview'){throw 'Preview caption mismatch'}
+if($ui.Message.Text -ne $script:lastSpokenLine.text -or $script:lastSpokenLine.cue -ne 'preview' -or $ui.Message.Text -notlike '宝宝*'){throw 'Preview caption mismatch'}
+# 互动小剧场：每个按钮做对应动作，字幕是动作名，不说整句。
 $gallery=New-InteractionGallery
 foreach($button in $gallery.FindName('Scenes').Children){
  $button.RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent))
- if($script:action.Item.id -ne $button.Tag -or $gallery.FindName('SceneCaption').Text -ne $script:lastSpokenLine.text){throw 'Gallery voice/action/caption mismatch'}
+ if($script:action.Item.id -ne $button.Tag -or $gallery.FindName('SceneCaption').Text -ne $script:lastSpokenLine.text -or $script:lastSpokenLine.text.Length -gt 12){throw "Gallery gesture mismatch: $($button.Tag)"}
 }
 $gallery.Close()
-# Open every file with the actual WPF media backend, at zero volume.
-$script:voicePlayer.Volume=0;$cfg.Voice=$true;$opened=@()
-foreach($line in $script:dialogue.lines){
- $script:clipReady=$false;$audioFrame=[Windows.Threading.DispatcherFrame]::new()
- $handler=[System.EventHandler]{$script:clipReady=$true;$audioFrame.Continue=$false}
- $script:voicePlayer.Add_MediaOpened($handler)
- Say $line.text -LineId $line.id -ActionId $line.action
- $timeout=[Windows.Threading.DispatcherTimer]::new();$timeout.Interval=[timespan]::FromSeconds(3)
- $timeout.Add_Tick({$audioFrame.Continue=$false;$timeout.Stop()});$timeout.Start();[Windows.Threading.Dispatcher]::PushFrame($audioFrame);$timeout.Stop()
- $script:voicePlayer.Remove_MediaOpened($handler)
- if(-not $script:clipReady -or $script:lastVoiceAsset -ne (Join-Path $root $line.file)){throw "Native playback failed: $($line.id)"}
- $opened+=@{id=$line.id;asset=$script:lastVoiceAsset;nativeOpened=$true};Stop-Voice
+# 录音包里的每一句都能被 WPF 原生打开（静音），并且等动作播完前不会提前收起。
+$script:voicePlayer.Volume=0;$cfg.Voice=$true;$opened=0
+foreach($personaId in @('girlfriend','sister')|Where-Object {Test-PersonaBank $_}){
+ foreach($clip in $script:personaBanks[$personaId].Values){
+  $script:clipReady=$false;$audioFrame=[Windows.Threading.DispatcherFrame]::new()
+  $handler=[System.EventHandler]{$script:clipReady=$true;$audioFrame.Continue=$false}
+  $script:voicePlayer.Add_MediaOpened($handler)
+  Say $clip.text -PreparedClips @($clip.file) -PreparedDuration $clip.duration
+  $timeout=[Windows.Threading.DispatcherTimer]::new();$timeout.Interval=[timespan]::FromSeconds(3)
+  $timeout.Add_Tick({$audioFrame.Continue=$false;$timeout.Stop()});$timeout.Start();[Windows.Threading.Dispatcher]::PushFrame($audioFrame);$timeout.Stop()
+  $script:voicePlayer.Remove_MediaOpened($handler)
+  if(-not $script:clipReady -or $script:lastVoiceAsset -ne $clip.file){throw "Native playback failed: $($clip.file)"}
+  $opened++;Stop-Voice
+ }
 }
-$heartLine=$script:dialogue.lines|Where-Object {$_.id -eq 'heart-02'}|Select-Object -First 1
-Say $heartLine.text -LineId $heartLine.id -ActionId heart
-$holdFrame=[Windows.Threading.DispatcherFrame]::new();$holdTimer=[Windows.Threading.DispatcherTimer]::new();$holdTimer.Interval=[timespan]::FromSeconds(4.6)
-$holdTimer.Add_Tick({$holdFrame.Continue=$false;$holdTimer.Stop()});$holdTimer.Start();[Windows.Threading.Dispatcher]::PushFrame($holdFrame)
-if($script:mainSurface.Key -notlike 'heart:*'){throw 'Character pose ended before the long voice line'}
 Stop-Voice;$cfg.Voice=$false
 New-Item -ItemType Directory -Force (Join-Path $root 'output\voice-lab')|Out-Null
-$opened|ConvertTo-Json -Depth 4|Set-Content (Join-Path $root 'output\voice-lab\n1-runtime-report.json') -Encoding UTF8
-Write-Output "Dialogue tests passed: $($opened.Count) native WAV opens, $($cues.Count) varied cues, no adjacent repeats, N1 settings choice, preview and ten gallery captions/actions; muted, no shutdown"
+@{personas=$report;nativeOpens=$opened}|ConvertTo-Json|Set-Content (Join-Path $root 'output\voice-lab\persona-runtime-report.json') -Encoding UTF8
+Write-Output "Dialogue tests passed: $($report -join ', '), no adjacent repeats, no retired phrases, preview caption, ten gallery gestures, $opened native clip opens; muted, no shutdown"

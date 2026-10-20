@@ -2,24 +2,7 @@
 . "$PSScriptRoot\History.ps1"
 . "$PSScriptRoot\UpdateCore.ps1"
 
-# ---------- 语音：新台词优先播放 N1 录音，录音尚未生成时由系统声音朗读 ----------
-$script:watchLines=(Get-Content (Join-Path $root 'assets\watch-lines.json') -Raw -Encoding UTF8|ConvertFrom-Json).lines
-$script:watchManifestPath=Join-Path $root 'assets\voices\N1-watch\manifest.json'
-$script:watchRecords=if(Test-Path $script:watchManifestPath){@((Get-Content $script:watchManifestPath -Raw -Encoding UTF8|ConvertFrom-Json)|ForEach-Object {$_})}else{@()}
-function Get-WatchLine([string]$Cue){
- $line=$script:watchLines|Where-Object cue -eq $Cue|Select-Object -First 1
- if(-not $line){throw "Unknown watch line: $Cue"}
- $record=$script:watchRecords|Where-Object {$_.id -eq $line.id -and $_.text -eq $line.text}|Select-Object -First 1
- $file=Join-Path $root $line.file
- $hasClip=[bool]($record -and (Test-Path $file))
- # 没有录音时按每字约 0.24 秒估算朗读时长，用于等待播报结束。
- $duration=if($hasClip){[double]$record.duration}else{[math]::Max(3,$line.text.Length*0.24)}
- return [pscustomobject]@{id=$line.id;cue=$Cue;action=$line.action;text=$line.text;file=$(if($hasClip){$file}else{''});duration=$duration}
-}
-function Say-WatchLine([string]$Cue){
- $spoken=Speak-Line (Get-WatchLine $Cue);$script:lastGuardDuration=$spoken.duration
- return $spoken
-}
+# 起夜监督和早上问候的台词见 Persona.ps1（Get-WatchLine / Say-WatchLine）。
 
 # ---------- 早睡打卡记录 ----------
 $script:historyFile=Join-Path $data 'history.json'

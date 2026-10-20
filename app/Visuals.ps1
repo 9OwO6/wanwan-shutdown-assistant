@@ -63,9 +63,9 @@ function Invoke-ReminderInteraction([string]$message,[string]$lineId){
 }
 function Set-CompanionMode([string]$mode){
  $script:visualMode=$mode
- $ui.Mood.Text=switch($mode){'晚安'{'☾  晚安，明天见'}'收尾'{'♡  我陪你慢慢收尾'}default{'✦  晚晚在你身边'}}
- $ui.Headline.Text=switch($mode){'晚安'{'今天就到这里，好不好？'}'收尾'{'先保存一下，我们慢慢来。'}default{'早点睡，是给自己的温柔。'}}
- $ui.Message.Text=switch($mode){'晚安'{'把今天轻轻放下。明天醒来，我们再继续那些喜欢的事情。'}'收尾'{'先保存文件，再结束手上的事情。我在这里陪你。'}default{'忙了一天，辛苦啦。我们约个时间，慢慢收尾，然后安心休息。'}}
+ $ui.Mood.Text=switch($mode){'晚安'{'☾  该睡啦'}'收尾'{'✦  快到睡觉时间了'}default{'✦  晚晚在这儿'}}
+ $ui.Headline.Text=switch($mode){'晚安'{'今天就到这里吧。'}'收尾'{'该准备收尾啦。'}default{'早点睡，明天更有精神。'}}
+ $ui.Message.Text=switch($mode){'晚安'{'保存好手上的东西，去睡吧。'}'收尾'{'把要紧的存好，别再开新的事情了。'}default{'设好睡觉时间，到点晚晚会来提醒你。'}}
 }
 function Set-Motion([bool]$enabled){
  $script:motionEnabled=$enabled
@@ -78,7 +78,7 @@ function New-InteractionGallery {
  if($script:gallery){$gallery.Activate()|Out-Null;return $gallery}
  [xml]$gx=@'
 <Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="晚晚 · 互动小剧场" Width="940" Height="730" MinWidth="880" MinHeight="650" WindowStartupLocation="CenterScreen" Background="#FFF7FA" FontFamily="Microsoft YaHei UI" Foreground="#594853">
- <Grid Margin="26"><Grid.ColumnDefinitions><ColumnDefinition Width="310"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><Border CornerRadius="24" Background="#EDDFE7" Margin="0,0,24,0"><Grid><Image x:Name="ScenePortrait" Height="330" VerticalAlignment="Top" Margin="0,24,0,0" Stretch="Uniform"/><Image x:Name="SceneFade" Height="330" VerticalAlignment="Top" Margin="0,24,0,0" Stretch="Uniform" Opacity="0" IsHitTestVisible="False"/><StackPanel VerticalAlignment="Bottom" Margin="26,0,26,38"><TextBlock Text="一点点温柔，送给你" Foreground="#A47B90" FontSize="12"/><TextBlock x:Name="SceneTitle" Text="探头找你" FontSize="26" Margin="0,12,0,12"/><TextBlock x:Name="SceneCaption" Text="在忙吗？我探个头，看看你呀。" TextWrapping="Wrap" FontSize="16" LineHeight="27"/><TextBlock Text="点右边的小卡片，晚晚会回应你。" FontSize="12" Foreground="#9A8491" TextWrapping="Wrap" Margin="0,26,0,0"/></StackPanel></Grid></Border><Grid Grid.Column="1"><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions><StackPanel Margin="0,5,0,18"><TextBlock Text="晚晚的小小回应" FontSize="27"/><TextBlock Text="10 个动作，陪你从忙碌到晚安" FontSize="14" Foreground="#9E8593" Margin="0,10,0,0"/></StackPanel><ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto"><WrapPanel x:Name="Scenes"/></ScrollViewer><TextBlock Grid.Row="2" Text="互动预览不会开启守护或执行关机。" Foreground="#9E8593" FontSize="12" Margin="0,18,0,0"/></Grid></Grid>
+ <Grid Margin="26"><Grid.ColumnDefinitions><ColumnDefinition Width="310"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><Border CornerRadius="24" Background="#EDDFE7" Margin="0,0,24,0"><Grid><Image x:Name="ScenePortrait" Height="330" VerticalAlignment="Top" Margin="0,24,0,0" Stretch="Uniform"/><Image x:Name="SceneFade" Height="330" VerticalAlignment="Top" Margin="0,24,0,0" Stretch="Uniform" Opacity="0" IsHitTestVisible="False"/><StackPanel VerticalAlignment="Bottom" Margin="26,0,26,38"><TextBlock Text="一点点温柔，送给你" Foreground="#A47B90" FontSize="12"/><TextBlock x:Name="SceneTitle" Text="探头找你" FontSize="26" Margin="0,12,0,12"/><TextBlock x:Name="SceneCaption" Text="在忙吗？我探个头，看看你呀。" TextWrapping="Wrap" FontSize="16" LineHeight="27"/><TextBlock Text="点右边的小卡片，晚晚会回应你。" FontSize="12" Foreground="#9A8491" TextWrapping="Wrap" Margin="0,26,0,0"/></StackPanel></Grid></Border><Grid Grid.Column="1"><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions><StackPanel Margin="0,5,0,18"><TextBlock Text="晚晚的小小回应" FontSize="27"/><TextBlock Text="10 个小动作，点一下看看" FontSize="14" Foreground="#9E8593" Margin="0,10,0,0"/></StackPanel><ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto"><WrapPanel x:Name="Scenes"/></ScrollViewer><TextBlock Grid.Row="2" Text="互动预览不会开启守护或执行关机。" Foreground="#9E8593" FontSize="12" Margin="0,18,0,0"/></Grid></Grid>
 </Window>
 '@
  $script:gallery=[Windows.Markup.XamlReader]::Load([Xml.XmlNodeReader]::new($gx));$gallery.Resources.MergedDictionaries.Add($win.Resources);$gallery.Owner=$win
@@ -87,7 +87,7 @@ function New-InteractionGallery {
   $button=[Windows.Controls.Button]::new();$button.Width=170;$button.Margin=[Windows.Thickness]::new(0,0,10,10);$button.Padding=[Windows.Thickness]::new(10);$button.Background=[Windows.Media.BrushConverter]::new().ConvertFromString('#FFFFFF');$button.Tag=$item.id;$button.ToolTip=$item.caption
   $panel=[Windows.Controls.StackPanel]::new();$thumb=[Windows.Controls.Image]::new();$thumb.Height=70;$thumb.Stretch=[Windows.Media.Stretch]::Uniform;if($script:interactionAssets.ContainsKey($item.id)){$thumb.Source=$script:interactionAssets[$item.id][2]};$panel.Children.Add($thumb)|Out-Null
   $text=[Windows.Controls.TextBlock]::new();$text.Text=$item.symbol+'  '+$item.name;$text.FontSize=14;$text.Margin=[Windows.Thickness]::new(0,6,0,2);$text.HorizontalAlignment=[Windows.HorizontalAlignment]::Center;$panel.Children.Add($text)|Out-Null;$button.Content=$panel
-  $button.Add_Click({param($sender,$e) Say-Cue $(if($sender.Tag -eq 'goodnight'){'night'}else{$sender.Tag}) -Interaction})
+  $button.Add_Click({param($sender,$e) Invoke-Gesture $sender.Tag})
   $gallery.FindName('Scenes').Children.Add($button)|Out-Null
  }
  $gallery.Add_Closed({$script:surfaces=@($script:surfaces|Where-Object {$_.Window -ne $script:gallery});$script:gallery=$null;$script:gallerySurface=$null})
@@ -100,11 +100,11 @@ $ui.MotionToggle.Add_Checked({$cfg.ReducedMotion=$true;Set-Motion $false;Save-Co
 $ui.MotionToggle.Add_Unchecked({$cfg.ReducedMotion=$false;Set-Motion $true;Save-Config})
 $ui.Interactions.Add_Click({New-InteractionGallery|Out-Null})
 $script:touchCount=0
-$ui.Portrait.Add_MouseLeftButtonDown({$touch=@('pat','heart','cheer','wave','peek');Say-Cue $touch[$script:touchCount%$touch.Count] -Interaction;$script:touchCount++})
+$ui.Portrait.Add_MouseLeftButtonDown({Invoke-Poke|Out-Null})
 $script:visualTimer=[Windows.Threading.DispatcherTimer]::new();$script:visualTimer.Interval=[timespan]::FromMilliseconds(50)
 $script:visualTimer.Add_Tick({
  $ms=$script:animationClock.ElapsedMilliseconds
- $badge=$win.FindName('VoiceBadge');if($badge){$badge.Text=if(-not $cfg.Voice){'♫  语音已关闭，小动作还会陪着你'}elseif($script:voiceUntil -and (Get-Date) -lt $script:voiceUntil){'♫  晚晚正在轻轻和你说话…'}elseif($cfg.VoicePreset -ne 'System'){$voiceInfo=$script:voiceCatalog|Where-Object id -eq $cfg.VoicePreset|Select-Object -First 1;'♫  晚晚的声音 · '+$(if($voiceInfo){$voiceInfo.name}else{'清甜温柔'})}else{'♫  系统朗读 · 在设置里可以换回晚晚的声音'}}
+ $badge=$win.FindName('VoiceBadge');if($badge){$badge.Text=if(-not $cfg.Voice){'♫  语音已关闭，只显示文字和动作'}elseif($script:voiceUntil -and (Get-Date) -lt $script:voiceUntil){'♫  晚晚正在轻轻和你说话…'}elseif($cfg.VoicePreset -ne 'System'){$p=Get-Persona;'♫  '+$p.name+'晚晚 · '+$p.voice_name}else{'♫  系统朗读 · 在设置里可以换回晚晚的声音'}}
  if($script:popup -and $ms -gt $script:popupUntil -and -not $script:petDragging){Complete-DesktopPetReminder}
  $active=$script:action -and $ms -lt $script:action.End
  $holding=$script:action -and $script:voiceUntil -and (Get-Date) -lt $script:voiceUntil

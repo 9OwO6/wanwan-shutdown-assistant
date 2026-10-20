@@ -32,7 +32,7 @@ foreach($item in $script:interactionCatalog){
 Start-Interaction 'pat';Wait-Visual 650;Set-Motion $false;Wait-Visual 100;$held=$script:frameIndex;Wait-Visual 800
 if($script:frameIndex -ne $held -or $script:mainSurface.Move.X -ne 0 -or $script:mainSurface.Rotate.Angle -ne 0){throw 'Reduced motion must hold a static gesture'}
 Set-Motion $true;$gallery.Close();$win.Hide()
-Say '还有半小时，我们慢慢把今天的事情收个尾，好不好？' -LineId early
+Say '还有半小时就该睡啦。' -LineId early
 Wait-Visual 700
 if(-not $script:popup -or -not $popup.IsVisible -or $popup.ShowActivated -or $script:action.Item.id -ne 'water'){throw 'Muted tray reminder must animate in a nonactivating popup'}
 $first=$script:popupSurface.Key;Wait-Visual 500;if($script:popupSurface.Key -eq $first){throw 'Hidden main window stopped popup frames'}

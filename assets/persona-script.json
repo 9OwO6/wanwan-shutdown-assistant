@@ -1,0 +1,888 @@
+{
+ "version": 2,
+ "approved": "2026-10-19",
+ "notes": "台词第二版（用户批注后定稿）。{称呼} 的句子每个称呼录一遍整句，再录一遍不带称呼的；自定义名字只显示在文字里。整点报时 = 整点句 + 对应提醒句（early/soon/bed/final 的第一种说法），中间停顿 clock_pause_ms。",
+ "clock_pause_ms": 300,
+ "personas": [
+  {
+   "id": "girlfriend",
+   "name": "女友",
+   "voice": "N1",
+   "voice_name": "清甜温柔",
+   "description": "爱撒娇、黏人，你熬夜她会哼一声、小小生气，但不说教。",
+   "addresses": [
+    {
+     "id": "baobao",
+     "label": "宝宝"
+    },
+    {
+     "id": "qinaide",
+     "label": "亲爱的"
+    }
+   ],
+   "default_address": "baobao"
+  },
+  {
+   "id": "sister",
+   "name": "姐姐",
+   "voice": "V3",
+   "voice_name": "知性温柔",
+   "description": "成熟温柔、会照顾人；催你睡觉时温柔但不让步，偶尔轻轻调侃你。",
+   "addresses": [
+    {
+     "id": "xiaobendan",
+     "label": "小笨蛋"
+    }
+   ],
+   "default_address": "none"
+  }
+ ],
+ "lines": [
+  {
+   "id": "girlfriend/early-1",
+   "persona": "girlfriend",
+   "cue": "early",
+   "action": "water",
+   "text": "还有半小时就该睡啦，还在忙的任务不多了吧～"
+  },
+  {
+   "id": "girlfriend/early-2",
+   "persona": "girlfriend",
+   "cue": "early",
+   "action": "water",
+   "text": "{称呼}，半小时后我就要帮你关机了哦，注意别开新任务啦。"
+  },
+  {
+   "id": "girlfriend/soon-1",
+   "persona": "girlfriend",
+   "cue": "soon",
+   "action": "stretch",
+   "text": "只剩十分钟啦～快存一下档嘛，好不好？"
+  },
+  {
+   "id": "girlfriend/soon-2",
+   "persona": "girlfriend",
+   "cue": "soon",
+   "action": "stretch",
+   "text": "{称呼}，十分钟倒计时开始咯，要乖乖收尾哦～"
+  },
+  {
+   "id": "girlfriend/bed-1",
+   "persona": "girlfriend",
+   "cue": "bed",
+   "action": "nod",
+   "text": "到点啦{称呼}～该睡觉觉了，不许再拖了哦。"
+  },
+  {
+   "id": "girlfriend/dialog-1",
+   "persona": "girlfriend",
+   "cue": "dialog",
+   "action": "goodnight",
+   "text": "好啦好啦，说好的时间到了嘛，去睡觉好不好～"
+  },
+  {
+   "id": "girlfriend/final-1",
+   "persona": "girlfriend",
+   "cue": "final",
+   "action": "yawn",
+   "text": "最后两分钟啦！快保存快保存～"
+  },
+  {
+   "id": "girlfriend/due-1",
+   "persona": "girlfriend",
+   "cue": "due",
+   "action": "nod",
+   "text": "已经过点啦！哼，再给你两分钟，然后我就帮你关机咯。"
+  },
+  {
+   "id": "girlfriend/shutdown-1",
+   "persona": "girlfriend",
+   "cue": "shutdown",
+   "action": "goodnight",
+   "text": "时间到～关机咯。晚安{称呼}，梦里见。"
+  },
+  {
+   "id": "girlfriend/sleep-1",
+   "persona": "girlfriend",
+   "cue": "sleep",
+   "action": "goodnight",
+   "text": "电脑先睡啦，你也快去睡嘛～"
+  },
+  {
+   "id": "girlfriend/defer-1",
+   "persona": "girlfriend",
+   "cue": "defer",
+   "action": "nod",
+   "text": "那……再给你一会儿，就一会儿哦。"
+  },
+  {
+   "id": "girlfriend/cancel-1",
+   "persona": "girlfriend",
+   "cue": "cancel",
+   "action": "heart",
+   "text": "好吧，忙完记得早点睡。"
+  },
+  {
+   "id": "girlfriend/ack-1",
+   "persona": "girlfriend",
+   "cue": "ack",
+   "action": "nod",
+   "text": "嗯！说好了哦。"
+  },
+  {
+   "id": "girlfriend/goodnight-1",
+   "persona": "girlfriend",
+   "cue": "goodnight",
+   "action": "goodnight",
+   "text": "晚安{称呼}，明天见。"
+  },
+  {
+   "id": "girlfriend/caught-1",
+   "persona": "girlfriend",
+   "cue": "caught",
+   "action": "peek",
+   "text": "诶？怎么又偷偷起来啦！"
+  },
+  {
+   "id": "girlfriend/caught-again-1",
+   "persona": "girlfriend",
+   "cue": "caught-again",
+   "action": "pat",
+   "text": "又被我抓到了……快回去躺好。"
+  },
+  {
+   "id": "girlfriend/watch-final-1",
+   "persona": "girlfriend",
+   "cue": "watch-final",
+   "action": "goodnight",
+   "text": "好啦，别再试啦，乖乖去睡。"
+  },
+  {
+   "id": "girlfriend/streak-1",
+   "persona": "girlfriend",
+   "cue": "streak",
+   "action": "cheer",
+   "text": "早呀～昨晚超乖的，奖励你一颗小星星！"
+  },
+  {
+   "id": "girlfriend/reset-1",
+   "persona": "girlfriend",
+   "cue": "reset",
+   "action": "heart",
+   "text": "昨晚是不是又熬夜啦……哼，今晚要早点睡哦。"
+  },
+  {
+   "id": "girlfriend/companion-game-1",
+   "persona": "girlfriend",
+   "cue": "companion-game",
+   "action": "yawn",
+   "text": "打完这把就睡，好不好？"
+  },
+  {
+   "id": "girlfriend/companion-video-1",
+   "persona": "girlfriend",
+   "cue": "companion-video",
+   "action": "yawn",
+   "text": "这集看完就睡嘛。"
+  },
+  {
+   "id": "girlfriend/companion-work-1",
+   "persona": "girlfriend",
+   "cue": "companion-work",
+   "action": "stretch",
+   "text": "明天再写吧，你都写了好久了。"
+  },
+  {
+   "id": "girlfriend/back-1",
+   "persona": "girlfriend",
+   "cue": "back",
+   "action": "wave",
+   "text": "你回来啦。"
+  },
+  {
+   "id": "girlfriend/preview-1",
+   "persona": "girlfriend",
+   "cue": "preview",
+   "action": "peek",
+   "text": "{称呼}～听得到吗？是我呀！"
+  },
+  {
+   "id": "girlfriend/saved-1",
+   "persona": "girlfriend",
+   "cue": "saved",
+   "action": "heart",
+   "text": "记住啦～到点我会来叫你的！"
+  },
+  {
+   "id": "girlfriend/disabled-1",
+   "persona": "girlfriend",
+   "cue": "disabled",
+   "action": "heart",
+   "text": "记好啦～不过现在只会提醒你，不会帮你关机哦。"
+  },
+  {
+   "id": "girlfriend/demo-1",
+   "persona": "girlfriend",
+   "cue": "demo",
+   "action": "goodnight",
+   "text": "这只是演示啦，不会真的关机的～"
+  },
+  {
+   "id": "girlfriend/hello-1",
+   "persona": "girlfriend",
+   "cue": "hello",
+   "action": "wave",
+   "text": "嗯？叫我呀？"
+  },
+  {
+   "id": "girlfriend/hello-2",
+   "persona": "girlfriend",
+   "cue": "hello",
+   "action": "wave",
+   "text": "在呢在呢～"
+  },
+  {
+   "id": "girlfriend/poke-1",
+   "persona": "girlfriend",
+   "cue": "poke",
+   "action": "pat",
+   "text": "嗯？"
+  },
+  {
+   "id": "girlfriend/poke-more-1",
+   "persona": "girlfriend",
+   "cue": "poke-more",
+   "action": "peek",
+   "text": "诶——干嘛呀～"
+  },
+  {
+   "id": "girlfriend/poke-angry-1",
+   "persona": "girlfriend",
+   "cue": "poke-angry",
+   "action": "heart",
+   "text": "哼！不理你了！"
+  },
+  {
+   "id": "girlfriend/yawn-sound-1",
+   "persona": "girlfriend",
+   "cue": "yawn-sound",
+   "action": "yawn",
+   "text": "哈啊～"
+  },
+  {
+   "id": "girlfriend/hour-00",
+   "persona": "girlfriend",
+   "cue": "hour",
+   "hour": 0,
+   "action": "peek",
+   "text": "{称呼}，到十二点啦。"
+  },
+  {
+   "id": "girlfriend/hour-01",
+   "persona": "girlfriend",
+   "cue": "hour",
+   "hour": 1,
+   "action": "peek",
+   "text": "{称呼}，到一点啦。"
+  },
+  {
+   "id": "girlfriend/hour-02",
+   "persona": "girlfriend",
+   "cue": "hour",
+   "hour": 2,
+   "action": "peek",
+   "text": "{称呼}，到两点啦。"
+  },
+  {
+   "id": "girlfriend/hour-03",
+   "persona": "girlfriend",
+   "cue": "hour",
+   "hour": 3,
+   "action": "peek",
+   "text": "{称呼}，到三点啦。"
+  },
+  {
+   "id": "girlfriend/hour-04",
+   "persona": "girlfriend",
+   "cue": "hour",
+   "hour": 4,
+   "action": "peek",
+   "text": "{称呼}，到四点啦。"
+  },
+  {
+   "id": "girlfriend/hour-05",
+   "persona": "girlfriend",
+   "cue": "hour",
+   "hour": 5,
+   "action": "peek",
+   "text": "{称呼}，到五点啦。"
+  },
+  {
+   "id": "girlfriend/hour-06",
+   "persona": "girlfriend",
+   "cue": "hour",
+   "hour": 6,
+   "action": "peek",
+   "text": "{称呼}，到六点啦。"
+  },
+  {
+   "id": "girlfriend/hour-07",
+   "persona": "girlfriend",
+   "cue": "hour",
+   "hour": 7,
+   "action": "peek",
+   "text": "{称呼}，到七点啦。"
+  },
+  {
+   "id": "girlfriend/hour-08",
+   "persona": "girlfriend",
+   "cue": "hour",
+   "hour": 8,
+   "action": "peek",
+   "text": "{称呼}，到八点啦。"
+  },
+  {
+   "id": "girlfriend/hour-09",
+   "persona": "girlfriend",
+   "cue": "hour",
+   "hour": 9,
+   "action": "peek",
+   "text": "{称呼}，到九点啦。"
+  },
+  {
+   "id": "girlfriend/hour-10",
+   "persona": "girlfriend",
+   "cue": "hour",
+   "hour": 10,
+   "action": "peek",
+   "text": "{称呼}，到十点啦。"
+  },
+  {
+   "id": "girlfriend/hour-11",
+   "persona": "girlfriend",
+   "cue": "hour",
+   "hour": 11,
+   "action": "peek",
+   "text": "{称呼}，到十一点啦。"
+  },
+  {
+   "id": "girlfriend/hour-12",
+   "persona": "girlfriend",
+   "cue": "hour",
+   "hour": 12,
+   "action": "peek",
+   "text": "{称呼}，到十二点啦。"
+  },
+  {
+   "id": "girlfriend/hour-13",
+   "persona": "girlfriend",
+   "cue": "hour",
+   "hour": 13,
+   "action": "peek",
+   "text": "{称呼}，到一点啦。"
+  },
+  {
+   "id": "girlfriend/hour-14",
+   "persona": "girlfriend",
+   "cue": "hour",
+   "hour": 14,
+   "action": "peek",
+   "text": "{称呼}，到两点啦。"
+  },
+  {
+   "id": "girlfriend/hour-15",
+   "persona": "girlfriend",
+   "cue": "hour",
+   "hour": 15,
+   "action": "peek",
+   "text": "{称呼}，到三点啦。"
+  },
+  {
+   "id": "girlfriend/hour-16",
+   "persona": "girlfriend",
+   "cue": "hour",
+   "hour": 16,
+   "action": "peek",
+   "text": "{称呼}，到四点啦。"
+  },
+  {
+   "id": "girlfriend/hour-17",
+   "persona": "girlfriend",
+   "cue": "hour",
+   "hour": 17,
+   "action": "peek",
+   "text": "{称呼}，到五点啦。"
+  },
+  {
+   "id": "girlfriend/hour-18",
+   "persona": "girlfriend",
+   "cue": "hour",
+   "hour": 18,
+   "action": "peek",
+   "text": "{称呼}，到六点啦。"
+  },
+  {
+   "id": "girlfriend/hour-19",
+   "persona": "girlfriend",
+   "cue": "hour",
+   "hour": 19,
+   "action": "peek",
+   "text": "{称呼}，到七点啦。"
+  },
+  {
+   "id": "girlfriend/hour-20",
+   "persona": "girlfriend",
+   "cue": "hour",
+   "hour": 20,
+   "action": "peek",
+   "text": "{称呼}，到八点啦。"
+  },
+  {
+   "id": "girlfriend/hour-21",
+   "persona": "girlfriend",
+   "cue": "hour",
+   "hour": 21,
+   "action": "peek",
+   "text": "{称呼}，到九点啦。"
+  },
+  {
+   "id": "girlfriend/hour-22",
+   "persona": "girlfriend",
+   "cue": "hour",
+   "hour": 22,
+   "action": "peek",
+   "text": "{称呼}，到十点啦。"
+  },
+  {
+   "id": "girlfriend/hour-23",
+   "persona": "girlfriend",
+   "cue": "hour",
+   "hour": 23,
+   "action": "peek",
+   "text": "{称呼}，到十一点啦。"
+  },
+  {
+   "id": "sister/early-1",
+   "persona": "sister",
+   "cue": "early",
+   "action": "water",
+   "text": "还有半小时就到休息时间了呢。应该准备着手收尾工作了。"
+  },
+  {
+   "id": "sister/early-2",
+   "persona": "sister",
+   "cue": "early",
+   "action": "water",
+   "text": "还有半小时了。注意别再开新的工作了。"
+  },
+  {
+   "id": "sister/soon-1",
+   "persona": "sister",
+   "cue": "soon",
+   "action": "stretch",
+   "text": "只剩十分钟了呢。先把重要的东西存好，好吗？"
+  },
+  {
+   "id": "sister/soon-2",
+   "persona": "sister",
+   "cue": "soon",
+   "action": "stretch",
+   "text": "十分钟后就该休息了。剩下的，明天再做也来得及。"
+  },
+  {
+   "id": "sister/bed-1",
+   "persona": "sister",
+   "cue": "bed",
+   "action": "nod",
+   "text": "时间到了哦。今天已经很努力了，去休息吧。"
+  },
+  {
+   "id": "sister/dialog-1",
+   "persona": "sister",
+   "cue": "dialog",
+   "action": "goodnight",
+   "text": "好了，今天就到这里吧。乖，先去保存。"
+  },
+  {
+   "id": "sister/final-1",
+   "persona": "sister",
+   "cue": "final",
+   "action": "yawn",
+   "text": "还有两分钟。没保存的，现在保存好哦。"
+  },
+  {
+   "id": "sister/due-1",
+   "persona": "sister",
+   "cue": "due",
+   "action": "nod",
+   "text": "已经过了约好的时间了呢。再给你两分钟，存好就关机。"
+  },
+  {
+   "id": "sister/shutdown-1",
+   "persona": "sister",
+   "cue": "shutdown",
+   "action": "goodnight",
+   "text": "时间到了。晚安，做个好梦。"
+  },
+  {
+   "id": "sister/sleep-1",
+   "persona": "sister",
+   "cue": "sleep",
+   "action": "goodnight",
+   "text": "电脑先睡了。你也该去休息了，嗯？"
+  },
+  {
+   "id": "sister/defer-1",
+   "persona": "sister",
+   "cue": "defer",
+   "action": "nod",
+   "text": "好吧，再给你一点时间。不过只有这一次哦。"
+  },
+  {
+   "id": "sister/cancel-1",
+   "persona": "sister",
+   "cue": "cancel",
+   "action": "heart",
+   "text": "有急事就去吧。忙完了，要记得早点睡。"
+  },
+  {
+   "id": "sister/ack-1",
+   "persona": "sister",
+   "cue": "ack",
+   "action": "nod",
+   "text": "嗯，姐姐记住了哦。"
+  },
+  {
+   "id": "sister/goodnight-1",
+   "persona": "sister",
+   "cue": "goodnight",
+   "action": "goodnight",
+   "text": "晚安，{称呼}。明天见。"
+  },
+  {
+   "id": "sister/caught-1",
+   "persona": "sister",
+   "cue": "caught",
+   "action": "peek",
+   "text": "这么晚了，怎么又起来了？是有什么急事吗？"
+  },
+  {
+   "id": "sister/caught-again-1",
+   "persona": "sister",
+   "cue": "caught-again",
+   "action": "pat",
+   "text": "又起来了呀……听话，回去躺好。"
+  },
+  {
+   "id": "sister/watch-final-1",
+   "persona": "sister",
+   "cue": "watch-final",
+   "action": "goodnight",
+   "text": "好了，别再试了。乖乖去睡觉，好吗？"
+  },
+  {
+   "id": "sister/streak-1",
+   "persona": "sister",
+   "cue": "streak",
+   "action": "cheer",
+   "text": "早上好。昨晚很听话呢，继续保持哦。"
+  },
+  {
+   "id": "sister/reset-1",
+   "persona": "sister",
+   "cue": "reset",
+   "action": "heart",
+   "text": "昨晚又熬夜了吧？没关系，今晚早点睡就好。"
+  },
+  {
+   "id": "sister/companion-game-1",
+   "persona": "sister",
+   "cue": "companion-game",
+   "action": "yawn",
+   "text": "这一局打完就休息吧，好吗？"
+  },
+  {
+   "id": "sister/companion-video-1",
+   "persona": "sister",
+   "cue": "companion-video",
+   "action": "yawn",
+   "text": "这集看完就去睡，嗯？"
+  },
+  {
+   "id": "sister/companion-work-1",
+   "persona": "sister",
+   "cue": "companion-work",
+   "action": "stretch",
+   "text": "已经很晚了，剩下的明天再做吧。"
+  },
+  {
+   "id": "sister/back-1",
+   "persona": "sister",
+   "cue": "back",
+   "action": "wave",
+   "text": "回来啦？"
+  },
+  {
+   "id": "sister/preview-1",
+   "persona": "sister",
+   "cue": "preview",
+   "action": "peek",
+   "text": "{称呼}，听得清吗？以后就由我来提醒你了。"
+  },
+  {
+   "id": "sister/saved-1",
+   "persona": "sister",
+   "cue": "saved",
+   "action": "heart",
+   "text": "记下了。到时间我会提醒你的。"
+  },
+  {
+   "id": "sister/disabled-1",
+   "persona": "sister",
+   "cue": "disabled",
+   "action": "heart",
+   "text": "记下了。现在只提醒，不会帮你关机哦。"
+  },
+  {
+   "id": "sister/demo-1",
+   "persona": "sister",
+   "cue": "demo",
+   "action": "goodnight",
+   "text": "这是演示，不会关机的，放心看吧。"
+  },
+  {
+   "id": "sister/hello-1",
+   "persona": "sister",
+   "cue": "hello",
+   "action": "wave",
+   "text": "嗯？怎么了？"
+  },
+  {
+   "id": "sister/hello-2",
+   "persona": "sister",
+   "cue": "hello",
+   "action": "wave",
+   "text": "找我有事吗？"
+  },
+  {
+   "id": "sister/poke-1",
+   "persona": "sister",
+   "cue": "poke",
+   "action": "pat",
+   "text": "嗯？"
+  },
+  {
+   "id": "sister/poke-more-1",
+   "persona": "sister",
+   "cue": "poke-more",
+   "action": "peek",
+   "text": "怎么了呀。"
+  },
+  {
+   "id": "sister/poke-angry-1",
+   "persona": "sister",
+   "cue": "poke-angry",
+   "action": "heart",
+   "text": "再闹，姐姐要生气了哦。"
+  },
+  {
+   "id": "sister/yawn-sound-1",
+   "persona": "sister",
+   "cue": "yawn-sound",
+   "action": "yawn",
+   "text": "呼……"
+  },
+  {
+   "id": "sister/hour-00",
+   "persona": "sister",
+   "cue": "hour",
+   "hour": 0,
+   "action": "peek",
+   "text": "已经十二点了呢。"
+  },
+  {
+   "id": "sister/hour-01",
+   "persona": "sister",
+   "cue": "hour",
+   "hour": 1,
+   "action": "peek",
+   "text": "已经一点了呢。"
+  },
+  {
+   "id": "sister/hour-02",
+   "persona": "sister",
+   "cue": "hour",
+   "hour": 2,
+   "action": "peek",
+   "text": "已经两点了呢。"
+  },
+  {
+   "id": "sister/hour-03",
+   "persona": "sister",
+   "cue": "hour",
+   "hour": 3,
+   "action": "peek",
+   "text": "已经三点了呢。"
+  },
+  {
+   "id": "sister/hour-04",
+   "persona": "sister",
+   "cue": "hour",
+   "hour": 4,
+   "action": "peek",
+   "text": "已经四点了呢。"
+  },
+  {
+   "id": "sister/hour-05",
+   "persona": "sister",
+   "cue": "hour",
+   "hour": 5,
+   "action": "peek",
+   "text": "已经五点了呢。"
+  },
+  {
+   "id": "sister/hour-06",
+   "persona": "sister",
+   "cue": "hour",
+   "hour": 6,
+   "action": "peek",
+   "text": "已经六点了呢。"
+  },
+  {
+   "id": "sister/hour-07",
+   "persona": "sister",
+   "cue": "hour",
+   "hour": 7,
+   "action": "peek",
+   "text": "已经七点了呢。"
+  },
+  {
+   "id": "sister/hour-08",
+   "persona": "sister",
+   "cue": "hour",
+   "hour": 8,
+   "action": "peek",
+   "text": "已经八点了呢。"
+  },
+  {
+   "id": "sister/hour-09",
+   "persona": "sister",
+   "cue": "hour",
+   "hour": 9,
+   "action": "peek",
+   "text": "已经九点了呢。"
+  },
+  {
+   "id": "sister/hour-10",
+   "persona": "sister",
+   "cue": "hour",
+   "hour": 10,
+   "action": "peek",
+   "text": "已经十点了呢。"
+  },
+  {
+   "id": "sister/hour-11",
+   "persona": "sister",
+   "cue": "hour",
+   "hour": 11,
+   "action": "peek",
+   "text": "已经十一点了呢。"
+  },
+  {
+   "id": "sister/hour-12",
+   "persona": "sister",
+   "cue": "hour",
+   "hour": 12,
+   "action": "peek",
+   "text": "已经十二点了呢。"
+  },
+  {
+   "id": "sister/hour-13",
+   "persona": "sister",
+   "cue": "hour",
+   "hour": 13,
+   "action": "peek",
+   "text": "已经一点了呢。"
+  },
+  {
+   "id": "sister/hour-14",
+   "persona": "sister",
+   "cue": "hour",
+   "hour": 14,
+   "action": "peek",
+   "text": "已经两点了呢。"
+  },
+  {
+   "id": "sister/hour-15",
+   "persona": "sister",
+   "cue": "hour",
+   "hour": 15,
+   "action": "peek",
+   "text": "已经三点了呢。"
+  },
+  {
+   "id": "sister/hour-16",
+   "persona": "sister",
+   "cue": "hour",
+   "hour": 16,
+   "action": "peek",
+   "text": "已经四点了呢。"
+  },
+  {
+   "id": "sister/hour-17",
+   "persona": "sister",
+   "cue": "hour",
+   "hour": 17,
+   "action": "peek",
+   "text": "已经五点了呢。"
+  },
+  {
+   "id": "sister/hour-18",
+   "persona": "sister",
+   "cue": "hour",
+   "hour": 18,
+   "action": "peek",
+   "text": "已经六点了呢。"
+  },
+  {
+   "id": "sister/hour-19",
+   "persona": "sister",
+   "cue": "hour",
+   "hour": 19,
+   "action": "peek",
+   "text": "已经七点了呢。"
+  },
+  {
+   "id": "sister/hour-20",
+   "persona": "sister",
+   "cue": "hour",
+   "hour": 20,
+   "action": "peek",
+   "text": "已经八点了呢。"
+  },
+  {
+   "id": "sister/hour-21",
+   "persona": "sister",
+   "cue": "hour",
+   "hour": 21,
+   "action": "peek",
+   "text": "已经九点了呢。"
+  },
+  {
+   "id": "sister/hour-22",
+   "persona": "sister",
+   "cue": "hour",
+   "hour": 22,
+   "action": "peek",
+   "text": "已经十点了呢。"
+  },
+  {
+   "id": "sister/hour-23",
+   "persona": "sister",
+   "cue": "hour",
+   "hour": 23,
+   "action": "peek",
+   "text": "已经十一点了呢。"
+  }
+ ]
+}

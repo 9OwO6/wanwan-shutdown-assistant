@@ -1,5 +1,5 @@
 ﻿function Assert-Guard([bool]$Pass,[string]$Message){if(-not $Pass){throw $Message}}
-$testNow=[datetime]'2026-10-11T03:37:00';$cfg.Bedtime='02:00';$cfg.Grace=30;$cfg.Cancelled='';$cfg.Deferred='';$cfg.VoicePreset='N1';$cfg.Voice=$false;$cfg.Enabled=$false
+$testNow=[datetime]'2026-10-11T03:37:00';$cfg.Bedtime='02:00';$cfg.Grace=30;$cfg.Cancelled='';$cfg.Deferred='';$cfg.VoicePreset='Recorded';$cfg.Voice=$false;$cfg.Enabled=$false
 Invoke-GuardTick $testNow
 Assert-Guard ($ui.ModeLabel.Text -eq '仅陪伴 · 不会自动关机' -and -not $dialog) 'Disabled guard displayed misleading state or opened shutdown'
 $cfg.Enabled=$true;Invoke-GuardTick $testNow
@@ -17,9 +17,9 @@ $cfg.Enabled=$false;$dialog.Close();$script:lastAttempt=[datetime]::MinValue;$sc
 Invoke-GuardTick $testNow;Invoke-GuardTick ($testNow.AddMinutes(2));$cfg.Cancelled=(Get-NightState $testNow $cfg).Key;Invoke-GuardTick ($testNow.AddMinutes(3))
 Assert-Guard ($script:testShutdownRequests -eq 1 -and -not $script:shutdownAfter) 'Cancellation must prevent pending shutdown'
 $cfg.Enabled=$false;$dialog.Close();$cfg.Cancelled='';$script:lastPhase=''
-# Open all three new N1 files through the actual WPF media engine, at zero volume.
+# 守护台词（有录音包时）都能被 WPF 原生打开（静音）。
 $script:voicePlayer.Volume=0
-foreach($cue in @('due','shutdown','disabled')){
+foreach($cue in @(@('due','shutdown','disabled','sleep')|Where-Object {Test-PersonaBank})){
  $cfg.Voice=$true;$script:guardMediaReady=$false;$loop=[Windows.Threading.DispatcherFrame]::new()
  $handler=[System.EventHandler]{$script:guardMediaReady=$true;$loop.Continue=$false};$script:voicePlayer.Add_MediaOpened($handler)
  Say-GuardLine $cue
@@ -36,7 +36,7 @@ $cfg.Action='Sleep';$cfg.Enabled=$true;$cfg.Cancelled='';$script:lastAttempt=[da
 Invoke-GuardTick $testNow
 Assert-Guard ($dialog -and $script:lastSpokenLine.cue -eq 'final' -and $dialog.FindName('Safety').Text -like '*睡眠*' -and $ui.ModeLabel.Text -like '*睡眠*') 'Sleep mode overdue reminder must avoid the shutdown recording and say sleep'
 Invoke-GuardTick ($testNow.AddMinutes(2))
-Assert-Guard ($script:lastSpokenLine.cue -eq 'goodnight' -and $script:testShutdownRequests -eq $sleepBefore) 'Sleep announcement must be a goodnight line before the request'
+Assert-Guard ($script:lastSpokenLine.cue -eq 'sleep' -and $script:lastSpokenLine.text -notlike '*关机*' -and $script:testShutdownRequests -eq $sleepBefore) 'Sleep announcement must be the sleep line before the request'
 Invoke-GuardTick ($testNow.AddSeconds(122))
 Assert-Guard ($script:testShutdownRequests -eq $sleepBefore+1 -and $dialog -and $script:deadline -eq $testNow.AddSeconds(122).AddMinutes(2)) 'Simulated sleep must keep the countdown and reset a two-minute save window'
 Invoke-GuardTick ($testNow.AddHours(5))

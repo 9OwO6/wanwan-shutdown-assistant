@@ -18,6 +18,6 @@ function Update-CountdownText([datetime]$Now){
  $left=[math]::Max(0,[int][math]::Ceiling(($script:deadline-$Now).TotalSeconds))
  $text=('{0:00}:{1:00}' -f [math]::Floor($left/60),($left%60))
  $script:dialog.FindName('Remaining').Text=$text;$script:dialog.FindName('MiniRemaining').Text=$text
- $script:dialog.FindName('MiniStatus').Text=if($script:demoMode){'体验倒计时 · 不会关机'}elseif($script:shutdownAfter){'晚晚说完晚安就关机'}else{'我陪你收尾，时间照常走 ♡'}
+ $script:dialog.FindName('MiniStatus').Text=if($script:demoMode){'体验倒计时 · 不会关机'}elseif($script:shutdownAfter){'晚晚说完晚安就关机'}else{'时间照常走，记得保存 ♡'}
  return $left
 }

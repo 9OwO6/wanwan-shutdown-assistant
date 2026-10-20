@@ -27,11 +27,11 @@ jobs:
       - name: Check deterministic schedule boundaries
         shell: powershell
         run: .\tests\Schedule.Tests.ps1
-      - name: Check bedtime history, voice bank and update logic
+      - name: Check bedtime history, personas and update logic
         shell: powershell
         run: |
           .\tests\History.Tests.ps1
-          .\tests\VoiceBank.Tests.ps1
+          .\tests\Persona.Tests.ps1
           .\tests\Update.Tests.ps1
       - name: Verify bundled runtime assets
         run: python tools/verify_release_assets.py
