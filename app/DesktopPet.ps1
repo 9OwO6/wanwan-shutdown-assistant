@@ -37,7 +37,7 @@ function New-DesktopPet {
  <Grid>
   <Grid x:Name="CompactPet" Margin="7"><Border CornerRadius="24" Background="#FDF4F8" BorderBrush="#E9CFDB" BorderThickness="1" Padding="8,5"><StackPanel>
    <DockPanel><Button x:Name="CompactHide" DockPanel.Dock="Right" Content="×" Padding="7,0" FontSize="15" ToolTip="隐藏桌宠，后台守护继续运行"/><TextBlock Text="拖动头像移动" FontSize="10" Foreground="#A37189" VerticalAlignment="Center"/></DockPanel>
-   <Image x:Name="PetAvatar" Width="84" Height="84" Stretch="Uniform" Cursor="SizeAll" ToolTip="按住拖动；轻点打开晚晚；右键有更多操作"/>
+   <Image x:Name="PetAvatar" Width="96" Height="92" Stretch="Uniform" Cursor="SizeAll" ToolTip="晚晚在做自己的事。按住拖动；轻点打开晚晚；右键有更多操作"/>
    <TextBlock x:Name="CompactStatus" Text="到点守护未开启" HorizontalAlignment="Center" FontSize="11" Margin="0,3,0,5"/>
    <Button x:Name="CompactOpen" Content="打开晚晚 ↗" Padding="8,4" FontSize="11"/>
   </StackPanel></Border></Grid>
@@ -55,7 +55,8 @@ function New-DesktopPet {
 </Window>
 '@
  $script:popup=[Windows.Markup.XamlReader]::Load([Xml.XmlNodeReader]::new($px));$script:popup.Resources.MergedDictionaries.Add($win.Resources);Set-WanwanIcon $script:popup
- $script:popup.FindName('PetAvatar').Source=[Windows.Media.Imaging.BitmapImage]::new([uri](Join-Path $root 'assets\icons\wanwan-256.png'))
+ # 小头像就是会动的晚晚：平时做自己的小动作，越晚越困（见 Behavior.ps1）。
+ $script:petAvatarSurface=Register-CharacterSurface ($script:popup.FindName('PetAvatar')) $null $script:popup
  $script:popupSurface=Register-CharacterSurface ($script:popup.FindName('PopupPortrait')) ($script:popup.FindName('PopupFade')) $script:popup
  $compact=$script:popup.FindName('CompactPet')
  $compact.Add_PreviewMouseDown({param($sender,$e)
@@ -111,7 +112,9 @@ function Complete-DesktopPetReminder {
 }
 function Say-ClockReminder {
  param([datetime]$Now=(Get-Date),[string]$Cue='early',[switch]$Demo)
- $line=Speak-Line (Get-ClockReminder $Now $Cue);$message=$line.text
+ # 晚晚陪伴：到点时你还在打游戏 / 看视频 / 工作，就说对应的那句。
+ $companionCue=if($Cue -eq 'bed' -and -not $Demo){Get-CompanionBedtimeCue}else{''}
+ $line=if($companionCue){$l=Speak-Line (Get-CompanionLine $companionCue);$l|Add-Member -NotePropertyName time -NotePropertyValue $Now.ToString('HH:mm') -Force;$l}else{Speak-Line (Get-ClockReminder $Now $Cue)};$message=$line.text
  if($script:dialog){$script:dialog.FindName('Info').Text=$message;$script:dialog.FindName('ReminderTime').Text='晚晚 · '+$line.time}
  else{Show-DesktopPet $message $(if($Demo){'提醒体验 · '+$line.time}else{'晚晚 · '+$line.time});Extend-DesktopPetLifetime}
 }

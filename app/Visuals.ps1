@@ -108,8 +108,8 @@ $script:visualTimer.Add_Tick({
  if($script:popup -and $ms -gt $script:popupUntil -and -not $script:petDragging){Complete-DesktopPetReminder}
  $active=$script:action -and $ms -lt $script:action.End
  $holding=$script:action -and $script:voiceUntil -and (Get-Date) -lt $script:voiceUntil
- $id=if($active -or $holding){$script:action.Item.id}else{'peek'}
- $index=if($active){if($script:motionEnabled){$script:action.Item.frames[[int][math]::Floor(($ms-$script:action.Start)/$script:action.Item.step)]}else{2}}elseif($holding){2}else{0}
+ $id=if($active -or $holding){$script:action.Item.id}elseif($script:restPose){$script:restPose.Id}else{'peek'}
+ $index=if($active){if($script:motionEnabled){$script:action.Item.frames[[int][math]::Floor(($ms-$script:action.Start)/$script:action.Item.step)]}else{2}}elseif($holding){2}elseif($script:restPose){$script:restPose.Frame}else{0}
  $script:frameIndex=$index
  foreach($surface in @($script:surfaces)){
   if(-not $surface.Window.IsVisible){continue};Set-SurfaceFrame $surface $id $index

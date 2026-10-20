@@ -1,6 +1,6 @@
-﻿param([switch]$SmokeTest,[switch]$InteractionTest,[switch]$AnimationTest,[switch]$VoiceTest,[switch]$CompanionTest,[switch]$DialogueTest,[switch]$PetTest,[switch]$GuardTest,[switch]$LifecycleTest,[switch]$PetControlsTest,[switch]$ShowcaseTest,[switch]$CountdownTest,[switch]$WatchTest,[datetime]$ResumeCountdownDeadline=[datetime]::MinValue)
+﻿param([switch]$SmokeTest,[switch]$InteractionTest,[switch]$AnimationTest,[switch]$VoiceTest,[switch]$CompanionTest,[switch]$DialogueTest,[switch]$PetTest,[switch]$GuardTest,[switch]$LifecycleTest,[switch]$PetControlsTest,[switch]$ShowcaseTest,[switch]$CountdownTest,[switch]$WatchTest,[switch]$BehaviorTest,[datetime]$ResumeCountdownDeadline=[datetime]::MinValue)
 $ErrorActionPreference='Stop'
-$script:isTestMode=[bool]($SmokeTest -or $InteractionTest -or $AnimationTest -or $VoiceTest -or $CompanionTest -or $DialogueTest -or $PetTest -or $GuardTest -or $LifecycleTest -or $PetControlsTest -or $ShowcaseTest -or $CountdownTest -or $WatchTest)
+$script:isTestMode=[bool]($SmokeTest -or $InteractionTest -or $AnimationTest -or $VoiceTest -or $CompanionTest -or $DialogueTest -or $PetTest -or $GuardTest -or $LifecycleTest -or $PetControlsTest -or $ShowcaseTest -or $CountdownTest -or $WatchTest -or $BehaviorTest)
 Add-Type -AssemblyName PresentationFramework,PresentationCore,WindowsBase,System.Windows.Forms,System.Drawing,System.Speech
 . "$PSScriptRoot\Schedule.ps1"
 $root = Split-Path $PSScriptRoot
@@ -173,6 +173,7 @@ Sync-SettingsForm
 . "$PSScriptRoot\CountdownView.ps1"
 function Write-Event([string]$event){Add-Content (Join-Path $data 'events.log') ((Get-Date -Format o)+' '+$event) -Encoding UTF8}
 . "$PSScriptRoot\Watch.ps1"
+. "$PSScriptRoot\Behavior.ps1"
 $ui.FooterText.Text='本地运行 · 不上传数据 · v'+$script:appVersion
 if(-not $script:isTestMode){$obsolete=Remove-ObsoleteWanwanFiles $root;if($obsolete){Write-Event ('Removed files from older versions: '+($obsolete -join ', '))}}
 Update-StreakDisplay
@@ -353,13 +354,14 @@ function Invoke-GuardTick([datetime]$now=(Get-Date)){
 }
 $timer.Add_Tick({Invoke-GuardTick})
 . "$PSScriptRoot\Power.ps1"
-if($SmokeTest -or $InteractionTest -or $AnimationTest -or $VoiceTest -or $CompanionTest -or $DialogueTest -or $PetTest -or $GuardTest -or $PetControlsTest -or $ShowcaseTest -or $CountdownTest -or $WatchTest){
+if($SmokeTest -or $InteractionTest -or $AnimationTest -or $VoiceTest -or $CompanionTest -or $DialogueTest -or $PetTest -or $GuardTest -or $PetControlsTest -or $ShowcaseTest -or $CountdownTest -or $WatchTest -or $BehaviorTest){
  $cfg.Enabled=$false;$cfg.DesktopPet=$false;$ui.PetToggle.IsChecked=$false;$cfg.Voice=$false;$ui.EnabledToggle.IsChecked=$false;$ui.VoiceToggle.IsChecked=$false;$win.Show();$win.UpdateLayout()
  Start-Interaction 'peek'
  $initialFrame=[Windows.Threading.DispatcherFrame]::new();$initialWait=[Windows.Threading.DispatcherTimer]::new();$initialWait.Interval=[timespan]::FromMilliseconds(250);$initialWait.Add_Tick({$initialFrame.Continue=$false;$initialWait.Stop()});$initialWait.Start();[Windows.Threading.Dispatcher]::PushFrame($initialFrame)
  if($GuardTest){. "$PSScriptRoot\Guard.Tests.ps1"}
  if($CountdownTest){. "$PSScriptRoot\Countdown.Tests.ps1"}
  if($WatchTest){. "$PSScriptRoot\Watch.Tests.ps1"}
+ if($BehaviorTest){. "$PSScriptRoot\Behavior.Tests.ps1"}
  if($PetControlsTest){. "$PSScriptRoot\PetControls.Tests.ps1"}
  if($ShowcaseTest){. "$PSScriptRoot\Showcase.Tests.ps1"}
  if($PetTest){. "$PSScriptRoot\DesktopPet.Tests.ps1"}
@@ -488,7 +490,7 @@ if($LifecycleTest){
   }
  });$lifecycleTimer.Start()
 }
-$timer.Start()
+$timer.Start();if(-not $script:isTestMode){$script:behaviorTimer.Start()}
 if(-not $script:isTestMode -and $cfg.AutoUpdate){
  # 每天最多自动检查一次，启动 20 秒后在后台进行；只访问 GitHub 的发布信息。
  $lastCheck=[datetime]::MinValue;if($cfg.LastUpdateCheck){[datetime]::TryParse([string]$cfg.LastUpdateCheck,[ref]$lastCheck)|Out-Null}

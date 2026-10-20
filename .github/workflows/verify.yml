@@ -32,6 +32,7 @@ jobs:
         run: |
           .\tests\History.Tests.ps1
           .\tests\Persona.Tests.ps1
+          .\tests\Behavior.Tests.ps1
           .\tests\Update.Tests.ps1
       - name: Verify bundled runtime assets
         run: python tools/verify_release_assets.py
