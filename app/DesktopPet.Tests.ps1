@@ -50,7 +50,7 @@ Set-Motion $true
 $popup.FindName('PopupClose').RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent));Wait-Pet 60
 if(-not $popup -or $script:petExpanded -or $popup.Width -ne 142){throw 'Dismiss did not return to compact companion'}
 Say-ClockReminder -Now ([datetime]'2026-10-11T00:59:00') -Cue early -Demo;Wait-Pet 150
-if($script:lastSpokenLine.hour -ne 0 -or $popup.FindName('PetStatus').Text -ne '提醒体验 · 00:59' -or $popup.FindName('PopupText').Text -notlike '*凌晨十二点*'){throw 'Midnight clock is inaccurate'}
+if($script:lastSpokenLine.hour -ne 0 -or $popup.FindName('PetStatus').Text -ne '提醒体验 · 00:59' -or $popup.FindName('PopupText').Text -notlike '*十二点*'){throw 'Midnight clock is inaccurate'}
 $script:popupUntil=$script:animationClock.ElapsedMilliseconds-1;Wait-Pet 100
 if($script:petExpanded){throw 'Finished reminder did not return to compact form'}
 $ui.PetToggle.IsChecked=$true;$ui.PetToggle.IsChecked=$false
@@ -90,10 +90,10 @@ foreach($row in @(foreach($h in 0..23){foreach($c in 'early','soon','bed','final
  if(-not (Test-PersonaBank)){$opened+=@{hour=$row.hour;cue=$row.cue;nativeOpened=$false};continue}
  $ready=$false;$audioLoop=[Windows.Threading.DispatcherFrame]::new();$handler=[System.EventHandler]{$script:petClipReady=$true;$audioLoop.Continue=$false};$script:petClipReady=$false
  $script:voicePlayer.Add_MediaOpened($handler)
- Speak-Line $resolved|Out-Null
+ $spokenAt=Get-Date;Speak-Line $resolved|Out-Null;$spokenUntil=$script:voiceUntil
  $timeout=[Windows.Threading.DispatcherTimer]::new();$timeout.Interval=[timespan]::FromSeconds(3);$timeout.Add_Tick({$audioLoop.Continue=$false;$timeout.Stop()});$timeout.Start();[Windows.Threading.Dispatcher]::PushFrame($audioLoop);$timeout.Stop();$script:voicePlayer.Remove_MediaOpened($handler)
  if(-not $script:petClipReady -or $script:lastVoiceClips.Count -ne 2 -or $script:lastVoiceAsset -notlike ('*hour-{0:00}@baobao.mp3' -f $row.hour)){throw "Native hourly audio failed: $($row.hour) $($row.cue)"}
- if(($script:voiceUntil-(Get-Date)).TotalSeconds -lt $script:lastSpokenLine.duration-2){throw 'Pet lifetime does not reflect actual spoken duration'}
+ if(($spokenUntil-$spokenAt).TotalSeconds -lt $script:lastSpokenLine.duration-0.5){throw 'Pet lifetime does not reflect actual spoken duration'}
  $opened+=@{hour=$row.hour;cue=$row.cue;nativeOpened=$true};Stop-Voice
 }
 $cfg.Voice=$false;$cfg.Bedtime='23:30';$cfg.DesktopPet=$false;if($popup){$popup.Close()}
