@@ -22,11 +22,12 @@ $deskManifest=Join-Path $root 'assets\desk\desk.json'
 if(Test-Path $deskManifest){
  $desk=Get-Content $deskManifest -Raw -Encoding UTF8|ConvertFrom-Json
  function Read-DeskImage([string]$Relative){$path=Join-Path $root ('assets\desk\'+$Relative);if(-not (Test-Path $path)){return $null};$image=[Windows.Media.Imaging.BitmapImage]::new();$image.BeginInit();$image.CacheOption=[Windows.Media.Imaging.BitmapCacheOption]::OnLoad;$image.UriSource=[uri]$path;$image.EndInit();$image.Freeze();return $image}
- $script:deskScene=@{Back=(Read-DeskImage $desk.layers.back);Front=(Read-DeskImage $desk.layers.front);FrontLampOff=(Read-DeskImage $desk.layers.front_lamp_off);FrontNoCup=(Read-DeskImage $desk.layers.front_no_cup);FrontLampOffNoCup=(Read-DeskImage $desk.layers.front_lamp_off_no_cup);LampOn=$true;NoCup=@{}}
+ # 叠放顺序：背景（含书桌后半）→ 晚晚 → 书桌前沿 → 杯子。台灯开 / 关各一套背景和前沿。
+ $script:deskScene=@{Back=(Read-DeskImage $desk.layers.back);BackLampOff=(Read-DeskImage $desk.layers.back_lamp_off);Front=(Read-DeskImage $desk.layers.front);FrontLampOff=(Read-DeskImage $desk.layers.front_lamp_off);Cup=(Read-DeskImage $desk.layers.cup);LampOn=$true;NoCup=@{}}
  foreach($behavior in $desk.behaviors.PSObject.Properties){
   $cells=@();for($i=0;$i -lt 4;$i++){$cell=Read-DeskImage ('character\'+$behavior.Name+'\'+$i+'.png');if(-not $cell){throw ('Missing desk frame: '+$behavior.Name+'/'+$i)};$cells+=,$cell}
   $script:interactionAssets['desk-'+$behavior.Name]=$cells
-  if($behavior.Value.front -eq 'front_no_cup'){$script:deskScene.NoCup['desk-'+$behavior.Name]=$true}
+  if($behavior.Value.hide_cup){$script:deskScene.NoCup['desk-'+$behavior.Name]=$true}
   $script:interactionCatalog+=[pscustomobject]@{id='desk-'+$behavior.Name;name=$behavior.Value.name;symbol='·';caption='';frames=@($behavior.Value.frames);step=[int]$behavior.Value.step}
  }
 }
@@ -62,9 +63,10 @@ function Set-SurfaceFrame($surface,[string]$id,[int]$index){
 function Update-DeskFront($surface,[string]$id){
  # 前景层：喝水时杯子在她手里，桌上那只要藏起来；睡着时台灯关掉。
  if(-not $script:deskScene -or -not $surface.Front){return}
- $noCup=[bool]$script:deskScene.NoCup[$id];$on=[bool]$script:deskScene.LampOn
- $source=if($on){if($noCup -and $script:deskScene.FrontNoCup){$script:deskScene.FrontNoCup}else{$script:deskScene.Front}}else{if($noCup -and $script:deskScene.FrontLampOffNoCup){$script:deskScene.FrontLampOffNoCup}elseif($script:deskScene.FrontLampOff){$script:deskScene.FrontLampOff}else{$script:deskScene.Front}}
- if($surface.Front.Source -ne $source){$surface.Front.Source=$source}
+ $on=[bool]$script:deskScene.LampOn -or -not $script:deskScene.FrontLampOff
+ $front=if($on){$script:deskScene.Front}else{$script:deskScene.FrontLampOff};if($surface.Front.Source -ne $front){$surface.Front.Source=$front}
+ $back=if($on -or -not $script:deskScene.BackLampOff){$script:deskScene.Back}else{$script:deskScene.BackLampOff};if($surface.Back.Source -ne $back){$surface.Back.Source=$back}
+ $surface.Cup.Visibility=if($script:deskScene.NoCup[$id] -or -not $script:deskScene.Cup){[Windows.Visibility]::Hidden}else{[Windows.Visibility]::Visible}
 }
 function Set-CharacterFrame([int]$index){Set-SurfaceFrame $script:mainSurface 'peek' $index;$script:frameIndex=$index}
 function Show-CompanionPopup([string]$caption){Show-DesktopPet $caption}

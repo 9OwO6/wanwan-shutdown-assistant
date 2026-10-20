@@ -1,0 +1,60 @@
+{
+ "layers": {
+  "back": "back.png",
+  "back_lamp_off": "back_lamp_off.png",
+  "front": "desk-front-occlusion-no-cup.png",
+  "front_lamp_off": "desk-front-occlusion-lamp-off-no-cup.png",
+  "cup": "cup.png"
+ },
+ "behaviors": {
+  "write": {
+   "name": "写字",
+   "frames": [
+    0,
+    1,
+    2,
+    3,
+    2,
+    1
+   ],
+   "step": 420
+  },
+  "drink": {
+   "name": "喝水",
+   "frames": [
+    0,
+    1,
+    2,
+    2,
+    3,
+    0
+   ],
+   "step": 480,
+   "hide_cup": true
+  },
+  "yawn": {
+   "name": "打哈欠",
+   "frames": [
+    0,
+    1,
+    2,
+    3,
+    2,
+    0
+   ],
+   "step": 460
+  },
+  "sleep": {
+   "name": "趴着睡",
+   "frames": [
+    0,
+    1,
+    2,
+    3,
+    2,
+    1
+   ],
+   "step": 700
+  }
+ }
+}

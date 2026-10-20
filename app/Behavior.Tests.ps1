@@ -6,6 +6,17 @@ $behaviorDirectory=Join-Path $root 'output\behavior';New-Item -ItemType Director
 Show-DesktopPet -Compact;Wait-Behavior 200
 Assert-Pet ($script:petAvatarSurface -and $script:petAvatarSurface.Image.Source) 'Compact pet must show the animated character, not a static icon'
 
+# 0. 书桌场景（有素材时）：喝水时桌上的杯子藏起来，其它动作杯子在桌上
+if($script:deskScene){
+ Assert-Pet ($script:petAvatarSurface.Desk -and $script:petAvatarSurface.Back.Source -and $script:petAvatarSurface.Front.Source) 'Desk layers must be shown in the compact pet'
+ Start-PetBehavior 'drink';Wait-Behavior 1200
+ Assert-Pet ($script:petAvatarSurface.Key -like 'desk-drink:*' -and $script:petAvatarSurface.Cup.Visibility -eq [Windows.Visibility]::Hidden) 'While drinking, the mug on the desk is hidden'
+ $pet=$script:popup;$pet.UpdateLayout();$bmp=[Windows.Media.Imaging.RenderTargetBitmap]::new([int]$pet.ActualWidth,[int]$pet.ActualHeight,96,96,[Windows.Media.PixelFormats]::Pbgra32);$bmp.Render($pet);$enc=[Windows.Media.Imaging.PngBitmapEncoder]::new();$enc.Frames.Add([Windows.Media.Imaging.BitmapFrame]::Create($bmp));$file=[IO.File]::Create((Join-Path $behaviorDirectory 'pet-desk-drink.png'));$enc.Save($file);$file.Dispose()
+ Start-PetBehavior 'write';Wait-Behavior 600
+ Assert-Pet ($script:petAvatarSurface.Key -like 'desk-write:*' -and $script:petAvatarSurface.Cup.Visibility -eq [Windows.Visibility]::Visible) 'Other actions keep the mug on the desk'
+ # 主窗口的立绘不用书桌素材
+ Assert-Pet ($script:mainSurface.Key -notlike 'desk-*') 'Main portrait keeps the standing frames'
+}
 # 1. 自己的小动作：到时间才做，不改主窗口文字，不说话
 $message=$ui.Message.Text;$script:petBehavior.NextAt=[datetime]'2026-10-12T21:00:00';$script:petBehavior.Last=''
 Update-PetBehavior ([datetime]'2026-10-12T20:59:00');Assert-Pet ($script:petBehavior.Last -eq '') 'No action before the next scheduled time'
@@ -30,9 +41,11 @@ Assert-Pet ($script:petBehavior.Activity -eq 'video' -and $watch -ge 8) "Compani
 $script:idleOverride=900;Update-PetBehavior ([datetime]'2026-10-12T21:10:00')
 Assert-Pet ($script:petBehavior.Away -and $script:restPose -and $script:petBehavior.Last -eq 'sleep') 'Away for 15 minutes: she naps'
 Wait-Behavior 3500;Assert-Pet ($script:petAvatarSurface.Key -like ($script:restPose.Id+':2')) 'Nap pose must hold after the animation'
+if($script:deskScene -and $script:deskScene.BackLampOff){Assert-Pet ($script:petAvatarSurface.Back.Source -eq $script:deskScene.BackLampOff) 'Lamp goes off while she naps'}
 $pet=$script:popup;$pet.UpdateLayout();$bmp=[Windows.Media.Imaging.RenderTargetBitmap]::new([int]$pet.ActualWidth,[int]$pet.ActualHeight,96,96,[Windows.Media.PixelFormats]::Pbgra32);$bmp.Render($pet);$enc=[Windows.Media.Imaging.PngBitmapEncoder]::new();$enc.Frames.Add([Windows.Media.Imaging.BitmapFrame]::Create($bmp));$file=[IO.File]::Create((Join-Path $behaviorDirectory 'pet-napping.png'));$enc.Save($file);$file.Dispose()
 $script:idleOverride=2;Update-PetBehavior ([datetime]'2026-10-12T21:30:00')
 Assert-Pet (-not $script:petBehavior.Away -and -not $script:restPose -and $script:lastSpokenLine.cue -eq 'back') 'Coming back wakes her with a greeting'
+if($script:deskScene){Assert-Pet ($script:deskScene.LampOn) 'Lamp back on when she wakes'}
 if($script:popup -and $script:petExpanded){Complete-DesktopPetReminder};Wait-Behavior 100
 $script:idleOverride=900;Update-PetBehavior ([datetime]'2026-10-12T21:40:00');$script:idleOverride=2;$spoken=$script:lastSpokenLine;Update-PetBehavior ([datetime]'2026-10-12T21:45:00')
 Assert-Pet ([object]::ReferenceEquals($spoken,$script:lastSpokenLine)) 'Greeting at most once per half hour'
@@ -50,4 +63,4 @@ $cfg.Companion=$true;$script:idleOverride=5;Show-BedDialog $true;$before=$script
 Update-PetBehavior ([datetime]'2026-10-12T21:00:00');Assert-Pet ($script:petBehavior.Last -eq $before) 'No idle actions during a countdown'
 $dialog.Close()
 $script:activityOverride=$null;$script:idleOverride=$null;$script:restPose=$null;$cfg.Companion=$false;$cfg.DesktopPet=$false;if($popup){$popup.Close()}
-Write-Output 'Behavior tests passed: animated compact pet, quiet scheduled idle actions, sleepier after bedtime, companion off ignores activity, watch-along, nap when away with held pose, one greeting per half hour, bedtime companion line, no actions during countdown. Muted, no shutdown.'
+Write-Output ('Behavior tests passed: '+$(if($script:deskScene){'desk scene layers (mug hidden while drinking, lamp off while napping), '}else{''})+'animated compact pet, quiet scheduled idle actions, sleepier after bedtime, companion off ignores activity, watch-along, nap when away with held pose, one greeting per half hour, bedtime companion line, no actions during countdown. Muted, no shutdown.')

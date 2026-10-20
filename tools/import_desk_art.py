@@ -17,12 +17,14 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'assets' / 'desk'
 BEHAVIORS = {
     'write': {'name': '写字', 'frames': [0, 1, 2, 3, 2, 1], 'step': 420},
-    'drink': {'name': '喝水', 'frames': [0, 1, 2, 2, 3, 0], 'step': 480, 'front': 'front_no_cup'},
+    'drink': {'name': '喝水', 'frames': [0, 1, 2, 2, 3, 0], 'step': 480, 'hide_cup': True},
     'yawn': {'name': '打哈欠', 'frames': [0, 1, 2, 3, 2, 0], 'step': 460},
     'sleep': {'name': '趴着睡', 'frames': [0, 1, 2, 3, 2, 1], 'step': 700},
 }
-LAYERS = {'back': 'back.png', 'front': 'desk-front.png', 'front_lamp_off': 'desk-front-lamp-off.png',
-          'front_no_cup': 'desk-front-no-cup.png', 'front_lamp_off_no_cup': 'desk-front-lamp-off-no-cup.png'}
+# Layer order (Codex render recipe): back + desk back -> character -> desk front occlusion -> mug.
+# The two back plates are flattened here; lamp on/off variants for the back and the front.
+BACKS = {'back': ('back.png', 'desk-back.png'), 'back_lamp_off': ('back.png', 'desk-back-lamp-off.png')}
+FRONTS = {'front': 'desk-front-occlusion-no-cup.png', 'front_lamp_off': 'desk-front-occlusion-lamp-off-no-cup.png', 'cup': 'cup.png'}
 
 
 def png_size(path):
@@ -35,14 +37,22 @@ def png_size(path):
 def main(source):
     source = Path(source).resolve()
     OUT.mkdir(parents=True, exist_ok=True)
+    from PIL import Image
     layers = {}
-    for key, name in LAYERS.items():
+    for key, (base, plate) in BACKS.items():
+        if (source / base).is_file() and (source / plate).is_file():
+            image = Image.open(source / base).convert('RGBA')
+            image.alpha_composite(Image.open(source / plate).convert('RGBA'))
+            assert image.size == (640, 640)
+            image.save(OUT / f'{key}.png', optimize=True)
+            layers[key] = f'{key}.png'
+    for key, name in FRONTS.items():
         src = source / name
         if src.is_file():
             assert png_size(src)[:2] == (640, 640), src
             shutil.copyfile(src, OUT / name)
             layers[key] = name
-    assert 'front' in layers, 'desk-front.png is required'
+    assert 'back' in layers and 'front' in layers, 'back + desk-back and the front occlusion layer are required'
     behaviors, skipped = {}, []
     for behavior, spec in BEHAVIORS.items():
         frames = [source / 'character' / behavior / f'{i}.png' for i in range(4)]
