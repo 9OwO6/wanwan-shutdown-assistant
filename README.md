@@ -32,8 +32,8 @@
 - 👀 **起夜监督**：关机后的几个小时里偷偷开机，晚晚会出来说“怎么又偷偷起来呀”，给你几分钟处理急事，然后再帮你关机；真有急事可以取消当晚监督
 - ☆ **早睡打卡**：自动记录每晚有没有按时睡，显示连续早睡天数和最近 7 晚，早上见面时晚晚会告诉你昨晚的结果
 - ⬆ **一键更新**：「检查更新」直接从 GitHub 下载新版并自动重启，设置和打卡记录都保留
-- 🎙 **离线 AI 语音，可选声音和称呼**：清甜、知性等几种声音；称呼可以选宝宝、宝贝、亲爱的、小笨蛋，或者不叫称呼。称呼和正文分开录制，换称呼不用重录
-- 🧸 10 种角色互动动画、可拖动的桌面小头像
+- 💬 **两种晚晚可选：女友或姐姐**。女友爱撒娇，姐姐温柔又会管人，各有一套原创台词和离线 AI 配音；称呼可选（宝宝、亲爱的、小笨蛋），也可以不叫或用自己的名字
+- 🧸 **会自己找事做的桌宠**：隔一阵喝水、写字、伸懒腰，越接近睡觉时间越困。打开「晚晚陪伴」后，你看视频她一起看、打游戏她也玩、离开电脑她就趴下睡（只在本机判断程序类型，默认关闭）
 - 🛡 **安全感优先**：默认不开启关机；正常关机不强杀程序；每晚可延期一次；有急事可以紧急取消
 
 ![运行时录制的角色动画](docs/screenshots/companion-animation.gif)
@@ -113,7 +113,8 @@ It is a personal **AI-assisted product engineering portfolio project** — nativ
 - **Sleep watch** — powering the computer back on within the sleep window (default 6 h after bedtime) after a guarded shutdown opens a “caught you” countdown with a configurable grace period (default 5 min) and a one-night emergency cancel.
 - **Bedtime streak** — each night is recorded as slept / early / late / caught / cancelled from power requests and the last time the app saw the computer awake; the window shows the streak and the last seven nights, and a morning greeting reports the result.
 - **One-click updates** — a background check of this repository's latest GitHub release, asset-origin and SHA-256 checks, and a detached installer that keeps settings and resumes an active countdown.
-- **Offline AI voice** — 92 companion lines, 96 hour-aware reminders, guard and sleep-watch lines, shipped as compact MP3s with hash-verified WAV masters in the repository. From v0.4.0 voices are recorded as an address fragment plus a body, so users pick a voice and how Wanwan addresses them (five addresses, none, or a custom name shown in the bubble) without re-recording every line.
+- **Two personas, offline AI voice** — a sweet girlfriend (N1) and a gentle older sister (V3), each with her own approved script and whole-sentence recordings per address (宝宝 / 亲爱的 / 小笨蛋, none, or a custom name shown in the bubble). Shipped as compact MP3s with hash-verified WAV masters in the repository.
+- **A desk pet with a routine** — idle actions every few minutes, sleepier toward bedtime; the opt-in companion mode mirrors what you are doing (video, games, work) from the foreground process name only and naps when you step away.
 - **Desktop companion** — draggable avatar with visible guard state, ten animated interactions (40 poses), reduced-motion option, tray icon, single-instance activation.
 - **Video-ready transparent frames** — forty reviewed 640×640 PNGs in [`assets/frames/`](assets/frames/), with neighboring-sleeve artifacts removed; the app plays these same exports ([crop audit](docs/FRAME_REPAIR.md)).
 

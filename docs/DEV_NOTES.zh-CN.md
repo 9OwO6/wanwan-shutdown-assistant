@@ -81,11 +81,19 @@ PetTest 验证真实标题栏图标、托盘图标、不抢焦点的展开/收�
 
 制作脚本：`tools/generate_n1_bank.py`，检测脚本：`tools/verify_n1_bank.py`；文字识别核对使用既有本地 ASR 模型。参考片段、模型 revision、实际文本、时长和文件校验值记录在 `assets/voices/N1/manifest.json`。技术检测不代表所有台词均已获得用户听审认可。
 
-## 声音包与称呼（v0.4.0）
+## 两种性格与台词（v0.4.0）
 
-- `assets/voice-script.json` 由 `tools/write_voice_script.py` 从原 N1 台词生成：每句拆成「称呼」和「正文」，正文不带称呼也通顺；`addressed=true` 的 26 句在选了称呼时先播称呼。整点报时拆成称呼 + 「已经晚上十一点啦。」+ 提醒三段。
-- 每个分段声音包 133 段：100 句正文、24 个整点、4 段提醒、5 个称呼。生成后用 `python tools/import_voice_bank.py V3 <生成目录>` 导入：逐条核对文字和哈希，复制 WAV 母带、编码 MP3、写 `assets/voices/V3/bank.json`。
-- 运行时 `app/VoiceBank.ps1` 的 `Resolve-Speech` 按当前声音和称呼算出字幕和要播放的片段；`Say` 依次播放片段，中间停 100 ms。缺任何片段时整句交给系统朗读，绝不只播半句。
-- 称呼选项：轮流叫（沿用原台词里的宝宝/宝贝/亲爱的）、五个固定称呼、不叫称呼、自定义名字。自定义名字只出现在气泡文字里；系统朗读会把名字读出来。
-- N1 仍是整句录音，暂时只会按原台词轮流叫。以后可以按同样方式重录 N1。
-- `tests/VoiceBank.Tests.ps1` 用假的声音包测试拼接逻辑；`-VoiceTest` 会在 Windows 上原生打开每个已安装声音包的全部片段，并检查称呼之后会接着播正文。
+- 台词定稿在 `tools/write_persona_script.py`（用户批注后的第二版），运行它生成 `assets/persona-script.json` 和录音清单 `output/voice-bank/v2/clips.json`。
+- 女友 = N1 声音，称呼宝宝 / 亲爱的；姐姐 = V3 声音，称呼小笨蛋。两种性格都能选「不叫称呼」或「自定义名字」（只显示在文字里，系统朗读时会读出来）。
+- 带 `{称呼}` 的句子按每个称呼各录一遍整句，再录一遍不带称呼的，不拼接；只有整点报时是「整点句 + 提醒句」两段，中间停 300 ms。
+- 录音导入：`python tools/import_persona_bank.py <生成目录>`，逐条核对文字和哈希，复制 WAV 母带、编码 MP3，写 `assets/voices/<性格>/bank.json`。
+- 运行时 `app/Persona.ps1`：选句（同场景轮换不重复；守护没开时不说「帮你关机」）、填称呼、找录音；缺任何片段整句交给系统朗读。小互动（拍拍、比心……）只做动作，戳晚晚会越来越不耐烦。
+- 测试：`tests/Persona.Tests.ps1`（纯逻辑，CI）；`-VoiceTest`、`-DialogueTest` 在 Windows 上原生打开每一段录音。
+
+## 桌宠行为与晚晚陪伴（v0.4.0）
+
+- `app/BehaviorCore.ps1`（纯逻辑，`tests/Behavior.Tests.ps1`）：困意 0–3 级（睡前一小时、半小时、过点）、按进程名归类（`assets/activity-rules.json`）、按权重选下一个动作、间隔 2–4 分钟（越困越频繁）。
+- `app/Behavior.ps1`：每 5 秒检查一次；提醒、倒计时或语音进行中不插入动作。小动作安静进行，不改主窗口文字、不说话。
+- 「晚晚陪伴」默认关闭。打开后只读取前台程序的进程名、是否全屏、多久没有键盘鼠标操作；不读窗口标题和内容、不保存、不联网。离开 10 分钟趴下睡，回来时打招呼（半小时最多一次）；到点还在打游戏 / 看视频 / 工作，会说对应的那句。
+- 书桌场景素材放在 `assets/desk/`（`desk.json` + 背景层、人物层、桌面前景层、关灯前景层）；桌宠小窗用它，主窗口仍用立绘。素材到位前用现有站姿动作顶替。
+- 测试：`-BehaviorTest` 在 Windows 上验证小动作、困意、陪伴跟做、趴睡和回来招呼。
