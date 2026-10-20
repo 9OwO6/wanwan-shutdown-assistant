@@ -2,8 +2,7 @@
  "layers": {
   "back": "back.png",
   "back_lamp_off": "back_lamp_off.png",
-  "front": "desk-front-occlusion-no-cup.png",
-  "front_lamp_off": "desk-front-occlusion-lamp-off-no-cup.png",
+  "front": "desk-edge.png",
   "cup": "cup.png"
  },
  "behaviors": {

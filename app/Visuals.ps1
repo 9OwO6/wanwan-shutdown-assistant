@@ -61,10 +61,10 @@ function Set-SurfaceFrame($surface,[string]$id,[int]$index){
  if($surface.Desk){Update-DeskFront $surface $id}
 }
 function Update-DeskFront($surface,[string]$id){
- # 前景层：喝水时杯子在她手里，桌上那只要藏起来；睡着时台灯关掉。
+ # 前景层：喝水时杯子在她手里，桌上那只要藏起来；睡着时换成「关灯」那套（简洁版是一圈很淡的暖光）。
  if(-not $script:deskScene -or -not $surface.Front){return}
- $on=[bool]$script:deskScene.LampOn -or -not $script:deskScene.FrontLampOff
- $front=if($on){$script:deskScene.Front}else{$script:deskScene.FrontLampOff};if($surface.Front.Source -ne $front){$surface.Front.Source=$front}
+ $on=[bool]$script:deskScene.LampOn
+ $front=if($on -or -not $script:deskScene.FrontLampOff){$script:deskScene.Front}else{$script:deskScene.FrontLampOff};if($surface.Front.Source -ne $front){$surface.Front.Source=$front}
  $back=if($on -or -not $script:deskScene.BackLampOff){$script:deskScene.Back}else{$script:deskScene.BackLampOff};if($surface.Back.Source -ne $back){$surface.Back.Source=$back}
  $surface.Cup.Visibility=if($script:deskScene.NoCup[$id] -or -not $script:deskScene.Cup){[Windows.Visibility]::Hidden}else{[Windows.Visibility]::Visible}
 }

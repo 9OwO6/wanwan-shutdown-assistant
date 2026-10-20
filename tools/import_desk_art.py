@@ -23,8 +23,19 @@ BEHAVIORS = {
 }
 # Layer order (Codex render recipe): back + desk back -> character -> desk front occlusion -> mug.
 # The two back plates are flattened here; lamp on/off variants for the back and the front.
-BACKS = {'back': ('back.png', 'desk-back.png'), 'back_lamp_off': ('back.png', 'desk-back-lamp-off.png')}
-FRONTS = {'front': 'desk-front-occlusion-no-cup.png', 'front_lamp_off': 'desk-front-occlusion-lamp-off-no-cup.png', 'cup': 'cup.png'}
+# Two layouts are supported:
+# - minimal (preferred, user's choice): transparent back -> desk back strip -> desk surface + notebook
+#   -> character -> desk edge -> mug; a faint warm glow behind her while she naps.
+# - room: back + desk back (lamp on/off) -> character -> desk front occlusion (lamp on/off) -> mug.
+LAYOUTS = {
+    'minimal': {'detect': 'desk-surface.png',
+                'backs': {'back': ('back.png', 'desk-back.png', 'desk-surface.png'),
+                          'back_lamp_off': ('back.png', 'glow.png', 'desk-back.png', 'desk-surface.png')},
+                'fronts': {'front': 'desk-edge.png', 'cup': 'cup.png'}},
+    'room': {'detect': 'desk-front-occlusion-no-cup.png',
+             'backs': {'back': ('back.png', 'desk-back.png'), 'back_lamp_off': ('back.png', 'desk-back-lamp-off.png')},
+             'fronts': {'front': 'desk-front-occlusion-no-cup.png', 'front_lamp_off': 'desk-front-occlusion-lamp-off-no-cup.png', 'cup': 'cup.png'}},
+}
 
 
 def png_size(path):
@@ -39,14 +50,18 @@ def main(source):
     OUT.mkdir(parents=True, exist_ok=True)
     from PIL import Image
     layers = {}
-    for key, (base, plate) in BACKS.items():
-        if (source / base).is_file() and (source / plate).is_file():
-            image = Image.open(source / base).convert('RGBA')
-            image.alpha_composite(Image.open(source / plate).convert('RGBA'))
+    layout = next(name for name, spec in LAYOUTS.items() if (source / spec['detect']).is_file())
+    for old in OUT.glob('*.png'):
+        old.unlink()
+    for key, parts in LAYOUTS[layout]['backs'].items():
+        if all((source / part).is_file() for part in parts):
+            image = Image.open(source / parts[0]).convert('RGBA')
+            for part in parts[1:]:
+                image.alpha_composite(Image.open(source / part).convert('RGBA'))
             assert image.size == (640, 640)
             image.save(OUT / f'{key}.png', optimize=True)
             layers[key] = f'{key}.png'
-    for key, name in FRONTS.items():
+    for key, name in LAYOUTS[layout]['fronts'].items():
         src = source / name
         if src.is_file():
             assert png_size(src)[:2] == (640, 640), src
@@ -68,7 +83,7 @@ def main(source):
         behaviors[behavior] = spec
     assert behaviors, 'no complete behavior to import'
     (OUT / 'desk.json').write_text(json.dumps({'layers': layers, 'behaviors': behaviors}, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
-    print(f'Imported layers {sorted(layers)} and behaviors {sorted(behaviors)}' + (f'; skipped incomplete {skipped}' if skipped else ''))
+    print(f'Imported {layout} layout: layers {sorted(layers)} and behaviors {sorted(behaviors)}' + (f'; skipped incomplete {skipped}' if skipped else ''))
 
 
 if __name__ == '__main__':
