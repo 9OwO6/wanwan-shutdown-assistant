@@ -59,7 +59,7 @@ function New-DesktopPet {
  $script:petAvatarSurface=Register-CharacterSurface ($script:popup.FindName('PetAvatar')) $null $script:popup
  if($script:deskScene){
   # 书桌场景：人物夹在背景和桌面之间；不加立绘用的上下渐隐，也不做身体位移。
-  $script:petAvatarSurface.Desk=$true;$script:petAvatarSurface.Image.OpacityMask=$null;$script:petAvatarSurface.Static=$true
+  $script:petAvatarSurface.Desk=$true;$script:petAvatarSurface.Image.OpacityMask=$null;$script:petAvatarSurface.Static=$true;$script:petAvatarSurface.Front=$script:popup.FindName('DeskFront')
   $script:popup.FindName('DeskBack').Source=$script:deskScene.Back;$script:popup.FindName('DeskFront').Source=$script:deskScene.Front
  }
  $script:popupSurface=Register-CharacterSurface ($script:popup.FindName('PopupPortrait')) ($script:popup.FindName('PopupFade')) $script:popup

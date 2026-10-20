@@ -60,8 +60,9 @@ function Start-PetBehavior([string]$Behavior){
 }
 function Set-DeskLamp([bool]$On){
  # 书桌场景：晚晚睡着时台灯关掉。
- if(-not $script:deskScene -or -not $script:popup -or -not $script:deskScene.FrontLampOff){return}
- $script:popup.FindName('DeskFront').Source=if($On){$script:deskScene.Front}else{$script:deskScene.FrontLampOff}
+ if(-not $script:deskScene){return}
+ $script:deskScene.LampOn=$On
+ if($script:petAvatarSurface -and $script:petAvatarSurface.Desk){Update-DeskFront $script:petAvatarSurface ($script:petAvatarSurface.Key.Split(':')[0])}
 }
 function Update-PetBehavior([datetime]$Now=(Get-Date)){
  # 提醒、倒计时或语音进行中时不打扰。

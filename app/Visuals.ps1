@@ -22,10 +22,11 @@ $deskManifest=Join-Path $root 'assets\desk\desk.json'
 if(Test-Path $deskManifest){
  $desk=Get-Content $deskManifest -Raw -Encoding UTF8|ConvertFrom-Json
  function Read-DeskImage([string]$Relative){$path=Join-Path $root ('assets\desk\'+$Relative);if(-not (Test-Path $path)){return $null};$image=[Windows.Media.Imaging.BitmapImage]::new();$image.BeginInit();$image.CacheOption=[Windows.Media.Imaging.BitmapCacheOption]::OnLoad;$image.UriSource=[uri]$path;$image.EndInit();$image.Freeze();return $image}
- $script:deskScene=@{Back=(Read-DeskImage $desk.layers.back);Front=(Read-DeskImage $desk.layers.front);FrontLampOff=(Read-DeskImage $desk.layers.front_lamp_off)}
+ $script:deskScene=@{Back=(Read-DeskImage $desk.layers.back);Front=(Read-DeskImage $desk.layers.front);FrontLampOff=(Read-DeskImage $desk.layers.front_lamp_off);FrontNoCup=(Read-DeskImage $desk.layers.front_no_cup);FrontLampOffNoCup=(Read-DeskImage $desk.layers.front_lamp_off_no_cup);LampOn=$true;NoCup=@{}}
  foreach($behavior in $desk.behaviors.PSObject.Properties){
   $cells=@();for($i=0;$i -lt 4;$i++){$cell=Read-DeskImage ('character\'+$behavior.Name+'\'+$i+'.png');if(-not $cell){throw ('Missing desk frame: '+$behavior.Name+'/'+$i)};$cells+=,$cell}
   $script:interactionAssets['desk-'+$behavior.Name]=$cells
+  if($behavior.Value.front -eq 'front_no_cup'){$script:deskScene.NoCup['desk-'+$behavior.Name]=$true}
   $script:interactionCatalog+=[pscustomobject]@{id='desk-'+$behavior.Name;name=$behavior.Value.name;symbol='·';caption='';frames=@($behavior.Value.frames);step=[int]$behavior.Value.step}
  }
 }
@@ -56,6 +57,14 @@ function Set-SurfaceFrame($surface,[string]$id,[int]$index){
  # 只在更换动作时淡化；姿态间直接切帧，避免两张脸重叠。
  if($surface.Fade -and $script:motionEnabled -and $surface.Image.Source -and $surface.Key.Split(':')[0] -ne $id){$surface.Fade.Source=$surface.Image.Source;Animate-Double $surface.Fade ([Windows.UIElement]::OpacityProperty) 1 0 .12}
  $surface.Image.Source=$script:interactionAssets[$id][$index];$surface.Key=$key
+ if($surface.Desk){Update-DeskFront $surface $id}
+}
+function Update-DeskFront($surface,[string]$id){
+ # 前景层：喝水时杯子在她手里，桌上那只要藏起来；睡着时台灯关掉。
+ if(-not $script:deskScene -or -not $surface.Front){return}
+ $noCup=[bool]$script:deskScene.NoCup[$id];$on=[bool]$script:deskScene.LampOn
+ $source=if($on){if($noCup -and $script:deskScene.FrontNoCup){$script:deskScene.FrontNoCup}else{$script:deskScene.Front}}else{if($noCup -and $script:deskScene.FrontLampOffNoCup){$script:deskScene.FrontLampOffNoCup}elseif($script:deskScene.FrontLampOff){$script:deskScene.FrontLampOff}else{$script:deskScene.Front}}
+ if($surface.Front.Source -ne $source){$surface.Front.Source=$source}
 }
 function Set-CharacterFrame([int]$index){Set-SurfaceFrame $script:mainSurface 'peek' $index;$script:frameIndex=$index}
 function Show-CompanionPopup([string]$caption){Show-DesktopPet $caption}
