@@ -17,7 +17,7 @@
    "runtime_sha256": "e6450fd2c9a4a4326fbeabf9722af205aebcbcd0337c352120c23863ba657c5f",
    "seed": 20265182,
    "asr_text": "还有半小时就到休息时间了呢，应该准备着手收尾工作了。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/early-2",
@@ -73,7 +73,7 @@
    "runtime_sha256": "2294bfdc1178edf49c3debaf9c4ab79db5c89743a5829a8067c4860eafbc8c74",
    "seed": 20263964,
    "asr_text": "时间到了哦，今天已经很努力了，去休息吧。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/dialog-1",
@@ -87,7 +87,7 @@
    "runtime_sha256": "ab84afc820f08e4cfed5e20f1a8af2264d345f2b9386d33fed5d515679279f2a",
    "seed": 20277784,
    "asr_text": "好了，今天就到这里吧。乖，先去保存。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/final-1",
@@ -115,7 +115,7 @@
    "runtime_sha256": "af0a060feb64655a78baf6747fb0a88d7f356c0f5840f4163f69b826c467ae04",
    "seed": 20270351,
    "asr_text": "已经过了约好的时间了呢，再给你两分钟，存好就关机。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/shutdown-1",
@@ -129,7 +129,7 @@
    "runtime_sha256": "20585aa9def0e7882af0dc45d6f3bef10550ca0fb333f81ee3d5ecd59a789c84",
    "seed": 20272585,
    "asr_text": "时间到了，晚安，做个好梦。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/sleep-1",
@@ -143,7 +143,7 @@
    "runtime_sha256": "50e9c90e4703adc23994463556c8306e69e74384dde27ef3e8b0c787b302dacb",
    "seed": 20278120,
    "asr_text": "电脑先睡了，你也该去休息了。嗯。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/defer-1",
@@ -157,7 +157,7 @@
    "runtime_sha256": "66ff9343dd4a9ef0b2597df6a6b1ac34351c82e9bbfad70d0760e9b56b059bc6",
    "seed": 20273791,
    "asr_text": "好吧，再给你一点时间，不过只有这一次哦。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/cancel-1",
@@ -185,7 +185,7 @@
    "runtime_sha256": "4187b9a91b4dda4ceb6870120872b018bc113a335ae065089fb2127680bbcd95",
    "seed": 20273374,
    "asr_text": "嗯，姐姐记住了哦。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/goodnight-1@xiaobendan",
@@ -199,7 +199,7 @@
    "runtime_sha256": "641ebf0b60e28e9e4b00f57c61c44c4238711fb594606ddc30f648845cf4d740",
    "seed": 20281082,
    "asr_text": "晚安，小笨蛋，明天见。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/goodnight-1",
@@ -213,7 +213,7 @@
    "runtime_sha256": "86d4fff6356a6f75aec0706660e9d92803dbc53bfa927a88f7838666d95cf38d",
    "seed": 20265819,
    "asr_text": "晚安，明天见。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/caught-1",
@@ -241,7 +241,7 @@
    "runtime_sha256": "ca69d6060e92a8534f879398ac1759f40f3fb62787c7d426885b4e99250a027b",
    "seed": 20279154,
    "asr_text": "又起来了呀！听话，回去躺好。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/watch-final-1",
@@ -255,7 +255,7 @@
    "runtime_sha256": "f39ea0b0824cfca4d65ebc6cc71f37bd12cbe0e0d2ebbaef15931def8bfffc6e",
    "seed": 20270503,
    "asr_text": "好了，别再试了，乖乖去睡觉，好吗？",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/streak-1",
@@ -269,7 +269,7 @@
    "runtime_sha256": "9b26e34ae708528bbf84eaebb0805269d71e0be7fd522b330080c0b8ad723ab7",
    "seed": 20278120,
    "asr_text": "早上好，昨晚很听话呢。继续保持哦。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/reset-1",
@@ -297,7 +297,7 @@
    "runtime_sha256": "d947bbcf19b55ab5b768b8438f4974d321799c5e5af9fbf6ee05e5043a9bf524",
    "seed": 20272585,
    "asr_text": "这一局打完就休息吧，好吗？",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/companion-video-1",
@@ -311,7 +311,7 @@
    "runtime_sha256": "60c0a7e0e917ddf910e278ceff78dbb47e3933285bf56568ce2883709c255375",
    "seed": 20272565,
    "asr_text": "这集看完就去睡。嗯。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/companion-work-1",
@@ -367,7 +367,7 @@
    "runtime_sha256": "08fa66f9b5ffb44c8d08d4d4aefdec0d9621db3d23d35871067cda5ef892c8de",
    "seed": 20274156,
    "asr_text": "听得清吗？以后就由我来提醒你了。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/saved-1",
@@ -381,7 +381,7 @@
    "runtime_sha256": "11cb49437851c0c909201be9dd1ced3f356af5f10a60848778cb6c94c3c05bf2",
    "seed": 20279154,
    "asr_text": "记下了，到时间我会提醒你的。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/disabled-1",
@@ -395,7 +395,7 @@
    "runtime_sha256": "8ef28a2f368d8a633cea08e052f304c6241baff6ff221cb3c2e0a26803ec76d1",
    "seed": 20363811,
    "asr_text": "记下了。现在只提醒，不会帮你关机哦。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/demo-1",
@@ -409,7 +409,7 @@
    "runtime_sha256": "83578a8e64b3cb1ac34b3a1abf6e711a6849c407648ef5f43b2013af72ca9277",
    "seed": 20269999,
    "asr_text": "这是演示，不会关机的，放心看吧。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/hello-1",
@@ -423,7 +423,7 @@
    "runtime_sha256": "aa09f8cde369cec03f60bd1a956c5be5490a73bfea080b32680165a16f0efb2c",
    "seed": 20463172,
    "asr_text": "嗯，怎么了？",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/hello-2",
@@ -437,7 +437,7 @@
    "runtime_sha256": "b530199499d547466c6e879ed609f76a7a1d9b0038204e9f1de745db1400a10f",
    "seed": 20265819,
    "asr_text": "找我有事吗？",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/poke-1",
@@ -451,7 +451,7 @@
    "runtime_sha256": "6f5e45c059756f09292cad7a6c586932bb450bfc4674a513b8035248fe528ac8",
    "seed": 20274373,
    "asr_text": "嗯。",
-   "asr_status": "pending"
+   "asr_status": "short_sound"
   },
   {
    "key": "sister/poke-more-1",
@@ -465,7 +465,7 @@
    "runtime_sha256": "063525ca06fa62040dc554381ca7db8cceffbd39465e51ce06e8c0f97b4afba6",
    "seed": 20274373,
    "asr_text": "怎么了呀？",
-   "asr_status": "pending"
+   "asr_status": "short_sound"
   },
   {
    "key": "sister/poke-angry-1",
@@ -493,7 +493,7 @@
    "runtime_sha256": "1d40d921dd4e7959201f468b61b3cb93fa1a035e2c130cc6908794decd8e42b1",
    "seed": 20278337,
    "asr_text": "呼。",
-   "asr_status": "pending"
+   "asr_status": "short_sound"
   },
   {
    "key": "sister/hour-00",
@@ -521,7 +521,7 @@
    "runtime_sha256": "0fb147330195889053a1ea180ef6e72b95bbf6e3d96a6fd92f4d1f2084f5797e",
    "seed": 20265312,
    "asr_text": "已经一点了呢。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/hour-02",
@@ -535,7 +535,7 @@
    "runtime_sha256": "3b5232254cdd0084fd2ecd379fdb5793ebfb9fe372bdd393900e00806066b47f",
    "seed": 20265312,
    "asr_text": "已经两点了呢。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/hour-03",
@@ -549,7 +549,7 @@
    "runtime_sha256": "5ae79cdf25f39c433caeca27d98b84337aad0fc73ea2a454d8d0eafce58acc16",
    "seed": 20277540,
    "asr_text": "已经三点了呢。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/hour-04",
@@ -563,7 +563,7 @@
    "runtime_sha256": "801b67720dff1d979d8b5990ad2d2ff7f0c84a99d0492be06522f880296d76b3",
    "seed": 20277540,
    "asr_text": "已经四点了呢。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/hour-05",
@@ -605,7 +605,7 @@
    "runtime_sha256": "ee8ae3102ac0baeb164fb2c84e2908f4c33f29561cfa6c8feeb3788330612ad4",
    "seed": 20273582,
    "asr_text": "已经七点了呢。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/hour-08",
@@ -633,7 +633,7 @@
    "runtime_sha256": "7b5f2a7967a65e15d576e18f4afb1fb749126456d61e753cf22d574798fbd74e",
    "seed": 20265319,
    "asr_text": "已经九点了呢。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/hour-10",
@@ -647,7 +647,7 @@
    "runtime_sha256": "ff68bedddf1aba858163e7292282640d45e16972f73d485693176fac0dd1066e",
    "seed": 20273582,
    "asr_text": "已经十点了呢。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/hour-11",
@@ -689,7 +689,7 @@
    "runtime_sha256": "0a7825d024861d45e7e11ccd9212c60ce5e76b5c43ab509377ccb6ab7e646da2",
    "seed": 20265318,
    "asr_text": "已经一点了呢。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/hour-14",
@@ -717,7 +717,7 @@
    "runtime_sha256": "4c160f18e5867cce7c69e6e52624719a14a5592430db708f2a255cd94ec6adfa",
    "seed": 20265322,
    "asr_text": "已经三点了呢。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/hour-16",
@@ -731,7 +731,7 @@
    "runtime_sha256": "92e61ec1378984676958c4369298b66392d563fb86f9028ed7be6a99a58d9aae",
    "seed": 20265322,
    "asr_text": "已经四点了呢。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/hour-17",
@@ -759,7 +759,7 @@
    "runtime_sha256": "ce0ad1771899e8d0a830e807dcd11b2e397ee143de1b5435185c39c4e6c59169",
    "seed": 20265326,
    "asr_text": "已经六点了呢。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/hour-19",
@@ -773,7 +773,7 @@
    "runtime_sha256": "e0ba2db9619b8e7f878464d378d53987d350b53e36e6c89d64a9703025d7d21e",
    "seed": 20277550,
    "asr_text": "已经七点了呢。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/hour-20",
@@ -815,7 +815,7 @@
    "runtime_sha256": "ff68bedddf1aba858163e7292282640d45e16972f73d485693176fac0dd1066e",
    "seed": 20273582,
    "asr_text": "已经十点了呢。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "sister/hour-23",
@@ -829,7 +829,7 @@
    "runtime_sha256": "3b02a4a4ac9031c480df8594b35a741593108d6e035e2999ca6c0484b163e91e",
    "seed": 20273374,
    "asr_text": "已经十一点了呢。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   }
  ]
 }

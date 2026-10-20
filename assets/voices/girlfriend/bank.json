@@ -45,7 +45,7 @@
    "runtime_sha256": "eedfa741d3e906ccd3cca264b744816d06208faa2b46b14ee7a578caa7e1c452",
    "seed": 20268840,
    "asr_text": "亲爱的，半小时后我就要帮你关机了哦。注意别开新任务啦。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/early-2",
@@ -59,7 +59,7 @@
    "runtime_sha256": "6e3941dd0a7f82cd88739858ef541bf49ddd92b78049d8a0b0fd4e7f7637b783",
    "seed": 20265163,
    "asr_text": "半小时后我就要帮你关机了哦。注意别开新任务了。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/soon-1",
@@ -129,7 +129,7 @@
    "runtime_sha256": "cf21db09b363507b92519b99610bf4370ac36441a52779e88ae1da6a543d80a5",
    "seed": 20264630,
    "asr_text": "到点了，宝宝该睡觉觉了，不许再拖了哦。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/bed-1@qinaide",
@@ -143,7 +143,7 @@
    "runtime_sha256": "f35900a074268c0c68c4d13c393ef6c2e303fdf3a80b31b02c2517fcd258ec3a",
    "seed": 20279387,
    "asr_text": "到点啦，亲爱的，该睡觉觉了，不许再拖了哦。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/bed-1",
@@ -185,7 +185,7 @@
    "runtime_sha256": "a91671f9585facc6fe58791423110825557cf5a88483000522ff4a3bd933562f",
    "seed": 20274840,
    "asr_text": "最后两分钟啦！快保存，快保存。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/due-1",
@@ -213,7 +213,7 @@
    "runtime_sha256": "9f83941c945acec470e9f333d1620550cee83e5f51c5246f05246b40b9e1644c",
    "seed": 20266319,
    "asr_text": "时间到，关机喽。晚安，宝宝，梦里见。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/shutdown-1@qinaide",
@@ -241,7 +241,7 @@
    "runtime_sha256": "cf8fb8d5ab0a61290ab2f2bfc4437a8a34d9f80237c9dd00ec24e1834a9b3678",
    "seed": 20278804,
    "asr_text": "时间到，关机喽。晚安，梦里见。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/sleep-1",
@@ -311,7 +311,7 @@
    "runtime_sha256": "55875d77e77288d0e685141cffe5f5492ebe5b4704b6a5852faddaf2b6910d62",
    "seed": 20267115,
    "asr_text": "晚安，宝宝，明天见。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/goodnight-1@qinaide",
@@ -339,7 +339,7 @@
    "runtime_sha256": "e69cdd7ab1bf0552d2033238f8f3372745bd44eb40d82783d1f2fd465e0e0f16",
    "seed": 20265764,
    "asr_text": "晚安，明天见。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/caught-1",
@@ -353,7 +353,7 @@
    "runtime_sha256": "c4c33a75da07d4db32e286a33efc3919dd56b18d86ebe79d9d2d67f1bc744c8f",
    "seed": 20266358,
    "asr_text": "哎，怎么又偷偷起来了？",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/caught-again-1",
@@ -366,8 +366,8 @@
    "sha256": "076694992dcd13459bcee511510a4cca4acf06e031808c5cdd3c90f149ef6894",
    "runtime_sha256": "f0cf9a75186334cef28f5538361935fd4eb6acab1432a978006c8a9829a62fbb",
    "seed": 20266598,
-   "asr_text": "又被我抓到了，快回去躺好。",
-   "asr_status": "pending"
+   "asr_text": "又被我抓到了！快回去躺好。",
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/watch-final-1",
@@ -395,7 +395,7 @@
    "runtime_sha256": "dd4215a9595a1826102e0940fb234236cedebb73914dbaa9675d6ca36627c6f9",
    "seed": 20266047,
    "asr_text": "早呀，昨晚超乖的，奖励你一颗小星星。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/reset-1",
@@ -409,7 +409,7 @@
    "runtime_sha256": "aecbcc6843baea8b5577018b66a145e77a3fc56261fb158af49e7b41fe51d2b2",
    "seed": 20278345,
    "asr_text": "昨晚是不是又熬夜了？哼，今晚要早点睡哦。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/companion-game-1",
@@ -423,7 +423,7 @@
    "runtime_sha256": "c2e3bd691ee99848af4413558a0611991911d42af275da9e04e3f20412761ceb",
    "seed": 20276611,
    "asr_text": "打完这把就睡，好不好？",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/companion-video-1",
@@ -437,7 +437,7 @@
    "runtime_sha256": "7c35013c5db11713d0bd4224bf91f64caf6ea6e465cc602ca450d46e6be3c772",
    "seed": 20276602,
    "asr_text": "这集看完就睡吗？",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/companion-work-1",
@@ -479,7 +479,7 @@
    "runtime_sha256": "93ca91da57eedc80a6c1da12e48f21740a843fa55a7ddcc563fcb69ffb70538a",
    "seed": 20267314,
    "asr_text": "宝宝听得到吗？是我呀。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/preview-1@qinaide",
@@ -507,7 +507,7 @@
    "runtime_sha256": "240ffa7ed4c8b21665f2154d8ebd046324935fcf32c3b5c47ad1973b8a4a1cb2",
    "seed": 20280617,
    "asr_text": "听得到吗？是我呀。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/saved-1",
@@ -563,7 +563,7 @@
    "runtime_sha256": "c26374000c3714fd32cb595cd92e2c60ce3f1da70fbfe425d2b7238425947821",
    "seed": 20277525,
    "asr_text": "嗯，叫我呀。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hello-2",
@@ -605,7 +605,7 @@
    "runtime_sha256": "e437bee1e40c6f282a9b2eda6b2f0e7c470e7f0ab983f7d15e3d26cddf8d8f8e",
    "seed": 20274938,
    "asr_text": "哎，干嘛呀？",
-   "asr_status": "pending"
+   "asr_status": "short_sound"
   },
   {
    "key": "girlfriend/poke-angry-1",
@@ -619,7 +619,7 @@
    "runtime_sha256": "83478b01f22ee3f8e33b76b2a9ff8c23017b10d62f06ed16cbd0f609ac63b0b7",
    "seed": 20274938,
    "asr_text": "哼，不理你了。",
-   "asr_status": "pending"
+   "asr_status": "short_sound"
   },
   {
    "key": "girlfriend/yawn-sound-1",
@@ -633,7 +633,7 @@
    "runtime_sha256": "04daef82c6347cd32f1d53a3e8868f8aa7250d3ad1a4f35b36e7884c542c1a82",
    "seed": 20273955,
    "asr_text": "哈哈。",
-   "asr_status": "pending"
+   "asr_status": "short_sound"
   },
   {
    "key": "girlfriend/hour-00@baobao",
@@ -647,7 +647,7 @@
    "runtime_sha256": "3373bcd265d71af65bf58487b8baeb7a5e672378cea6d0197e19c32116911ea2",
    "seed": 20276815,
    "asr_text": "宝宝，到十二点啦。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-00@qinaide",
@@ -675,7 +675,7 @@
    "runtime_sha256": "ea48c199e967c8926a5d3d22bb3a89367d886eb576a578dedefcca906d0d01e2",
    "seed": 20265328,
    "asr_text": "到十二点了。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-01@baobao",
@@ -703,7 +703,7 @@
    "runtime_sha256": "ae22cca7cec0c41376becc1a192ddb63af102d7fc259f6d52ddfa35a9b48fd6e",
    "seed": 20266761,
    "asr_text": "亲爱的，到一点啦。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-01",
@@ -717,7 +717,7 @@
    "runtime_sha256": "7f686da81a2960183b65f3ea55b588276952b437469d966d55fd15ecbe438d41",
    "seed": 20277491,
    "asr_text": "到一点啦。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-02@baobao",
@@ -731,7 +731,7 @@
    "runtime_sha256": "336012e542a7fa5562465829e9b3abd1b5489cc8f79e43715a67414ea9859467",
    "seed": 20266646,
    "asr_text": "宝宝，到两点了。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-02@qinaide",
@@ -773,7 +773,7 @@
    "runtime_sha256": "de8f341bb9c342f8765fec1d7d760051c6f19ad64b2d8f5108f88d9148bead0f",
    "seed": 20276602,
    "asr_text": "宝宝，到三点啦。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-03@qinaide",
@@ -815,7 +815,7 @@
    "runtime_sha256": "1001f91d560b3b8f194f48c4de56223e1211b674ef8f60311bd48de1e7583db9",
    "seed": 20280207,
    "asr_text": "宝宝，到四点啦。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-04@qinaide",
@@ -843,7 +843,7 @@
    "runtime_sha256": "c82d3871b9ac4d460cb765d0cc2167994372afa4d680c7be93347ad530b9d287",
    "seed": 20277491,
    "asr_text": "到四点了。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-05@baobao",
@@ -899,7 +899,7 @@
    "runtime_sha256": "78386b950a5a63e6810170d25d736537bb0c6f4f4feaf0e98d1155fb06734ab1",
    "seed": 20280207,
    "asr_text": "宝宝，到六点啦。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-06@qinaide",
@@ -941,7 +941,7 @@
    "runtime_sha256": "5f4c41ede9f1bbd08c92bb7504d63f32b6ebb2f7f2133f97ecbc913439315303",
    "seed": 20266654,
    "asr_text": "宝宝，到七点啦。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-07@qinaide",
@@ -955,7 +955,7 @@
    "runtime_sha256": "d23d98d6f66c60c7aabfcbe4ff48c44293e63d799d9915283be00d15df6d40e4",
    "seed": 20266892,
    "asr_text": "亲爱的，到七点了。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-07",
@@ -969,7 +969,7 @@
    "runtime_sha256": "2d5e858ff34a386023b66daf6cb20df615b75ff60fbeb0f836505d9e2c1985ab",
    "seed": 20265304,
    "asr_text": "到七点了。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-08@baobao",
@@ -997,7 +997,7 @@
    "runtime_sha256": "9db43e37637a18c3ce4ed6f18265bb1f48188dd0e1c42eb024b8bba538d3ffd0",
    "seed": 20280691,
    "asr_text": "亲爱的，到八点了。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-08",
@@ -1011,7 +1011,7 @@
    "runtime_sha256": "8287aebdbbda30293dae01be449f8516a2b4dfe4537a670164744d2c85468979",
    "seed": 20265304,
    "asr_text": "到八点了。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-09@baobao",
@@ -1025,7 +1025,7 @@
    "runtime_sha256": "1e45e1d7ea25e1160e5578dfc035d1adda7ed032d8ecd1a6ef68d07443749a02",
    "seed": 20266658,
    "asr_text": "宝宝，到九点啦。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-09@qinaide",
@@ -1067,7 +1067,7 @@
    "runtime_sha256": "21a50fc2348a6b7cb7ed12e62365d3a31aca41f5869ef33b641afaa6c8bf9934",
    "seed": 20266646,
    "asr_text": "宝宝，到十点了。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-10@qinaide",
@@ -1081,7 +1081,7 @@
    "runtime_sha256": "df3b5451c79ad35196851ad15ba5cc297fa5de656d230ed5c79afe94eb32d9af",
    "seed": 20266763,
    "asr_text": "亲爱的，到十点啦。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-10",
@@ -1109,7 +1109,7 @@
    "runtime_sha256": "b6bb914ed311984832b7f56e582eb599d50f3caef21a96562e3ea7310dab7ca0",
    "seed": 20280433,
    "asr_text": "宝宝，到十一点啦。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-11@qinaide",
@@ -1123,7 +1123,7 @@
    "runtime_sha256": "0ebed2253e9bbaafa327352def33bcab257bb5c7639546f3f6a68b168736fe03",
    "seed": 20276033,
    "asr_text": "亲爱的，到十一点了。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-11",
@@ -1137,7 +1137,7 @@
    "runtime_sha256": "8f6d7f46cd35a29f5930fc1fbd40d26313c857f2d8ed73d86b75fe84a7f5ba08",
    "seed": 20273561,
    "asr_text": "到十一点了。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-12@baobao",
@@ -1151,7 +1151,7 @@
    "runtime_sha256": "a7257363dea262592360bce73a0df6cbe35905da79f6dd09b831cb3054a09446",
    "seed": 20280433,
    "asr_text": "宝宝，到十二点啦。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-12@qinaide",
@@ -1165,7 +1165,7 @@
    "runtime_sha256": "dde43b89bd36b2a7ab64c1cf153daec4068605e39da06a4e1600af44725faa6c",
    "seed": 20279997,
    "asr_text": "亲爱的，到十二点了。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-12",
@@ -1221,7 +1221,7 @@
    "runtime_sha256": "00f7534892f17dcca09d43356cff9f2a4baab2a2ebb753abc0be09df3d6c2eb5",
    "seed": 20277500,
    "asr_text": "到一点了。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-14@baobao",
@@ -1291,7 +1291,7 @@
    "runtime_sha256": "08d94a441ab3213ffb7f9de47d3a4258d59bbf2759c55ccf9d3c569411141236",
    "seed": 20266890,
    "asr_text": "亲爱的，到三点了。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-15",
@@ -1333,7 +1333,7 @@
    "runtime_sha256": "e6fb849ff3beabb213a1033ff13bdc4cf64e92558d326e9dee0a10f39e978862",
    "seed": 20276723,
    "asr_text": "亲爱的，到四点了。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-16",
@@ -1389,7 +1389,7 @@
    "runtime_sha256": "782a361eb0aae59264a7294ee881245c02a1647645ee1a9be3107c3d107a1f0c",
    "seed": 20277511,
    "asr_text": "到五点了。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-18@baobao",
@@ -1403,7 +1403,7 @@
    "runtime_sha256": "45905088e353e0128f218ce20c052cdefccc366588dfe6aef584a863425f2860",
    "seed": 20280209,
    "asr_text": "宝宝，到六点啦。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-18@qinaide",
@@ -1431,7 +1431,7 @@
    "runtime_sha256": "28c0a043aa80ed3c1eff2d56409323022468e38a137f0ecb76af79ef72711369",
    "seed": 20273547,
    "asr_text": "到六点了。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-19@baobao",
@@ -1459,7 +1459,7 @@
    "runtime_sha256": "628769c5728892651458ca99015637191d75e101876db0ebce7d6c59397a8f7f",
    "seed": 20276721,
    "asr_text": "亲爱的，到七点啦。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-19",
@@ -1501,7 +1501,7 @@
    "runtime_sha256": "6516d3a532d76a6345213afb3d6fb8fbf5de66dec633a3ff4477c3bbac2e5b0d",
    "seed": 20266884,
    "asr_text": "亲爱的，到八点啦。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-20",
@@ -1515,7 +1515,7 @@
    "runtime_sha256": "bf001f1b526917c228e609a3ccdbcfa2bc8f998570a759403d744cfe3304e2c9",
    "seed": 20277500,
    "asr_text": "到八点了。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-21@baobao",
@@ -1613,7 +1613,7 @@
    "runtime_sha256": "35ca076e0f96d933bb95a9d80c3ef197aa82e775b52a1549a564e61a4936c836",
    "seed": 20267762,
    "asr_text": "宝宝，到十一点啦。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-23@qinaide",
@@ -1627,7 +1627,7 @@
    "runtime_sha256": "23cd326138096372423c3b8f144ef2ef7c3410cf9316cd28e9565b82a11e7e1c",
    "seed": 20279997,
    "asr_text": "亲爱的，到十一点啦。",
-   "asr_status": "pending"
+   "asr_status": "verified"
   },
   {
    "key": "girlfriend/hour-23",
