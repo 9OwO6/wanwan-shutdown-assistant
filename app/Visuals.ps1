@@ -21,7 +21,7 @@ $script:deskScene=$null
 $deskManifest=Join-Path $root 'assets\desk\desk.json'
 if(Test-Path $deskManifest){
  $desk=Get-Content $deskManifest -Raw -Encoding UTF8|ConvertFrom-Json
- function Read-DeskImage([string]$Relative){$path=Join-Path $root ('assets\desk\'+$Relative);if(-not (Test-Path $path)){return $null};$image=[Windows.Media.Imaging.BitmapImage]::new();$image.BeginInit();$image.CacheOption=[Windows.Media.Imaging.BitmapCacheOption]::OnLoad;$image.UriSource=[uri]$path;$image.EndInit();$image.Freeze();return $image}
+ function Read-DeskImage([string]$Relative){if(-not $Relative){return $null};$path=Join-Path $root ('assets\desk\'+$Relative);if(-not (Test-Path -LiteralPath $path -PathType Leaf)){return $null};$image=[Windows.Media.Imaging.BitmapImage]::new();$image.BeginInit();$image.CacheOption=[Windows.Media.Imaging.BitmapCacheOption]::OnLoad;$image.UriSource=[uri]$path;$image.EndInit();$image.Freeze();return $image}
  # 叠放顺序：背景（含书桌后半）→ 晚晚 → 书桌前沿 → 杯子。台灯开 / 关各一套背景和前沿。
  $script:deskScene=@{Back=(Read-DeskImage $desk.layers.back);BackLampOff=(Read-DeskImage $desk.layers.back_lamp_off);Front=(Read-DeskImage $desk.layers.front);FrontLampOff=(Read-DeskImage $desk.layers.front_lamp_off);Cup=(Read-DeskImage $desk.layers.cup);LampOn=$true;NoCup=@{}}
  foreach($behavior in $desk.behaviors.PSObject.Properties){
