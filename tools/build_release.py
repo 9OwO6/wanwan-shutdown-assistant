@@ -1,4 +1,4 @@
-"""Build the slim portable Windows ZIP from the runtime files only.
+﻿"""Build the slim portable Windows ZIP from the runtime files only.
 
     python tools/build_release.py v0.3.0
 
@@ -26,11 +26,10 @@ RUNTIME_GLOBS = [
     'assets/icons/*',
     'assets/frames/*/*.png',
     'assets/voices/**/*.mp3',
-    'assets/voices/manifest.json',
-    'assets/voices/N1/manifest.json',
-    'assets/voices/N1-clock/manifest.json',
-    'assets/voices/N1-guard/manifest.json',
-    'assets/voices/N1-watch/manifest.json',
+    'assets/voices/*/bank.json',
+    'assets/desk/desk.json',
+    'assets/desk/*.png',
+    'assets/desk/character/*/*.png',
 ]
 EXCLUDE_PARTS = {'reference', 'parts'}
 EXCLUDE_NAMES = {'voice-lab-candidates.json'}
@@ -55,7 +54,7 @@ for src in files:
 try:
     import imagequant
     from PIL import Image
-    for png in [*STAGE.glob('assets/frames/*/*.png'), STAGE / 'assets/wanwan.png']:
+    for png in [*STAGE.glob('assets/frames/*/*.png'), *STAGE.glob('assets/desk/**/*.png'), STAGE / 'assets/wanwan.png']:
         quantized = imagequant.quantize_pil_image(Image.open(png).convert('RGBA'), dithering_level=1.0,
                                                   max_colors=256, min_quality=70, max_quality=95)
         quantized.save(png, optimize=True)

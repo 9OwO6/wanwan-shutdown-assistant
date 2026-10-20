@@ -15,7 +15,7 @@ Capture-Showcase $win (Join-Path $showcaseDirectory 'main-window.png')
 Show-DesktopPet -Compact;Wait-Showcase 150;Capture-Showcase $popup (Join-Path $showcaseDirectory 'desktop-pet.png')
 Say-ClockReminder -Now ([datetime]'2026-10-12T23:00:00') -Cue early -Demo;Wait-Showcase 300
 Capture-Showcase $popup (Join-Path $showcaseDirectory 'reminder-bubble.png')
-Start-Interaction wave '宝贝，晚晚在这里呀。' -Popup
+Start-Interaction wave '你回来啦。' -Popup
 $capturedPoses=[Collections.Generic.HashSet[int]]::new()
 for($index=0;$index -lt 32;$index++){Wait-Showcase 100;$capturedPoses.Add($script:frameIndex)|Out-Null;Capture-Showcase $popup (Join-Path $frameDirectory ('frame-{0:00}.png' -f $index))}
 if($capturedPoses.Count -lt 4){throw 'Showcase animation did not advance through four poses'}
@@ -23,7 +23,7 @@ $popup.Close();Show-BedDialog $true;Wait-Showcase 300
 Capture-Showcase $dialog (Join-Path $showcaseDirectory 'bedtime-countdown.png');$dialog.Close()
 $gallery=New-InteractionGallery;$gallery.Show();Wait-Showcase 200
 Capture-Showcase $gallery (Join-Path $showcaseDirectory 'interaction-gallery.png');$gallery.Close()
-$picker=New-VoicePicker -NoSave;$picker.Show();Wait-Showcase 200
-Capture-Showcase $picker (Join-Path $showcaseDirectory 'voice-picker.png');$picker.Close()
+Open-Settings;Wait-Showcase 200
+Capture-Showcase $settingsWin (Join-Path $showcaseDirectory 'settings.png');$settingsWin.Hide()
 $cfg.DesktopPet=$false;if($popup){$popup.Close()}
 Write-Output 'Six real WPF showcase surfaces and 32 animation frames captured; synthetic settings, muted voice, no native shutdown.'

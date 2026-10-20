@@ -1,9 +1,4 @@
-﻿. "$PSScriptRoot\GuardVoice.ps1"
-# 桌面常驻小头像，提醒时展开。复用同一角色动作，不抢当前应用的键盘焦点。
-$script:clockCatalogPath=Join-Path $root 'assets\clock-lines.json'
-$script:clockManifestPath=Join-Path $root 'assets\voices\N1-clock\manifest.json'
-$script:clockLines=if(Test-Path $script:clockCatalogPath){(Get-Content $script:clockCatalogPath -Raw -Encoding UTF8|ConvertFrom-Json).lines}else{@()}
-$script:clockRecords=if(Test-Path $script:clockManifestPath){Get-Content $script:clockManifestPath -Raw -Encoding UTF8|ConvertFrom-Json}else{@()}
+﻿# 桌面常驻小头像，提醒时展开。复用同一角色动作，不抢当前应用的键盘焦点。
 $script:petExpanded=$false;$script:petDragging=$false
 function Limit-PetPosition([double]$Left,[double]$Top,$Area,[double]$Width,[double]$Height){
  return @{Left=[math]::Max($Area.Left,[math]::Min($Left,$Area.Right-$Width));Top=[math]::Max($Area.Top,[math]::Min($Top,$Area.Bottom-$Height))}
@@ -35,15 +30,6 @@ function Move-PetDrag($Cursor,[bool]$Pressed){
  if($delta.Length -ge 4){$script:petDragging=$true}
  if($script:petDragging){Set-PetPosition ($script:petDragLeft+$delta.X) ($script:petDragTop+$delta.Y)}
 }
-function Get-ClockReminder([datetime]$Now,[string]$Cue){
- if($Cue -eq 'due'){$line=Get-GuardLine due;return [pscustomobject]@{id=$line.id;cue=$Cue;action=$line.action;text=$line.text;file=$line.file;duration=$line.duration;time=$Now.ToString('HH:mm');hour=$Now.Hour}}
- if($Cue -notin @('early','soon','bed','final')){throw 'Unknown clock reminder phase'}
- $line=$script:clockLines|Where-Object {$_.hour -eq $Now.Hour -and $_.cue -eq $Cue}|Select-Object -First 1
- if(-not $line){throw '当前报时语音包尚未完整生成'}
- $record=$script:clockRecords|Where-Object {$_.id -eq $line.id -and $_.text -eq $line.text}|Select-Object -First 1
- if(-not $record -or -not (Test-Path (Join-Path $root $line.file))){throw '报时台词与录音不一致'}
- return [pscustomobject]@{id=$line.id;cue=$Cue;action=$line.action;text=$line.text;file=$line.file;duration=$record.duration;time=$Now.ToString('HH:mm');hour=$Now.Hour}
-}
 function New-DesktopPet {
  if($script:popup){return}
  [xml]$px=@'
@@ -51,14 +37,14 @@ function New-DesktopPet {
  <Grid>
   <Grid x:Name="CompactPet" Margin="7"><Border CornerRadius="24" Background="#FDF4F8" BorderBrush="#E9CFDB" BorderThickness="1" Padding="8,5"><StackPanel>
    <DockPanel><Button x:Name="CompactHide" DockPanel.Dock="Right" Content="×" Padding="7,0" FontSize="15" ToolTip="隐藏桌宠，后台守护继续运行"/><TextBlock Text="拖动头像移动" FontSize="10" Foreground="#A37189" VerticalAlignment="Center"/></DockPanel>
-   <Image x:Name="PetAvatar" Width="84" Height="84" Stretch="Uniform" Cursor="SizeAll" ToolTip="按住拖动；轻点打开晚晚；右键有更多操作"/>
+   <Grid Width="96" Height="92"><Image x:Name="DeskBack" Stretch="Uniform" IsHitTestVisible="False"/><Image x:Name="PetAvatar" Stretch="Uniform" Cursor="SizeAll" ToolTip="晚晚在做自己的事。按住拖动；轻点打开晚晚；右键有更多操作"/><Image x:Name="DeskFront" Stretch="Uniform" IsHitTestVisible="False"/><Image x:Name="DeskCup" Stretch="Uniform" IsHitTestVisible="False"/></Grid>
    <TextBlock x:Name="CompactStatus" Text="到点守护未开启" HorizontalAlignment="Center" FontSize="11" Margin="0,3,0,5"/>
    <Button x:Name="CompactOpen" Content="打开晚晚 ↗" Padding="8,4" FontSize="11"/>
   </StackPanel></Border></Grid>
   <Grid x:Name="ExpandedPet" Visibility="Collapsed" Margin="12,10,12,8">
    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="18"/><RowDefinition Height="*"/></Grid.RowDefinitions>
    <Border Background="#FFF7FA" CornerRadius="24" Padding="20,16" BorderBrush="#E7C8D7" BorderThickness="1"><Border.Effect><DropShadowEffect Color="#805065" BlurRadius="16" ShadowDepth="3" Opacity="0.14"/></Border.Effect><StackPanel>
-    <DockPanel x:Name="PetDragHandle" Cursor="SizeAll"><Button x:Name="PopupClose" DockPanel.Dock="Right" Content="收起 ×" Padding="8,3" FontSize="11" Background="#F3E5EC"/><TextBlock x:Name="PetStatus" Text="晚晚来陪你啦" FontSize="12" Foreground="#A7738C" VerticalAlignment="Center"/></DockPanel>
+    <DockPanel x:Name="PetDragHandle" Cursor="SizeAll"><Button x:Name="PopupClose" DockPanel.Dock="Right" Content="收起 ×" Padding="8,3" FontSize="11" Background="#F3E5EC"/><TextBlock x:Name="PetStatus" Text="晚晚来啦" FontSize="12" Foreground="#A7738C" VerticalAlignment="Center"/></DockPanel>
     <TextBlock x:Name="PopupText" TextWrapping="Wrap" FontSize="16" Foreground="#57424F" LineHeight="27" Margin="0,12,0,12"/>
     <DockPanel><Button x:Name="PetOpen" DockPanel.Dock="Right" Content="打开晚晚 ↗" Padding="10,6" FontSize="11" Background="#EFE1E8"/><TextBlock x:Name="PetPromise" FontSize="11" Foreground="#AD919F" VerticalAlignment="Center"/></DockPanel>
    </StackPanel></Border>
@@ -69,7 +55,13 @@ function New-DesktopPet {
 </Window>
 '@
  $script:popup=[Windows.Markup.XamlReader]::Load([Xml.XmlNodeReader]::new($px));$script:popup.Resources.MergedDictionaries.Add($win.Resources);Set-WanwanIcon $script:popup
- $script:popup.FindName('PetAvatar').Source=[Windows.Media.Imaging.BitmapImage]::new([uri](Join-Path $root 'assets\icons\wanwan-256.png'))
+ # 小头像就是会动的晚晚：平时做自己的小动作，越晚越困（见 Behavior.ps1）。
+ $script:petAvatarSurface=Register-CharacterSurface ($script:popup.FindName('PetAvatar')) $null $script:popup
+ if($script:deskScene){
+  # 书桌场景：人物夹在背景和桌面之间；不加立绘用的上下渐隐，也不做身体位移。
+  $script:petAvatarSurface.Desk=$true;$script:petAvatarSurface.Image.OpacityMask=$null;$script:petAvatarSurface.Static=$true;$script:petAvatarSurface.Front=$script:popup.FindName('DeskFront');$script:petAvatarSurface.Back=$script:popup.FindName('DeskBack');$script:petAvatarSurface.Cup=$script:popup.FindName('DeskCup')
+  $script:popup.FindName('DeskBack').Source=$script:deskScene.Back;$script:popup.FindName('DeskFront').Source=$script:deskScene.Front;$script:popup.FindName('DeskCup').Source=$script:deskScene.Cup
+ }
  $script:popupSurface=Register-CharacterSurface ($script:popup.FindName('PopupPortrait')) ($script:popup.FindName('PopupFade')) $script:popup
  $compact=$script:popup.FindName('CompactPet')
  $compact.Add_PreviewMouseDown({param($sender,$e)
@@ -93,12 +85,12 @@ function New-DesktopPet {
  $compact.ContextMenu=$context
  $script:popup.FindName('PopupClose').Add_Click({Stop-Voice;Complete-DesktopPetReminder})
  $script:popup.FindName('PetOpen').Add_Click({Open-Wanwan})
- $script:popup.FindName('PopupPortrait').Add_MouseLeftButtonDown({Say-Cue pat -Interaction;Show-DesktopPet $script:lastSpokenLine.text;Extend-DesktopPetLifetime})
+ $script:popup.FindName('PopupPortrait').Add_MouseLeftButtonDown({$poke=Invoke-Poke;Show-DesktopPet $poke.text;Extend-DesktopPetLifetime})
  $script:popup.FindName('PetDragHandle').Add_MouseLeftButtonDown({param($sender,$e) if($e.OriginalSource -is [Windows.Controls.TextBlock]){$script:petDragging=$true;try{$script:popup.DragMove();Set-PetPosition $script:popup.Left $script:popup.Top;Save-PetPosition}finally{$script:petDragging=$false}}})
  $script:popup.Add_Closed({param($sender,$e) $script:surfaces=@($script:surfaces|Where-Object {$_.Window -ne $sender});$script:popup=$null;$script:popupSurface=$null;$script:petExpanded=$false})
 }
 function Show-DesktopPet {
- param([string]$Caption='',[string]$Status='晚晚来陪你啦',[switch]$Compact)
+ param([string]$Caption='',[string]$Status='晚晚来啦',[switch]$Compact)
  if($script:dialog){return}
  New-DesktopPet
  $script:petExpanded=-not $Compact
@@ -125,16 +117,14 @@ function Complete-DesktopPetReminder {
 }
 function Say-ClockReminder {
  param([datetime]$Now=(Get-Date),[string]$Cue='early',[switch]$Demo)
- $line=Get-ClockReminder $Now $Cue;$script:lastSpokenLine=$line
- $message=$line.text
- if($cfg.VoicePreset -eq 'System'){$message=Format-CompanionAddress $message $cfg.Nickname;$line.text=$message}
- $asset=if($cfg.VoicePreset -eq 'N1'){Join-Path $root $line.file}else{''}
- Say $message -LineId $line.id -ActionId $line.action -PreparedAsset $asset -PreparedDuration $line.duration
+ # 晚晚陪伴：到点时你还在打游戏 / 看视频 / 工作，就说对应的那句。
+ $companionCue=if($Cue -eq 'bed' -and -not $Demo){Get-CompanionBedtimeCue}else{''}
+ $line=if($companionCue){$l=Speak-Line (Get-CompanionLine $companionCue);$l|Add-Member -NotePropertyName time -NotePropertyValue $Now.ToString('HH:mm') -Force;$l}else{Speak-Line (Get-ClockReminder $Now $Cue)};$message=$line.text
  if($script:dialog){$script:dialog.FindName('Info').Text=$message;$script:dialog.FindName('ReminderTime').Text='晚晚 · '+$line.time}
  else{Show-DesktopPet $message $(if($Demo){'提醒体验 · '+$line.time}else{'晚晚 · '+$line.time});Extend-DesktopPetLifetime}
 }
-$win.FindName('PetPreview').Add_Click({Say-ClockReminder -Now (Get-Date) -Cue early -Demo})
-$ui.PetToggle=$win.FindName('PetToggle');$ui.PetToggle.IsChecked=[bool]$cfg.DesktopPet
+$ui.PetPreview.Add_Click({Say-ClockReminder -Now (Get-Date) -Cue early -Demo})
+$ui.PetToggle.IsChecked=[bool]$cfg.DesktopPet
 $ui.PetToggle.Add_Checked({$cfg.DesktopPet=$true;if(-not $script:dialog){Show-DesktopPet -Compact}})
 $ui.PetToggle.Add_Unchecked({$cfg.DesktopPet=$false;if($script:popup -and -not $script:petExpanded){$script:popup.Close()}})
 $win.Add_ContentRendered({if($cfg.DesktopPet -and -not $script:popup){Show-DesktopPet -Compact}})

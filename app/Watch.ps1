@@ -2,28 +2,7 @@
 . "$PSScriptRoot\History.ps1"
 . "$PSScriptRoot\UpdateCore.ps1"
 
-# ---------- 语音：新台词优先播放 N1 录音，录音尚未生成时由系统声音朗读 ----------
-$script:watchLines=(Get-Content (Join-Path $root 'assets\watch-lines.json') -Raw -Encoding UTF8|ConvertFrom-Json).lines
-$script:watchManifestPath=Join-Path $root 'assets\voices\N1-watch\manifest.json'
-$script:watchRecords=if(Test-Path $script:watchManifestPath){@((Get-Content $script:watchManifestPath -Raw -Encoding UTF8|ConvertFrom-Json)|ForEach-Object {$_})}else{@()}
-function Get-WatchLine([string]$Cue){
- $line=$script:watchLines|Where-Object cue -eq $Cue|Select-Object -First 1
- if(-not $line){throw "Unknown watch line: $Cue"}
- $record=$script:watchRecords|Where-Object {$_.id -eq $line.id -and $_.text -eq $line.text}|Select-Object -First 1
- $file=Join-Path $root $line.file
- $hasClip=[bool]($record -and (Test-Path $file))
- # 没有录音时按每字约 0.24 秒估算朗读时长，用于等待播报结束。
- $duration=if($hasClip){[double]$record.duration}else{[math]::Max(3,$line.text.Length*0.24)}
- return [pscustomobject]@{id=$line.id;cue=$Cue;action=$line.action;text=$line.text;file=$(if($hasClip){$file}else{''});duration=$duration}
-}
-function Say-WatchLine([string]$Cue){
- $line=Get-WatchLine $Cue;$script:lastSpokenLine=$line;$script:lastGuardDuration=$line.duration
- $message=$line.text
- if($cfg.VoicePreset -eq 'System'){$message=Format-CompanionAddress $message $cfg.Nickname}
- $asset=if($cfg.VoicePreset -eq 'N1' -and $line.file){$line.file}else{''}
- Say $message -LineId $line.id -ActionId $line.action -PreparedAsset $asset -PreparedDuration $line.duration|Out-Null
- return $line
-}
+# 起夜监督和早上问候的台词见 Persona.ps1（Get-WatchLine / Say-WatchLine）。
 
 # ---------- 早睡打卡记录 ----------
 $script:historyFile=Join-Path $data 'history.json'
@@ -126,7 +105,9 @@ function Install-DownloadedUpdate([string]$Source){
  # 把安装脚本复制到临时目录运行，它会等晚晚退出、覆盖文件、再重新打开晚晚。
  $runner=Join-Path ([IO.Path]::GetTempPath()) 'WanwanUpdate\ApplyUpdate.ps1'
  New-Item -ItemType Directory -Force (Split-Path -Parent $runner)|Out-Null
- Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'ApplyUpdate.ps1') -Destination $runner -Force
+ # 优先用新版本自带的安装脚本，这样安装逻辑的改进能在这次更新里就生效。
+ $installer=Join-Path $Source 'app\ApplyUpdate.ps1';if(-not (Test-Path -LiteralPath $installer)){$installer=Join-Path $PSScriptRoot 'ApplyUpdate.ps1'}
+ Copy-Item -LiteralPath $installer -Destination $runner -Force
  $arguments=@('-NoProfile','-ExecutionPolicy','Bypass','-WindowStyle','Hidden','-File',('"'+$runner+'"'),'-WaitPid',$PID,'-Source',('"'+$Source+'"'),'-Target',('"'+$root+'"'),'-LogFile',('"'+(Join-Path $data 'update.log')+'"'))
  if($script:dialog -and -not $script:demoMode){$arguments+=@('-ResumeDeadline',('"'+$script:deadline.ToString('o')+'"'))}
  Write-Event 'Update downloaded and verified; restarting to install'

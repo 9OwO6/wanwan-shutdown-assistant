@@ -1,6 +1,6 @@
 ﻿# 在真实 WPF Dispatcher 中操作按钮、抓帧，所有测试均禁用声音和关机。
-if($script:interactionAssets.Count -ne 10){throw 'Expected ten independent interaction sheets'}
-foreach($entry in $script:interactionAssets.GetEnumerator()){
+if(@($script:interactionAssets.Keys|Where-Object {$_ -notlike 'desk-*'}).Count -ne 10){throw 'Expected ten independent interaction sheets'}
+foreach($entry in @($script:interactionAssets.GetEnumerator()|Where-Object {$_.Key -notlike 'desk-*'})){
  if($entry.Value.Count -ne 4){throw 'Each action must load four reviewed frames'}
  foreach($frame in $entry.Value){if($frame.PixelWidth -ne 640 -or $frame.PixelHeight -ne 640 -or $frame -isnot [Windows.Media.Imaging.BitmapImage]){throw 'Runtime must load independent 640x640 frames instead of re-splitting source atlases'}}
 }
@@ -13,11 +13,11 @@ function Save-Visual($window,[string]$name){
  $window.UpdateLayout();$render=[Windows.Media.Imaging.RenderTargetBitmap]::new([int]$window.ActualWidth,[int]$window.ActualHeight,96,96,[Windows.Media.PixelFormats]::Pbgra32);$render.Render($window)
  $enc=[Windows.Media.Imaging.PngBitmapEncoder]::new();$enc.Frames.Add([Windows.Media.Imaging.BitmapFrame]::Create($render));$file=[IO.File]::Create((Join-Path $captureDirectory $name));$enc.Save($file);$file.Dispose()
 }
-$win.FindName('Interactions').RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent))
+$ui.Interactions.RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent))
 if(-not $script:gallery -or $gallery.FindName('Scenes').Children.Count -ne 10){throw 'Gallery must expose ten working buttons'}
 Wait-Visual 200;Save-Visual $gallery 'gallery.png'
 $report=@()
-foreach($item in $script:interactionCatalog){
+foreach($item in @($script:interactionCatalog|Where-Object {$_.id -notlike 'desk-*'})){
  $button=$gallery.FindName('Scenes').Children|Where-Object {$_.Tag -eq $item.id}|Select-Object -First 1
  $button.RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent))
  $seen=[Collections.Generic.HashSet[int]]::new();$saved=[Collections.Generic.HashSet[int]]::new();$deadline=[datetime]::Now.AddMilliseconds($item.step*$item.frames.Count+80)
@@ -32,7 +32,7 @@ foreach($item in $script:interactionCatalog){
 Start-Interaction 'pat';Wait-Visual 650;Set-Motion $false;Wait-Visual 100;$held=$script:frameIndex;Wait-Visual 800
 if($script:frameIndex -ne $held -or $script:mainSurface.Move.X -ne 0 -or $script:mainSurface.Rotate.Angle -ne 0){throw 'Reduced motion must hold a static gesture'}
 Set-Motion $true;$gallery.Close();$win.Hide()
-Say '还有半小时，我们慢慢把今天的事情收个尾，好不好？' -LineId early
+Say '还有半小时就该睡啦。' -LineId early
 Wait-Visual 700
 if(-not $script:popup -or -not $popup.IsVisible -or $popup.ShowActivated -or $script:action.Item.id -ne 'water'){throw 'Muted tray reminder must animate in a nonactivating popup'}
 $first=$script:popupSurface.Key;Wait-Visual 500;if($script:popupSurface.Key -eq $first){throw 'Hidden main window stopped popup frames'}

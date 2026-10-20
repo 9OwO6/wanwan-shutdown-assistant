@@ -1,0 +1,8 @@
+{
+ "note": "晚晚陪伴：只按前台程序的进程名归类，不读取窗口标题或内容。名字小写、不带 .exe。不认识的程序全屏时算游戏。",
+ "video": ["vlc", "potplayermini64", "potplayermini", "potplayer", "mpc-hc64", "mpc-hc", "mpc-be64", "wmplayer", "video.ui", "microsoft.media.player", "iina", "kmplayer", "bilibili", "爱奇艺", "qyclient", "tencentvideo", "youku", "mpv", "netflix"],
+ "game": ["steam", "steamwebhelper", "epicgameslauncher", "battle.net", "riotclientservices", "leagueclient", "league of legends", "valorant", "valorant-win64-shipping", "genshinimpact", "yuanshen", "starrail", "minecraft", "javaw", "overwatch", "cs2", "dota2", "eldenring", "wegame"],
+ "work": ["code", "cursor", "devenv", "idea64", "pycharm64", "webstorm64", "clion64", "rider64", "android studio", "studio64", "sublime_text", "notepad++", "notepad", "winword", "excel", "powerpnt", "onenote", "wps", "et", "wpp", "obsidian", "typora", "notion", "windowsterminal", "powershell", "cmd", "codex", "figma", "photoshop", "blender", "acrobat", "zotero"],
+ "browser": ["chrome", "msedge", "firefox", "opera", "brave", "360se", "qqbrowser", "sogouexplorer", "arc"],
+ "ignore": ["explorer", "searchhost", "shellexperiencehost", "startmenuexperiencehost", "textinputhost", "lockapp", "powershell_ise", "applicationframehost", "systemsettings", "wechat", "weixin", "qq", "discord", "dingtalk", "feishu", "lark"]
+}

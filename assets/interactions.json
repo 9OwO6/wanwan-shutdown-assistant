@@ -1,12 +1,172 @@
 [
- {"id":"peek","name":"探头找你","symbol":"✦","caption":"在忙吗？我探个头，看看你呀。","voice":"hello","frames":[0,1,2,1,2,3,0],"step":440},
- {"id":"pat","name":"轻轻拍一拍","symbol":"♡","caption":"辛苦啦，过来，轻轻拍一拍。","voice":"hello","frames":[0,1,2,1,2,3,0],"step":460},
- {"id":"water","name":"递一杯水","symbol":"♧","caption":"先喝口水，好不好？我等你。","voice":"hello","frames":[0,1,2,2,2,3,0],"step":480},
- {"id":"stretch","name":"一起伸懒腰","symbol":"☀","caption":"肩膀放松一点，和我一起伸个懒腰～","voice":"soon","frames":[0,1,2,2,2,3,0],"step":500},
- {"id":"nod","name":"点头回应你","symbol":"✓","caption":"嗯嗯，收到啦。我陪你慢慢来。","voice":"defer","frames":[0,1,2,1,2,3,0],"step":460},
- {"id":"heart","name":"给你一颗心","symbol":"♥","caption":"送你一点小心意，今天也要照顾好自己。","voice":"cancel","frames":[0,1,2,2,3,3,0],"step":480},
- {"id":"cheer","name":"小小加油","symbol":"✧","caption":"你今天已经做得很好啦，再给你一点点加油！","voice":"final","frames":[0,1,2,1,2,3,0],"step":420},
- {"id":"wave","name":"挥手打招呼","symbol":"♪","caption":"嗨，我在这里。看到你就很开心。","voice":"hello","frames":[0,1,2,3,2,3,0],"step":400},
- {"id":"yawn","name":"困困打哈欠","symbol":"☾","caption":"唔…我都有点困啦，我们也该休息了哦。","voice":"bed","frames":[0,1,2,2,2,3,0],"step":520},
- {"id":"goodnight","name":"贴脸说晚安","symbol":"☽","caption":"把今天轻轻放下。晚安，明天还陪着你。","voice":"goodnight","frames":[0,1,2,2,3,3,2],"step":520}
+ {
+  "id": "peek",
+  "name": "探头找你",
+  "symbol": "✦",
+  "caption": "在忙吗？",
+  "voice": "hello",
+  "frames": [
+   0,
+   1,
+   2,
+   1,
+   2,
+   3,
+   0
+  ],
+  "step": 440
+ },
+ {
+  "id": "pat",
+  "name": "轻轻拍一拍",
+  "symbol": "♡",
+  "caption": "拍拍。",
+  "voice": "hello",
+  "frames": [
+   0,
+   1,
+   2,
+   1,
+   2,
+   3,
+   0
+  ],
+  "step": 460
+ },
+ {
+  "id": "water",
+  "name": "递一杯水",
+  "symbol": "♧",
+  "caption": "喝口水吧。",
+  "voice": "hello",
+  "frames": [
+   0,
+   1,
+   2,
+   2,
+   2,
+   3,
+   0
+  ],
+  "step": 480
+ },
+ {
+  "id": "stretch",
+  "name": "一起伸懒腰",
+  "symbol": "☀",
+  "caption": "伸个懒腰～",
+  "voice": "soon",
+  "frames": [
+   0,
+   1,
+   2,
+   2,
+   2,
+   3,
+   0
+  ],
+  "step": 500
+ },
+ {
+  "id": "nod",
+  "name": "点头回应你",
+  "symbol": "✓",
+  "caption": "嗯嗯。",
+  "voice": "defer",
+  "frames": [
+   0,
+   1,
+   2,
+   1,
+   2,
+   3,
+   0
+  ],
+  "step": 460
+ },
+ {
+  "id": "heart",
+  "name": "给你一颗心",
+  "symbol": "♥",
+  "caption": "♡",
+  "voice": "cancel",
+  "frames": [
+   0,
+   1,
+   2,
+   2,
+   3,
+   3,
+   0
+  ],
+  "step": 480
+ },
+ {
+  "id": "cheer",
+  "name": "小小加油",
+  "symbol": "✧",
+  "caption": "加油！",
+  "voice": "final",
+  "frames": [
+   0,
+   1,
+   2,
+   1,
+   2,
+   3,
+   0
+  ],
+  "step": 420
+ },
+ {
+  "id": "wave",
+  "name": "挥手打招呼",
+  "symbol": "♪",
+  "caption": "👋",
+  "voice": "hello",
+  "frames": [
+   0,
+   1,
+   2,
+   3,
+   2,
+   3,
+   0
+  ],
+  "step": 400
+ },
+ {
+  "id": "yawn",
+  "name": "困困打哈欠",
+  "symbol": "☾",
+  "caption": "哈啊……",
+  "voice": "bed",
+  "frames": [
+   0,
+   1,
+   2,
+   2,
+   2,
+   3,
+   0
+  ],
+  "step": 520
+ },
+ {
+  "id": "goodnight",
+  "name": "贴脸说晚安",
+  "symbol": "☽",
+  "caption": "晚安。",
+  "voice": "goodnight",
+  "frames": [
+   0,
+   1,
+   2,
+   2,
+   3,
+   3,
+   2
+  ],
+  "step": 520
+ }
 ]

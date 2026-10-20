@@ -32,7 +32,8 @@
 - 👀 **起夜监督**：关机后的几个小时里偷偷开机，晚晚会出来说“怎么又偷偷起来呀”，给你几分钟处理急事，然后再帮你关机；真有急事可以取消当晚监督
 - ☆ **早睡打卡**：自动记录每晚有没有按时睡，显示连续早睡天数和最近 7 晚，早上见面时晚晚会告诉你昨晚的结果
 - ⬆ **一键更新**：「检查更新」直接从 GitHub 下载新版并自动重启，设置和打卡记录都保留
-- 🎙 **191 句离线 AI 语音**、10 种角色互动动画、可拖动的桌面小头像
+- 💬 **两种晚晚可选：女友或姐姐**。女友爱撒娇，姐姐温柔又会管人，各有一套原创台词和离线 AI 配音；称呼可选（宝宝、亲爱的、小笨蛋），也可以不叫或用自己的名字
+- 🧸 **会自己找事做的桌宠**：隔一阵喝水、写字、伸懒腰，越接近睡觉时间越困。打开「晚晚陪伴」后，你看视频她一起看、打游戏她也玩、离开电脑她就趴下睡（只在本机判断程序类型，默认关闭）
 - 🛡 **安全感优先**：默认不开启关机；正常关机不强杀程序；每晚可延期一次；有急事可以紧急取消
 
 ![运行时录制的角色动画](docs/screenshots/companion-animation.gif)
@@ -42,13 +43,13 @@
 1. 在 [Releases](https://github.com/9OwO6/wanwan-shutdown-assistant/releases/latest) 下载 `Wanwan-…-windows.zip`，**解压**到任意文件夹（不要直接在压缩包里双击）。
 2. 双击 **`启动晚晚.vbs`**。如果系统禁用了 VBScript，双击 **`启动晚晚.cmd`**。
 3. 先点 **「体验睡前倒计时」**：35 秒完整演示，**绝不会关机**。
-4. 设好睡觉时间（周末可以单独设），选择到点后「正常关机」或「睡眠」，点 **「保存并开启守护」**。
+4. 点右上角 **「⚙ 设置」**：设好睡觉时间（周末可以单独设），选择到点后「正常关机」或「睡眠」，点 **「保存并开启守护」**。以后在主窗口点「暂停守护 / 开启到点守护」就能一键切换。
 
-> 小技巧：右键右下角托盘图标 →「在桌面创建晚晚快捷方式」，以后双击桌面头像就能打开；勾选「开机陪伴」则每天登录后自动出现。
+> 小技巧：右键右下角托盘图标 →「在桌面创建晚晚快捷方式」，以后双击桌面头像就能打开；在设置里勾选「开机自动启动」则每天登录后自动出现。
 
-| 桌面小头像 | 准点提醒气泡 | 睡前收尾倒计时 |
+| 书桌前的晚晚（喝水 / 你离开时趴着睡） | 准点提醒气泡 | 睡前收尾倒计时 |
 |:--:|:--:|:--:|
-| <img src="docs/screenshots/desktop-pet.png" width="142" alt="可拖动的桌面头像"> | <img src="docs/screenshots/reminder-bubble.png" width="270" alt="带报时的提醒气泡"> | <img src="docs/screenshots/bedtime-countdown.png" width="270" alt="收尾倒计时"> |
+| <img src="docs/screenshots/desk-pet-drink.png" width="142" alt="桌宠在书桌前喝水"> <img src="docs/screenshots/desk-pet-nap.png" width="142" alt="桌宠趴着睡、安静趴着"> | <img src="docs/screenshots/reminder-bubble.png" width="270" alt="带报时的提醒气泡"> | <img src="docs/screenshots/bedtime-countdown.png" width="270" alt="收尾倒计时"> |
 
 | 起夜监督：关机后又偷偷开机 | 早上的早睡打卡 |
 |:--:|:--:|
@@ -83,7 +84,7 @@
 <details>
 <summary><b>怎么卸载？</b></summary>
 
-右键托盘图标 →「退出助理」，取消勾选「开机陪伴」并保存（或删除 `shell:startup` 里的晚晚快捷方式），然后删除解压的文件夹即可。想清除设置，再删除 `%LOCALAPPDATA%\WanwanShutdown`。
+右键托盘图标 →「退出助理」，在设置里取消勾选「开机陪伴」并保存（或删除 `shell:startup` 里的晚晚快捷方式），然后删除解压的文件夹即可。想清除设置，再删除 `%LOCALAPPDATA%\WanwanShutdown`。
 </details>
 
 <details>
@@ -112,7 +113,8 @@ It is a personal **AI-assisted product engineering portfolio project** — nativ
 - **Sleep watch** — powering the computer back on within the sleep window (default 6 h after bedtime) after a guarded shutdown opens a “caught you” countdown with a configurable grace period (default 5 min) and a one-night emergency cancel.
 - **Bedtime streak** — each night is recorded as slept / early / late / caught / cancelled from power requests and the last time the app saw the computer awake; the window shows the streak and the last seven nights, and a morning greeting reports the result.
 - **One-click updates** — a background check of this repository's latest GitHub release, asset-origin and SHA-256 checks, and a detached installer that keeps settings and resumes an active countdown.
-- **Offline AI voice** — 92 companion lines, 96 hour-aware reminders and 3 guard lines, shipped as compact MP3s with hash-verified WAV masters in the repository.
+- **Two personas, offline AI voice** — a sweet girlfriend (N1) and a gentle older sister (V3), each with her own approved script and whole-sentence recordings per address (宝宝 / 亲爱的 / 小笨蛋, none, or a custom name shown in the bubble). Shipped as compact MP3s with hash-verified WAV masters in the repository.
+- **A desk pet with a routine** — idle actions every few minutes, sleepier toward bedtime; the opt-in companion mode mirrors what you are doing (video, games, work) from the foreground process name only and naps when you step away.
 - **Desktop companion** — draggable avatar with visible guard state, ten animated interactions (40 poses), reduced-motion option, tray icon, single-instance activation.
 - **Video-ready transparent frames** — forty reviewed 640×640 PNGs in [`assets/frames/`](assets/frames/), with neighboring-sleeve artifacts removed; the app plays these same exports ([crop audit](docs/FRAME_REPAIR.md)).
 
