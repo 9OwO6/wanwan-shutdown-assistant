@@ -37,7 +37,7 @@ function New-DesktopPet {
  <Grid>
   <Grid x:Name="CompactPet" Margin="7"><Border CornerRadius="24" Background="#FDF4F8" BorderBrush="#E9CFDB" BorderThickness="1" Padding="8,5"><StackPanel>
    <DockPanel><Button x:Name="CompactHide" DockPanel.Dock="Right" Content="×" Padding="7,0" FontSize="15" ToolTip="隐藏桌宠，后台守护继续运行"/><TextBlock Text="拖动头像移动" FontSize="10" Foreground="#A37189" VerticalAlignment="Center"/></DockPanel>
-   <Image x:Name="PetAvatar" Width="96" Height="92" Stretch="Uniform" Cursor="SizeAll" ToolTip="晚晚在做自己的事。按住拖动；轻点打开晚晚；右键有更多操作"/>
+   <Grid Width="96" Height="92"><Image x:Name="DeskBack" Stretch="Uniform" IsHitTestVisible="False"/><Image x:Name="PetAvatar" Stretch="Uniform" Cursor="SizeAll" ToolTip="晚晚在做自己的事。按住拖动；轻点打开晚晚；右键有更多操作"/><Image x:Name="DeskFront" Stretch="Uniform" IsHitTestVisible="False"/></Grid>
    <TextBlock x:Name="CompactStatus" Text="到点守护未开启" HorizontalAlignment="Center" FontSize="11" Margin="0,3,0,5"/>
    <Button x:Name="CompactOpen" Content="打开晚晚 ↗" Padding="8,4" FontSize="11"/>
   </StackPanel></Border></Grid>
@@ -57,6 +57,11 @@ function New-DesktopPet {
  $script:popup=[Windows.Markup.XamlReader]::Load([Xml.XmlNodeReader]::new($px));$script:popup.Resources.MergedDictionaries.Add($win.Resources);Set-WanwanIcon $script:popup
  # 小头像就是会动的晚晚：平时做自己的小动作，越晚越困（见 Behavior.ps1）。
  $script:petAvatarSurface=Register-CharacterSurface ($script:popup.FindName('PetAvatar')) $null $script:popup
+ if($script:deskScene){
+  # 书桌场景：人物夹在背景和桌面之间；不加立绘用的上下渐隐，也不做身体位移。
+  $script:petAvatarSurface.Desk=$true;$script:petAvatarSurface.Image.OpacityMask=$null;$script:petAvatarSurface.Static=$true
+  $script:popup.FindName('DeskBack').Source=$script:deskScene.Back;$script:popup.FindName('DeskFront').Source=$script:deskScene.Front
+ }
  $script:popupSurface=Register-CharacterSurface ($script:popup.FindName('PopupPortrait')) ($script:popup.FindName('PopupFade')) $script:popup
  $compact=$script:popup.FindName('CompactPet')
  $compact.Add_PreviewMouseDown({param($sender,$e)

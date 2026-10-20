@@ -16,6 +16,19 @@ foreach($item in $script:interactionCatalog){
  $script:interactionAssets[$item.id]=$cells
 }
 $script:frames=$script:interactionAssets['peek']
+# 书桌场景（坐在电脑前的晚晚）：素材到位后放在 assets/desk/，桌宠小窗用它；主窗口仍用立绘。
+$script:deskScene=$null
+$deskManifest=Join-Path $root 'assets\desk\desk.json'
+if(Test-Path $deskManifest){
+ $desk=Get-Content $deskManifest -Raw -Encoding UTF8|ConvertFrom-Json
+ function Read-DeskImage([string]$Relative){$path=Join-Path $root ('assets\desk\'+$Relative);if(-not (Test-Path $path)){return $null};$image=[Windows.Media.Imaging.BitmapImage]::new();$image.BeginInit();$image.CacheOption=[Windows.Media.Imaging.BitmapCacheOption]::OnLoad;$image.UriSource=[uri]$path;$image.EndInit();$image.Freeze();return $image}
+ $script:deskScene=@{Back=(Read-DeskImage $desk.layers.back);Front=(Read-DeskImage $desk.layers.front);FrontLampOff=(Read-DeskImage $desk.layers.front_lamp_off)}
+ foreach($behavior in $desk.behaviors.PSObject.Properties){
+  $cells=@();for($i=0;$i -lt 4;$i++){$cell=Read-DeskImage ('character\'+$behavior.Name+'\'+$i+'.png');if(-not $cell){throw ('Missing desk frame: '+$behavior.Name+'/'+$i)};$cells+=,$cell}
+  $script:interactionAssets['desk-'+$behavior.Name]=$cells
+  $script:interactionCatalog+=[pscustomobject]@{id='desk-'+$behavior.Name;name=$behavior.Value.name;symbol='·';caption='';frames=@($behavior.Value.frames);step=[int]$behavior.Value.step}
+ }
+}
 function Animate-Double($target,$property,[double]$from,[double]$to,[double]$seconds,[bool]$loop=$false){
  $a=[Windows.Media.Animation.DoubleAnimation]::new($from,$to,[Windows.Duration]::new([timespan]::FromSeconds($seconds)));$a.EasingFunction=[Windows.Media.Animation.SineEase]::new()
  if($loop){$a.AutoReverse=$true;$a.RepeatBehavior=[Windows.Media.Animation.RepeatBehavior]::Forever};$target.BeginAnimation($property,$a)
@@ -34,6 +47,10 @@ function Register-CharacterSurface($image,$fade,$window){
  return $surface
 }
 function Set-SurfaceFrame($surface,[string]$id,[int]$index){
+ # 书桌动作只在桌宠小窗里用；主窗口等立绘画面换成对应的站姿动作。
+ if($id -like 'desk-*' -and -not $surface.Desk){$id=if($script:BehaviorFallback -and $script:BehaviorFallback.ContainsKey($id.Substring(5))){$script:BehaviorFallback[$id.Substring(5)]}else{'peek'}}
+ # 反过来，桌宠小窗有书桌场景时，提醒用的站姿动作换成书桌上的近似动作。
+ if($surface.Desk -and $id -notlike 'desk-*'){$deskId='desk-'+$(switch($id){'water'{'drink'}'yawn'{'yawn'}'goodnight'{'sleep'}default{'write'}});if($script:interactionAssets.ContainsKey($deskId)){$id=$deskId}}
  if(-not $script:interactionAssets.ContainsKey($id)){return}
  $key=$id+':'+$index;if($surface.Key -eq $key){return}
  # 只在更换动作时淡化；姿态间直接切帧，避免两张脸重叠。
@@ -113,7 +130,7 @@ $script:visualTimer.Add_Tick({
  $script:frameIndex=$index
  foreach($surface in @($script:surfaces)){
   if(-not $surface.Window.IsVisible){continue};Set-SurfaceFrame $surface $id $index
-  if(-not $script:motionEnabled){continue}
+  if(-not $script:motionEnabled -or $surface.Static){continue}
   $t=if($active){[math]::Min(1,($ms-$script:action.Start)/($script:action.End-$script:action.Start))}else{0}
   $envelope=[math]::Sin([math]::PI*$t);$surface.Scale.ScaleX=1+(.007*[math]::Sin($ms/1100));$surface.Scale.ScaleY=$surface.Scale.ScaleX;$surface.Move.X=0;$surface.Move.Y=0;$surface.Rotate.Angle=0
   if($active){switch($id){'peek'{$surface.Move.X=-22*(1-$t)*[math]::Cos($t*6);$surface.Rotate.Angle=-3*$envelope}'pat'{$surface.Scale.ScaleX=1+.04*$envelope;$surface.Scale.ScaleY=$surface.Scale.ScaleX;$surface.Move.Y=4*$envelope}'water'{$surface.Move.Y=-5*$envelope}'stretch'{$surface.Move.Y=-9*$envelope}'nod'{$surface.Move.Y=4*[math]::Sin($t*4*[math]::PI)*$envelope}'heart'{$surface.Scale.ScaleX=1+.025*$envelope;$surface.Scale.ScaleY=$surface.Scale.ScaleX}'cheer'{$surface.Move.Y=-6*[math]::Abs([math]::Sin($t*4*[math]::PI))}'wave'{$surface.Rotate.Angle=1.5*[math]::Sin($t*4*[math]::PI)*$envelope}'yawn'{$surface.Move.Y=3*$envelope}'goodnight'{$surface.Rotate.Angle=2*$envelope}}}

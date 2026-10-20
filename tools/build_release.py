@@ -27,6 +27,9 @@ RUNTIME_GLOBS = [
     'assets/frames/*/*.png',
     'assets/voices/**/*.mp3',
     'assets/voices/*/bank.json',
+    'assets/desk/desk.json',
+    'assets/desk/*.png',
+    'assets/desk/character/*/*.png',
 ]
 EXCLUDE_PARTS = {'reference', 'parts'}
 EXCLUDE_NAMES = {'voice-lab-candidates.json'}

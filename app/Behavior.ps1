@@ -58,6 +58,11 @@ function Start-PetBehavior([string]$Behavior){
  $script:actionHistory.Add(@{id=$id;behavior=$Behavior;popup=$false;time=$script:animationClock.ElapsedMilliseconds})
  if($script:actionHistory.Count -gt 100){$script:actionHistory.RemoveAt(0)}
 }
+function Set-DeskLamp([bool]$On){
+ # 书桌场景：晚晚睡着时台灯关掉。
+ if(-not $script:deskScene -or -not $script:popup -or -not $script:deskScene.FrontLampOff){return}
+ $script:popup.FindName('DeskFront').Source=if($On){$script:deskScene.Front}else{$script:deskScene.FrontLampOff}
+}
 function Update-PetBehavior([datetime]$Now=(Get-Date)){
  # 提醒、倒计时或语音进行中时不打扰。
  if($script:dialog -or $script:petExpanded -or ($script:voiceUntil -and $Now -lt $script:voiceUntil)){return}
@@ -69,12 +74,12 @@ function Update-PetBehavior([datetime]$Now=(Get-Date)){
  $script:petBehavior.Away=$away;$script:petBehavior.Activity=$activity;$script:petBehavior.Sleepiness=$sleepiness
  if($away){
   # 你离开了：趴下睡着，保持睡姿。
-  if(-not $wasAway){Start-PetBehavior 'sleep';$script:restPose=@{Id=(Get-BehaviorAnimation 'sleep' @($script:interactionAssets.Keys));Frame=2}}
+  if(-not $wasAway){Start-PetBehavior 'sleep';$script:restPose=@{Id=(Get-BehaviorAnimation 'sleep' @($script:interactionAssets.Keys));Frame=2};Set-DeskLamp $false}
   return
  }
  if($wasAway){
   # 你回来了：醒过来，半小时内只打一次招呼。
-  $script:restPose=$null
+  $script:restPose=$null;Set-DeskLamp $true
   if(($Now-$script:petBehavior.LastBack).TotalMinutes -ge 30){$script:petBehavior.LastBack=$Now;Say-Cue back}else{Start-PetBehavior 'peek'}
   $script:petBehavior.NextAt=$Now.AddSeconds((Get-NextBehaviorDelay $sleepiness $script:behaviorRandom));return
  }
