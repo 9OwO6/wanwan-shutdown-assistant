@@ -39,8 +39,8 @@ SHOTS = [
     dict(img=['s06a', 's06b', 's06c'], d=6.0, zoom=(1.03, 1.08), caps=[('没有人催了', 1.0, 5.8, 'narration')], clock=('01:12', '02:47')),
     dict(img=['s07a', 's07b'], d=6.0, zoom=(1.00, 1.05), caps=[('其实不是不想睡', 0.4, 2.9, 'narration'), ('只是少了一个人，告诉你「很晚了」', 3.0, 5.8, 'narration')]),
     dict(img='s08', d=7.0, zoom=(1.00, 1.03), pet=('peek', 'line-s08', '宝宝，很晚了哦～先存一下档嘛，好不好？')),
-    dict(img=['s08', 's09'], d=5.0, zoom=(1.03, 1.05), pet=('goodnight', 'shutdown-1@baobao', '时间到～关机咯。晚安宝宝，梦里见。'), split=2.6),
-    dict(img='s10', d=5.0, zoom=(1.00, 1.04), pet=('stretch', 'streak-1', '早呀～昨晚超乖的，奖励你一颗小星星！')),
+    dict(img=['s08', 's09'], d=6.5, zoom=(1.03, 1.05), pet=('goodnight', 'shutdown-1@baobao', '时间到～关机咯。晚安宝宝，梦里见。'), split=5.3),
+    dict(img='s10', d=5.6, zoom=(1.00, 1.04), pet=('stretch', 'streak-1', '早呀～昨晚超乖的，奖励你一颗小星星！')),
     dict(end=True, d=8.0),
 ]
 PET_SCREEN = {}  # filled from <assets>/layout.json: where the computer screen's empty corner is in s08/s10
@@ -142,14 +142,23 @@ class Pet:
 def bubble(text, width, scale):
     f = font(FONT, int(40 * scale))
     probe = ImageDraw.Draw(Image.new('RGBA', (1, 1)))
+    # Balanced lines; punctuation never starts a line.
+    limit = width - 64 * scale
+    full = probe.textlength(text, font=f)
+    n = max(1, math.ceil(full / limit))
+    target = full / n
     lines, line = [], ''
     for ch in text:
-        if probe.textlength(line + ch, font=f) > width - 64 * scale:
+        if line and probe.textlength(line + ch, font=f) > target + f.size * 0.5 and len(lines) < n - 1:
             lines.append(line)
-            line = ch
-        else:
-            line += ch
+            line = ''
+        line += ch
     lines.append(line)
+    for i in range(1, len(lines)):
+        while lines[i] and lines[i][0] in '，。！？～、）」…' and len(lines[i - 1]) > 1:
+            lines[i - 1], lines[i] = lines[i - 1] + lines[i][0], lines[i][1:]
+    lines = [ln for ln in lines if ln]
+    width = int(max(probe.textlength(ln, font=f) for ln in lines) + 64 * scale + 4)
     lh = int(60 * scale)
     h = int(72 * scale + lh * len(lines))
     im = Image.new('RGBA', (int(width), h + int(26 * scale)), (0, 0, 0, 0))
@@ -193,10 +202,10 @@ def shot_frame(shot, t, stills, W, H, pet, layout):
         glow.putalpha(glow.getchannel('A').point(lambda v: int(v * appear)))
         frame.alpha_composite(glow)
         if t > 0.9 and t < d - 0.3:
-            bw = W * 0.74
-            b = bubble(line, bw, W / 1080)
+            k = s / 1.25  # bubble scales with the still, so it keeps its size relative to the screen
+            b = bubble(line, 800 * k, k)
             ba = min(1, (t - 0.9) / 0.35, (d - 0.3 - t) / 0.3)
-            bx = int(min(px + size * 0.5 - bw * 0.72, W - bw - W * 0.03))
+            bx = int(min(px + size * 0.5 - b.width * 0.72, W - b.width - W * 0.03))
             by = int(py - b.height + size * 0.06)
             b.putalpha(b.getchannel('A').point(lambda v: int(v * ba)))
             frame.alpha_composite(b, (max(int(W * 0.03), bx), max(int(H * 0.05), by)))
@@ -236,10 +245,10 @@ def end_frame(t, d, W, H, pet):
         frame.alpha_composite(layer)
     fa = lambda t0: max(0, min(1, (t - t0) / 0.6))
     portrait = H > W
-    x = None if portrait else int(W * 0.56)
+    x = None if portrait else int(W * 0.50)
     y0 = int(H * 0.68) if portrait else int(H * 0.30)
-    put('别再漫无目的地熬夜了。', font(FONT_SERIF, int(W * (0.055 if portrait else 0.032))), y0, (120, 70, 95), fa(0.3), x)
-    put('长大了以后，也要按时睡觉呀～', font(FONT_SERIF, int(W * (0.055 if portrait else 0.032))), y0 + int(W * (0.085 if portrait else 0.05)), (120, 70, 95), fa(1.6), x)
+    put('别再漫无目的地熬夜了。', font(FONT_SERIF, int(W * (0.055 if portrait else 0.027))), y0, (120, 70, 95), fa(0.3), x)
+    put('长大了以后，也要按时睡觉呀～', font(FONT_SERIF, int(W * (0.055 if portrait else 0.027))), y0 + int(W * (0.085 if portrait else 0.042)), (120, 70, 95), fa(1.6), x)
     put('晚晚 · 关机助理', font(FONT, int(W * (0.075 if portrait else 0.045))), y0 + int(W * (0.21 if portrait else 0.13)), (87, 66, 79), fa(3.6), x)
     put('免费开源 · Windows 下载即用', font(FONT_LIGHT, int(W * (0.038 if portrait else 0.022))), y0 + int(W * (0.31 if portrait else 0.19)), (163, 113, 137), fa(4.2), x)
     put(URL, font(FONT_LIGHT, int(W * (0.033 if portrait else 0.02))), y0 + int(W * (0.37 if portrait else 0.225)), (163, 113, 137), fa(4.6), x)
