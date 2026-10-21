@@ -21,11 +21,11 @@ if($negative.Left -ne -408 -or $negative.Top -ne 402){throw 'Negative monitor co
 $cfg.VoicePreset='Recorded';$cfg.Persona='girlfriend';$cfg.Address='baobao';$cfg.Voice=$false;$cfg.DesktopPet=$true
 $win.Activate()|Out-Null;Wait-Pet 100;$foreground=[Wanwan.Desktop]::GetForegroundWindow()
 Show-DesktopPet -Compact;Wait-Pet 150
-if(-not $popup.IsVisible -or $popup.ShowActivated -or $script:petExpanded -or $popup.Width -ne 142){throw 'Compact companion did not appear without activation'}
+if(-not $popup.IsVisible -or $popup.ShowActivated -or $script:petExpanded -or $popup.Width -ne $script:petSize -or $popup.FindName('ExpandedPet').IsVisible){throw 'Compact companion did not appear without activation'}
 if([Wanwan.Desktop]::GetForegroundWindow() -ne $foreground){throw 'Compact companion stole keyboard focus'}
 Assert-PetBounds $popup;Capture-Pet $popup 'compact.png'
 $compactTouch=[Windows.Input.MouseButtonEventArgs]::new([Windows.Input.Mouse]::PrimaryDevice,0,[Windows.Input.MouseButton]::Left);$compactTouch.RoutedEvent=[Windows.UIElement]::MouseLeftButtonUpEvent
-$win.Hide();$popup.FindName('CompactOpen').RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent));Wait-Pet 100
+$win.Hide();($popup.FindName('CompactPet').ContextMenu.Items|Where-Object Header -eq '打开晚晚').RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.MenuItem]::ClickEvent));Wait-Pet 100
 if(-not $win.IsVisible -or $script:petExpanded){throw 'Compact avatar touch did not restore the main window'}
 $ui.PetPreview.RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent));Wait-Pet 100
 $win.Hide();$popup.FindName('PetOpen').RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent));Wait-Pet 100
@@ -36,8 +36,9 @@ if(-not $script:petExpanded -or $popup.FindName('PetStatus').Text -notlike '提�
 if($cfg.Enabled -or $script:dialog -or $popup.FindName('PetPromise').Text -ne ('约好 '+$cfg.Bedtime+' 休息')){throw 'Preview changed guard state or started a countdown'}
 if([Wanwan.Desktop]::GetForegroundWindow() -ne $foreground){throw 'Reminder stole keyboard focus'}
 Assert-PetBounds $popup;Capture-Pet $popup 'reminder.png'
-$touch=[Windows.Input.MouseButtonEventArgs]::new([Windows.Input.Mouse]::PrimaryDevice,0,[Windows.Input.MouseButton]::Left);$touch.RoutedEvent=[Windows.UIElement]::MouseLeftButtonDownEvent
-$popup.FindName('PopupPortrait').RaiseEvent($touch)
+# 点晚晚一下（按下、不移动、松开）：稍等确认不是双击，然后戳她
+$touch=[Windows.Input.MouseButtonEventArgs]::new([Windows.Input.Mouse]::PrimaryDevice,0,[Windows.Input.MouseButton]::Left);$touch.RoutedEvent=[Windows.UIElement]::PreviewMouseDownEvent;$popup.FindName('PetAvatar').RaiseEvent($touch)
+$release=[Windows.Input.MouseButtonEventArgs]::new([Windows.Input.Mouse]::PrimaryDevice,0,[Windows.Input.MouseButton]::Left);$release.RoutedEvent=[Windows.UIElement]::PreviewMouseUpEvent;$popup.FindName('CompactPet').RaiseEvent($release);Wait-Pet 700
 if($script:lastSpokenLine.cue -notlike 'poke*'){throw 'Touch did not trigger the poke response'}
 # Record actual advancing poses while the popup is visible.
 Start-Interaction wave '你回来啦。' -Popup
@@ -48,7 +49,7 @@ Set-Motion $false;Start-Interaction heart '给你一颗小小的心。' -Popup;W
 if($script:popupSurface.Key -ne $held -or $script:popupSurface.Move.Y -ne 0 -or $popup.Opacity -ne 1){throw 'Reduced motion is not static'}
 Set-Motion $true
 $popup.FindName('PopupClose').RaiseEvent([Windows.RoutedEventArgs]::new([Windows.Controls.Button]::ClickEvent));Wait-Pet 60
-if(-not $popup -or $script:petExpanded -or $popup.Width -ne 142){throw 'Dismiss did not return to compact companion'}
+if(-not $popup -or $script:petExpanded -or $popup.Width -ne $script:petSize){throw 'Dismiss did not return to compact companion'}
 Say-ClockReminder -Now ([datetime]'2026-10-11T00:59:00') -Cue early -Demo;Wait-Pet 150
 if($script:lastSpokenLine.hour -ne 0 -or $popup.FindName('PetStatus').Text -ne '提醒体验 · 00:59' -or $popup.FindName('PopupText').Text -notlike '*十二点*'){throw 'Midnight clock is inaccurate'}
 $script:popupUntil=$script:animationClock.ElapsedMilliseconds-1;Wait-Pet 100
