@@ -33,7 +33,7 @@
 - ☆ **早睡打卡**：自动记录每晚有没有按时睡，显示连续早睡天数和最近 7 晚，早上见面时晚晚会告诉你昨晚的结果
 - ⬆ **一键更新**：「检查更新」直接从 GitHub 下载新版并自动重启，设置和打卡记录都保留
 - 💬 **两种晚晚可选：女友或姐姐**。女友爱撒娇，姐姐温柔又会管人，各有一套原创台词和离线 AI 配音；称呼可选（宝宝、亲爱的、小笨蛋），也可以不叫或用自己的名字
-- 🧸 **会自己找事做的桌宠**：隔一阵喝水、写字、伸懒腰，越接近睡觉时间越困。打开「晚晚陪伴」后，你看视频她一起看、打游戏她也玩、离开电脑她就趴下睡（只在本机判断程序类型，默认关闭）
+- 🧸 **会自己找事做的桌宠**：晚晚直接坐在你的桌面上（透明、无边框），隔一阵喝水、写字、伸懒腰，越接近睡觉时间越困。拖她移动，点她一下会回你，双击打开，右键有更多。打开「晚晚陪伴」后，你看视频她一起看、打游戏她也玩、离开电脑她就趴下睡（只在本机判断程序类型，默认关闭）
 - 🛡 **安全感优先**：默认不开启关机；正常关机不强杀程序；每晚可延期一次；有急事可以紧急取消
 
 ![运行时录制的角色动画](docs/screenshots/companion-animation.gif)
@@ -49,7 +49,7 @@
 
 | 书桌前的晚晚（喝水 / 你离开时趴着睡） | 准点提醒气泡 | 睡前收尾倒计时 |
 |:--:|:--:|:--:|
-| <img src="docs/screenshots/desk-pet-drink.png" width="142" alt="桌宠在书桌前喝水"> <img src="docs/screenshots/desk-pet-nap.png" width="142" alt="桌宠趴着睡、安静趴着"> | <img src="docs/screenshots/reminder-bubble.png" width="270" alt="带报时的提醒气泡"> | <img src="docs/screenshots/bedtime-countdown.png" width="270" alt="收尾倒计时"> |
+| <img src="docs/screenshots/desk-pet-drink.png" width="150" alt="桌宠在书桌前喝水"> <img src="docs/screenshots/desk-pet-nap.png" width="150" alt="桌宠趴着睡"> | <img src="docs/screenshots/reminder-bubble.png" width="270" alt="带报时的提醒气泡"> | <img src="docs/screenshots/bedtime-countdown.png" width="270" alt="收尾倒计时"> |
 
 | 起夜监督：关机后又偷偷开机 | 早上的早睡打卡 |
 |:--:|:--:|
